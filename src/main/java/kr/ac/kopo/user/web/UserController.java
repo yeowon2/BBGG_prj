@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.user.service.UserService;
 
 @Controller
@@ -39,11 +40,26 @@ public class UserController {
 		return "redirect:/list";
 	}
 	
-	@GetMapping("/update/{memberId}")
-	public String update(@PathVariable Long userNum, UserVO userVO) {
-		userVO = service.select()
+	@GetMapping("/update/{userId}")
+	public String update(@PathVariable String userId, Model model) {
+		UserVO userVO = service.select(userId);
+		model.addAttribute("userVO", userVO);
 		
 		return path + "update";
 	}
 	
+	@PostMapping("/update/{userId}")
+	public String update(@PathVariable String userId, UserVO userVO) {
+		userVO.setUserId(userId);
+		service.update(userVO);
+		
+		return "redirect:../list";
+	}
+	
+	@GetMapping("/delete/{userId}")
+	public String delete(@PathVariable String userId) {
+		service.delete(userId);
+		
+		return "redirect:../list";
+	}
 }

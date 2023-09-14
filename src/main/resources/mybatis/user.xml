@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<resultMap type="kr.ac.kopo.user.web.UserVO" id="UserMap">
+		<result property="userNum" column="USER_NUM"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userNm" column="USER_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="emailAddress" column="EMAIL_ADDRESS"/>
+	</resultMap>
+
+	<insert id="add">
+		INSERT INTO USER
+		(
+			USER_ID
+			, USER_NM
+			, PHONE
+			, ADDRESS
+			, EMAILADDRESS
+		)
+		VALUES (
+			#{userId}
+			, #{userNm}
+			, #{phone}
+			, #{address}
+			, #{emailAddress}
+		)
+	</insert>
+
+	 
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM  USER
+	</select>
+	
+	<select id="list" resultType="User">
+		SELECT * 
+		FROM  USER
+		LIMIT #{offset}, #{perPage}
+	</select>
+	
+	<select id="select" resultMap="UserMap">
+		SELECT * 
+		FROM USER
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<update id="update">
+		UPDATE USER
+		SET (
+			USER_NAME = {userNm}
+			, PHONE = {phone}
+			, ADDRESS = {address}
+		)
+		WHERE USER_ID= #{userId}
+	</update>
+	
+	<update id="delete">
+		UPDATE USER
+		SET USER_STATUS = 'Y' 
+		WHERE USER_ID = {userId}
+	</update>
+	
+</mapper>

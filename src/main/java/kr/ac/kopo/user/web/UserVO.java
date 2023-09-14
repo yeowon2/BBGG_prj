@@ -12,6 +12,7 @@ public class UserVO {
 	private String emailId;
 	private String emailDomain;
 	private java.util.Date sbscrbde;
+	private String userStatus;
 	private String adminYN;
 	public long getUserNum() {
 		return userNum;
@@ -73,10 +74,20 @@ public class UserVO {
 	public void setSbscrbde(java.util.Date sbscrbde) {
 		this.sbscrbde = sbscrbde;
 	}
+	public String getUserStatus() {
+		return userStatus;
+	}
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
 	public String getAdminYN() {
 		return adminYN;
 	}
 	public void setAdminYN(String adminYN) {
 		this.adminYN = adminYN;
 	}
+	
+	
+	
+	
 }

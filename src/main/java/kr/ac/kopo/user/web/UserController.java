@@ -37,7 +37,7 @@ public class UserController {
 	public String add(UserVO userVO) {
 		service.add(userVO);
 		
-		return "redirect:/list";
+		return "redirect:/user/list";
 	}
 	
 	@GetMapping("/update/{userNum}")

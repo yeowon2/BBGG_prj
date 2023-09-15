@@ -16,29 +16,29 @@
 		<form method="post">
 			<div>
 				<div>
-					<label>ID :</label> ${item.custid}
+					<label>ID :</label> ${userVO.userId}
 				</div>
 				<div>
 					<label>비밀번호 : </label> 
-					<input type="password" name="passwd" value="${item.passwd}">
+					<input type="password" name="password" value="${userVO.password}">
 					<button type="button">확인</button>
 				</div>
 				<div>
 					<label>이름 : </label> 
-					<input type="text" name="name" value="${item.name}">
+					<input type="text" name="userNm" value="${userVO.userNm}">
 				</div>
 				
 				<div>
-					<label>주소 : </label> 
-					<input type="text" name="address" value="${item.address}">
+					<label>이메일 : </label> 
+					<input type="text" name="emailAddress" value="${userVO.emailAddress}">
 				</div>
 				<div>
 					<label>폰번호 : </label> 
-					<input type="text" name="phone" value="${item.phone}">
+					<input type="text" name="phone" value="${userVO.phone}">
 				</div>
 				<div>
 					<button>변경</button>
-					<a href="../customer/list"><button type="button">목록</button></a>
+					<a href="../user/list"><button type="button">목록</button></a>
 				</div>
 			</div>
 		</form>

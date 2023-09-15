@@ -9,12 +9,18 @@ public class Pager {
 	private float total;
 	private int perGroup = 3;
 	
-	public int getPerGroup() {
-		return perGroup;
+	private int search;
+	private String keyword;
+	
+	public String getQuery() {
+		String queryString = "";
+		
+		if(search > 0)
+			queryString += "&search=" + search + "&keyword=" + keyword;
+		
+		return queryString;
 	}
-	public void setPerGroup(int perGroup) {
-		this.perGroup = perGroup;
-	}
+	
 	public int getPage() {
 		return page;
 	}
@@ -33,33 +39,56 @@ public class Pager {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	public int getLast() {
-		return (int) Math.ceil(total / perPage);
+	public int getPerGroup() {
+		return perGroup;
 	}
-	
+	public void setPerGroup(int perGroup) {
+		this.perGroup = perGroup;
+	}
+	public int getLast() {	//마지막 페이지
+		return (int)Math.ceil(total / perPage);
+	}
+	// 이전 누르면 이전페이지그룹의 첫번째 페이지
 	public int getPrev() {
-		return page <= perGroup ? 1 : (((page - 1) / perGroup) - 1) * perGroup +1;
+		return page <= perGroup ? 1 : (((page - 1) / perGroup) - 1) * perGroup + 1;
 	}
-	
+	// 다음 누르면 다음페이지그룹의 첫번째 페이지
 	public int getNext() {
-		int next =  (((page - 1) / perGroup) + 1) * perGroup +1;
+		int next = (((page - 1) / perGroup) + 1) * perGroup + 1;
 		int last = getLast();
 		
 		return next < last ? next : last;
 	}
-	
+	// 페이지 리스트
 	public List<Integer> getList() {
 		List<Integer> list = new ArrayList<Integer>();
 		
-		int startPage = (((page - 1) / perGroup) + 0) * perGroup +1;
+		int startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
 		
-		for(int i = startPage ; i < (startPage + perGroup) && i <= getLast(); i++) {
-			
+		for(int i = startPage; i < (startPage + perGroup) && i <= getLast(); i++) {
 			list.add(i);
-			
-			if(list.isEmpty())
-				list.add(1);
 		}
+		
+		// 페이지(게시물)가 없다면 포문이 작동하지 않기에 1값을 넣어준다
+		if(list.isEmpty()) {
+			list.add(1);
+		}
+		
 		return list;
+	}
+	
+	public int getSearch() {
+		return search;
+	}
+	public void setSearch(int search) {
+		this.search = search;
+	}
+	public String getKeyword() {
+		if(search < 1)
+			keyword = "";
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }

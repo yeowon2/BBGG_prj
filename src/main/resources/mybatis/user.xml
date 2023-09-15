@@ -16,17 +16,18 @@
 		(
 			UNUMBER
 			, ID
+			, PASSWD
 			, NAME
+			, EMAIL			
 			, PHONE
-			, ADRES
-			, EMAIL
 		)
 		VALUES (
-			#{userId}
+			#{userNum}
+			, #{userId}
+			, #{password}
 			, #{userNm}
-			, #{phone}
-			, #{address}
 			, #{emailAddress}
+			, #{phone}
 		)
 	</insert>
 
@@ -55,11 +56,12 @@
 	
 	<update id="update">
 		UPDATE USER
-		SET (
-			NAME = {userNm}
-			, PHONE = {phone}
-			, ADRES = {address}
-		)
+		SET 
+			PASSWD = #{password}
+			, NAME = #{userNm}
+			, EMAIL = #{emailAddress}
+			, PHONE = #{phone}
+		
 		WHERE UNUMBER = #{userNum}
 	</update>
 	

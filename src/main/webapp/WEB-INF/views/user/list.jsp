@@ -43,23 +43,19 @@
 					</c:if>
 				</tbody>
 				<tfoot>
-				    <tr>
-				        <td colspan="5">
-				            <ul class="pagination justify-content-center mt-3">
-				                <li class="page-item"><a href="?page=1" class="page-link">처음</a></li>
-				                <li class="page-item"><a href="?page=${pager.last}" class="page-link">마지막</a></li>
-				                <li class="page-item"><a href="?page=3" class="page-link">처음</a></li>
-				                <li class="page-item"><a href="?page=4" class="page-link">처음</a></li>
-				                <li class="page-item"><a href="?page=5" class="page-link">처음</a></li>
-				                <li class="page-item"><a href="?page=${pager.prev}" class="page-link">이전</a></li>
-				                <c:forEach var="page" items="${pager.list}">
-				                	<li class="page-item"><a href="?page=${page}" class="page-link">${page}</a></li>
-				                </c:forEach>
-				                <li class="page-item"><a href="?page=${pager.next}" class="page-link">다음</a></li>
-				                <li class="page-item"><a href="?page=${pager.last}" class="page-link">마지막</a></li> 
-				            </ul>
-				        </td>
-				    </tr>
+					<tr>
+						<td colspan="5">
+							<ul class="pagination justify-content-center mt-3">
+								<li class="page-item"><a class="page-link" href="?page=1${pager.query}">처음</a></li>
+								<li class="page-item"><a class="page-link" href="?page=${pager.prev}${pager.query}">이전</a></li>
+								<c:forEach var="page" items="${pager.list}">
+									<li class="page-item"><a class="page-link ${page == pager.page ? 'active' : ''}" href="?page=${page}${pager.query}">${page}</a></li>
+								</c:forEach>
+								<li class="page-item"><a class="page-link" href="?page=${pager.next}${pager.query}">다음</a></li>
+								<li class="page-item"><a class="page-link" href="?page=${pager.last}${pager.query}">마지막</a></li>
+							</ul>
+						</td>
+					</tr>
 				</tfoot>
 			</table>
 		</div>

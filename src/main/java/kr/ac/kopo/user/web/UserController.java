@@ -30,14 +30,14 @@ public class UserController {
 	
 	@GetMapping("/add")
 	public String add() {
-		return path + "add";
+		return path + "add2";
 	}
 	
 	@PostMapping("/add")
 	public String add(UserVO userVO) {
 		service.add(userVO);
 		
-		return "redirect:/list";
+		return "redirect:/user/list";
 	}
 	
 	@GetMapping("/update/{userNum}")

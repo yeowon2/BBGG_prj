@@ -14,10 +14,10 @@ import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.user.service.UserService;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/user")
 public class UserController {
 
-	private final String path = "member/";
+	private final String path = "user/";
 	@Autowired
 	UserService service;
 	
@@ -34,8 +34,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/add")
-	public String add(UserVO memberVO) {
-		service.add(memberVO);
+	public String add(UserVO userVO) {
+		service.add(userVO);
 		
 		return "redirect:/list";
 	}

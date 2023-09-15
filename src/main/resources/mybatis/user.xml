@@ -4,21 +4,22 @@
 <mapper namespace="user">
 
 	<resultMap type="kr.ac.kopo.user.web.UserVO" id="UserMap">
-		<result property="userNum" column="USER_NUM"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userNm" column="USER_NAME"/>
+		<result property="userNum" column="UNUMBER"/>
+		<result property="userId" column="ID"/>
+		<result property="userNm" column="NAME"/>
 		<result property="phone" column="PHONE"/>
-		<result property="emailAddress" column="EMAIL_ADDRESS"/>
+		<result property="emailAddress" column="EMAIL"/>
 	</resultMap>
 
 	<insert id="add">
 		INSERT INTO USER
 		(
-			USER_ID
-			, USER_NM
+			UNUMBER
+			, ID
+			, NAME
 			, PHONE
-			, ADDRESS
-			, EMAILADDRESS
+			, ADRES
+			, EMAIL
 		)
 		VALUES (
 			#{userId}
@@ -44,23 +45,22 @@
 	<select id="select" resultMap="UserMap">
 		SELECT * 
 		FROM USER
-		WHERE USER_ID = #{userId}
+		WHERE ID = #{userId}
 	</select>
 	
 	<update id="update">
 		UPDATE USER
 		SET (
-			USER_NAME = {userNm}
+			NAME = {userNm}
 			, PHONE = {phone}
-			, ADDRESS = {address}
+			, ADRES = {address}
 		)
-		WHERE USER_ID= #{userId}
+		WHERE ID= #{userId}
 	</update>
 	
-	<update id="delete">
-		UPDATE USER
-		SET USER_STATUS = 'Y' 
-		WHERE USER_ID = {userId}
-	</update>
+	<delete id="delete">
+		DELETE FROM USER
+		WHERE ID = {userId}
+	</delete>
 	
 </mapper>

@@ -10,5 +10,6 @@
   
   	<mappers>
   		<mapper resource="mybatis/user.xml"/>
+  		<mapper resource="mybatis/login.xml"/>
   	</mappers>
   </configuration>

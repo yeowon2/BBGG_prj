@@ -30,7 +30,7 @@ public class UserController {
 	
 	@GetMapping("/add")
 	public String add() {
-		return path + "add";
+		return path + "add2";
 	}
 	
 	@PostMapping("/add")

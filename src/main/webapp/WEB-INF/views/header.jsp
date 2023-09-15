@@ -7,7 +7,8 @@
 <!-- Favicon -->
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" href="/resources/dist/css/style.css"/>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

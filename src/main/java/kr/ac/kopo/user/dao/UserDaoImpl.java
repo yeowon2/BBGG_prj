@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.user.web.UserVO;
 
+@Repository
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
@@ -24,8 +26,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserVO select(String userId) {
-		return sql.selectOne("user.select", userId);
+	public UserVO select(Long userNum) {
+		return sql.selectOne("user.select", userNum);
 	}
 
 	@Override
@@ -34,8 +36,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(String userId) {
-		sql.update("user.delete", userId);
+	public void delete(Long userNum) {
+		sql.update("user.delete", userNum);
 	}
 
 	@Override

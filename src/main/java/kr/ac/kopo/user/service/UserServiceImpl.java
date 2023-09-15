@@ -23,13 +23,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void add(UserVO memberVO) {
-		dao.add(memberVO);
+	public void add(UserVO userVO) {
+		dao.add(userVO);
 	}
 
 	@Override
-	public UserVO select(String userId) {
-		return dao.select(userId);
+	public UserVO select(Long userNum) {
+		return dao.select(userNum);
 	}
 
 	@Override
@@ -38,8 +38,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(String userId) {
-		dao.delete(userId);
+	public void delete(Long userNum) {
+		dao.delete(userNum);
 	}
+
+
 
 }

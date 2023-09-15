@@ -9,13 +9,13 @@ public interface UserDao {
 
 	List<UserVO> list(Pager pager);
 
-	void add(UserVO memberVO);
+	void add(UserVO userVO);
 
-	UserVO select(String userId);
+	UserVO select(Long userNum);
 
 	void update(UserVO userVO);
 
-	void delete(String userId);
+	void delete(Long userNum);
 
 	int total(Pager pager);
 

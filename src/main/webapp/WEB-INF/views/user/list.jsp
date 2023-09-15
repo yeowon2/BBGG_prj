@@ -16,27 +16,29 @@
 			<table border="1" class="table table-scriped table-hover">
 				<thead class="table-dark">
 					<tr>
-						<th>ID</th>
+						<th>번호</th>
+						<th>아이디</th>
 						<th>이름</th>
-						<th>주소</th>
 						<th>폰번호</th>
+						<th>이메일</th>
 						<th>관리</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="item" items="${list}">
 					<tr>
-						<td>${item.custid}</td>
-						<td>${item.name}</td>
-						<td>${item.address}</td>
+						<td>${item.userNum}</td>
+						<td>${item.userId}</td>
+						<td>${item.userNm}</td>
 						<td>${item.phone}</td>
-						<td><a href="delete/${item.custid}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.custid}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
+						<td>${item.emailAddress}</td>
+						<td><a href="delete/${item.userNum}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.userNum}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
 					</tr>
 					</c:forEach>
 					
 					<c:if test="${list.size() < 1 }">
 					<tr>
-						<td colspan="5">검색 된 회원이 없습니다</td>
+						<td colspan="6">검색 된 회원이 없습니다</td>
 					</tr>
 					</c:if>
 				</tbody>

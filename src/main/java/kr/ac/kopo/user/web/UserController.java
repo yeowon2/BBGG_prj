@@ -40,25 +40,25 @@ public class UserController {
 		return "redirect:/list";
 	}
 	
-	@GetMapping("/update/{userId}")
-	public String update(@PathVariable String userId, Model model) {
-		UserVO userVO = service.select(userId);
+	@GetMapping("/update/{userNum}")
+	public String update(@PathVariable Long userNum, Model model) {
+		UserVO userVO = service.select(userNum);
 		model.addAttribute("userVO", userVO);
 		
 		return path + "update";
 	}
 	
-	@PostMapping("/update/{userId}")
-	public String update(@PathVariable String userId, UserVO userVO) {
-		userVO.setUserId(userId);
+	@PostMapping("/update/{userNum}")
+	public String update(@PathVariable Long userNum, UserVO userVO) {
+		userVO.setUserNum(userNum);
 		service.update(userVO);
 		
 		return "redirect:../list";
 	}
 	
-	@GetMapping("/delete/{userId}")
-	public String delete(@PathVariable String userId) {
-		service.delete(userId);
+	@GetMapping("/delete/{userNum}")
+	public String delete(@PathVariable Long userNum) {
+		service.delete(userNum);
 		
 		return "redirect:../list";
 	}

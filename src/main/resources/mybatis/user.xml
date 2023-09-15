@@ -36,16 +36,21 @@
 		FROM  USER
 	</select>
 	
-	<select id="list" resultType="User">
-		SELECT * 
+	<select id="list" resultMap="UserMap">
+		SELECT 
+			UNUMBER
+			, ID
+			, NAME
+			, PHONE
+			, EMAIL
+		
 		FROM  USER
-		LIMIT #{offset}, #{perPage}
 	</select>
 	
 	<select id="select" resultMap="UserMap">
 		SELECT * 
 		FROM USER
-		WHERE ID = #{userId}
+		WHERE UNUMBER = #{userNum}
 	</select>
 	
 	<update id="update">
@@ -55,12 +60,12 @@
 			, PHONE = {phone}
 			, ADRES = {address}
 		)
-		WHERE ID= #{userId}
+		WHERE UNUMBER = #{userNum}
 	</update>
 	
 	<delete id="delete">
 		DELETE FROM USER
-		WHERE ID = {userId}
+		WHERE UNUMBER = #{userNum}
 	</delete>
 	
 </mapper>

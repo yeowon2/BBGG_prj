@@ -3,16 +3,18 @@
 
 <mapper namespace="login">
 
-	<select id="actionLogin" resultType="UserVO">
-		SELECT 
-			ID
-			, PASSWD
-			, NAME
-			, PHONE
-			, EMAIL
+	<resultMap type="kr.ac.kopo.user.web.UserVO" id="UserMap">
+		<result property="userId" column="ID" />
+		<result property="password" column="PASSWD" />
+	</resultMap>
+	
+	<select id="actionLogin" resultMap="UserMap">
+		SELECT
+		ID
+		, PASSWD
 		FROM USER
 		WHERE ID = #{userId}
-			AND PASSWD = #{password} 
+		AND PASSWD = #{password}
 	</select>
 
 </mapper>

@@ -34,29 +34,18 @@
                                            <input class="form-control" type="text" name="userId" placeholder="ID를 입력하세요"/>
                                         </div>
                                     <div class="form-group">
-                                        <input class="form-control"  type="password" name="password" placeholder="비밀번호를 입력하세요" />
+                                        <input class="form-control"  type="password" name="userPw" placeholder="비밀번호를 입력하세요" />
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="userNm"  placeholder="이름를 입력하세요" />
                                     </div>
                                     <div class="form-group">
-                                        <div class="input-group">
-                                            <input class="form-control" placeholder="비밀번호를 확인하세요" type="password"/>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
-                                                    <span class="feather-icon">
-                                                        <i data-feather="eye-off"></i>
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
+                                        <input class="form-control" type="text" name="userPhone" placeholder="전화번호를 입력하세요"/>
                                     </div>
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="userNm"  placeholder="이름를 입력하세요" />
-                                        </div>
-                    
+                
                                     <div class="form-group">
                                         <input class="form-control" type="text" name="emailAddress" placeholder="이메일을 입력하세요" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name="phone" placeholder="전화번호를 입력하세요"/>
                                     </div>
                                     <div class="custom-control custom-checkbox checkbox-success mb-25">
                                         <input class="custom-control-input" id="same-address" type="checkbox" checked>

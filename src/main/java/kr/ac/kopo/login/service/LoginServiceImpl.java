@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		UserVO loginVO = dao.actionLogin(userVO);
 		
-		if(loginVO != null && !loginVO.getUserId().equals("") && !loginVO.getPassword().equals("")) {
+		if(loginVO != null && !loginVO.getUserId().equals("") && !loginVO.getUserPw().equals("")) {
 			return loginVO;
 		} else {
 			loginVO = new UserVO();

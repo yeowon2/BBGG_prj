@@ -16,7 +16,7 @@
 			<table border="1" class="table table-scriped table-hover">
 				<thead class="table-dark">
 					<tr>
-						<th>번호</th>
+						<th>회원번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>폰번호</th>
@@ -30,8 +30,8 @@
 						<td>${item.userNum}</td>
 						<td>${item.userId}</td>
 						<td>${item.userNm}</td>
-						<td>${item.phone}</td>
-						<td>${item.emailAddress}</td>
+						<td>${item.userPhone}</td>
+						<td>${item.userEmail}</td>
 						<td><a href="delete/${item.userNum}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.userNum}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
 					</tr>
 					</c:forEach>

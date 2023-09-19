@@ -1,19 +1,16 @@
 package kr.ac.kopo.user.web;
 
 public class UserVO {
-	
+
 	private long userNum;
 	private String userId;
-	private String password;
+	private String userPw;
 	private String userNm;
 	private String phone;
-	private String address;
-	private String emailAddress;
-	private String emailId;
-	private String emailDomain;
-	private java.util.Date sbscrbde;
-	private String userStatus;
-	private String adminYN;
+	private String email;
+	private java.util.Date registDate;
+	private String useAt;
+	
 	public long getUserNum() {
 		return userNum;
 	}
@@ -26,11 +23,11 @@ public class UserVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
 	public String getUserNm() {
 		return userNm;
@@ -44,50 +41,25 @@ public class UserVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAddress() {
-		return address;
+	public String getEmail() {
+		return email;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getEmailAddress() {
-		return emailAddress;
+	public java.util.Date getRegistDate() {
+		return registDate;
 	}
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setRegistDate(java.util.Date registDate) {
+		this.registDate = registDate;
 	}
-	public String getEmailId() {
-		return emailId;
+	public String getUseAt() {
+		return useAt;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	public String getEmailDomain() {
-		return emailDomain;
-	}
-	public void setEmailDomain(String emailDomain) {
-		this.emailDomain = emailDomain;
-	}
-	public java.util.Date getSbscrbde() {
-		return sbscrbde;
-	}
-	public void setSbscrbde(java.util.Date sbscrbde) {
-		this.sbscrbde = sbscrbde;
-	}
-	public String getUserStatus() {
-		return userStatus;
-	}
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
-	}
-	public String getAdminYN() {
-		return adminYN;
-	}
-	public void setAdminYN(String adminYN) {
-		this.adminYN = adminYN;
+	public void setUseAt(String useAt) {
+		this.useAt = useAt;
 	}
 	
 	
-	
-	
+
 }

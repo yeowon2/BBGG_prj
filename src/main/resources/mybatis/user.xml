@@ -3,31 +3,27 @@
 
 <mapper namespace="user">
 
-	<resultMap type="kr.ac.kopo.user.web.UserVO" id="UserMap">
-		<result property="userNum" column="UNUMBER"/>
-		<result property="userId" column="ID"/>
-		<result property="userNm" column="NAME"/>
-		<result property="phone" column="PHONE"/>
-		<result property="emailAddress" column="EMAIL"/>
-	</resultMap>
-
 	<insert id="add">
 		INSERT INTO USER
 		(
-			UNUMBER
-			, ID
-			, PASSWD
-			, NAME
-			, EMAIL			
-			, PHONE
+			USER_NUM
+			, USER_ID
+			, USER_PW
+			, USER_NAME
+			, USER_PHONE
+			, USER_EMAIL
+			, REGIST_DATE
+			, USE_AT
 		)
 		VALUES (
 			#{userNum}
 			, #{userId}
-			, #{password}
+			, #{userPw}
 			, #{userNm}
-			, #{emailAddress}
 			, #{phone}
+			, #{email}
+			, NOW()
+			, 'Y'
 		)
 	</insert>
 
@@ -37,37 +33,43 @@
 		FROM  USER
 	</select>
 	
-	<select id="list" resultMap="UserMap">
+	<select id="list" resultType="UserVO">
 		SELECT 
-			UNUMBER
-			, ID
-			, NAME
-			, PHONE
-			, EMAIL
-		
+			USER_NUM
+			, USER_ID
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, REGIST_DATE
+			
 		FROM  USER
 	</select>
 	
-	<select id="select" resultMap="UserMap">
-		SELECT * 
+	<select id="select" resultType="UserVO">
+		SELECT 
+			USER_NUM
+			, USER_ID
+			, USER_NM
+			, USER_PHONE
+			, USER_EMAIL
+			, REGIST_DATE
 		FROM USER
-		WHERE UNUMBER = #{userNum}
+		WHERE USER_NUM = #{userNum}
 	</select>
 	
 	<update id="update">
 		UPDATE USER
 		SET 
-			PASSWD = #{password}
-			, NAME = #{userNm}
-			, EMAIL = #{emailAddress}
-			, PHONE = #{phone}
-		
-		WHERE UNUMBER = #{userNum}
+			USER_PW = #{userPw}
+			, USER_NAME = #{userNm}
+			, USER_EMAIL = #{userEmail}
+			, USER_PHONE = #{userPhone}
+		WHERE USER_NUM = #{userNum}
 	</update>
 	
 	<delete id="delete">
 		DELETE FROM USER
-		WHERE UNUMBER = #{userNum}
+		WHERE USER_NUM = #{userNum}
 	</delete>
 	
 </mapper>

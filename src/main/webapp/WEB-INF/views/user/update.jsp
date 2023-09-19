@@ -20,7 +20,7 @@
 				</div>
 				<div>
 					<label>비밀번호 : </label> 
-					<input type="password" name="password" value="${userVO.password}">
+					<input type="password" name="userPw" value="${userVO.userPw}">
 					<button type="button">확인</button>
 				</div>
 				<div>
@@ -30,11 +30,11 @@
 				
 				<div>
 					<label>이메일 : </label> 
-					<input type="text" name="emailAddress" value="${userVO.emailAddress}">
+					<input type="text" name="userEmail" value="${userVO.userEmail}">
 				</div>
 				<div>
 					<label>폰번호 : </label> 
-					<input type="text" name="phone" value="${userVO.phone}">
+					<input type="text" name="userPhone" value="${userVO.userPhone}">
 				</div>
 				<div>
 					<button>변경</button>

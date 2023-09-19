@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>
-	성공
+	실패 
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>

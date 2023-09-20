@@ -15,7 +15,7 @@ public interface NoteService {
 
 	void update(NoteVO noteVO);
 
-	void delete(Long noteNo);
+	boolean delete(Long noteNo);
 
 	
 }

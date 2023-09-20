@@ -64,7 +64,7 @@
                                         <div class="nicescroll-bar">
                                         
                                         <c:forEach var="noteVO" items="${list}">
-                                            <a href="javascript:void(0);" class="media" id="modal-link" data-toggle="modal" data-target="#exampleModalEmail">
+                                            <a href="javascript:void(0);" class="media" id="modal-link" data-note-no="${noteVO.noteNo}" data-toggle="modal" data-target="#exampleModalEmail">
                                                 <div class="media-body">
                                                     <div>
                                                         <div class="email-head">${noteVO.userName}</div>
@@ -79,8 +79,12 @@
                                                         		<fmt:formatDate value="${noteVO.registDate}" pattern="yyyy/MM/dd HH:mm"/>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </a>
+                                            <a href="javascript:void(0);" class="btn btn-danger btn-delete" data-note-no="${noteVO.noteNo}">
+								                삭제
+								            </a>
                                             <div class="email-hr-wrap">
                                                 <hr>
                                             </div>
@@ -102,55 +106,16 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">From</span>
-                                                        </div>
-                                                        <input type="text" class="form-control" readonly="readonly" value="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Cc / Bcc</span>
-                                                        </div>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Subject</span>
-                                                        </div>
-                                                        <input type="text" class="form-control form-control-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="tinymce-wrap">
-                                                        <textarea class="tinymce"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-													<div class="fileinput fileinput-new input-group" data-provides="fileinput">
-														<div class="input-group-prepend">
-															<span class="input-group-text">Upload</span>
-														</div>
-														<div class="form-control text-truncate" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-														<span class="input-group-append">
-																	<span class=" btn btn-danger btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
-														<input type="file" name="...">
-														</span>
-														<a href="#" class="btn btn-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
-														</span>
-													</div>
-												</div>
-                                                <div class="form-group mb-0">
-                                                    <button class="btn btn-danger" type="submit">Send</button>
-                                                </div>
-                                            </form>
-                                        </div>
+								                <div class="media">
+								                    <div class="media-body">
+								                        <div class="email-head">보낸 사람: <span id="modalUserName" ></span></div>
+								                        <div class="email-subject">제목: <span id="modalNoteSubject"></span></div>
+								                        <div class="email-text" >Text1 : <span id="modalNoteText1"></span></div>
+								                        <div class="email-text" >Text2 : <span id="modalNoteText2"></span></div>
+								                        <div class="email-text" >Text3 : <span id="modalNoteText3"></span></div>
+								                        <div class="email-text" >내용 : <span id="modalNoteContent"></span></div>
+								                    </div>
+								                </div>
                                     </div>
                                 </div>
                             </div>
@@ -169,16 +134,65 @@
     </div>
     <!-- /HK Wrapper -->
 	<script>
-    // JavaScript code to open the modal
-    document.getElementById('modal-link').addEventListener('click', function () {
-        $('#exampleModalEmail').modal('show'); // Show the modal
+	// JavaScript code to open the modal and fetch data with AJAX
+    document.querySelectorAll('.emailapp-emails-list a.media').forEach(function (element) {
+        element.addEventListener('click', function () {
+            var noteNo = this.getAttribute('data-note-no');
+            fetch('/note/detail/' + noteNo)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (noteVO) {
+                	document.querySelector('#modalUserName').textContent = noteVO.userName;
+                	document.querySelector('#modalNoteSubject').textContent = noteVO.noteSubject;
+                	document.querySelector('#modalNoteText1').textContent = noteVO.noteText1;
+                	document.querySelector('#modalNoteText2').textContent = noteVO.noteText2;
+                	document.querySelector('#modalNoteText3').textContent = noteVO.noteText3;
+                	document.querySelector('#modalNoteContent').textContent = noteVO.noteContent;
+                	
+                })
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+            
+            $('#exampleModalEmail').modal('show');
+        });
     });
 
-    // JavaScript code to close the modal
+    // JavaScript code to clear form fields when the modal is closed
     $('#exampleModalEmail').on('hidden.bs.modal', function () {
-        // Clear form fields or perform any other necessary actions when the modal is closed
-        console.log('Modal closed');
     });
+    
+ // JavaScript code to handle delete button clicks
+    document.querySelectorAll('.emailapp-emails-list .btn-delete').forEach(function (element) {
+        element.addEventListener('click', function (e) {
+            e.preventDefault();
+            var noteNo = this.getAttribute('data-note-no');
+            if (confirm('정말로 삭제하시겠습니까?')) {
+                fetch('/note/delete/' + noteNo, {
+                    method: 'GET'
+                })
+                .then(function (response) {
+                    if (response.ok) {
+                        // 업데이트 성공 시 해당 노트를 화면에서 제거합니다.
+                    	var emailItem = this.closest('.media');
+                    	if (emailItem) {
+                    	    emailItem.remove(); // 해당 노트를 화면에서 제거
+                    	}
+
+                    } else {
+                        console.error('Error:', response);
+                    }
+                }.bind(this)) // 이 부분이 중요합니다. 함수 내에서 this를 사용하기 위해 bind를 사용합니다.
+                .catch(function (error) {
+                    console.error('Error:', error);
+                });
+            }
+        });
+    });
+
+
+
 </script>
 
     <!-- Tinymce JavaScript -->

@@ -42,8 +42,9 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public void delete(Long noteNo) {
-		sql.delete("note.delete", noteNo);
+	public boolean delete(Long noteNo) {
+		 int result = sql.update("note.delete", noteNo);
+		 return result > 0;
 	}
 
 }

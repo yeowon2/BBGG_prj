@@ -38,8 +38,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public void delete(Long noteNo) {
-		dao.delete(noteNo);
+	public boolean delete(Long noteNo) {
+		return dao.delete(noteNo);
 	}
 
 }

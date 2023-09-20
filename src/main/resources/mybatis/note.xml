@@ -83,7 +83,7 @@
 	
 	<update id="delete">
 		UPDATE note
-		SET 
+		SET use_at = 'N'
 		WHERE note_no = #{noteNo}
 	</update>
 	

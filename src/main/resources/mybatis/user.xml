@@ -30,19 +30,18 @@
 	 
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*) 
-		FROM  USER
+		FROM  user
 	</select>
 	
 	<select id="list" resultType="UserVO">
 		SELECT 
-			USER_NUM
-			, USER_ID
-			, USER_NM
-			, USER_PHONE
-			, USER_EMAIL
-			, REGIST_DATE
-			
-		FROM  USER
+			user_no
+			, user_id
+			, user_name
+			, phone
+			, Regist_date
+		FROM  user
+		WHERE use_at = 'Y'
 	</select>
 	
 	<select id="select" resultType="UserVO">
@@ -58,7 +57,7 @@
 	</select>
 	
 	<update id="update">
-		UPDATE USER
+		UPDATE user
 		SET 
 			USER_PW = #{userPw}
 			, USER_NAME = #{userNm}

@@ -2,20 +2,19 @@ package kr.ac.kopo.user.web;
 
 public class UserVO {
 
-	private long userNum;
+	private long userNo;
 	private String userId;
 	private String userPw;
-	private String userNm;
+	private String userName;
 	private String phone;
-	private String email;
 	private java.util.Date registDate;
+	private java.util.Date updateDate;
 	private String useAt;
-	
-	public long getUserNum() {
-		return userNum;
+	public long getUserNo() {
+		return userNo;
 	}
-	public void setUserNum(long userNum) {
-		this.userNum = userNum;
+	public void setUserNo(long userNo) {
+		this.userNo = userNo;
 	}
 	public String getUserId() {
 		return userId;
@@ -29,11 +28,11 @@ public class UserVO {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-	public String getUserNm() {
-		return userNm;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserNm(String userNm) {
-		this.userNm = userNm;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPhone() {
 		return phone;
@@ -41,17 +40,17 @@ public class UserVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public java.util.Date getRegistDate() {
 		return registDate;
 	}
 	public void setRegistDate(java.util.Date registDate) {
 		this.registDate = registDate;
+	}
+	public java.util.Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(java.util.Date updateDate) {
+		this.updateDate = updateDate;
 	}
 	public String getUseAt() {
 		return useAt;
@@ -61,5 +60,4 @@ public class UserVO {
 	}
 	
 	
-
 }

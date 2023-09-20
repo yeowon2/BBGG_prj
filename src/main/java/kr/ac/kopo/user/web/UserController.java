@@ -40,7 +40,7 @@ public class UserController {
 		return "redirect:/user/list";
 	}
 	
-	@GetMapping("/update/{userNum}")
+	@GetMapping("/update/{userNo}")
 	public String update(@PathVariable Long userNo, Model model) {
 		UserVO userVO = service.select(userNo);
 		model.addAttribute("userVO", userVO);

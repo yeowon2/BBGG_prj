@@ -6,8 +6,7 @@
 	<insert id="add">
 		INSERT INTO USER
 		(
-			USER_NUM
-			, USER_ID
+			USER_ID
 			, USER_PW
 			, USER_NAME
 			, USER_PHONE
@@ -16,8 +15,7 @@
 			, USE_AT
 		)
 		VALUES (
-			#{userNum}
-			, #{userId}
+			#{userId}
 			, #{userPw}
 			, #{userNm}
 			, #{phone}

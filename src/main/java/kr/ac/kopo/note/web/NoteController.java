@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.note.service.NoteService;
 import kr.ac.kopo.pager.Pager;
@@ -37,7 +38,7 @@ public class NoteController {
 		return path + "detail";
 	}
 	
-	@GetMapping("/add")
+	@GetMapping("/add2")
 	public String add() {
 		
 		return path + "add";
@@ -47,7 +48,7 @@ public class NoteController {
 	public String add(NoteVO noteVO) {
 		service.add(noteVO);
 		
-		return "forward:/note/list";
+		return "redirect:/note/list";
 	}
 	
 	@GetMapping("/update/{noteNo}")

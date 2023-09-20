@@ -3,12 +3,11 @@
 
 <mapper namespace="note">
 
-	<insert id="add" parameterType="NoteVO">
+	<insert id="add" >
 
     INSERT INTO note
     (
-        note_no
-        , room_no
+        room_no
         , user_no
         , agency_no
         , note_subject
@@ -20,10 +19,9 @@
         , use_at
     )
     VALUES (
-        #{noteNo}
-        , #{roomNo}
-        , #{userNo}
-        , #{agencyNo}
+        1
+        , 1
+        , 1
         , #{noteSubject}
         , #{noteText1}
         , #{noteText2}

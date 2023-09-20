@@ -41,20 +41,28 @@
                             <h5 class="hk-sec-title">쪽지 보내기</h5>
                             <div class="row">
                                 <div class="col-sm">
-                                    <form method="post">
+                                    <form method="post" action="/note/add">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <input class="form-control" id="email" placeholder="you@example.com" type="email">
+                                            <label for="noteSubject">제목</label>
+                                            <input class="form-control" name="noteSubject" placeholder="제목을 입력하세요" type="text">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="email">Password</label>
-                                            <input class="form-control" id="password" placeholder="Password" type="password">
+                                            <label for="noteText1">Text1</label>
+                                            <input class="form-control" name="noteText1" placeholder="Text1" type="text">
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input class="form-control" id="address" placeholder="1234 Main St" type="text">
+                                            <label for="noteText2">Text2</label>
+                                            <input class="form-control" name="noteText2" placeholder="Text2" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="noteText3">Text3</label>
+                                            <input class="form-control" name="noteText3" placeholder="Text3" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="noteContent">내용</label>
+                                            <textarea class="form-control" rows="15" name="noteContent" ></textarea>
                                         </div>
 
                                         

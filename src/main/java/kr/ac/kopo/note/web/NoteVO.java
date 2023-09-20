@@ -17,6 +17,14 @@ public class NoteVO {
 	private Date updateDate;
 	private String useAt;
 	
+	private String userName;
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Date getUpdateDate() {
 		return updateDate;
 	}

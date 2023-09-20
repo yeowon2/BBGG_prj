@@ -3,13 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!-- 
-Template Name: Scrooge - Responsive Bootstrap 4 Admin Dashboard Template
-Author: Hencework
-Support: support@hencework.com
 
-License: You must have a valid license purchased only from templatemonster to legally use the template for your project.
--->
 <html lang="en">
 
 <head>
@@ -47,7 +41,7 @@ License: You must have a valid license purchased only from templatemonster to le
                                         <a href="javascript:void(0)" id="emailapp_sidebar_move" class="emailapp-sidebar-move">
                                             <span class="feather-icon"><i data-feather="menu"></i></span>
                                         </a>
-                                        <span class="">쪽지 내역</span>
+                                        <span class="">받은 쪽지함</span>
                                         <a href="javascript:void(0)" class="email-compose" data-toggle="modal" data-target="#exampleModalEmail">
                                             <span class="feather-icon"><i data-feather="edit"></i></span>
                                         </a>
@@ -68,7 +62,7 @@ License: You must have a valid license purchased only from templatemonster to le
                                                
                                                 <div class="media-body">
                                                     <div>
-                                                        <div class="email-head">${noteVO.userNo}</div>
+                                                        <div class="email-head">${noteVO.userName}</div>
                                                         <div class="email-subject">${noteVO.noteSubject}</div>
                                                         <div class="email-text">
 															${noteVO.noteText1}
@@ -76,8 +70,8 @@ License: You must have a valid license purchased only from templatemonster to le
                                                     </div>
                                                     <div>
                                                         <div class="last-email-details">
+                                                        		<fmt:formatDate value="${noteVO.registDate}" pattern="yyyy/MM/dd HH:mm"/>
                                                         	<span class="badge badge-danger badge-indicator">
-                                                        		${noteVO.registDate}
                                                         	</span> 
                                                         </div>
                                                         <span class="email-star"><span class="feather-icon"><i data-feather="star"></i></span></span>

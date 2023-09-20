@@ -39,19 +39,18 @@
 		FROM  note
 	</select>
 	
-	<select id="list" resultType="NoteVO">
+	<resultMap type="NoteVO" id="NoteMap" autoMapping="true">
+		<id property="noteNo" column="note_no"/>
+		<result property="userName" column="user_name"/>		
+	</resultMap>
+	
+	<select id="list" resultMap="NoteMap">
 		SELECT 
-			note_no
-			, room_no
-			, agency_no
-			, note_subject
-			, note_text1
-			, note_text2
-			, note_text3
-			, note_content
-			, regist_date
-		FROM  note
-		WHERE use_at = 'Y'
+			note.*, user.user_name
+		FROM  note 
+			JOIN user ON (note.user_no = user.user_no )
+		WHERE note.use_at = 'Y'
+		ORDER BY regist_date DESC
 	</select>
 	
 	<select id="select" resultType="NoteVO">

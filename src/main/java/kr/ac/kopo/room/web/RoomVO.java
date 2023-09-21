@@ -6,14 +6,14 @@ public class RoomVO {
 		
 	private Long roomNo;			//매물고유번호
 	private Long agencyNo;			//agency고유번호
-	private String leaseNo;		//전세고유번호
-	private String monthNo;		//월세고유번호
+	private String leaseNo;			//전세고유번호
+	private String monthNo;			//월세고유번호
 	private String roomType;		//매물 타입
 	private String address;			//매물 주소
 	private String dong;			//동
 	private String ho;				//호
 	private String moveInAt;		//입주가능여부
-	private String moveInDate;	//입주가능날짜
+	private String moveInDate;		//입주가능날짜
 	private String roomSize;		//전용면적
 	private String buildingFloor;	//건물 전체 층수
 	private String roomFloor;		//해당 매물 층수
@@ -21,7 +21,7 @@ public class RoomVO {
 	private String bathAt;			//욕실 수
 	private String elevatorAt;		//엘리베이터 유무
 	private String parkingAt;		//주차 가능 여부
-	private String manageFeeAt;	//공용 관리비 여부
+	private String manageFeeAt;		//공용 관리비 여부
 	private String manageFee;		//공용 관리비
 	private String memoShort;		//매물 소개
 	private String memoDetail;		//매물 설명

@@ -14,33 +14,13 @@ public class RoomDaoImpl implements RoomDao {
 	SqlSession sql;
 
 	@Override
-	public List<RoomVO> roomList(RoomVO roomVO) {
-		return sql.selectList("roomVO.roomList", roomVO);
+	public List<RoomVO> roomList() {
+		return sql.selectList("room.roomList");
 	}
 
 	@Override
 	public RoomVO roomSelect(RoomVO roomVO) {
-		return sql.selectOne("roomVO.roomSelect", roomVO);
-	}
-
-	@Override
-	public void roomAdd(RoomVO roomVO) {
-		sql.insert("roomVO.roomAdd");
-	}
-
-	@Override
-	public RoomVO roomVO(Long roomNo) {
-		return sql.selectOne("roomVO.roomNo", roomNo);
-	}
-
-	@Override
-	public void roomUpdate(RoomVO roomVO) {
-		sql.update("roomVO.roomUpdate", roomVO);
-	}
-
-	@Override
-	public void roomDelete(Long roomNo) {
-		sql.delete("roomVO.roomDelete", roomNo);
+		return sql.selectOne("room.roomSelect", roomVO);
 	}
 
 }

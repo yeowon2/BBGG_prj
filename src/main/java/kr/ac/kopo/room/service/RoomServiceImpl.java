@@ -14,8 +14,8 @@ public class RoomServiceImpl implements RoomService {
 	RoomDao dao;
 
 	@Override
-	public List<RoomVO> roomList(RoomVO roomVO) {
-		return dao.roomList(roomVO);
+	public List<RoomVO> roomList() {
+		return dao.roomList();
 	}
 
 	@Override
@@ -23,25 +23,5 @@ public class RoomServiceImpl implements RoomService {
 		return dao.roomSelect(roomVO);
 	}
 
-	@Override
-	public void roomAdd(RoomVO roomVO) {
-		dao.roomAdd(roomVO);
-	}
-
-	@Override
-	public RoomVO roomVO(Long roomNo) {
-		return dao.roomVO(roomNo);
-	}
-
-	@Override
-	public void roomUpdate(RoomVO roomVO) {
-		dao.roomUpdate(roomVO);
-	}
-
-	@Override
-	public void roomDelete(Long roomNo) {
-		dao.roomDelete(roomNo);
-	}
-
-
+	
 }

@@ -25,12 +25,20 @@ public class NoteController {
 
 	private String path = "note/";
 
-	@GetMapping("/list")
-	public String list(Model model, Pager pager) {
+	@GetMapping("/receiveList")
+	public String receiveList(Model model, Pager pager) {
 		List<NoteVO> list = service.list(pager);
 		model.addAttribute("list", list);
 
 		return path + "list";
+	}
+	
+	@GetMapping("/sendList")
+	public String sendList(Model model, Pager pager) {
+		List<NoteVO> list = service.list(pager);
+		model.addAttribute("list", list);
+		
+		return path + "sendList";
 	}
 
 //	@GetMapping("/detail/{noteNo}")
@@ -74,7 +82,7 @@ public class NoteController {
 		noteVO.setNoteNo(noteNo);
 		service.update(noteVO);
 
-		return "forward:/note/list";
+		return "redirect:/note/list";
 	}
 
 	@GetMapping("/delete/{noteNo}")

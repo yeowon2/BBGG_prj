@@ -53,10 +53,6 @@
 		ORDER BY regist_date DESC
 	</select>
 	
-	<select id="receiveList" resultTyp>
-		
-	</select>
-	
 	<select id="select" resultType="NoteVO">
 		SELECT 
 			note_no

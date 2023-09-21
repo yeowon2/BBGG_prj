@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="note">
+
+	<insert id="add" >
+
+    INSERT INTO note
+    (
+        room_no
+        , user_no
+        , agency_no
+        , note_subject
+        , note_text1
+        , note_text2
+        , note_text3
+        , note_content
+        , regist_date
+        , use_at
+    )
+    VALUES (
+        1
+        , 1
+        , 1
+        , #{noteSubject}
+        , #{noteText1}
+        , #{noteText2}
+        , #{noteText3}
+        , #{noteContent}
+        , NOW()
+        , 'Y'
+    )
+</insert>
+
+
+	 
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM  note
+	</select>
+	
+	<resultMap type="NoteVO" id="NoteMap" autoMapping="true">
+		<id property="noteNo" column="note_no"/>
+		<result property="userName" column="user_name"/>		
+	</resultMap>
+	
+	<select id="list" resultMap="NoteMap">
+		SELECT 
+			note.*, user.user_name
+		FROM  note 
+			JOIN user ON (note.user_no = user.user_no )
+		WHERE note.use_at = 'Y'
+		ORDER BY regist_date DESC
+	</select>
+	
+	<select id="select" resultType="NoteVO">
+		SELECT 
+			note_no
+			, room_no
+			, user_no
+			, agency_no
+			, note_subject
+			, note_text1
+			, note_text2
+			, note_text3
+			, note_content
+			, regist_date
+		FROM note
+		WHERE note_no = #{noteNo}
+	</select>
+	
+	<update id="update">
+		UPDATE note
+		SET 
+			note_subject = #{noteSubject}
+			, note_text1 = #{noteText1}
+			, note_text2 = #{noteText2}
+			, note_text3 = #{noteText3}
+			, note_content = #{noteContent}
+			, update_date = NOW()
+		WHERE note_no = #{noteNo}
+	</update>
+	
+	<update id="delete">
+		UPDATE note
+		SET use_at = 'N'
+		WHERE note_no = #{noteNo}
+	</update>
+	
+</mapper>

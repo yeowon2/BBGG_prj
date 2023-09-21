@@ -16,23 +16,21 @@
 			<table border="1" class="table table-scriped table-hover">
 				<thead class="table-dark">
 					<tr>
-						<th>번호</th>
+						<th>회원번호</th>
 						<th>아이디</th>
 						<th>이름</th>
 						<th>폰번호</th>
-						<th>이메일</th>
 						<th>관리</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="item" items="${list}">
 					<tr>
-						<td>${item.userNum}</td>
+						<td>${item.userNo}</td>
 						<td>${item.userId}</td>
-						<td>${item.userNm}</td>
+						<td>${item.userName}</td>
 						<td>${item.phone}</td>
-						<td>${item.emailAddress}</td>
-						<td><a href="delete/${item.userNum}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.userNum}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
+						<td><a href="delete/${item.userNo}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.userNo}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
 					</tr>
 					</c:forEach>
 					

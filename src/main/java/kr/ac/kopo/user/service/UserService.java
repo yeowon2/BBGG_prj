@@ -11,10 +11,10 @@ public interface UserService {
 
 	void add(UserVO userVO);
 
-	UserVO select(Long userNum);
+	UserVO select(Long userNo);
 
 	void update(UserVO userVO);
 
-	void delete(Long userNum);
+	void delete(Long userNo);
 
 }

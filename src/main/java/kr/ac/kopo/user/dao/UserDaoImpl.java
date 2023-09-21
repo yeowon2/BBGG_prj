@@ -26,8 +26,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public UserVO select(Long userNum) {
-		return sql.selectOne("user.select", userNum);
+	public UserVO select(Long userNo) {
+		return sql.selectOne("user.select", userNo);
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void delete(Long userNum) {
-		sql.update("user.delete", userNum);
+	public void delete(Long userNo) {
+		sql.update("user.delete", userNo);
 	}
 
 	@Override

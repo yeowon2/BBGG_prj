@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO select(Long userNum) {
-		return dao.select(userNum);
+	public UserVO select(Long userNo) {
+		return dao.select(userNo);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void delete(Long userNum) {
-		dao.delete(userNum);
+	public void delete(Long userNo) {
+		dao.delete(userNo);
 	}
 
 

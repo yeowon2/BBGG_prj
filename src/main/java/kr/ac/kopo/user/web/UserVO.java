@@ -1,24 +1,20 @@
 package kr.ac.kopo.user.web;
 
 public class UserVO {
-	
-	private long userNum;
+
+	private long userNo;
 	private String userId;
-	private String password;
-	private String userNm;
+	private String userPw;
+	private String userName;
 	private String phone;
-	private String address;
-	private String emailAddress;
-	private String emailId;
-	private String emailDomain;
-	private java.util.Date sbscrbde;
-	private String userStatus;
-	private String adminYN;
-	public long getUserNum() {
-		return userNum;
+	private java.util.Date registDate;
+	private java.util.Date updateDate;
+	private String useAt;
+	public long getUserNo() {
+		return userNo;
 	}
-	public void setUserNum(long userNum) {
-		this.userNum = userNum;
+	public void setUserNo(long userNo) {
+		this.userNo = userNo;
 	}
 	public String getUserId() {
 		return userId;
@@ -26,17 +22,17 @@ public class UserVO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getPassword() {
-		return password;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
-	public String getUserNm() {
-		return userNm;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUserNm(String userNm) {
-		this.userNm = userNm;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPhone() {
 		return phone;
@@ -44,50 +40,24 @@ public class UserVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAddress() {
-		return address;
+	public java.util.Date getRegistDate() {
+		return registDate;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setRegistDate(java.util.Date registDate) {
+		this.registDate = registDate;
 	}
-	public String getEmailAddress() {
-		return emailAddress;
+	public java.util.Date getUpdateDate() {
+		return updateDate;
 	}
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setUpdateDate(java.util.Date updateDate) {
+		this.updateDate = updateDate;
 	}
-	public String getEmailId() {
-		return emailId;
+	public String getUseAt() {
+		return useAt;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setUseAt(String useAt) {
+		this.useAt = useAt;
 	}
-	public String getEmailDomain() {
-		return emailDomain;
-	}
-	public void setEmailDomain(String emailDomain) {
-		this.emailDomain = emailDomain;
-	}
-	public java.util.Date getSbscrbde() {
-		return sbscrbde;
-	}
-	public void setSbscrbde(java.util.Date sbscrbde) {
-		this.sbscrbde = sbscrbde;
-	}
-	public String getUserStatus() {
-		return userStatus;
-	}
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
-	}
-	public String getAdminYN() {
-		return adminYN;
-	}
-	public void setAdminYN(String adminYN) {
-		this.adminYN = adminYN;
-	}
-	
-	
 	
 	
 }

@@ -16,11 +16,19 @@ public class NoteServiceImpl implements NoteService {
 	NoteDao dao;
 	
 	@Override
-	public List<NoteVO> list(Pager pager) {
+	public List<NoteVO> sendList(Pager pager) {
 		int total = dao.total(pager);
 		
-		return dao.list(pager);
+		return dao.sendList(pager);
 	}
+	
+	@Override
+	public List<NoteVO> receiveList(Pager pager) {
+		int total = dao.total(pager);
+		
+		return dao.receiveList(pager);
+	}
+	
 
 	@Override
 	public void add(NoteVO noteVO) {
@@ -41,5 +49,6 @@ public class NoteServiceImpl implements NoteService {
 	public boolean delete(Long noteNo) {
 		return dao.delete(noteNo);
 	}
+
 
 }

@@ -16,8 +16,13 @@ public class NoteDaoImpl implements NoteDao {
 	SqlSession sql;
 	
 	@Override
-	public List<NoteVO> list(Pager pager) {
-		return sql.selectList("note.list", pager);
+	public List<NoteVO> sendList(Pager pager) {
+		return sql.selectList("note.sendList", pager);
+	}
+
+	@Override
+	public List<NoteVO> receiveList(Pager pager) {
+		return sql.selectList("note.receiveList", pager);
 	}
 
 	@Override

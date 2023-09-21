@@ -7,7 +7,9 @@ import kr.ac.kopo.pager.Pager;
 
 public interface NoteDao {
 
-	List<NoteVO> list(Pager pager);
+	List<NoteVO> sendList(Pager pager);
+
+	List<NoteVO> receiveList(Pager pager);
 
 	int total(Pager pager);
 

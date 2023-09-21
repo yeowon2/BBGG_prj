@@ -27,19 +27,13 @@ public class NoteController {
 
 	@GetMapping("/receiveList")
 	public String receiveList(Model model, Pager pager) {
-		List<NoteVO> list = service.list(pager);
+		List<NoteVO> list = service.receiveList(pager);
 		model.addAttribute("list", list);
 
 		return path + "list";
 	}
 	
-	@GetMapping("/sendList")
-	public String sendList(Model model, Pager pager) {
-		List<NoteVO> list = service.list(pager);
-		model.addAttribute("list", list);
-		
-		return path + "sendList";
-	}
+
 
 //	@GetMapping("/detail/{noteNo}")
 //	public String detail(Model model, @PathVariable Long noteNo) {

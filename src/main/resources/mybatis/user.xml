@@ -9,9 +9,9 @@
 			user_id
 			, user_pw
 			, user_name
-			, user_phone
-			, user_email
+			, phone
 			, regist_date
+			, update_date
 			, use_at
 		)
 		VALUES (
@@ -19,7 +19,7 @@
 			, #{userPw}
 			, #{userNm}
 			, #{phone}
-			, #{email}
+			, NOW()
 			, NOW()
 			, 'Y'
 		)
@@ -44,29 +44,29 @@
 	
 	<select id="select" resultType="UserVO">
 		SELECT 
-			user_num
+			user_no
 			, user_id
 			, user_nm
-			, user_phone
-			, user_email
+			, phone
 			, regist_date
+			, update_date
 		FROM tbl_user
-		WHERE user_num = #{userNum}
+		WHERE user_no = #{userNo}
 	</select>
 	
 	<update id="update">
 		UPDATE tbl_user
 		SET 
-			user_pw = #{userpw}
-			, user_name = #{username}
-			, user_email = #{useremail}
-			, user_phone = #{userphone}
-		WHERE user_num = #{userNum}
+			user_pw = #{userPw}
+			, user_name = #{userName}
+			, user_phone = #{userPhone}
+			, update_date = now()
+		WHERE user_no = #{userNo}
 	</update>
 	
 	<delete id="delete">
 		DELETE FROM tbl_user
-		WHERE user_num = #{usernum}
+		WHERE user_no = #{userNo}
 	</delete>
 	
 </mapper>

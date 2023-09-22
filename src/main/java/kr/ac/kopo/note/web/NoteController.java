@@ -26,8 +26,8 @@ public class NoteController {
 	private String path = "note/";
 
 	@GetMapping("/receiveList")
-	public String receiveList(Model model, Pager pager) {
-		List<NoteVO> list = service.receiveList(pager);
+	public String receiveList(Model model, NoteVO noteVO) {
+		List<NoteVO> list = service.receiveList(noteVO);
 		model.addAttribute("list", list);
 
 		return path + "list";

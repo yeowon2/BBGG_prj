@@ -16,17 +16,17 @@ public class NoteServiceImpl implements NoteService {
 	NoteDao dao;
 	
 	@Override
-	public List<NoteVO> sendList(Pager pager) {
-		int total = dao.total(pager);
+	public List<NoteVO> sendList(NoteVO noteVO) {
+		int total = dao.total(noteVO);
 		
-		return dao.sendList(pager);
+		return dao.sendList(noteVO);
 	}
 	
 	@Override
-	public List<NoteVO> receiveList(Pager pager) {
-		int total = dao.total(pager);
+	public List<NoteVO> receiveList(NoteVO noteVO) {
+		int total = dao.total(noteVO);
 		
-		return dao.receiveList(pager);
+		return dao.receiveList(noteVO);
 	}
 	
 

@@ -16,13 +16,13 @@ public class NoteDaoImpl implements NoteDao {
 	SqlSession sql;
 	
 	@Override
-	public List<NoteVO> sendList(Pager pager) {
-		return sql.selectList("note.sendList", pager);
+	public List<NoteVO> sendList(NoteVO noteVO) {
+		return sql.selectList("note.sendList", noteVO);
 	}
 
 	@Override
-	public List<NoteVO> receiveList(Pager pager) {
-		return sql.selectList("note.receiveList", pager);
+	public List<NoteVO> receiveList(NoteVO noteVO) {
+		return sql.selectList("note.receiveList", noteVO);
 	}
 
 	@Override

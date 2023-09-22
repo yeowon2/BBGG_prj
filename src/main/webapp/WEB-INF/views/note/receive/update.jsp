@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../header.jsp"></jsp:include>
 <title>Insert title here</title>
 </head>
 <body>

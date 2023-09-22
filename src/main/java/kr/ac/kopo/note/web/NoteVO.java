@@ -2,7 +2,9 @@ package kr.ac.kopo.note.web;
 
 import java.util.Date;
 
-public class NoteVO {
+import kr.ac.kopo.pager.Pager;
+
+public class NoteVO extends Pager{
 
 	private Long noteNo;
 	private Long roomNo;

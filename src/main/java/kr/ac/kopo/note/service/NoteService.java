@@ -7,9 +7,9 @@ import kr.ac.kopo.pager.Pager;
 
 public interface NoteService {
 
-	List<NoteVO> sendList(Pager pager);
+	List<NoteVO> sendList(NoteVO noteVO);
 
-	List<NoteVO> receiveList(Pager pager);
+	List<NoteVO> receiveList(NoteVO noteVO);
 	
 	void add(NoteVO noteVO);
 

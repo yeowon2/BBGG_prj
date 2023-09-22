@@ -44,7 +44,17 @@
 		<result property="userName" column="user_name"/>		
 	</resultMap>
 	
-	<select id="sendList" resultMap="NoteMap">
+	<select id="sendList" resultMap="NoteMap" >
+		SELECT 
+			note.*, user.user_name
+		FROM  note 
+			JOIN user ON (note.user_no = user.user_no )
+		WHERE note.use_at = 'Y'
+			AND note.user_no = 1
+		ORDER BY regist_date DESC
+	</select>
+	
+	<select id="receiveList" resultMap="NoteMap">
 		SELECT 
 			note.*, user.user_name
 		FROM  note 

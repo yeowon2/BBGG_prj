@@ -33,7 +33,7 @@
 	</resultMap> -->
 	
 	<select id="roomList" resultType="RoomVO">
-		SELECT *	FROM room WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
+		SELECT *	FROM tbl_room WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
 		<!-- <where>
 			<if test="search != #{keyword}">		오라클은 CONCAT을 2개값만 허용해서 이중으로 사용 (myDB는 3개)
 				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')	
@@ -55,8 +55,8 @@
 	</select>
 	
 	<select id="roomSelect" resultType="RoomVO">
-		SELECT (SELECT rent_price FROM lease  WHERE lease.lease_no = room.lease_no) AS "가격", room.*
-		FROM room
+		SELECT (SELECT rent_price FROM tbl_lease  WHERE tbl_lease.lease_no = tbl_room.lease_no) AS "가격", tbl_room.*
+		FROM tbl_room
 		WHERE room_No = #{roomNo}
 	
 	</select>

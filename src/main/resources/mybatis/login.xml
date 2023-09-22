@@ -10,11 +10,11 @@
 	
 	<select id="actionLogin" resultMap="UserMap">
 		SELECT
-		ID
-		, PASSWD
-		FROM USER
-		WHERE ID = #{userId}
-		AND PASSWD = #{password}
+		id
+		, passwd
+		FROM tbl_user
+		WHERE id = #{userId}
+		AND passwd = #{password}
 	</select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package kr.ac.kopo.note.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.note.web.NoteVO;
 import kr.ac.kopo.pager.Pager;
@@ -15,7 +16,7 @@ public interface NoteDao {
 
 	void add(NoteVO noteVO);
 
-	NoteVO select(Long noteNo);
+	NoteVO select(Map<String, Long> paramMap);
 
 	void update(NoteVO noteVO);
 

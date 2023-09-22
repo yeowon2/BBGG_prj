@@ -1,6 +1,7 @@
 package kr.ac.kopo.note.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public NoteVO select(Long noteNo) {
-		return sql.selectOne("note.select", noteNo);
+	public NoteVO select(Map<String, Long> paramMap) {
+		return sql.selectOne("note.select", paramMap);
 	}
 
 	@Override

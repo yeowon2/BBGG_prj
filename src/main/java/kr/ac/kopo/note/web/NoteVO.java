@@ -20,7 +20,15 @@ public class NoteVO extends Pager{
 	private String useAt;
 	
 	private String userName;
+	private String agencyName;
 	
+	
+	public String getAgencyName() {
+		return agencyName;
+	}
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
 	public String getUserName() {
 		return userName;
 	}

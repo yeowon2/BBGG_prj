@@ -23,7 +23,7 @@ public class NoteController {
 	@Autowired
 	NoteService service;
 
-	private String path = "note/";
+	private String path = "note/receive/";
 
 	@GetMapping("/receiveList")
 	public String receiveList(Model model, NoteVO noteVO) {
@@ -42,12 +42,12 @@ public class NoteController {
 //		return path + "detail";
 //	}
 
-	@GetMapping("/detail/{noteNo}")
-	@ResponseBody // JSON 응답을 생성합니다.
-	public NoteVO detail(@PathVariable Long noteNo) {
-		NoteVO noteVO = service.select(noteNo);
-		return noteVO;
-	}
+//	@GetMapping("/detail/{noteNo}")
+//	@ResponseBody // JSON 응답을 생성합니다.
+//	public NoteVO detail(@PathVariable Long noteNo) {
+//		NoteVO noteVO = service.select(noteNo);
+//		return noteVO;
+//	}
 
 	@GetMapping("/add")
 	public String add() {
@@ -62,14 +62,14 @@ public class NoteController {
 		return "redirect:/note/list";
 	}
 
-	@GetMapping("/update/{noteNo}")
-	public String update(@PathVariable Long noteNo, Model model) {
-
-		NoteVO noteVO = service.select(noteNo);
-		model.addAttribute("noteVO", noteVO);
-
-		return path + "update";
-	}
+	/*
+	 * @GetMapping("/update/{noteNo}") public String update(@PathVariable Long
+	 * noteNo, Model model) {
+	 * 
+	 * NoteVO noteVO = service.select(noteNo); model.addAttribute("noteVO", noteVO);
+	 * 
+	 * return path + "update"; }
+	 */
 
 	@PostMapping("/update/{noteNo}")
 	public String update(@PathVariable Long noteNo, NoteVO noteVO) {

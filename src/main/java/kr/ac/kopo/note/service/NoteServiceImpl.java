@@ -1,13 +1,13 @@
 package kr.ac.kopo.note.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.note.dao.NoteDao;
 import kr.ac.kopo.note.web.NoteVO;
-import kr.ac.kopo.pager.Pager;
 
 @Service
 public class NoteServiceImpl implements NoteService {
@@ -36,8 +36,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public NoteVO select(Long noteNo) {
-		return dao.select(noteNo);
+	public NoteVO select(Map<String, Long> paramMap) {
+		return dao.select(paramMap);
 	}
 
 	@Override

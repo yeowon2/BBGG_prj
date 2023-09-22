@@ -1,6 +1,8 @@
 package kr.ac.kopo.note.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.note.service.NoteService;
-import kr.ac.kopo.pager.Pager;
 
 @Controller
 @RequestMapping("/note/send")
@@ -22,18 +23,26 @@ public class SendController {
 	@Autowired
 	NoteService service;
 	
-	@GetMapping("/list")
-	public String list(Model model, NoteVO noteVO) {
+	@GetMapping("/list/{userNo}")
+	public String list(@PathVariable Long userNo,  Model model, NoteVO noteVO ) {
+		noteVO.setUserNo(userNo);
 		List<NoteVO> sendList = service.sendList(noteVO);
 		model.addAttribute("sendList", sendList);
+		System.out.println("userNo:" + noteVO.getUserNo()) ;
 		
-		return path + "list4";
+		return path + "list2";
 	}
 	
-	@GetMapping("/detail/{noteNo}")
+	@GetMapping("/detail/{userNo}/{noteNo}")
 	@ResponseBody // JSON 응답을 생성합니다.
-	public NoteVO detail(@PathVariable Long noteNo) {
-		NoteVO noteVO = service.select(noteNo);
+	public NoteVO detail(@PathVariable Long userNo, 
+						@PathVariable Long noteNo) {
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+	    paramMap.put("userNo", userNo);
+	    paramMap.put("noteNo", noteNo);
+		
+		NoteVO noteVO = service.select(paramMap);
+		
 		return noteVO;
 	}
 }

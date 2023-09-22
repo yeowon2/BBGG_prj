@@ -41,16 +41,18 @@
 	
 	<resultMap type="NoteVO" id="NoteMap" autoMapping="true">
 		<id property="noteNo" column="note_no"/>
-		<result property="userName" column="user_name"/>		
+		<result property="userName" column="user_name"/>	
+		<result property="agencyName" column="com_name"/>		
 	</resultMap>
 	
 	<select id="sendList" resultMap="NoteMap" >
 		SELECT 
-			note.*, user.user_name
+			note.*, user.user_name, agency.com_name
 		FROM  note 
-			JOIN user ON (note.user_no = user.user_no )
+			JOIN user ON (note.user_no = user.user_no) 
+			JOIN agency ON (note.agency_no = agency.agency_no)
 		WHERE note.use_at = 'Y'
-			AND note.user_no = 1
+			AND note.user_no = #{userNo}
 		ORDER BY regist_date DESC
 	</select>
 	
@@ -63,20 +65,19 @@
 		ORDER BY regist_date DESC
 	</select>
 	
-	<select id="select" resultType="NoteVO">
+	<select id="select" parameterType="java.util.Map" resultMap="NoteMap">
 		SELECT 
-			note_no
-			, room_no
-			, user_no
-			, agency_no
-			, note_subject
+			agency.com_name
+			, note.room_no 
+			, note_subject 
 			, note_text1
 			, note_text2
 			, note_text3
 			, note_content
-			, regist_date
-		FROM note
-		WHERE note_no = #{noteNo}
+		FROM note JOIN user ON (user.user_no = note.user_no) 
+				  JOIN agency ON (note.agency_no = agency.agency_no)
+  		WHERE note.user_no = #{userNo}
+  		AND note_no = #{noteNo}
 	</select>
 	
 	<update id="update">

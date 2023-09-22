@@ -63,15 +63,22 @@
                 <h2 class="tm-text-primary mb-5">매물 정보</h2>
                 <form id="contact-form" action="" method="POST" class="tm-contact-form mx-auto">
                 	
-                	<!-- 주소(아파트일 경우) 동, 호 까지 출력 -->
-                	<c:if test="${result.dong  == null }">
+                	<!-- 주소(주택일경우) 동, 호 까지 출력 -->
+                	<c:if test="${result.ho  == null && result.dong == null}">
 	                    <div class="form-group">
 	                    	<h6>주소</h6>
 	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}"required readonly />
 	                    </div>
                     </c:if>
-                    <!-- 주소(주택일경우) 동, 호 생략 -->
-                    <c:if test="${result.dong  != null }">
+                    <!-- 주소(빌라일경우) 동, 호 까지 출력 -->
+                	<c:if test="${result.dong  == null && result.ho != null}">
+	                    <div class="form-group">
+	                    	<h6>주소</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.ho}호"required readonly />
+	                    </div>
+                    </c:if>
+                    <!-- 주소(아파트일경우) 동, 호 생략 -->
+                    <c:if test="${result.dong != null && result.ho != null}">
 	                    <div class="form-group">
 	                    	<h6>주소</h6>
 		                    <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.dong}동 ${result.ho}호"required readonly />
@@ -296,6 +303,9 @@
 		
 		// 이미지 지도를 생성합니다
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+		
+		//지도에 교통정보를 표시하도록 지도타입을 추가합니다
+		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
 	</script>
 </body>
 </html>

@@ -18,10 +18,10 @@ pageEncoding="UTF-8"%>
             </p>
             <div class="form-row">
               <div class="col-md-6 form-group">
-                <input class="form-control" type="text" name="userId" placeholder="ID를 입력하세요"/>
+                <input class="form-control" type="text" name="userId" placeholder="E-Mail을 입력하세요"/>
               </div>
               <div class="col-md-6 form-group">
-                <input class="form-control"  type="password" name="password" placeholder="비밀번호를 입력하세요" />
+                <input class="form-control"  type="password" name="userPw" placeholder="비밀번호를 입력하세요" />
               </div>
               <div class="form-group">
                 <div class="input-group">
@@ -32,10 +32,7 @@ pageEncoding="UTF-8"%>
                 </div>
               </div>
               <div class="col-md-6 form-group">
-                <input class="form-control" type="text" name="userNm"  placeholder="이름를 입력하세요" />
-              </div>
-              <div class="col-md-6 form-group">
-                <input class="form-control" type="text" name="emailAddress" placeholder="이메일을 입력하세요" />
+                <input class="form-control" type="text" name="userName"  placeholder="이름를 입력하세요" />
               </div>
               <div class="col-md-6 form-group">
                 <input class="form-control" type="text" name="phone" placeholder="전화번호를 입력하세요"/>

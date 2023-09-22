@@ -17,7 +17,7 @@
 		VALUES (
 			#{userId}
 			, #{userPw}
-			, #{userNm}
+			, #{userName}
 			, #{phone}
 			, NOW()
 			, NOW()

@@ -38,11 +38,11 @@
                                     <h1 class="display-5 mb-10">로그인</h1>
                                     <p class="mb-30">Sign in to your account and enjoy unlimited perks.</p>
                                     <div class="form-group">
-                                        <input class="form-control" name="userId" placeholder="ID를 입력하세요" type="text" value="">
+                                        <input class="form-control" name="userId" placeholder="ID(e-Mail)를 입력하세요" type="text" value="">
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input class="form-control" name="password" placeholder="비밀번호를 입력하세요" type="password" value=""> 
+                                            <input class="form-control" name="userPw" placeholder="비밀번호를 입력하세요" type="password" value=""> 
                                             <div class="input-group-append">
                                                 <span class="input-group-text"><span class="feather-icon"><i data-feather="eye-off"></i></span></span>
                                             </div>

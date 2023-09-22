@@ -59,6 +59,5 @@ public class UserVO {
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
-	
-	
+		
 }

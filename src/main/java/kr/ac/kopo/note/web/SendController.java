@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.kopo.note.service.NoteService;
 
 @Controller
-@RequestMapping("/note/send")
+@RequestMapping("/main/note/send")
 public class SendController {
 	
 	private String path = "note/send/";
@@ -30,7 +30,7 @@ public class SendController {
 		model.addAttribute("sendList", sendList);
 		System.out.println("userNo:" + noteVO.getUserNo()) ;
 		
-		return path + "list2";
+		return path + "list";
 	}
 	
 	@GetMapping("/detail/{userNo}/{noteNo}")

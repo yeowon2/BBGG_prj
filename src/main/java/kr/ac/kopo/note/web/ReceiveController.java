@@ -17,15 +17,15 @@ import kr.ac.kopo.note.service.NoteService;
 import kr.ac.kopo.pager.Pager;
 
 @Controller
-@RequestMapping("/note")
-public class NoteController {
+@RequestMapping("/main/note/receive")
+public class ReceiveController {
 
 	@Autowired
 	NoteService service;
 
 	private String path = "note/receive/";
 
-	@GetMapping("/receiveList")
+	@GetMapping("/list")
 	public String receiveList(Model model, NoteVO noteVO) {
 		List<NoteVO> list = service.receiveList(noteVO);
 		model.addAttribute("list", list);

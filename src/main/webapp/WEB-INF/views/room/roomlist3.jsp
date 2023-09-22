@@ -50,32 +50,30 @@ var geocoder = new kakao.maps.services.Geocoder();
 function searchAddress() {
     var address = document.getElementById('address').value;
 
-    // 서버로 주소를 보내서 좌표 정보를 가져옵니다.
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/getCoordinates?address=" + encodeURIComponent(address), true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = JSON.parse(xhr.responseText);
-            if (response.latitude && response.longitude) {
-                var coords = new kakao.maps.LatLng(response.latitude, response.longitude);
-                // 마커를 생성하고 지도에 추가
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-                // 인포윈도우로 장소에 대한 설명을 표시
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;"> 여기있어 </div>'
-                });
-                infowindow.open(map, marker);
-                // 지도의 중심을 결과값으로 받은 위치로 이동
-                map.setCenter(coords);
-            } else {
-                alert('주소를 찾을 수 없습니다.');
-            }
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch(address, function(result, status) {
+        // 정상적으로 검색이 완료됐으면 
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;"> 여기있어 </div>'
+            });
+            infowindow.open(map, marker);
+
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        } else {
+            alert('주소를 찾을 수 없습니다: ' + status);
         }
-    };
-    xhr.send();
+    });
 }
 </script>
 </body>

@@ -9,6 +9,4 @@ public interface RoomService {
 	List<RoomVO> roomList();
 
 	RoomVO roomSelect(RoomVO roomVO);
-
-
 }

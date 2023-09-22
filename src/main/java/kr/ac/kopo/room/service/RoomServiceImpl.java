@@ -22,6 +22,5 @@ public class RoomServiceImpl implements RoomService {
 	public RoomVO roomSelect(RoomVO roomVO) {
 		return dao.roomSelect(roomVO);
 	}
-
 	
 }

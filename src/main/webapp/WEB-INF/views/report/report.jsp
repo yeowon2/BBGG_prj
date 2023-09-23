@@ -12,10 +12,11 @@
 	display: none;
 }
 </style>
-
 <!-- Toggles CSS -->
 <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
 <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+<!-- Custom CSS -->
+<link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -349,7 +350,7 @@
 		        <div class="row">
                     <div class="col-xl-12">
 					<section class="hk-sec-wrapper">
-						<h5 class="hk-sec-title">허위 매물 신고</h5>
+						<h5 class="hk-sec-title">허위 매물 신고에 대한 안내</h5>
 						<p class="mb-25">
 						· 개인정보 수집 및 이용 목적(개인정보보호법 제15조)<br>
 						▫ 부동산매물클린관리센터는 관계 법령에 따라 소관 업무를 수행하기 위하여 개인정보를 수집 및 이용 합니다.<br>
@@ -368,13 +369,21 @@
 						
 						· 동의 거부 권리 및 거부에 따른 불이익<br>
 						▫ 신고 처리를 위하여 수집하는 최소한의 정보 이외에 개인정보 수집에 동의를 거부할 권리가 있으나 최소한의 개인정보 수집동의 거부 시에는 부동산매물클린관리센터 서비스를 제공 받을 수 없습니다.<br>
+						<input type="checkbox" id="agreeAt" ><label>허위 매물 신고에 대한 안내에 동의합니다.</label><br>
+						
 						</p>
 						<div class="row">
 						    <div class="col-sm">
+						    
 						        <!-- Button trigger modal -->
 						        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalLong">
 						            허위 매물 신고하기
 						        </button>
+						        
+						        <br><br>
+						        <input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+								<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+								<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label>
 		
 						        <!-- Modal -->
 						            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -387,12 +396,14 @@
 						                            </button>
 						                        </div>
 						                        <div class="modal-body">
-													<input type="checkbox"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-													<input type="checkbox"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-													<input type="checkbox"><label>기타 (체크 후 아래에 기입해주세요)</label>
+													
+													
+													<textarea id="reportContent" rows="10" cols="50"></textarea>
+													
 													<p>검증 기준이 아닌 사유를 들어 반복적으로 신고하실 경우, 신고자 패널티를 부과할 수 있습니다.<br>
 													이러한 행위는 공인중개사법 제 33조2항 ('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
 													위배해 고소, 고발의 대상이 될 수 있으므로 주의부탁드립니다.</p>
+													
 						                        </div>
 						                        <div class="modal-footer">
 						                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -465,6 +476,10 @@
 
     <!-- Init JavaScript -->
     <script src="resources/dist/js/init.js"></script>		
+    
+    <!-- modal-data JavaScript -->
+    <script src="resources/dist/js/modal-data.js"></script>		
+    
 
 </body>
 </html>

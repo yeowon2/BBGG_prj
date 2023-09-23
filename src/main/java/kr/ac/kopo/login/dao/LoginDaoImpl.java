@@ -16,5 +16,4 @@ public class LoginDaoImpl implements LoginDao {
 	public UserVO actionLogin(UserVO userVO) {
 		return sql.selectOne("login.actionLogin", userVO);
 	}
-
 }

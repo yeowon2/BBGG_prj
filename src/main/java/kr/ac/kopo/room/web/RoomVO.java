@@ -28,8 +28,11 @@ public class RoomVO {
 	private Date registDate;		//매물 등록일
 	private Date updateDate;		//매물 수정일
 	private String useAt;			//상태코드
-	private String lat;				//x값
-	private String lng;				//y값
+	private Double lat;				//x값
+	private Double lng;				//y값
+	
+	private Long deposltFee;
+	private Long rentPrice;
 	
 	public Long getRoomNo() {
 		return roomNo;
@@ -175,16 +178,16 @@ public class RoomVO {
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
-	public String getLat() {
+	public Double getLat() {
 		return lat;
 	}
-	public void setLat(String lat) {
+	public void setLat(Double lat) {
 		this.lat = lat;
 	}
-	public String getLng() {
+	public Double getLng() {
 		return lng;
 	}
-	public void setLng(String lng) {
+	public void setLng(Double lng) {
 		this.lng = lng;
 	}
 	

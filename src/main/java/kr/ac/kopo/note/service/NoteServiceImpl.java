@@ -41,6 +41,11 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
+	public NoteVO receiveDetail(Long noteNo) {
+		return dao.receiveDetail(noteNo);
+	}
+
+	@Override
 	public void update(NoteVO noteVO) {
 		dao.update(noteVO);
 	}
@@ -49,6 +54,7 @@ public class NoteServiceImpl implements NoteService {
 	public boolean delete(Long noteNo) {
 		return dao.delete(noteNo);
 	}
+
 
 
 }

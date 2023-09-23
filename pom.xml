@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.ac</groupId>
 	<artifactId>kopo</artifactId>
-	<name>ireProject</name>
+	<name>BBGG</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

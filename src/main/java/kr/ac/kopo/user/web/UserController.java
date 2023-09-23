@@ -48,7 +48,7 @@ public class UserController {
 		return path + "update";
 	}
 	
-	@PostMapping("/update/{userNum}")
+	@PostMapping("/update/{userNo}")
 	public String update(@PathVariable Long userNo, UserVO userVO) {
 		userVO.setUserNo(userNo);
 		service.update(userVO);

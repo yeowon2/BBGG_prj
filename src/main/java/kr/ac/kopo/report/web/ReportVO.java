@@ -8,7 +8,7 @@ public class ReportVO {
 	private String reportCheck2;
 	private String reportCheck3;
 	private String reportContent;
-	private String useAt;
+	private String userAt;
 	private String agreeAt;
 	
 	public int getReportNo() {
@@ -53,11 +53,11 @@ public class ReportVO {
 	public void setReportContent(String reportContent) {
 		this.reportContent = reportContent;
 	}
-	public String getUseAt() {
-		return useAt;
+	public String getUserAt() {
+		return userAt;
 	}
-	public void setUseAt(String useAt) {
-		this.useAt = useAt;
+	public void setUserAt(String userAt) {
+		this.userAt = userAt;
 	}
 	public String getAgreeAt() {
 		return agreeAt;

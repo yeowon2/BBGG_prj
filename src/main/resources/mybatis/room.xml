@@ -3,7 +3,7 @@
 
 <mapper namespace="room">
 
-	<resultMap type="kr.ac.kopo.room.web.RoomVO" id="room">
+	<!-- <resultMap type="kr.ac.kopo.room.web.RoomVO" id="room">
 		<result property="roomNo" 			column="room_no" />
 		<result property="agencyNo" 		column="agency_no" />
 		<result property="leaseNo" 			column="lease_no" />
@@ -30,10 +30,10 @@
 		<result property="useAt" 			column="use_at" />
 		<result property="lat" 				column="lat" />
 		<result property="lng" 				column="lng" />
-	</resultMap>
+	</resultMap> -->
 	
-	<select id="roomList" resultMap="room">
-		SELECT *	FROM room 
+	<select id="roomList" resultType="RoomVO">
+		SELECT *	FROM tbl_room WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
 		<!-- <where>
 			<if test="search != #{keyword}">		오라클은 CONCAT을 2개값만 허용해서 이중으로 사용 (myDB는 3개)
 				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')	
@@ -54,9 +54,15 @@
 		</if> -->
 	</select>
 	
-	<select id="roomSelect" resultMap="room">
-		SELECT *	FROM room
-		WHERE room_no = #{roomNo}
+	<select id="roomSelect" resultType="RoomVO">
+		SELECT (SELECT rent_price FROM tbl_lease  WHERE tbl_lease.lease_no = tbl_room.lease_no) AS "가격", tbl_room.*
+		FROM tbl_room
+		WHERE room_No = #{roomNo}
+	
 	</select>
+	
+	<!-- 스칼라 부속질의(SELECT 부속질의)
+	SELECT (SELECT rent_price FROM lease  WHERE lease.lease_no = room.lease_no) AS "가격", room.*
+	FROM room; -->
 
 </mapper>

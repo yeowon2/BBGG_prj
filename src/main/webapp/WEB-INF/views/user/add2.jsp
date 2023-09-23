@@ -31,22 +31,19 @@
                                     <h1 class="display-5 mb-10">회원 가입</h1>
                                     <p class="mb-30">Create your account and start your free trial today</p>
                                         <div class="form-group">
-                                           <input class="form-control" type="text" name="userId" placeholder="ID를 입력하세요"/>
+                                           <input class="form-control" type="text" name="userId" placeholder="ID(e-Mail)를 입력하세요"/>
                                         </div>
                                     <div class="form-group">
                                         <input class="form-control"  type="password" name="userPw" placeholder="비밀번호를 입력하세요" />
                                     </div>
                                 
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="userNm"  placeholder="이름를 입력하세요" />
+                                        <input class="form-control" type="text" name="userName"  placeholder="이름를 입력하세요" />
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="userPhone" placeholder="전화번호를 입력하세요"/>
+                                        <input class="form-control" type="text" name="phone" placeholder="전화번호를 입력하세요"/>
                                     </div>
-                
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name="emailAddress" placeholder="이메일을 입력하세요" />
-                                    </div>
+                                    
                                     <div class="custom-control custom-checkbox checkbox-success mb-25">
                                         <input class="custom-control-input" id="same-address" type="checkbox" checked>
                                         <label class="custom-control-label font-14" for="same-address">

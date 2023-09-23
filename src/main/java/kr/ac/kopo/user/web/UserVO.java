@@ -10,6 +10,7 @@ public class UserVO {
 	private java.util.Date registDate;
 	private java.util.Date updateDate;
 	private String useAt;
+	
 	public long getUserNo() {
 		return userNo;
 	}
@@ -58,6 +59,5 @@ public class UserVO {
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
-	
-	
+		
 }

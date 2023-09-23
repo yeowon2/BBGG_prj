@@ -4,22 +4,22 @@
 <mapper namespace="user">
 
 	<insert id="add">
-		INSERT INTO USER
+		INSERT INTO tbl_user
 		(
-			USER_ID
-			, USER_PW
-			, USER_NAME
-			, USER_PHONE
-			, USER_EMAIL
-			, REGIST_DATE
-			, USE_AT
+			user_id
+			, user_pw
+			, user_name
+			, phone
+			, regist_date
+			, update_date
+			, use_at
 		)
 		VALUES (
 			#{userId}
 			, #{userPw}
-			, #{userNm}
+			, #{userName}
 			, #{phone}
-			, #{email}
+			, NOW()
 			, NOW()
 			, 'Y'
 		)
@@ -28,7 +28,7 @@
 	 
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*) 
-		FROM  user
+		FROM  tbl_user
 	</select>
 	
 	<select id="list" resultType="UserVO">
@@ -38,35 +38,35 @@
 			, user_name
 			, phone
 			, Regist_date
-		FROM  user
+		FROM  tbl_user
 		WHERE use_at = 'Y'
 	</select>
 	
 	<select id="select" resultType="UserVO">
 		SELECT 
-			USER_NUM
-			, USER_ID
-			, USER_NM
-			, USER_PHONE
-			, USER_EMAIL
-			, REGIST_DATE
-		FROM USER
-		WHERE USER_NUM = #{userNum}
+			user_no
+			, user_id
+			, user_nm
+			, phone
+			, regist_date
+			, update_date
+		FROM tbl_user
+		WHERE user_no = #{userNo}
 	</select>
 	
 	<update id="update">
-		UPDATE user
+		UPDATE tbl_user
 		SET 
-			USER_PW = #{userPw}
-			, USER_NAME = #{userNm}
-			, USER_EMAIL = #{userEmail}
-			, USER_PHONE = #{userPhone}
-		WHERE USER_NUM = #{userNum}
+			user_pw = #{userPw}
+			, user_name = #{userName}
+			, user_phone = #{userPhone}
+			, update_date = now()
+		WHERE user_no = #{userNo}
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM USER
-		WHERE USER_NUM = #{userNum}
+		DELETE FROM tbl_user
+		WHERE user_no = #{userNo}
 	</delete>
 	
 </mapper>

@@ -5,7 +5,7 @@
 
 	<insert id="add" >
 
-    INSERT INTO note
+    INSERT INTO tbl_note
     (
         room_no
         , user_no
@@ -36,52 +36,67 @@
 	 
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*) 
-		FROM  note
+		FROM  tbl_note
 	</select>
 	
 	<resultMap type="NoteVO" id="NoteMap" autoMapping="true">
 		<id property="noteNo" column="note_no"/>
 		<result property="userName" column="user_name"/>	
-		<result property="agencyName" column="com_name"/>		
+		<result property="compName" column="comp_name"/>		
 	</resultMap>
 	
 	<select id="sendList" resultMap="NoteMap" >
 		SELECT 
-			note.*, user.user_name, agency.com_name
-		FROM  note 
-			JOIN user ON (note.user_no = user.user_no) 
-			JOIN agency ON (note.agency_no = agency.agency_no)
-		WHERE note.use_at = 'Y'
-			AND note.user_no = #{userNo}
+			tbl_note.*, tbl_user.user_name, tbl_partner.comp_name
+		FROM  tbl_note 
+			JOIN tbl_user ON (tbl_note.user_no = tbl_user.user_no) 
+			JOIN tbl_partner ON (tbl_note.partner_no = tbl_partner.partner_no)
+		WHERE tbl_note.use_at = 'Y'
+			AND tbl_note.user_no = #{userNo}
 		ORDER BY regist_date DESC
 	</select>
 	
 	<select id="receiveList" resultMap="NoteMap">
 		SELECT 
-			note.*, user.user_name
-		FROM  note 
-			JOIN user ON (note.user_no = user.user_no )
-		WHERE note.use_at = 'Y'
-		ORDER BY regist_date DESC
+			tbl_note.*, tbl_user.user_name
+		FROM  tbl_note 
+			JOIN tbl_user ON (tbl_note.user_no = tbl_user.user_no )
+		WHERE tbl_note.use_at = 'Y'
+		ORDER BY tbl_note.regist_date DESC
 	</select>
 	
 	<select id="select" parameterType="java.util.Map" resultMap="NoteMap">
 		SELECT 
-			agency.com_name
-			, note.room_no 
+			tbl_partner.comp_name
+			, tbl_note.room_no 
 			, note_subject 
 			, note_text1
 			, note_text2
 			, note_text3
 			, note_content
-		FROM note JOIN user ON (user.user_no = note.user_no) 
-				  JOIN agency ON (note.agency_no = agency.agency_no)
-  		WHERE note.user_no = #{userNo}
-  		AND note_no = #{noteNo}
+			, tbl_note.regist_date
+		FROM tbl_note JOIN tbl_user ON (tbl_user.user_no = tbl_note.user_no) 
+				  JOIN tbl_partner ON (tbl_note.partner_no = tbl_partner.partner_no)
+  		WHERE tbl_note.user_no = #{userNo}
+  		AND tbl_note.note_no = #{noteNo}
+	</select>
+	
+	<select id="receiveDetail"  resultMap="NoteMap">
+		SELECT 
+			tbl_user.user_name
+			, tbl_note.room_no 
+			, note_subject 
+			, note_text1
+			, note_text2
+			, note_text3
+			, note_content
+			, tbl_note.regist_date
+		FROM tbl_note JOIN tbl_user ON (tbl_user.user_no = tbl_note.user_no) 
+  		WHERE tbl_note.note_no = #{noteNo}
 	</select>
 	
 	<update id="update">
-		UPDATE note
+		UPDATE tbl_note
 		SET 
 			note_subject = #{noteSubject}
 			, note_text1 = #{noteText1}
@@ -93,7 +108,7 @@
 	</update>
 	
 	<update id="delete">
-		UPDATE note
+		UPDATE tbl_note
 		SET use_at = 'N'
 		WHERE note_no = #{noteNo}
 	</update>

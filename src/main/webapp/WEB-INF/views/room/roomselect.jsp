@@ -203,6 +203,20 @@
                         120-240 Fusce eleifend varius tempus<br>
                         Duis consectetur at ligula 10660
                     </address>
+                    <c:set var="roomNo" value="${result.roomNo}"/>
+                    <a href='/roomSelect/<c:out value="${roomNo}"/>/add'>
+	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
+		                    <span class="btn-text">쪽지보내기</span> 
+	                       	<span class="icon-label">
+	                       		<span class="feather-icon">
+	                           		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+	                              	 	<line x1="5" y1="12" x2="19" y2="12"></line>
+	                               	    <polyline points="12 5 19 12 12 19"></polyline>
+	                           		</svg>
+	                           	</span> 
+	                        </span>
+	                    </button>
+                    </a>
                 </div>                
             </div>
             <div class="col-lg-4 col-12">

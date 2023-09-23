@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,16 +47,5 @@ public class SendController {
 		return noteVO;
 	}
 	
-//	@GetMapping("/add")
-//	public String add() {
-//
-//		return path + "add";
-//	}
-//
-//	@PostMapping("/add")
-//	public String add(NoteVO noteVO) {
-//		service.add(noteVO);
-//
-//		return "redirect:/main//note/list";
-//	}
+	
 }

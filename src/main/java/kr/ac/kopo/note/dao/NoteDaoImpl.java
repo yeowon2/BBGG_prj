@@ -1,5 +1,6 @@
 package kr.ac.kopo.note.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,11 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public void add(NoteVO noteVO) {
-		sql.insert("note.add", noteVO);
+	public void add(Long roomNo, NoteVO noteVO) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("roomNo", roomNo);
+		paramMap.put("noteVO", noteVO);
+		sql.insert("note.add", paramMap);
 
 	}
 

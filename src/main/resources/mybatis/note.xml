@@ -3,30 +3,29 @@
 
 <mapper namespace="note">
 
-	<insert id="add" >
+	<insert id="add">
 
     INSERT INTO tbl_note
     (
-        room_no
-        , user_no
-        , agency_no
-        , note_subject
-        , note_text1
-        , note_text2
-        , note_text3
-        , note_content
-        , regist_date
-        , use_at
+       room_no
+		, user_no 
+		, partner_no 
+		, note_subject 
+		, note_content 
+		, regist_date 
+		, use_at 
     )
     VALUES (
-        1
-        , 1
-        , 1
-        , #{noteSubject}
-        , #{noteText1}
-        , #{noteText2}
-        , #{noteText3}
-        , #{noteContent}
+        #{roomNo}
+        , 3
+        , 
+        (
+        	SELECT partner_no 
+			FROM tbl_room 
+			WHERE room_no = #{roomNo}
+        )
+        , #{noteVO.noteSubject}
+        , #{noteVO.noteContent}
         , NOW()
         , 'Y'
     )

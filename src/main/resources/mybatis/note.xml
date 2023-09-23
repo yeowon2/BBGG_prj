@@ -62,7 +62,7 @@
 		FROM  tbl_note 
 			JOIN tbl_user ON (tbl_note.user_no = tbl_user.user_no )
 		WHERE tbl_note.use_at = 'Y'
-		ORDER BY regist_date DESC
+		ORDER BY tbl_note.regist_date DESC
 	</select>
 	
 	<select id="select" parameterType="java.util.Map" resultMap="NoteMap">
@@ -79,6 +79,20 @@
 				  JOIN tbl_partner ON (tbl_note.partner_no = tbl_partner.partner_no)
   		WHERE tbl_note.user_no = #{userNo}
   		AND tbl_note.note_no = #{noteNo}
+	</select>
+	
+	<select id="receiveDetail"  resultMap="NoteMap">
+		SELECT 
+			tbl_user.user_name
+			, tbl_note.room_no 
+			, note_subject 
+			, note_text1
+			, note_text2
+			, note_text3
+			, note_content
+			, tbl_note.regist_date
+		FROM tbl_note JOIN tbl_user ON (tbl_user.user_no = tbl_note.user_no) 
+  		WHERE tbl_note.note_no = #{noteNo}
 	</select>
 	
 	<update id="update">

@@ -1,11 +1,9 @@
 package kr.ac.kopo.note.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import kr.ac.kopo.note.web.NoteVO;
-import kr.ac.kopo.pager.Pager;
 
 public interface NoteService {
 
@@ -20,6 +18,8 @@ public interface NoteService {
 	void update(NoteVO noteVO);
 
 	boolean delete(Long noteNo);
+
+	NoteVO receiveDetail(Long noteNo);
 
 	
 }

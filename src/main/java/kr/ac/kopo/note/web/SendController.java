@@ -45,4 +45,17 @@ public class SendController {
 		
 		return noteVO;
 	}
+	
+//	@GetMapping("/add")
+//	public String add() {
+//
+//		return path + "add";
+//	}
+//
+//	@PostMapping("/add")
+//	public String add(NoteVO noteVO) {
+//		service.add(noteVO);
+//
+//		return "redirect:/main//note/list";
+//	}
 }

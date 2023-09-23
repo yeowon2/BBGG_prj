@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.note.service.NoteService;
-import kr.ac.kopo.pager.Pager;
 
 @Controller
 @RequestMapping("/main/note/receive")
@@ -27,8 +26,8 @@ public class ReceiveController {
 
 	@GetMapping("/list")
 	public String receiveList(Model model, NoteVO noteVO) {
-		List<NoteVO> list = service.receiveList(noteVO);
-		model.addAttribute("list", list);
+		List<NoteVO> receiveList = service.receiveList(noteVO);
+		model.addAttribute("receiveList", receiveList);
 
 		return path + "list";
 	}
@@ -42,25 +41,14 @@ public class ReceiveController {
 //		return path + "detail";
 //	}
 
-//	@GetMapping("/detail/{noteNo}")
-//	@ResponseBody // JSON 응답을 생성합니다.
-//	public NoteVO detail(@PathVariable Long noteNo) {
-//		NoteVO noteVO = service.select(noteNo);
-//		return noteVO;
-//	}
-
-	@GetMapping("/add")
-	public String add() {
-
-		return path + "add";
+	@GetMapping("/detail/{noteNo}")
+	@ResponseBody // JSON 응답을 생성합니다.
+	public NoteVO detail(@PathVariable Long noteNo) {
+		NoteVO noteVO = service.receiveDetail(noteNo);
+		return noteVO;
 	}
 
-	@PostMapping("/add")
-	public String add(NoteVO noteVO) {
-		service.add(noteVO);
-
-		return "redirect:/note/list";
-	}
+	
 
 	/*
 	 * @GetMapping("/update/{noteNo}") public String update(@PathVariable Long

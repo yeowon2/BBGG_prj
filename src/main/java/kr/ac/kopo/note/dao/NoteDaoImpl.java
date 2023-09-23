@@ -43,6 +43,11 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
+	public NoteVO receiveDetail(Long noteNo) {
+		return sql.selectOne("note.receiveDetail", noteNo);
+	}
+
+	@Override
 	public void update(NoteVO noteVO) {
 		sql.update("note.update", noteVO);
 	}
@@ -52,5 +57,6 @@ public class NoteDaoImpl implements NoteDao {
 		 int result = sql.update("note.delete", noteNo);
 		 return result > 0;
 	}
+
 
 }

@@ -18,8 +18,11 @@ public interface NoteDao {
 
 	NoteVO select(Map<String, Long> paramMap);
 
+	NoteVO receiveDetail(Long noteNo);
+
 	void update(NoteVO noteVO);
 
 	boolean delete(Long noteNo);
+
 
 }

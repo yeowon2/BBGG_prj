@@ -86,9 +86,9 @@ public class ReportController {
 	@PostMapping("/addCom")
 	public String reportAddCom(ReportVO repoInfo, Model model) {
 		
-		repoInfo.setRoomNo();
+		//repoInfo.setRoomNo();
 		
-		service.update(repoInfo);
+		//service.update(repoInfo);
 		return "";
 	}
 }

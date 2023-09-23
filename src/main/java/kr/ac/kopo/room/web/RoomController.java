@@ -33,7 +33,7 @@ public class RoomController {
 	@GetMapping("/getCoordinates")
     @ResponseBody
     public Map<String, Double> getCoordinates(@RequestParam("address") String address, RoomVO roomVO) {
-        Map<String, Double> coordinates = new HashMap<>();
+        Map<String, Double> coordinates = new HashMap<String, Double>();
 
         try {
             // 주소를 이용하여 RoomService에서 좌표를 가져오는 메소드를 호출합니다.

@@ -44,8 +44,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 //지도에 교통정보를 표시하도록 지도타입을 추가합니다
 map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
 
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
+//// 주소-좌표 변환 객체를 생성합니다
+//var geocoder = new kakao.maps.services.Geocoder();
 
 function searchAddress() {
     var address = document.getElementById('address').value;
@@ -56,26 +56,49 @@ function searchAddress() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var response = JSON.parse(xhr.responseText);
-            if (response.latitude && response.longitude) {
-                var coords = new kakao.maps.LatLng(response.latitude, response.longitude);
-                // 마커를 생성하고 지도에 추가
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
-                });
-                // 인포윈도우로 장소에 대한 설명을 표시
-                var infowindow = new kakao.maps.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:6px 0;"> 여기있어 </div>'
-                });
-                infowindow.open(map, marker);
-                // 지도의 중심을 결과값으로 받은 위치로 이동
-                map.setCenter(coords);
+            if (response.length > 0) {
+            	
+            	// 이전에 표시된 마커들을 모두 삭제합니다.
+                removeAllMarkers();
+            	
+                for (var i = 0; i < response.length; i++) {
+                    var coords = new kakao.maps.LatLng(response[i].lat, response[i].lng);
+                    
+                    // 마커를 생성하고 지도에 추가
+                    var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+                    
+                 	// 마커를 markers 배열에 추가합니다.
+                    markers.push(marker); 
+                    
+                    // 인포윈도우로 장소에 대한 설명을 표시
+                    var infowindow = new kakao.maps.InfoWindow({
+                        content: '<div style="width:150px;text-align:center;padding:6px 0;"> 여기있어 </div>'
+                    });
+                    infowindow.open(map, marker);
+                    
+                    // 지도의 중심을 결과값으로 받은 위치로 이동
+                    map.setCenter(coords);
+                }
             } else {
                 alert('주소를 찾을 수 없습니다.');
             }
         }
     };
     xhr.send();
+}
+
+//기존에 표시된 마커들을 모두 제거하는 함수
+function removeAllMarkers() {
+    // 기존 마커들을 모두 제거합니다.
+    // markers 배열은 여기에 선언 및 초기화해야 합니다.
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    // markers 배열을 비워줍니다.
+    markers = [];
 }
 </script>
 </body>

@@ -61,6 +61,10 @@
 	
 	</select>
 	
+	<insert id="roomAdd">
+		
+	</insert>
+	
 	<!-- 스칼라 부속질의(SELECT 부속질의)
 	SELECT (SELECT rent_price FROM lease  WHERE lease.lease_no = room.lease_no) AS "가격", room.*
 	FROM room; -->

@@ -23,4 +23,9 @@ public class RoomDaoImpl implements RoomDao {
 		return sql.selectOne("room.roomSelect", roomVO);
 	}
 
+	@Override
+	public void roomAdd(RoomVO roomVO) {
+		sql.insert("room.roomAdd", roomVO);
+	}
+
 }

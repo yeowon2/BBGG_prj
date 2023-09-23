@@ -22,5 +22,10 @@ public class RoomServiceImpl implements RoomService {
 	public RoomVO roomSelect(RoomVO roomVO) {
 		return dao.roomSelect(roomVO);
 	}
+
+	@Override
+	public void roomAdd(RoomVO roomVO) {
+		dao.roomAdd(roomVO);
+	}
 	
 }

@@ -10,4 +10,8 @@ public interface RoomDao {
 
 	RoomVO roomSelect(RoomVO roomVO);
 
+	void roomAdd(RoomVO roomVO);
+
+	
+
 }

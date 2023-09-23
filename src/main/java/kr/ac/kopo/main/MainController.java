@@ -1,13 +1,13 @@
-package kr.ac.kopo;
+package kr.ac.kopo.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RootController {
+public class MainController {
 	
 	@GetMapping("/main")
-	public String home() {
+	public String main() {
 		return "main";
 	}
 }

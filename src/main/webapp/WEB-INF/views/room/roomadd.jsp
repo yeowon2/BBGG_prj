@@ -59,155 +59,139 @@
 
     <div class="container-fluid tm-mt-60">
         <div class="row tm-mb-50">
+        
             <div class="col-lg-4 col-12 mb-5">
-                <h2 class="tm-text-primary mb-5">매물 정보</h2>
+                <h2 class="tm-text-primary mb-5">매물 등록</h2>
                 <form id="contact-form" action="" method="POST" class="tm-contact-form mx-auto">
-                	
-                	<!-- 주소(주택일경우) 동, 호 까지 출력 -->
-                	<c:if test="${result.ho  == null && result.dong == null}">
+                	<div>
+                	<!-- 주소(도로명) 입력 -->
 	                    <div class="form-group">
-	                    	<h6>주소</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}"required readonly />
+	                    	<h6>주소(도로명)</h6>
+	                        <input type="text" id="addressInput" name="name" class="form-control rounded-0" value=""required placeholder="주소(도로명)을 입력 해주세요." />
+	                        <button id="showLocationButton">위치 확인하기</button>
 	                    </div>
-                    </c:if>
-                    <!-- 주소(빌라일경우) 동, 호 까지 출력 -->
-                	<c:if test="${result.dong  == null && result.ho != null}">
-	                    <div class="form-group">
-	                    	<h6>주소</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.ho}호"required readonly />
-	                    </div>
-                    </c:if>
-                    <!-- 주소(아파트일경우) 동, 호 생략 -->
-                    <c:if test="${result.dong != null && result.ho != null}">
-	                    <div class="form-group">
-	                    	<h6>주소</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.dong}동 ${result.ho}호"required readonly />
-		                </div>
-                    </c:if>
-                    <!-- 전세, 월세 표시 -->
-                    <c:if test="${result.leaseNo != null && result.monthNo == null}">
-	                    <div class="form-group">
-	                    	<h6>전세</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="전세  " required readonly />
-	                    </div>
-                    </c:if>
-                    <c:if test="${result.leaseNo == null && result.monthNo != null}">
-	                    <div class="form-group">
-	                    	<h6>월세</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="월세  " required readonly />
-	                    </div>
-                    </c:if>
-                    <!-- 입주가능날짜 -->
-                    <c:if test="${result.moveInAt == 'y'}">
-	                    <div class="form-group">
-	                    	<h6>일주가능날짜</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="즉시 입주 가능" required readonly />
-	                    </div>
-                    </c:if>
-                    <c:if test="${result.moveInAt == 'n'}">
-	                    <div class="form-group">
-	                    	<h6>일주가능날짜</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.moveInDate }" required readonly />
-	                    </div>
-                    </c:if>
-                    <!-- 관리비 -->
-                    <c:if test="${result.manageFeeAt == 'y'}">
-	                    <div class="form-group">
-		                    <h6>관리비</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="매월 ${result.manageFee}만원" required readonly />
-		               	</div>
-	               	</c:if>
-                    <c:if test="${result.manageFeeAt == 'n'}">
-	                    <div class="form-group">
-		                    <h6>관리비</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="관리비 없음" required readonly />
-		               	</div>
-	               	</c:if>
-	               	<!-- 주차가능여부 -->
-	               	<c:if test="${result.parkingAt == 'y'}">
-	                    <div class="form-group">
-		                    <h6>주차가능여부</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="주차 가능" required readonly />
-		               	</div>
-	               	</c:if>
-	               	<c:if test="${result.parkingAt == 'n'}">
-	                    <div class="form-group">
-		                    <h6>주차가능여부</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="주차 불가능" required readonly />
-		               	</div>
-	               	</c:if>
-	               	
-	               	<div class="form-group">
-		                <h6>매물 소개</h6>
-		                <input type="text" name="name" class="form-control rounded-0" value="${result.memoShort }" required readonly />
-		            </div>
-                  
-                    <div class="form-group">
-                    	<h6>매물 설명</h6>
-                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="${result.memoDetail }" required readonly></textarea>
-                    </div>
-
                    
+                    <!-- 전세, 월세 표시 -->
+	                    <div class="form-group">
+	                    	<h6>전세 / 월세</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="전세 / 월세 입력"/>
+	                    </div>
+                    
+                    <!-- 입주가능날짜 -->
+	                    <div class="form-group">
+	                    	<h6>일주가능날짜</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="입주가능 날짜 입력"/>
+	                    </div>
+                    
+                    <!-- 관리비 -->
+	                    <div class="form-group">
+		                    <h6>관리비</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="매월(만원단위) 관리비 입력"/>
+		               	</div>
+	               	
+	               	<!-- 주차가능여부 -->
+	                    <div class="form-group">
+		                    <h6>주차가능여부</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="주차가능여부 입력"/>
+		               	</div>
+		               	<!-- 매물소개 -->
+		               	<div class="form-group">
+			                <h6>매물 소개</h6>
+			                <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="소개란"/>
+			            </div>
+	                    <div class="form-group">
+	                    	<h6>매물 설명</h6>
+	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
+	                    </div>
+                  	</div>
+                  	
+                  	<div>
+                	<!-- 주소(도로명) 입력 -->
+	                    <div class="form-group">
+	                    	<h6>주소(도로명)</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value=""required placeholder="주소(도로명)을 입력 해주세요." />
+	                    </div>
+                   
+                    <!-- 전세, 월세 표시 -->
+	                    <div class="form-group">
+	                    	<h6>전세 / 월세</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="전세 / 월세 입력"/>
+	                    </div>
+                    
+                    <!-- 입주가능날짜 -->
+	                    <div class="form-group">
+	                    	<h6>일주가능날짜</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="입주가능 날짜 입력"/>
+	                    </div>
+                    
+                    <!-- 관리비 -->
+	                    <div class="form-group">
+		                    <h6>관리비</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="매월(만원단위) 관리비 입력"/>
+		               	</div>
+	               	
+	               	<!-- 주차가능여부 -->
+	                    <div class="form-group">
+		                    <h6>주차가능여부</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="주차가능여부 입력"/>
+		               	</div>
+		               	<!-- 매물소개 -->
+		               	<div class="form-group">
+			                <h6>매물 소개</h6>
+			                <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="소개란"/>
+			            </div>
+	                    <div class="form-group">
+	                    	<h6>매물 설명</h6>
+	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
+	                    </div>
+                  	</div>
+                  	
+                  	<div>
+                	<!-- 주소(도로명) 입력 -->
+	                    <div class="form-group">
+	                    	<h6>주소(도로명)</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value=""required placeholder="주소(도로명)을 입력 해주세요." />
+	                    </div>
+                   
+                    <!-- 전세, 월세 표시 -->
+	                    <div class="form-group">
+	                    	<h6>전세 / 월세</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="전세 / 월세 입력"/>
+	                    </div>
+                    
+                    <!-- 입주가능날짜 -->
+	                    <div class="form-group">
+	                    	<h6>일주가능날짜</h6>
+	                        <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="입주가능 날짜 입력"/>
+	                    </div>
+                    
+                    <!-- 관리비 -->
+	                    <div class="form-group">
+		                    <h6>관리비</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="매월(만원단위) 관리비 입력"/>
+		               	</div>
+	               	
+	               	<!-- 주차가능여부 -->
+	                    <div class="form-group">
+		                    <h6>주차가능여부</h6>
+		                    <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="주차가능여부 입력"/>
+		               	</div>
+		               	<!-- 매물소개 -->
+		               	<div class="form-group">
+			                <h6>매물 소개</h6>
+			                <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="소개란"/>
+			            </div>
+	                    <div class="form-group">
+	                    	<h6>매물 설명</h6>
+	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
+	                    </div>
+                  	</div>
+                  	                	 
                 </form>                
             </div>
-            <div class="col-lg-4 col-12 mb-5">
-                <div class="tm-address-col">
-                    <h2 class="tm-text-primary mb-5">매물 상세 정보</h2>
-                    <c:if test="${result.roomType == 'o' }">
-                    	<p class="tm-mb-50" >방종류: 원룸</p>
-                    </c:if>
-                    <c:if test="${result.roomType == 't' }">
-                    	<p class="tm-mb-50">방종류: 투룸</p>
-                    </c:if>
-                    <c:if test="${result.roomType == 'h' }">
-                    	<p class="tm-mb-50">방종류: 쓰리룸</p>
-                    </c:if>
-                    <c:if test="${result.roomType == 'f' }">
-                    	<p class="tm-mb-50">방종류: 오피스텔</p>
-                    </c:if>
-                    
-                    <p class="tm-mb-50">해당층/건물층: ${result.roomFloor } / ${result.buildingFloor } </p>
-                    
-                    <p class="tm-mb-50">전용면적: ${result.roomSize }평 </p>
-                    
-                    <p class="tm-mb-50">방 수/욕실 수: ${result.roomCount } / ${result.bathAt } </p>
-                    
-                    <c:if test="${result.elevatorAt == 'y' }">
-                    	<p class="tm-mb-50">엘리베이터: 있음</p>
-                    </c:if>
-                    <c:if test="${result.elevatorAt != 'y' }">
-                    	<p class="tm-mb-50">엘리베이터: 없음</p>
-                    </c:if>
-                    
-                    <ul class="tm-contacts">
-                        <li>
-                            <a href="#" class="tm-text-gray">
-                                <i class="fas fa-envelope"></i>
-                                Agency: 
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tm-text-gray">
-                                <i class="fas fa-phone"></i>
-                                Tel: 010-020-0340
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="tm-text-gray">
-                                <i class="fas fa-globe"></i>
-                                URL: www.company.com
-                            </a>
-                        </li>
-                    </ul>
-                     <address class="tm-text-gray tm-mb-50">
-                        120-240 Fusce eleifend varius tempus<br>
-                        Duis consectetur at ligula 10660
-                    </address>
-                </div>                
-            </div>
+            
             <div class="col-lg-4 col-12">
                 <h2 class="tm-text-primary mb-5">매물 위치</h2>
-                
                 <!-- Map -->
                 <div class="mapouter mb-4">
                     <div id="staticMap" style="width:100%;height:740px;"></div> 
@@ -281,31 +265,41 @@
     </script>
     
     <script>
-    
-    	var lats = ${result.lat};
-    	var lngs = ${result.lng};
-		
-		// 이미지 지도에서 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(lats, lngs); 
-		
-		// 이미지 지도에 표시할 마커입니다
-		// 이미지 지도에 표시할 마커는 Object 형태입니다
-		var marker = {
-		    position: markerPosition
-		};
-		
-		var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-		    staticMapOption = { 
-		        center: new kakao.maps.LatLng(lats, lngs), // 이미지 지도의 중심좌표
-		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker // 이미지 지도에 표시할 마커 
-		    };    
-		
-		// 이미지 지도를 생성합니다
-		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-		
-		//지도에 교통정보를 표시하도록 지도타입을 추가합니다
-		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
-	</script>
+    // 카카오 지도 API를 초기화합니다.
+    kakao.maps.load(function () {
+        var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소
+        var mapOptions = {
+            center: new kakao.maps.LatLng(37.5665, 126.9780), // 초기 지도 중심 좌표 (서울)
+            level: 13 // 지도 확대 레벨
+        };
+
+        // 지도를 생성합니다.
+        var map = new kakao.maps.Map(mapContainer, mapOptions);
+
+        // "위치 확인하기" 버튼 클릭 시
+        document.getElementById('showLocationButton').addEventListener('click', function () {
+            var address = document.getElementById('addressInput').value; // 입력된 주소 가져오기
+
+            // 주소로 좌표를 검색합니다.
+            var geocoder = new kakao.maps.services.Geocoder();
+            geocoder.addressSearch(address, function (result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                    // 마커를 생성하고 지도에 표시합니다.
+                    var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+
+                    // 지도 중심을 검색한 위치로 이동합니다.
+                    map.setCenter(coords);
+                } else {
+                    alert('주소를 찾을 수 없습니다.');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

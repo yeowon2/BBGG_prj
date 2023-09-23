@@ -71,13 +71,13 @@ public class RoomController {
 	//매물 등록
 	@GetMapping("/roomAdd")
 	public String roomAdd() {
-		return path + "roomAdd";
+		return path + "roomadd";
 	}
 	@PostMapping("/add")
 	public String roomAdd(RoomVO roomVO) {
 		service.roomAdd(roomVO);
 		
-		return "redirect:/roomList";
+		return "redirect:/roomlist";
 	}
  
 }

@@ -42,8 +42,8 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public NoteVO select(Map<String, Long> paramMap) {
-		return sql.selectOne("note.select", paramMap);
+	public NoteVO sendDetail(Map<String, Long> paramMap) {
+		return sql.selectOne("note.sendDetail", paramMap);
 	}
 
 	@Override

@@ -18,7 +18,7 @@ public interface NoteDao {
 
 	void add(@Param("roomNo") Long roomNo, @Param("noteVO") NoteVO noteVO);
 
-	NoteVO select(Map<String, Long> paramMap);
+	NoteVO sendDetail(Map<String, Long> paramMap);
 
 	NoteVO receiveDetail(Long noteNo);
 

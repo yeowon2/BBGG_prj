@@ -36,8 +36,8 @@ public class NoteServiceImpl implements NoteService {
 	}
 
 	@Override
-	public NoteVO select(Map<String, Long> paramMap) {
-		return dao.select(paramMap);
+	public NoteVO sendDetail(Map<String, Long> paramMap) {
+		return dao.sendDetail(paramMap);
 	}
 
 	@Override

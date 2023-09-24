@@ -9,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.note.service.NoteService;
 
 @Controller
-@RequestMapping("/main/note/send")
+@RequestMapping("/note")
 public class SendController {
 	
 	private String path = "note/send/";
@@ -24,7 +23,7 @@ public class SendController {
 	@Autowired
 	NoteService service;
 	
-	@GetMapping("/list/{userNo}")
+	@GetMapping("/sendList/{userNo}")
 	public String list(@PathVariable Long userNo,  Model model, NoteVO noteVO ) {
 		noteVO.setUserNo(userNo);
 		List<NoteVO> sendList = service.sendList(noteVO);
@@ -34,7 +33,7 @@ public class SendController {
 		return path + "list";
 	}
 	
-	@GetMapping("/detail/{userNo}/{noteNo}")
+	@GetMapping("/sendDetail/{userNo}/{noteNo}")
 	@ResponseBody // JSON 응답을 생성합니다.
 	public NoteVO detail(@PathVariable Long userNo, 
 						@PathVariable Long noteNo) {
@@ -42,7 +41,7 @@ public class SendController {
 	    paramMap.put("userNo", userNo);
 	    paramMap.put("noteNo", noteNo);
 		
-		NoteVO noteVO = service.select(paramMap);
+		NoteVO noteVO = service.sendDetail(paramMap);
 		
 		return noteVO;
 	}

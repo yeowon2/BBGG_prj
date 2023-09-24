@@ -64,7 +64,7 @@
 		ORDER BY tbl_note.regist_date DESC
 	</select>
 	
-	<select id="select" parameterType="java.util.Map" resultMap="NoteMap">
+	<select id="sendDetail" parameterType="java.util.Map" resultMap="NoteMap">
 		SELECT 
 			tbl_partner.comp_name
 			, tbl_note.room_no 

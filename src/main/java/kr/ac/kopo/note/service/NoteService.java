@@ -13,7 +13,7 @@ public interface NoteService {
 	
 	void add(Long roomNo, NoteVO noteVO);
 
-	NoteVO select(Map<String, Long> paramMap);
+	NoteVO sendDetail(Map<String, Long> paramMap);
 
 	void update(NoteVO noteVO);
 

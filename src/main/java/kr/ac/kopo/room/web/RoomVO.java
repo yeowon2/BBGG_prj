@@ -5,11 +5,12 @@ import java.util.Date;
 public class RoomVO {
 		
 	private Long roomNo;			//매물고유번호
-	private Long agencyNo;			//agency고유번호
+	private Long partnerNo;			//partner고유번호
 	private String leaseNo;			//전세고유번호
 	private String monthNo;			//월세고유번호
 	private String roomType;		//매물 타입
 	private String address;			//매물 주소
+	private String address2;		//상세 주소
 	private String dong;			//동
 	private String ho;				//호
 	private String moveInAt;		//입주가능여부
@@ -31,20 +32,20 @@ public class RoomVO {
 	private Double lat;				//x값
 	private Double lng;				//y값
 	
-	private Long deposltFee;
-	private Long rentPrice;
-	
+	//private Long deposltFee;
+	//private Long rentPrice;
+		
 	public Long getRoomNo() {
 		return roomNo;
 	}
 	public void setRoomNo(Long roomNo) {
 		this.roomNo = roomNo;
 	}
-	public Long getAgencyNo() {
-		return agencyNo;
+	public Long getPartnerNo() {
+		return partnerNo;
 	}
-	public void setAgencyNo(Long agencyNo) {
-		this.agencyNo = agencyNo;
+	public void setPartnerNo(Long partnerNo) {
+		this.partnerNo = partnerNo;
 	}
 	public String getLeaseNo() {
 		return leaseNo;
@@ -69,6 +70,12 @@ public class RoomVO {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
 	public String getDong() {
 		return dong;

@@ -1,5 +1,6 @@
 package kr.ac.kopo.report.web;
 
+import java.io.Console;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +27,7 @@ import kr.ac.kopo.user.web.UserVO;
 public class ReportController {
 	
 	@Autowired
-	ReportService service;
-	
-	@Autowired
-	RoomService	roomService;	
+	ReportService service;	
 	
 	final String path = "/report";
 	
@@ -43,35 +41,35 @@ public class ReportController {
 	}
 	
 	// 허위매물 신고 메인
-//	@GetMapping("/agree")
-//	public String report(RoomVO roomVO,  Model model) {
-//		Long roomNo = roomVO.getRoomNo();
-//		model.addAttribute("roomNo", roomNo);
-//		
-//		return path + "/report";
-//	}
-	
-	// 허위매물 신고 모달창불러오기
-	@GetMapping("/add")
-	public String reportAdd(RoomVO roomVO, Model model, HttpSession session) {
+	@GetMapping("/{roomNo}")
+	public String report(@PathVariable Long roomNo, HttpSession session) {
 		if(session.getId() != null) { //@@@@@@@@@@
-			Long roomNo = roomVO.getRoomNo();
-			model.addAttribute("roomNo", roomNo);
-			return path + "/add/{roomNo}";
+			return path + "/reportAdd";
+		} else {
+			return "/login";
+		}
+		
+	}
+	
+	// 모달창에서 작성하고, 버튼누르면
+	@GetMapping("/add/{roomNo}")
+	public String reportAdd(@PathVariable Long roomNo, HttpSession session) {
+		if(session.getId() != null) { //@@@@@@@@@@
+			return path + "/addact/{roomNo}";
 		} else {
 			return "login";
 		} 
 	}
 	
 	// 진짜 허위매물 신고 모달창보여드려요
-	@PostMapping("/add/{roomNo}")
-	public String reportAdd(@ModelAttribute UserVO userVO, HttpSession session, RoomVO roomVO, Model model) {
-		if(userVO.getUserId() == session.getId()) { //@@@@@@@@@@
-			Long roomNo = roomVO.getRoomNo();
-			model.addAttribute("roomNo", roomNo);
-			return "a";
+	@PostMapping("/addAct/{roomNo}")
+	public String reportAddAct(@PathVariable Long roomNo, HttpSession session) {
+		if(session.getId() != null) { //@@@@@@@@@@
+			System.out.println("작성되었습니다.");
+			return path + "/reportAdd";
 		}
-		return "";
+		
+		return "/login";
 	}
 	
 	// 허위 매물 진짜로 등록 

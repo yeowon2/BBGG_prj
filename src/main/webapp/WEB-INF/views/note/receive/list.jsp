@@ -421,7 +421,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
     // AJAX 요청을 보낼 URL을 지정합니다.
-    var ajaxUrlPrefix = '/main/note/receive/detail/'; // AJAX 요청 URL의 공통 부분
+    var ajaxUrlPrefix = '/note/receiveDetail/'; // AJAX 요청 URL의 공통 부분
 
     // 클래스 이름이 media인 요소들을 선택합니다.
     var mediaElements = document.querySelectorAll('.media');
@@ -461,6 +461,8 @@
                     var noteText2 = noteVO.noteText2;
                     var noteText3 = noteVO.noteText3;
                     var noteContent = noteVO.noteContent;
+                    noteContent = noteContent.replace(/\n/g, '<br>');
+                    
                     var registDate = noteVO.registDate;
                     //registDate - Date Format
                     var formattedRegistDate = formatDateTime(registDate);
@@ -491,7 +493,7 @@
     document.querySelectorAll('#modal-link').forEach(function (element) {
         element.addEventListener('click', function () {
             var noteNo = this.getAttribute('data-note-no');
-            fetch('/main/note/send/detail/' + noteNo)
+            fetch('/note/receiveDetail/' + noteNo)
                 .then(function (response) {
                     return response.json();
                 })

@@ -20,7 +20,9 @@
     <link href="/resources/vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
     <link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
 	
-
+	<!-- vector map CSS -->
+	<link href="vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
+    
     <!-- Custom CSS -->
     <link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
 </head>

@@ -45,7 +45,7 @@
                                                                 <input type="checkbox" class="custom-control-input" id="customCheck1" >
                                                                 <label class="custom-control-label" for="customCheck1">
                                                                     	<span>현재 선택된 매물에 대해 상담받고 싶습니다.</span>
-                                                                    	<span>매물번호: </span>
+                                                                    	<span id="roomNo">매물번호: </span>
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -142,6 +142,35 @@
 
     </div>
     <!-- /HK Wrapper -->
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 체크박스 요소들과 textarea 요소를 가져옵니다.
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const textarea = document.querySelector('textarea[name="noteContent"]');
+
+        // 체크박스가 변경될 때마다 실행되는 함수를 정의합니다.
+        function updateTextarea() {
+            // textarea의 내용을 초기화합니다.
+            textarea.value = "";
+
+            // 체크된 체크박스의 내용을 textarea에 추가합니다.
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const labelText = checkbox.nextElementSibling.querySelector('span').textContent;
+                    textarea.value += labelText + "\n\n";
+                }
+            });
+        }
+
+        // 체크박스 상태가 변경될 때 updateTextarea 함수를 실행합니다.
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateTextarea);
+        });
+    });
+</script>
+    
+    
 
     <!-- jQuery -->
     <script src="/resources/vendors/jquery/dist/jquery.min.js"></script>

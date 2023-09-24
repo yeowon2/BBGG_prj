@@ -283,12 +283,17 @@
                                         </a>
                                     </header>
                                     <form role="search" class="email-search">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="feather-icon"><i data-feather="search"></i></span>
+                                    	<div class="form-group">
+	                                            <div class="input-group">
+	                                            	<div class="input-group-prepend">
+	                                                	<span class="feather-icon"><i data-feather="search"></i></span>
+	                                            	</div>
+	                                                <input type="text" class="form-control" placeholder="검색어를 입력하세요" aria-label="Recipient's username" aria-describedby="basic-addon2">
+	                                                <div class="input-group-append">
+	                                                    <button class="btn btn-outline-light" type="submit">검색</button>
+	                                                </div>
+	                                            </div>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Search">
-                                        </div>
                                     </form>
                                     <div class="emailapp-emails-list">
                                         <div class="nicescroll-bar">

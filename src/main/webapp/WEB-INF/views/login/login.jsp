@@ -45,7 +45,7 @@
                   </div>
                 </div> 
                 <div class="form-group">
-                  <input type="checkbox" name="rememberme" value=""> 로그인 유지
+                  <input type="checkbox" name="rememberme" value="true"> 아이디 저장
                 </div> 
                 <button class="btn btn-common log-btn" type="submit">로그인</button>
               </form>
@@ -61,6 +61,7 @@
     </div>
 	<!-- /HK Wrapper -->
 <%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
+
 <jsp:include page="../js.jsp"></jsp:include>
   </body>
 </html>

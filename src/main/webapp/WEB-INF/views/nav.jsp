@@ -110,15 +110,17 @@
                   <a class="dropdown-item" href="typography.html">Typography</a>
                 </div>
               </li>
+              <c:if test="${loginVO != null}">
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   마이페이지 <i class="fa fa-angle-down"></i>
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
-                  <a class="dropdown-item" href="/note/sendList/3">보낸 쪽지함</a>
+                  <a class="dropdown-item" href="/note/sendList/${loginVO.userNo}">보낸 쪽지함</a>
                 </div>
               </li>
+              </c:if>   
             </ul>
             <!-- <div class="search-add float-right">
               <form method="post">

@@ -11,6 +11,14 @@ public class UserVO {
 	private java.util.Date updateDate;
 	private String useAt;
 	
+	private boolean rememberMe;
+	
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 	public long getUserNo() {
 		return userNo;
 	}

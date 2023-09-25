@@ -90,10 +90,10 @@
 						<div class="form-group">
 						    <h6>전세 / 월세</h6>
 						    <label>
-						        <input type="radio" name="leaseOrMonth" value="lease"> 월세
+						        <input type="radio" name="leaseOrMonth" value="lease"> 전세
 						    </label>
 						    <label>
-						        <input type="radio" name="leaseOrMonth" value="month"> 전세
+						        <input type="radio" name="leaseOrMonth" value="month"> 월세
 						    </label>
 						</div>
 						<div class="form-group" id="leaseNoField" style="display: none;">

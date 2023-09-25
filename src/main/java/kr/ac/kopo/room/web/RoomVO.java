@@ -6,15 +6,15 @@ public class RoomVO {
 		
 	private Long roomNo;			//매물고유번호
 	private Long partnerNo;			//partner고유번호
-	private Integer leaseNo;		//전세고유번호
-	private Integer monthNo;		//월세고유번호
+	private Long leaseNo;			//전세고유번호
+	private Long monthNo;			//월세고유번호
 	private String roomType;		//매물 타입
 	private String address;			//매물 주소
 	private String address2;		//상세 주소
 	private String dong;			//동
 	private String ho;				//호
 	private String moveInAt;		//입주가능여부
-	private String moveInDate;		//입주가능날짜
+	private Date moveInDate;		//입주가능날짜
 	private Integer roomSize;		//전용면적
 	private Integer buildingFloor;	//건물 전체 층수
 	private Integer roomFloor;		//해당 매물 층수
@@ -32,8 +32,10 @@ public class RoomVO {
 	private Double lat;				//x값
 	private Double lng;				//y값
 	
-	//private Long deposltFee;
-	//private Long rentPrice;
+	private Long leasePrice;		//전세가격
+	
+	private Long deposltFee;		//월세보증금
+	private Long monthPrice;		//월세가격
 	
 	public Long getRoomNo() {
 		return roomNo;
@@ -47,16 +49,16 @@ public class RoomVO {
 	public void setPartnerNo(Long partnerNo) {
 		this.partnerNo = partnerNo;
 	}
-	public Integer getLeaseNo() {
+	public Long getLeaseNo() {
 		return leaseNo;
 	}
-	public void setLeaseNo(Integer leaseNo) {
+	public void setLeaseNo(Long leaseNo) {
 		this.leaseNo = leaseNo;
 	}
-	public Integer getMonthNo() {
+	public Long getMonthNo() {
 		return monthNo;
 	}
-	public void setMonthNo(Integer monthNo) {
+	public void setMonthNo(Long monthNo) {
 		this.monthNo = monthNo;
 	}
 	public String getRoomType() {
@@ -95,10 +97,10 @@ public class RoomVO {
 	public void setMoveInAt(String moveInAt) {
 		this.moveInAt = moveInAt;
 	}
-	public String getMoveInDate() {
+	public Date getMoveInDate() {
 		return moveInDate;
 	}
-	public void setMoveInDate(String moveInDate) {
+	public void setMoveInDate(Date moveInDate) {
 		this.moveInDate = moveInDate;
 	}
 	public Integer getRoomSize() {
@@ -196,6 +198,24 @@ public class RoomVO {
 	}
 	public void setLng(Double lng) {
 		this.lng = lng;
+	}
+	public Long getLeasePrice() {
+		return leasePrice;
+	}
+	public void setLeasePrice(Long leasePrice) {
+		this.leasePrice = leasePrice;
+	}
+	public Long getDeposltFee() {
+		return deposltFee;
+	}
+	public void setDeposltFee(Long deposltFee) {
+		this.deposltFee = deposltFee;
+	}
+	public Long getMonthPrice() {
+		return monthPrice;
+	}
+	public void setMonthPrice(Long monthPrice) {
+		this.monthPrice = monthPrice;
 	}
 	
 }

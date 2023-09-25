@@ -55,13 +55,15 @@
 	</select>
 	
 	<select id="roomSelect" resultType="RoomVO">
-		SELECT (SELECT rent_price FROM tbl_lease  WHERE tbl_lease.lease_no = tbl_room.lease_no) AS "가격", tbl_room.*
+		SELECT (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.lease_no = tbl_room.lease_no) AS "가격", tbl_room.*
 		FROM tbl_room
 		WHERE room_No = #{roomNo}
 	
 	</select>
 	
 	<insert id="roomAdd">
+		INSERT INTO tbl_
+		
 		INSERT INTO tbl_room
 		(
 		partner_no,
@@ -91,19 +93,30 @@
 		VALUES 
 		(
 		#{partnerNO},
+		<if test="leaseOrMonth == lease">
+			#{leaseNo},
+			NULL,
+		</if>
 		
-		leaseNo,
-		monthNo,
+		<if test="leaseOrMonth == month">
+			NULL,
+			#{monthNo},
+		</if>
+		
 		
 		#{roomType},
 		#{address},
 		#{address2},
 		#{dong},
 		#{ho},
-		
-		moveInAt,
-		moveInDate,
-		
+		<if test="">
+			moveInAt,
+			moveInDate,
+		</if>
+		<if test="">
+			moveInAt,
+			moveInDate,
+		</if>
 		#{roomSize},
 		#{buildingFloor},
 		#{roomFloor},

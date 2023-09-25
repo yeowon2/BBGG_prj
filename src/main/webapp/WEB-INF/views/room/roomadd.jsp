@@ -19,7 +19,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     
     <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer"></script>
 
 </head>
 <body>
@@ -68,12 +68,12 @@
                 <form id="contact-form" action="" method="POST" class="tm-contact-form mx-auto">
                 	<div>
                 		<!-- 로그인 한 파트너 값 -->		    
-						<input type="hidden" id="addressInput" name="partnerNo" class="form-control rounded-0" value=""/>
+						<input type="hidden" name="partnerNo" class="form-control rounded-0" value=""/>
                 		
                 		<!-- 주소(도로명) 입력 -->
 	                    <div class="form-group">
 						    <h6>주소(도로명)</h6>
-						    <input type="text" id="addressInput" name="address" class="form-control rounded-0" value="" required placeholder="주소(도로명)을 입력 해주세요." />
+						    <input type="text" id="addressInput" name="address" class="form-control rounded-0" value="" placeholder="주소(도로명)을 입력 해주세요." required/>
 						    <!-- 위도 -->
 						    <input type="hidden" id="latInput" name="lat" class="form-control rounded-0" value="" />
 						    <!-- 경도 -->
@@ -119,75 +119,111 @@
 						        });
 						    });
 						</script>
+
 	                    
 	                    <div class="form-group">
 	                    	<h6>상세주소</h6>
-	                        <input type="text" id="addressInput" name="address2" class="form-control rounded-0" value=""required placeholder="주소(건물명)를 입력 해주세요." />
-	                        <input type="text" id="addressInput" name="dong" class="form-control rounded-0" value=""required placeholder="동을 입력 해주세요." />
-	                        <input type="text" id="addressInput" name="ho" class="form-control rounded-0" value=""required placeholder="호를 입력 해주세요." />
+	                        <input type="text" name="address2" class="form-control rounded-0" value="" placeholder="주소(건물명)를 입력 해주세요." required/>
+	                        <input type="text" name="dong" class="form-control rounded-0" value="" placeholder="동을 입력 해주세요." />
+	                        <input type="text" name="ho" class="form-control rounded-0" value="" placeholder="호를 입력 해주세요." />
 	                    </div>
                    
                     	<!-- 전세, 월세 표시 -->
-	                    <div class="form-group">
-	                    	<h6>전세 / 월세</h6>
-	                        <label>
-						        <input type="radio" name="name" value="y" required> 월세
+						<div class="form-group">
+						    <h6>전세 / 월세</h6>
+						    <label>
+						        <input type="radio" name="leaseOrMonth" value="lease"> 월세
 						    </label>
 						    <label>
-						        <input type="radio" name="name" value="n" required> 전세
+						        <input type="radio" name="leaseOrMonth" value="month"> 전세
 						    </label>
-	                    </div>
-	                    
+						</div>
+						<div class="form-group" id="leaseNoField" style="display: none;">
+						    <h6>전세</h6>
+						    <input type="number" name="leaseAmount" class="form-control rounded-0" value="" placeholder="전세금(만원 단위)"/>
+						</div>
+						<div class="form-group" id="monthNoField" style="display: none;">
+						    <h6>월세</h6>
+						    <input type="number" name="depositAmount" class="form-control rounded-0" value="" placeholder="보증금(만원 단위)"/>
+						    <input type="number" name="monthlyRent" class="form-control rounded-0" value="" placeholder="월세금(만원 단위)"/>
+						</div>
+						<script>
+						// 라디오 버튼 이벤트 리스너 추가
+						var radioButtons = document.getElementsByName("leaseOrMonth");
+						for (var i = 0; i < radioButtons.length; i++) {
+						    radioButtons[i].addEventListener('change', function () {
+						        toggleManageFeeField(this.value);
+						    });
+						}
+						
+						// 전세 또는 월세 입력 필드를 토글하는 함수
+						function toggleManageFeeField(value) {
+						    var leaseNoField = document.getElementById("leaseNoField");
+						    var monthNoField = document.getElementById("monthNoField");
+						
+						    if (value === "lease") {
+						        leaseNoField.style.display = "block"; // 전세 입력 필드 표시
+						        monthNoField.style.display = "none"; // 월세 입력 필드 숨김
+						    } else if (value === "month") {
+						        leaseNoField.style.display = "none"; // 전세 입력 필드 숨김
+						        monthNoField.style.display = "block"; // 월세 입력 필드 표시
+						    } else {
+						        leaseNoField.style.display = "none"; // 전세 입력 필드 숨김
+						        monthNoField.style.display = "none"; // 월세 입력 필드 숨김
+						    }
+						}
+						</script>
+
 	                    <!-- 매물타입(원룸,투룸,쓰리룸,오피스텔) -->
 	                    <div class="form-group">
 	                    	<h6>타입</h6>
 	                        <label>
-						        <input type="radio" name="roomType" value="o" required> 원룸
+						        <input type="radio" name="roomType" value="o" > 원룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="t" required> 투룸
+						        <input type="radio" name="roomType" value="t" > 투룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="h" required> 쓰리룸
+						        <input type="radio" name="roomType" value="h" > 쓰리룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="f" required> 오피스텔
+						        <input type="radio" name="roomType" value="f" > 오피스텔
 						    </label>
 	                    </div>
 	                    
 	                    <!-- 전용 면적 -->
 	                    <div class="form-group">
 	                    	<h6>전용 면적(평)</h6>
-	                        <input type="text" name="roomSize" class="form-control rounded-0" value=""required placeholder="단위(평)" />
+	                        <input type="number" name="roomSize" class="form-control rounded-0" value="" required placeholder="단위(평)" />
 	                    </div>
 	                    
 	                    <!-- 건물 층/ 해당 층 -->
 	                    <div class="form-group">
 	                    	<h6>건물층수</h6>
-	                        <input type="text" name="buildingFloor" class="form-control rounded-0" value=""required placeholder="건물 전체 층" />
-	                        <input type="text" name="roomFloor" class="form-control rounded-0" value=""required placeholder="해당 층" />
+	                        <input type="number" name="buildingFloor" class="form-control rounded-0" value="" required placeholder="건물 전체 층" />
+	                        <input type="number" name="roomFloor" class="form-control rounded-0" value="" required placeholder="해당 층" />
 	                    </div>
 	                    
 	                    <!-- 방 수 -->
 	                    <div class="form-group">
 	                    	<h6>방 수</h6>
-	                        <input type="text" name="roomCount" class="form-control rounded-0" value=""required placeholder="방 수" />
+	                        <input type="number" name="roomCount" class="form-control rounded-0" value="" required placeholder="방 수" />
 	                    </div>
 	                    
 	                    <!-- 욕실 수 -->
 	                    <div class="form-group">
 	                    	<h6>욕실 수</h6>
-	                        <input type="text" name="bathAt" class="form-control rounded-0" value=""required placeholder="욕실 수" />
+	                        <input type="number" name="bathAt" class="form-control rounded-0" value="" required placeholder="욕실 수" />
 	                    </div>
 	                    
 	                    <!-- 엘리베이터 유무 -->
 	                    <div class="form-group">
 	                    	<h6>엘리베이터</h6>
 	                        <label>
-						        <input type="radio" name="elevatorAt" value="y" required> 있음
+						        <input type="radio" name="elevatorAt" value="y"> 있음
 						    </label>
 						    <label>
-						        <input type="radio" name="elevatorAt" value="n" required> 없음
+						        <input type="radio" name="elevatorAt" value="n"> 없음
 						    </label>
 	                    </div>
                     	
@@ -195,16 +231,16 @@
                     	<div class="form-group">
 						    <h6>입주가능여부</h6>
 						    <label>
-						        <input type="radio" name="moveInAt" value="y" required> 즉시입주가능
+						        <input type="radio" name="moveInAt" value="y"> 즉시입주가능
 						    </label>
 						    <label>
-						        <input type="radio" name="moveInAt" value="n" required> 추후입주가능
+						        <input type="radio" name="moveInAt" value="n"> 추후입주가능
 						    </label>
 						</div>
                     	<!-- 입주가능날짜 -->
 	                    <div class="form-group" id="moveInDateField" style="display: none;">
 						    <h6>입주가능날짜</h6>
-						    <input type="datetime" id="moveInDateInput" name="moveInDate" class="form-control rounded-0" value="" required/>
+						    <input type="date" id="moveInDateInput" name="moveInDate" class="form-control rounded-0" value=""/>
 						</div>
 						<script>
 						    // 라디오 버튼 이벤트 리스너 추가
@@ -237,16 +273,16 @@
 						<div class="form-group">
 						    <h6>관리비 여부</h6>
 						    <label>
-						        <input type="radio" name="manageFeeAt" value="y" required> 있음
+						        <input type="radio" name="manageFeeAt" value="y" > 있음
 						    </label>
 						    <label>
-						        <input type="radio" name="manageFeeAt" value="n" required> 없음
+						        <input type="radio" name="manageFeeAt" value="n" > 없음
 						    </label>
 						</div>
 						<!-- 관리비 -->
 						<div class="form-group" id="manageFeeField" style="display: none;">
 						    <h6>관리비</h6>
-						    <input type="text" name="manageFee" class="form-control rounded-0" value="" required placeholder="매월(만원단위) 관리비 입력"/>
+						    <input type="number" name="manageFee" class="form-control rounded-0" value="" placeholder="매월(만원단위) 관리비 입력"/>
 						</div>  
 		               	<script> 
 						    // 라디오 버튼 이벤트 리스너 추가

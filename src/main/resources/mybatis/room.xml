@@ -62,7 +62,67 @@
 	</select>
 	
 	<insert id="roomAdd">
+		INSERT INTO tbl_room
+		(
+		partner_no,
+		lease_no,
+		month_no,
+		room_type,
+		address, 
+		address2,
+		dong, ho,
+		move_in_at, 
+		move_in_date,
+		room_size, 
+		building_floor,
+		room_floor,
+		room_count,
+		bath_at,
+		elevator_at,
+		parking_at,
+		manage_feeAt,
+		manage_fee, 
+		memo_short,
+		memo_detail,
+		regist_date,
+		update_date,
+		lat, lng, use_at
+		)
+		VALUES 
+		(
+		#{partnerNO},
 		
+		leaseNo,
+		monthNo,
+		
+		#{roomType},
+		#{address},
+		#{address2},
+		#{dong},
+		#{ho},
+		
+		moveInAt,
+		moveInDate,
+		
+		#{roomSize},
+		#{buildingFloor},
+		#{roomFloor},
+		#{roomCount},
+		#{bathAt},
+		#{elevatorAt},
+		#{parkingAt},
+		
+		manageFeeAt,
+		manageFee,
+		
+		#{memoShort},
+		#{memoDetail},
+		NOW(),
+		NOW(),
+		#{lat},
+		#{lng},
+		#{useAt}
+		)
 	</insert>
 	
 	<!-- 스칼라 부속질의(SELECT 부속질의)

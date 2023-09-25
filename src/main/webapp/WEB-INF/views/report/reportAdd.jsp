@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="kr.ac.kopo.report.web.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +71,7 @@
 						    <div class="col-sm">
 						    
 						        <!-- Button trigger modal -->
-						        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+						        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="float: right;">
 						            허위 매물 신고하기
 						        </button>
 
@@ -88,25 +88,27 @@
 				                            	</button>
 				                        	</div>
 					                        <div class="modal-body">														
-												<textarea id="reportContent" rows="10" cols="50"></textarea>
 												
-												<p>검증 기준이 아닌 사유를 들어 반복적으로 신고하실 경우, 신고자 패널티를 부과할 수 있습니다.<br>
-												이러한 행위는 공인중개사법 제 33조2항 ('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
+												<p>검증 기준이 아닌 사유를 들어 반복적으로 신고하실 경우, <br>
+												신고자 패널티를 부과할 수 있습니다.<br>
+												이러한 행위는 공인중개사법 제 33조2항 <br>
+												('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
 												위배해 고소, 고발의 대상이 될 수 있으므로 주의부탁드립니다.</p>
-												<form action="/addAct/${roomVO.roomNo}" method="post" enctype="multipart/form-data" target="form_if">
+												<br>
+												<form method="post" onsubmit="" enctype="multipart/form-data" target="form_if">
+													<input type="hidden" id="roomNo" value="${result.roomNo}">
 													<input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
 													<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
 													<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
-													<textarea id="reportDetail" rows="10" cols="50" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
+													<textarea id="reportDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
 													<input type="file" name="file" multiple />
-													<button type="submit" class="btn btn-danger" onsubmit="">제출하기</button>
+													<button type="button" class="btn btn-teal" style="float: right;">신고하기</button>	
 										        </form>
 										        <iframe name="form_if" style="display:none"></iframe>
 																					
 					                        </div>
 					                        <div class="modal-footer">
-					                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					                            <button type="button" class="btn btn-danger">신고하기</button>	
+					                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
 					                        </div>
 					                    </div>
 					                </div>

@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,39 +33,39 @@ public class ReportController {
 	
 	final String path = "/report";
 	
-	// 관리자가보는 신고 리스트
 	@GetMapping("list")
 	public String reportList(Model model, ReportVO reportVO) {
 		List<ReportVO> list = service.reportList(reportVO);
 		model.addAttribute("list", list);
-
 		return path + "/list";
 	}
 	
-	// 허위매물 신고 메인(O)
 	@GetMapping("/{roomNo}")
-	public String report(@PathVariable Long roomNo, HttpSession session) {
+	public String report(@PathVariable Long roomNo, HttpSession session, Model model) {
+		//model.addAttribute("roomNo", roomNo);
 		if(session.getId() != null) { //@@@@@@@@@@
 			return path + "/reportAdd";
 		} else {
-			return "/login";
-		}
-		
+			model.addAttribute("loginMessage", "로그인 후 이용 가능합니다.");
+			return "redirect:/login"; //@@@@@@@@@@
+		}	
 	}
 	
-	// 모달창에서 작성하고, 버튼누르면
-	@GetMapping("/add/{roomNo}")
-	public String reportAdd(@PathVariable Long roomNo, HttpSession session) {
+	@PostMapping("/{roomNo}")
+	public String reportAdd(@PathVariable Long roomNo, HttpSession session, Model model) {
+		model.addAttribute("roomNo", roomNo);
 		if(session.getId() != null) { //@@@@@@@@@@
-			return path + "/addAct/{roomNo}";
-		} else {
-			return "login";
+			return path + "/add/{roomNo}";
+		} else {	
+			model.addAttribute("loginMessage", "로그인 후 이용 가능합니다.");
+			return "redirect:/roomSelect/{roomNo}";
 		} 
 	}
 	
+	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	// 진짜 허위매물 신고 모달창보여드려요
-	@PostMapping("/addAct/{roomNo}")
+	@PostMapping("/add/{roomNo}")
 	public String reportAddAct(@PathVariable Long roomNo, HttpSession session, MultipartFile File) {
 		if(session.getId() != null) { //@@@@@@@@@@
 			System.out.println("출력문확인");
@@ -73,25 +74,17 @@ public class ReportController {
 			System.out.println("작성되었습니다.");
 			return path + "/reportAdd";
 		}
-		
 		return "/login";
 	}
 	
 	// 허위 매물 진짜로 등록 
 	@GetMapping("/addCom")
 	public String reportAddCom(@ModelAttribute UserVO userVO, RoomVO roomNo, HttpSession session, Model model) {
-		ReportVO repoInfo = service.repoInfo(roomNo); // 매물번호로 repoInfo 객체 생성
+		ReportVO repoInfo = service.reportAdd(roomNo); // 매물번호로 repoInfo 객체 생성
 		
 		model.addAttribute("repoInfo", repoInfo);
 		return path + "comp";
 	}
 	
-	@PostMapping("/addCom")
-	public String reportAddCom(ReportVO repoInfo, Model model) {
-		
-		//repoInfo.setRoomNo();
-		
-		//service.update(repoInfo);
-		return "";
-	}
+
 }

@@ -11,6 +11,6 @@ public interface ReportService {
 	List<ReportVO> reportList(ReportVO reportVO);
 	
 	// 허위 매물 등록 정보
-	ReportVO repoInfo(RoomVO roomNo);
+	ReportVO reportAdd(RoomVO roomNo);
 
 }

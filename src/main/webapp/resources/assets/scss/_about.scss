@@ -1,0 +1,48 @@
+// About Us
+.about{
+	.img-thumb{
+		border-radius: 4px;
+		margin-bottom: 40px;
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+		position: relative;
+		overflow: hidden;
+		&:before{
+			position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    display: block;
+		    content: "";
+		    background-color: #222;
+		    opacity: 0.3;
+		    z-index: 99;
+		    -webkit-transition: 0.3s ease-out;
+		    -moz-transition: 0.3s ease-out;
+		    transition: 0.3s ease-out;
+		}
+		img{
+			width: 100%;
+			border-radius: 4px;
+			-webkit-transition: 0.3s ease-out;
+			-moz-transition: 0.3s ease-out;
+		}
+	}
+	.img-thumb:hover:before {
+	  background-color: $preset;
+	  opacity: 0.7;
+	}
+	.img-thumb:hover img{
+		transform: scale(1.06); 
+	}
+	.about-conter{
+		h3{
+			font-size: 22px;
+			margin-bottom: 15px;
+		}
+		p{
+			margin-bottom: 10px;
+		}
+	}
+}
+

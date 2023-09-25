@@ -1,0 +1,104 @@
+// Faq
+.panel-default{
+  border-radius: 4px;
+  border: none;
+  margin-bottom: 10px;
+  .panel-heading{
+    padding: 0px;
+    outline: none;
+    border: none;
+    border-radius: 0px;
+    width: 100%;
+    .panel-title{
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-size: 16px;
+      color: inherit;
+    }
+    a{
+      padding: 12px 35px 12px 15px;
+      display: inline-block;
+      width: 100%;
+      background-color: $preset;
+      color: #ffffff;
+      position: relative;
+      text-decoration: none;
+      i{
+        padding-right: 10px;
+        font-size: 20px;
+      }
+    }
+    a:after{
+      font-family: 'LineIcons' !important;
+      content: "\e9d6";
+      position: absolute;
+      right: 15px;
+      font-size: 14px;
+      font-weight: 300;
+      top: 50%;
+      line-height: 1;
+      margin-top: -7px;
+    }
+    .collapsed:after{
+      content: "\e9bc";
+    }
+  }
+  .panel-collapse{
+    .panel-body{
+      padding: 30px;
+      background-color: #f3f3f3;
+    }
+  }
+}
+
+// Typography 
+  .typography-wrap{
+    p{
+      font-size: 14px;
+      list-style: 24px;
+      margin: 0 0 20px 0;
+    }
+    h1{
+      font-size: 30px;
+      list-style: 38px;
+      margin: 0px 0 20px 0;
+    }
+     h2{
+      font-size: 24px;
+      list-style: 32px;
+      margin: 0px 0 10px 0;
+    }
+    h3{
+      font-size: 20px;
+      line-height: 28px;
+    }
+    h4{
+      font-size: 18px;
+      line-height: 26px;
+      margin: 0 0 24px 0;
+    }
+    h5{
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0 0 24px 0;
+    }
+    h6{
+      font-size: 14px;
+      line-height: 20px;
+      margin: 0 0 24px 0;
+    }
+    .disc-list,.small-arrow-list{
+      li{
+        line-height: 27px;
+        color: #999;
+        i{
+          margin-right: 10px;
+        }
+      }
+    }
+    .buttons{
+      a{
+        margin-right: 10px;
+      }
+    }
+  }

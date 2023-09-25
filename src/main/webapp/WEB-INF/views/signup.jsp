@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="head.jsp"></jsp:include>
 <title>Insert title here</title>
 <script src="/resources/js/password_check_jquery.js"></script>
 

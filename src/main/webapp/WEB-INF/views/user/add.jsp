@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <jsp:include page="../header.jsp"></jsp:include>
-  
+<script src="/resources/js/password_check_jquery.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
   </head>
   <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
     <div class="col-xl-7 pa-0">
       <div class="auth-form-wrap py-xl-0 py-50">
         <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-100">

@@ -5,20 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>매물 상세 페이지</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/room/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/room/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../resources/room/css/templatemo-style.css">
-    
-    <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
-
+    <jsp:include page="../head.jsp"></jsp:include>
 </head>
 <body>
+		<jsp:include page="../nav.jsp"></jsp:include>
     <!-- Page Loader -->
     <div id="loader-wrapper">
         <div id="loader"></div>

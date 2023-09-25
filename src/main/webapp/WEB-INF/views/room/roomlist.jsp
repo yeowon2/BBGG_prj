@@ -3,14 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/room/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/room/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../resources/room/css/templatemo-style.css">
-    <title>주소로 장소 표시하기</title>
+<html lang="ko">
+  <head>
+    <jsp:include page="../head.jsp"></jsp:include>
     <style>
         /* 스타일을 추가하여 검색창을 원하는 위치에 배치합니다. */
         #search-container {
@@ -24,34 +19,10 @@
             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
         }
     </style>
+    
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg">
-	        <div class="container-fluid">
-	            <a class="navbar-brand" href="/">
-	                <img alt="" src="../resources/comm/logo.png" style="width: 250px; height: 100px;">
-	            </a>
-	            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	                <i class="fas fa-bars"></i>
-	            </button>
-	            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-	                <li class="nav-item">
-	                    <a class="nav-link nav-link-1" href="/roomList">지도</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link nav-link-2" href="#">미구현</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link nav-link-3" href="#">미구현</a>
-	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link nav-link-4 active" aria-current="page" href="contact.html">매물 정보</a>
-	                </li>
-	            </ul>
-	            </div>
-	        </div>
-	    </nav>
+	<jsp:include page="../nav.jsp"></jsp:include>
 	<div id="map" style="width:100%;height:900px;"></div>
 	
 	<div id="search-container">

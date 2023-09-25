@@ -1,0 +1,118 @@
+#main-slide {
+	.carousel-control {
+		display: none;
+		transition: $transition;
+	}
+	.carousel-indicators{cursor: pointer; bottom: 50px;}
+	&:hover {
+		.carousel-control {
+			display: block;
+			transition: $transition;
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+		}
+	}
+	.carousel-item img {
+	    position: relative;
+	}
+	.carousel-inner .carousel-item::after {
+	    bottom: 0;
+	    content: "";
+	    left: 0;
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	}
+	.carousel-item .carousel-caption {
+	    opacity: 0;
+	    transition: opacity 100ms ease 0s;
+	    z-index: 0;
+	    h4{
+	    	font-size: 18px;
+	    	color: #f3f3f3;
+	    	text-transform: uppercase;
+	    	letter-spacing: 1px;
+	    	margin-bottom: 40px;
+	    }
+	    .heading{
+			font-size: 36px;
+			font-weight: 700;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 0.1rem;
+			span{
+				color: $preset;
+			}
+		}
+		p{
+			color: #fff;
+			padding: 15px 0;
+			font-size: 15px;
+			font-weight: 500;
+		}
+	}
+	.carousel-item.active .carousel-caption {
+	    opacity: 1;
+	    transition: opacity 100ms ease 0s;
+	    z-index: 1;
+	}
+	.carousel-caption{
+	    color: #fff;
+        top: 26%;
+	    .btn{
+	    	margin: 20px 10px 20px 10px
+	    }
+	}
+
+}
+#main-slide .carousel-control-next,
+#main-slide .carousel-control-prev{
+	opacity: 1;
+	box-shadow: none;
+}
+
+#main-slide .carousel-control-prev span {
+    padding: 15px;
+}
+
+#main-slide .carousel-control-next span {
+    padding: 15px;
+}
+#main-slide .carousel-control .fa-angle-left,
+#main-slide .carousel-control .fa-angle-right{
+    position: absolute;
+    z-index: 5;
+    display: inline-block;
+}
+
+#main-slide .carousel-control .fa-angle-left{
+    left: 10px;
+}
+
+#main-slide .carousel-control .fa-angle-right{
+    right: 10px;
+}
+
+#main-slide .carousel-control i{
+    line-height: 40px;
+    font-size: 18px;
+    width: 45px;
+    border: 2px solid #fff;
+    height: 45px;
+    display: block;
+    border-radius: 4px;
+    background: transparent;
+    color: #fff;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+#main-slide .carousel-control i:hover{
+ 	background: rgba(255, 255, 255, 0.2); 
+	color: #fff; 
+ 	border-color: #fff;
+}

@@ -1,0 +1,521 @@
+
+/*
+Theme Name:       EstateBit - Real Estate Bootstrap HTML5 Template
+Author:           UIdeck
+Author URI:       http://uideck.com
+Text Domain:      UIdeck
+Domain Path:      /languages/
+*/
+/*TABLE OF CONTENT */
+/* CORE: */
+/* ____Bootstrap */
+/* ____Color */
+/* ____Form */
+/* ____Logo */
+/* ____Icon */
+/* ____Button */
+/* ____Background */
+/* ____Typography */
+/* ____Nav */
+/* ____Header */
+/* ____Footer */
+/* MODULES: */
+/* ____Property */
+/* ____Counter */
+/* ____Google-maps */
+/* ____Pagination */
+/* ____Pricing-table */
+/* ____Blog */
+/* ____Single Blog */
+/* ____Search */
+/* ____Testimonial */
+
+// Font Family
+@import url('https://fonts.googleapis.com/css?family=Lato|Poppins:500,700');
+html{
+  overflow-x: hidden;
+}
+body {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    color: #727272;
+    line-height: 25px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4{
+  font-size: 22px;
+  color: #272727;
+  font-weight: 700;
+  line-height: 22px;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+a{
+	-webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+	&:hover{text-decoration: none;}
+	a:focus{
+	outline: none;
+	}
+}
+p{
+  color: #727272;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+  margin: 0px;
+  font-size: 14px;
+}
+ul,ol{
+  list-style: outside none none;
+  margin: 0;
+  padding: 0;
+  li{
+    list-style: none;
+  }
+}
+.hero-heading {
+	font-size: 40px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: capitalize;
+	line-height: 70px;
+	letter-spacing: 0.1rem;
+}
+.section-title-header{
+  margin-bottom: 30px;
+  p{
+    font-size: 14px;
+    text: center;
+    font-weight: 400;
+    line-height: 22px;
+  }
+}
+.section-title {
+  font-size: 30px;
+  color: #272727;
+  padding-bottom: 40px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  &:before{
+    position: absolute;
+    content: '';
+    height: 1px;
+    width: 60px;
+    left: 50%;
+    bottom: 15px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: $preset;
+  }
+  &:after{
+    position: absolute;
+    content: '';
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    bottom: 10px;
+    border-radius: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    background-color: $preset;
+  }
+}
+.small-title{
+	font-size: 15px;
+  margin-top: 20px;
+  font-weight: 500;
+  padding: 15px 0;
+}
+.page-title{
+  font-size: 62px;
+  font-weight: 700;
+  color: #fff;
+}
+.medium-title{
+  font-size: 22px;
+  color: #272727;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+hr{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+$transition: all 0.3s ease-in-out;
+@mixin pricing-box-shadow {
+  -webkit-box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+  -moz-box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+  box-shadow: 0px 2px 10px 2px rgba(221,221,221,0.73);
+}
+@mixin icon-shadow {
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+}
+@mixin team-box-shadow {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+}
+@mixin team-box-shadow-hover {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.46);
+}
+@mixin blog-box-shadow {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.26);
+}
+@mixin button-shadow {
+  box-shadow: 0 2px 2.7px 0.1px rgba(0, 0, 0, 0.24) !important;
+}
+@mixin button-shadow-hover {
+  box-shadow: 0 4px 4.7px .3px rgba(0,0,0,.24) !important;
+}
+
+//Bootstrap Button Core
+.btn{
+  font-size: 14px;
+  padding: 12px 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+  display: inline-block;
+}
+.btn:focus,
+.btn:active{
+  box-shadow: none;
+  outline: none;
+}
+.btn-common{
+  background-color: $preset;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  &:hover{
+    color: #fff;
+    box-shadow:  0 5px 11px 0 rgba(0, 0, 0, 0.15), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+.btn-common::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255,255,255,0.2);
+  -webkit-transition: all 0.3s ease-out 0s;
+  -moz-transition: all 0.3s ease-out 0s;
+  -ms-transition: all 0.3s ease-out 0s;
+  -o-transition: all 0.3s ease-out 0s;
+  transition: all 0.3s ease-out 0s;
+}
+.btn-common:hover::before {
+  opacity: 0 ;
+  transform: scale(0.5,0.5);
+}
+.btn-border{
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  &:hover{
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+.btn-lg{
+  padding: 12px 18px;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+.btn-rm{
+  padding: 7px 10px;
+  text-transform: capitalize;
+}
+button:focus{
+  outline: none!important;
+}
+.icon-close,.icon-check{
+  color: $preset;
+}
+/* ---------------------------------- */
+/* Social Icons
+------------------------------------- */
+.social-icons { padding-left: 5px; }
+
+.social-icons li {
+  display: inline;
+  float: left;
+  text-align: left;
+  margin-right: 16px;
+  margin-top: 11px;
+  a {
+    width: 44px;
+    height: 44px;
+    display: inline-block;
+    text-align: center;
+    line-height: 44px;
+    color: #272727;
+    font-size: 16px;
+    background-color: #f3f3f3;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid transparent;
+  }
+  .facebook:hover{
+    background: #3b5999;
+  }
+  .twitter:hover{
+    background: #4A9CEC;
+  }
+  .instagram:hover{
+    background: #D6274D;
+  }
+  .linkedin:hover{
+    background: #1260A2;
+  }
+  .google:hover{
+    background: #CE332A;
+  }
+}
+
+.social-icons li a:hover{
+  color: #fff;
+}
+/* ScrollToTop */
+a.back-to-top{
+  display: none;
+  position: fixed;
+  bottom: 18px;
+  right: 15px;
+  text-decoration: none;
+  i {
+  	display: block;
+	  font-size: 22px;
+	  width: 40px;
+	  height: 40px;
+	  line-height: 40px;
+	  color: #fff;
+    background: $preset;
+	  border-radius: 4px;
+	  text-align: center;
+	  -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+	  @include icon-shadow;
+	}
+	&:hover , &:focus {
+		text-decoration: none;
+	}
+}
+
+// Carousel Styles
+.owl-carousel.item img {
+    display: block;
+    width: 50%;
+    height: auto;
+}
+.owl-carousel .owl-controls .owl-page {
+    display: inline-block;
+}
+.owl-carousel .owl-controls .owl-page span {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 4px;
+    display: block;
+    height: 12px;
+    margin: 5px 7px;
+    opacity: 0.5;
+    width: 12px;
+}
+
+// Preloader Styles
+ #preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 9999999;
+}
+.loader{
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+#loader-1:before, #loader-1:after{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 7px solid transparent;
+  border-top-color: $preset;
+}
+
+#loader-1:before{
+  z-index: 100;
+  animation: spin 2s infinite;
+}
+
+#loader-1:after{
+  border: 7px solid #fafafa;
+}
+
+@keyframes spin{
+  0%{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%{
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+//Helper Classes
+.section-padding {
+	padding: 60px 0;
+}
+.no-padding {
+	padding: 0 !important;
+}
+.padding-left-none {
+	padding-left: 0;
+}
+.padding-right-none {
+	padding-right: 0;
+}
+
+// Page Banner Area
+#page-banner-area{
+  background: url(../img/background/banner.jpg) no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.page-banner{
+  position: relative;
+  min-height: 200px;
+  color: #fff;
+  &:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .page-banner-title{
+    position: relative;
+    padding: 68px;
+    h2{
+      margin: 0 0 15px;
+      font-weight: 700;
+      font-size: 25px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  a{
+    color: #fff;
+    font-size: 14px;
+    &:hover{
+      color: $preset;
+    }
+  }
+  .crumbs-spacer{
+    i{
+      vertical-align: middle;
+      font-size: 12px;
+      margin: 5px;
+    }
+  }
+  .current{
+    color: #fff;
+  }
+}
+
+// Pagination 
+.pagination-container{
+  display: inline-block;
+  margin-top: 10px;
+  .pagination{
+    .page-item{
+      .page-link{
+        margin: 0 10px;
+        padding: 15px 20px;
+        color: $preset;
+        border-color: #f3f3f3;
+        border-radius: 4px;
+        background: #fff;
+        &:hover{
+          background: $preset;
+          box-shadow: none;
+          color: #fff;
+        }
+      }
+      .page-link:focus{
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+
+//  Fade IN
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}

@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<jsp:include page="../header.jsp"></jsp:include>
-<title>Pro회원 정보변경</title>
-</head>
-<body>
+<html lang="ko">
+  <head>
+<script src="/resources/js/password_check_jquery.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
+  </head>
+  <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
 	<div>
 		<div>
 			<h3>Pro회원 정보변경</h3>

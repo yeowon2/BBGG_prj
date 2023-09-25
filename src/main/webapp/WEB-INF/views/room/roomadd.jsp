@@ -1,28 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>매물 상세 페이지</title>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../resources/room/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/room/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../resources/room/css/templatemo-style.css">
-    
-    <!-- Flatpickr 스타일 및 스크립트 파일 로드 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
-    <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer"></script>
-
-</head>
-<body>
+<html lang="ko">
+  <head>
+<script src="/resources/js/password_check_jquery.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
+  </head>
+  <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
     <!-- Page Loader -->
     <div id="loader-wrapper">
         <div id="loader"></div>

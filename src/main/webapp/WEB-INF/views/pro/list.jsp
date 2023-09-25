@@ -2,12 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<jsp:include page="../header.jsp"></jsp:include>
-</head>
-<body>
+<html lang="ko">
+  <head>
+<script src="/resources/js/password_check_jquery.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
+  </head>
+  <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
 	<div class="container">
 		<div>
 			<h3>Pro회원 목록</h3>

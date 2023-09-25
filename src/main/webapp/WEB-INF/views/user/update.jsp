@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<jsp:include page="../header.jsp"></jsp:include>
-<title>Insert title here</title>
-</head>
-<body>
+<html lang="ko">
+  <head>
+<script src="/resources/js/password_check_jquery.js"></script>
+	<jsp:include page="../head.jsp"></jsp:include>
+  </head>
+  <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
 	<div>
 		<div>
 			<h3>회원정보 변경</h3>

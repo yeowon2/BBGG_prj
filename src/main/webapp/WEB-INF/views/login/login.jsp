@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
- <head>
-    <meta charset="UTF-8" />
-    <jsp:include page="../header.jsp"></jsp:include>
-    <!-- Custom CSS -->
-<link rel="stylesheet" href="/resources/dist/css/style.css"/>
-</head>
-<body>
-    
-   
+<html lang="ko">
+  <head>
+	<jsp:include page="../head.jsp"></jsp:include>
+  </head>
+  <body>
+	<jsp:include page="../nav.jsp"></jsp:include>
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper">
 
@@ -75,28 +71,8 @@
 
     </div>
 	<!-- /HK Wrapper -->
-
-    <!-- jQuery -->
-    <script src="/resources/vendors/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/resources/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Slimscroll JavaScript -->
-    <script src="/resources/dist/js/jquery.slimscroll.js"></script>
-
-    <!-- Fancy Dropdown JS -->
-    <script src="/resources/dist/js/dropdown-bootstrap-extended.js"></script>
-
-    <!-- Owl JavaScript -->
-    <script src="/resources/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
-
-    <!-- FeatherIcons JavaScript -->
-    <script src="/resources/dist/js/feather.min.js"></script>
-
-    <!-- Init JavaScript -->
-    <script src="/resources/dist/js/init.js"></script>
-    <script src="/resources/dist/js/login-data.js"></script>
-</body>
+<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
+<jsp:include page="../js.jsp"></jsp:include>
+  </body>
 </html>
+

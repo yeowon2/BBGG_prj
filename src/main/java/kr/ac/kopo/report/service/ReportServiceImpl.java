@@ -22,6 +22,7 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public ReportVO repoInfo(RoomVO roomNo) {
+		
 		return null;
 	}
 

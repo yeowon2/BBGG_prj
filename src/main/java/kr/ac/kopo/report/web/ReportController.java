@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.note.service.NoteService;
 import kr.ac.kopo.note.web.NoteVO;
@@ -40,7 +41,7 @@ public class ReportController {
 		return path + "/list";
 	}
 	
-	// 허위매물 신고 메인
+	// 허위매물 신고 메인(O)
 	@GetMapping("/{roomNo}")
 	public String report(@PathVariable Long roomNo, HttpSession session) {
 		if(session.getId() != null) { //@@@@@@@@@@
@@ -55,16 +56,20 @@ public class ReportController {
 	@GetMapping("/add/{roomNo}")
 	public String reportAdd(@PathVariable Long roomNo, HttpSession session) {
 		if(session.getId() != null) { //@@@@@@@@@@
-			return path + "/addact/{roomNo}";
+			return path + "/addAct/{roomNo}";
 		} else {
 			return "login";
 		} 
 	}
 	
+	
 	// 진짜 허위매물 신고 모달창보여드려요
 	@PostMapping("/addAct/{roomNo}")
-	public String reportAddAct(@PathVariable Long roomNo, HttpSession session) {
+	public String reportAddAct(@PathVariable Long roomNo, HttpSession session, MultipartFile File) {
 		if(session.getId() != null) { //@@@@@@@@@@
+			System.out.println("출력문확인");
+			System.out.println(File.getOriginalFilename()); 
+			System.out.println(File.getSize());
 			System.out.println("작성되었습니다.");
 			return path + "/reportAdd";
 		}

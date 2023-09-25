@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="kr.ac.kopo.report.web.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../header.jsp"></jsp:include>
 <title>허위 매물 신고</title>
-<link rel="stylesheet" href="/resources/dist/css/modal.css" />
+
 <style>
 #modal {
 	display: none;
 }
 </style>
+<!-- modal-window CSS -->
+<link rel="stylesheet" href="/resources/dist/css/modal-window.css" type="text/css">
 <!-- Toggles CSS -->
 <link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
 <link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
@@ -99,12 +103,6 @@
 		                             <a class="dropdown-item" href="list-group.html">List Group</a>
 		                             <a class="dropdown-item active" href="modal.html">Modal</a>
 		                             <a class="dropdown-item" href="nav.html">Nav</a>
-		                             <a class="dropdown-item" href="navbar.html">Navbar</a>
-		                             <a class="dropdown-item" href="nestable.html">Nestable</a>
-		                             <a class="dropdown-item" href="pagination.html">Pagination</a>
-		                             <a class="dropdown-item" href="popovers.html">Popovers</a>
-		                             <a class="dropdown-item" href="progress.html">Progress</a>
-		                             <a class="dropdown-item" href="tooltip.html">Tooltip</a>
 		                         </div>
 		                     </div>
 		                 </div>
@@ -135,7 +133,7 @@
 		                         <div class="media">
 		                             <div class="media-img-wrap">
 		                                 <div class="avatar avatar-sm">
-		                                     <img src="dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
+		                                     <img src="/resources/dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
 		                                 </div>
 		                             </div>
 		                             <div class="media-body">
@@ -151,7 +149,7 @@
 		                         <div class="media">
 		                             <div class="media-img-wrap">
 		                                 <div class="avatar avatar-sm">
-		                                     <img src="dist/img/avatar2.jpg" alt="user" class="avatar-img rounded-circle">
+		                                     <img src="/resources/dist/img/avatar2.jpg" alt="user" class="avatar-img rounded-circle">
 		                                 </div>
 		                             </div>
 		                             <div class="media-body">
@@ -224,7 +222,7 @@
 		                 <div class="media">
 		                     <div class="media-img-wrap">
 		                         <div class="avatar">
-		                             <img src="dist/img/avatar5.jpg" alt="user" class="avatar-img rounded-circle">
+		                             <img src="resources/dist/img/avatar5.jpg" alt="user" class="avatar-img rounded-circle">
 		                         </div>
 		                         <span class="badge badge-success badge-indicator"></span>
 		                     </div>
@@ -291,37 +289,26 @@
 					- 증빙자료 보존기간 : 수집일로부터 60일<br><br>
 					
 					· 동의 거부 권리 및 거부에 따른 불이익<br>
-					▫ 신고 처리를 위하여 수집하는 최소한의 정보 이외에 개인정보 수집에 동의를 거부할 권리가 있으나 최소한의 개인정보 수집동의 거부 시에는 부동산매물클린관리센터 서비스를 제공 받을 수 없습니다.<br>
+					▫ 신고 처리를 위하여 수집하는 최소한의 정보 이외에 개인정보 수집에 동의를 거부할 권리가 있으나 <br>
+					  최소한의 개인정보 수집동의 거부 시에는 부동산매물클린관리센터 서비스를 제공 받을 수 없습니다.<br>
 							<input type="checkbox" id="agreeAt" ><label>허위 매물 신고에 대한 안내에 동의합니다.</label><br>
 							</p>
 						<div class="row">
 						    <div class="col-sm">
 						    
 						        <!-- Button trigger modal -->
-						        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalLong">
+						        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
 						            허위 매물 신고하기
 						        </button>
-						        
-						        <br><br>
-						        <form action="" method="post" enctype="multipart/form-data" target="form_if">
-							        <input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-									<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-									<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
-									<textarea id="reportDetail" rows="10" cols="50" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
-									<input type="file" name="file1" multiple />
-									<input type="file" name="file2" multiple />
-									<button type="submit" class="btn btn-danger" onsubmit="">제출하기</button>
-						        </form>
-						        <iframe name="form_if" style="display:none"></iframe>
-						        
-								
+
+ 			
 			
 					        <!-- Modal -->
-					            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+					            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
 					                <div class="modal-dialog" role="document">
 					                    <div class="modal-content">
 					                        <div class="modal-header">
-				                            	<h5 class="modal-title" id="exampleModalLongTitle">허위 매물 신고</h5>
+				                            	<h5 class="modal-title" id="exampleModalTitle">허위 매물 신고</h5>
 				                            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                	<span aria-hidden="true">&times;</span>
 				                            	</button>
@@ -332,10 +319,15 @@
 												<p>검증 기준이 아닌 사유를 들어 반복적으로 신고하실 경우, 신고자 패널티를 부과할 수 있습니다.<br>
 												이러한 행위는 공인중개사법 제 33조2항 ('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
 												위배해 고소, 고발의 대상이 될 수 있으므로 주의부탁드립니다.</p>
-
-												<input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-												<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-												<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label>	
+												<form action="/addAct/${roomVO.roomNo}" method="post" enctype="multipart/form-data" target="form_if">
+													<input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+													<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+													<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
+													<textarea id="reportDetail" rows="10" cols="50" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
+													<input type="file" name="file" multiple />
+													<button type="submit" class="btn btn-danger" onsubmit="">제출하기</button>
+										        </form>
+										        <iframe name="form_if" style="display:none"></iframe>
 																					
 					                        </div>
 					                        <div class="modal-footer">
@@ -395,7 +387,7 @@
     <script src="resourcesvendors/owl.carousel/dist/owl.carousel.min.js"></script>
 
     <!-- FeatherIcons JavaScript -->
-    <script src="resourcesdist/js/feather.min.js"></script>
+    <script src="resources/dist/js/feather.min.js"></script>
 
     <!-- Tinymce JavaScript -->
     <script src="resources/vendors/tinymce/tinymce.min.js"></script>

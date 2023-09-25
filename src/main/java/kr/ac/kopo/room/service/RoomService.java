@@ -11,4 +11,5 @@ public interface RoomService {
 	RoomVO roomSelect(RoomVO roomVO);
 
 	void roomAdd(RoomVO roomVO);
+
 }

@@ -1,5 +1,6 @@
 package kr.ac.kopo.room.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import kr.ac.kopo.room.web.RoomVO;
 public class RoomServiceImpl implements RoomService {
 	@Autowired
 	RoomDao dao;
+	
 
 	@Override
 	public List<RoomVO> roomList() {
@@ -24,10 +26,26 @@ public class RoomServiceImpl implements RoomService {
 		return dao.roomSelect(roomVO);
 	}
 	
-	@Override
 	@Transactional
+	@Override
 	public void roomAdd(RoomVO roomVO) {
 		dao.roomAdd(roomVO);
+		
+		HashMap<String, Long> map = new HashMap<String, Long>();
+		map.put("roomNo", roomVO.getRoomNo());
+		
+		if(roomVO.getLeaseOrMonth().equals("lease")) {
+			map.put("leasePrice", roomVO.getLeasePrice());
+			dao.leaseAdd(map);
+		}
+		else {
+			map.put("deposltFee", roomVO.getDeposltFee());
+			map.put("monthPrice", roomVO.getMonthPrice());
+			dao.monthAdd(map);
+		}
+		
+		
+		
+		
 	}
-	
 }

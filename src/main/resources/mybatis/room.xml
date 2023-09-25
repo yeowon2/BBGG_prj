@@ -147,17 +147,19 @@
 	    'y'
 	    )
 	    
-	    <!-- <selectKey keyColumn="room_no" keyProperty="roomNo" order="AFTER" resultType="int">
-	    	<if test="leaseOrMonth == 'lease'">
-		        INSERT INTO tbl_lease(lease_price, room_no)
-		        VALUES (#{leasePrice}, #{roomNo})
-		    </if>
-		    <if test="leaseOrMonth == 'month'">
-		        INSERT INTO tbl_month(deposit_fee, month_price, room_no)
-		        VALUES (#{depositFee}, #{monthPrice}, #{roomNo})
-		    </if>
-	    </selectKey> -->
-	    
+	    <selectKey keyProperty="roomNo" resultType="Long" order="AFTER">
+	    	SELECT LAST_INSERT_ID()
+	    </selectKey>
 	</insert>
-
+	
+	<insert id="leaseAdd">
+	    INSERT INTO tbl_lease(lease_price, room_no)
+		VALUES (#{leasePrice}, #{roomNo})
+	</insert>
+	
+	<insert id="monthAdd">
+		INSERT INTO tbl_month(deposlt_fee, month_price, room_no)
+		VALUES (#{deposltFee}, #{monthPrice}, #{roomNo})
+	</insert>
+	
 </mapper>

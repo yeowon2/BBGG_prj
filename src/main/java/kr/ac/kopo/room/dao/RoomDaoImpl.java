@@ -1,5 +1,6 @@
 package kr.ac.kopo.room.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,10 +26,21 @@ public class RoomDaoImpl implements RoomDao {
 	}
 	
 	@Override
-	@Transactional
 	public void roomAdd(RoomVO roomVO) {
 		// 첫 번째 INSERT 문 실행
         sql.insert("room.roomAdd", roomVO);
     }
+
+	@Override
+	public void leaseAdd(HashMap<String, Long> map) {
+		sql.insert("room.leaseAdd", map);
+	}
+
+	@Override
+	public void monthAdd(HashMap<String, Long> map) {
+		sql.insert("room.monthAdd", map);
+	}
+
+	
 		
 }

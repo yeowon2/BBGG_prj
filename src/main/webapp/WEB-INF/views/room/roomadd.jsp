@@ -276,11 +276,11 @@
 		               	<!-- 매물소개 -->
 		               	<div class="form-group">
 			                <h6>매물 소개</h6>
-			                <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="소개란"/>
+			                <input type="text" name="memoShort" class="form-control rounded-0" value="" required placeholder="소개란"/>
 			            </div>
 	                    <div class="form-group">
 	                    	<h6>매물 설명</h6>
-	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
+	                        <textarea rows="8" name="memoDetail" class="form-control rounded-0" placeholder="설명란" required ></textarea>
 	                    </div>
                   	</div>
                   	<button>등록</button>

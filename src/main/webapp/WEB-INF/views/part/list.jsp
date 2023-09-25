@@ -11,7 +11,7 @@
 	<jsp:include page="../nav.jsp"></jsp:include>
 	<div class="container">
 		<div>
-			<h3>Pro회원 목록</h3>
+			<h3>Partner 회원 목록</h3>
 		</div>
 		<div >
 			<table border="1" class="table table-scriped table-hover">
@@ -28,12 +28,12 @@
 				<tbody>
 					<c:forEach var="item" items="${list}">
 					<tr>
-						<td>${item.proUnumber}</td>
-						<td>${item.proEmail}</td>
-						<td>${item.proPasswd}</td>
-						<td>${item.proM}</td>
-						<td>${item.proName}</td>
-						<td><a href="prodelete/${item.proUnumber}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="proupdate/${item.proUnumber}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
+						<td>${item.partNo}</td>
+						<td>${item.partId}</td>
+						<td>${item.partPw}</td>
+						<td>${item.compName}</td>
+						<td>${item.partName}</td>
+						<td><a href="/delete/${item.partNo}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="/update/${item.partNo}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
 					</tr>
 					</c:forEach>
 					

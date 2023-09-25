@@ -65,7 +65,7 @@
 					· 동의 거부 권리 및 거부에 따른 불이익<br>
 					▫ 신고 처리를 위하여 수집하는 최소한의 정보 이외에 개인정보 수집에 동의를 거부할 권리가 있으나 <br>
 					  최소한의 개인정보 수집동의 거부 시에는 부동산매물클린관리센터 서비스를 제공 받을 수 없습니다.<br>
-							<input type="checkbox" id="agreeAt" ><label>허위 매물 신고에 대한 안내에 동의합니다.</label><br>
+							<input type="checkbox" id="agreeAt" name="agreeAt"><label>허위 매물 신고에 대한 안내에 동의합니다.</label><br>
 							</p>
 						<div class="row">
 						    <div class="col-sm">
@@ -74,8 +74,7 @@
 						        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="float: right;">
 						            허위 매물 신고하기
 						        </button>
-
- 			
+		
 			
 					        <!-- Modal -->
 					            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
@@ -95,16 +94,19 @@
 												('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
 												위배해 고소, 고발의 대상이 될 수 있으므로 주의부탁드립니다.</p>
 												<br>
+												<%-- <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+												 action="<%=request.getContextPath()%>/${roomNo}" --%>
+												
 												<form method="post" onsubmit="" enctype="multipart/form-data" target="form_if">
 													<input type="hidden" id="roomNo" value="${result.roomNo}">
-													<input type="checkbox" id="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-													<input type="checkbox" id="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-													<input type="checkbox" id="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
-													<textarea id="reportDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
+													<input type="checkbox" id="reportCheck1" name="reportCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+													<input type="checkbox" id="reportCheck2" name="reportCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+													<input type="checkbox" id="reportCheck3" name="reportCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
+													<textarea id="reportDetail" name="reportDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
 													<input type="file" name="file" multiple />
-													<button type="button" class="btn btn-teal" style="float: right;">신고하기</button>	
+													<button type="submit" class="btn btn-teal" id="submitBtn" style="float: right;">신고하기</button>	
 										        </form>
-										        <iframe name="form_if" style="display:none"></iframe>
+										        <!-- <iframe name="form_if" style="display:none"></iframe> -->
 																					
 					                        </div>
 					                        <div class="modal-footer">
@@ -181,9 +183,9 @@
     <!-- modal-data JavaScript -->
     <script src="resources/dist/js/modal-data.js"></script>		
     
-    <script type="text/javascript">
+    <script>
     const form = document.querySelector("form");
-    const submitBtn = document.querySelector("submit");
+    const submitBtn = document.querySelector("#submitBtn");
     
     const reportCheck1 = document.querySelector("#reportCheck1");
     const reportCheck2 = document.querySelector("#reportCheck2");
@@ -194,11 +196,7 @@
 
     submitBtn.addEventListener('click', function () {
     	form.submit();
-    });
-    
-    
-    
-    
+    }); 
     </script>
     
 

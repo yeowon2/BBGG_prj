@@ -62,81 +62,109 @@
 	</select>
 	
 	<insert id="roomAdd">
-		INSERT INTO tbl_
-		
-		INSERT INTO tbl_room
-		(
-		partner_no,
-		lease_no,
-		month_no,
-		room_type,
-		address, 
-		address2,
-		dong, ho,
-		move_in_at, 
-		move_in_date,
-		room_size, 
-		building_floor,
-		room_floor,
-		room_count,
-		bath_at,
-		elevator_at,
-		parking_at,
-		manage_feeAt,
-		manage_fee, 
-		memo_short,
-		memo_detail,
-		regist_date,
-		update_date,
-		lat, lng, use_at
-		)
-		VALUES 
-		(
-		#{partnerNO},
-		<if test="leaseOrMonth == lease">
-			#{leaseNo},
-			NULL,
-		</if>
-		
-		<if test="leaseOrMonth == month">
-			NULL,
-			#{monthNo},
-		</if>
-		
-		
-		#{roomType},
-		#{address},
-		#{address2},
-		#{dong},
-		#{ho},
-		<if test="">
-			moveInAt,
-			moveInDate,
-		</if>
-		<if test="">
-			moveInAt,
-			moveInDate,
-		</if>
-		#{roomSize},
-		#{buildingFloor},
-		#{roomFloor},
-		#{roomCount},
-		#{bathAt},
-		#{elevatorAt},
-		#{parkingAt},
-		
-		manageFeeAt,
-		manageFee,
-		
-		#{memoShort},
-		#{memoDetail},
-		NOW(),
-		NOW(),
-		#{lat},
-		#{lng},
-		y
-		)
+	    <if test="leaseOrMonth == 'lease'">
+	        INSERT INTO tbl_lease(lease_price)
+	        VALUES (#{leasePrice})
+	    </if>
+	    <if test="leaseOrMonth == 'month'">
+	        INSERT INTO tbl_lease(deposit_fee, month_price)
+	        VALUES (#{depositFee}, #{monthPrice})
+	    </if>
+	    
+	    INSERT INTO tbl_room
+	    (
+	    partner_no,
+	    lease_or_month,
+	    lease_no,
+	    month_no,
+	    room_type,
+	    address, 
+	    address2,
+	    dong,
+	    ho,
+	    move_in_at, 
+	    move_in_date,
+	    room_size, 
+	    building_floor,
+	    room_floor,
+	    room_count,
+	    bath_at,
+	    elevator_at,
+	    parking_at,
+	    manage_feeAt,
+	    manage_fee, 
+	    memo_short,
+	    memo_detail,
+	    regist_date,
+	    update_date,
+	    lat,
+	    lng,
+	    
+	    )
+	    VALUES 
+	    (
+	    1,
+	    
+	    <choose>
+	        <when test="leaseOrMonth == 'lease'">
+	            #{leaseOrMonth}, <!-- 문자열로 변경 -->
+	            #{leaseNo},
+	            NULL,
+	        </when>
+	        <otherwise>
+	            #{leaseOrMonth}, <!-- 문자열로 변경 -->
+	            NULL,
+	            #{monthNo},
+	        </otherwise>
+	    </choose>
+	    
+	    #{roomType},
+	    #{address},
+	    #{address2},
+	    #{dong},
+	    #{ho},
+	    
+	    <choose>
+	        <when test="moveInAt == 'y'">
+	            #{moveInAt}, <!-- 문자열로 변경 -->
+	            NOW(),
+	        </when>
+	        <otherwise>
+	            #{moveInAt}, <!-- 문자열로 변경 -->
+	            #{moveInDate},
+	        </otherwise>
+	    </choose>
+	    
+	    #{roomSize},
+	    #{buildingFloor},
+	    #{roomFloor},
+	    #{roomCount},
+	    #{bathAt},
+	    #{elevatorAt},
+	    #{parkingAt},
+	    
+	    <choose>
+	        <when test="manageFeeAt == y">
+	            #{manageFeeAt}, <!-- 문자열로 변경 -->
+	            #{manageFee},
+	        </when>
+	        <otherwise>
+	            #{manageFeeAt}, <!-- 문자열로 변경 -->
+	            NULL,
+	        </otherwise>
+	    </choose>
+	    
+	    #{memoShort},
+	    #{memoDetail},
+	    NOW(),
+	    NOW(),
+	    #{lat},
+	    #{lng},
+	    
+	    )
 	</insert>
+
+
 	
 	<!-- 스칼라 부속질의(SELECT 부속질의)
 	SELECT (SELECT rent_price FROM lease  WHERE lease.lease_no = room.lease_no) AS "가격", room.*

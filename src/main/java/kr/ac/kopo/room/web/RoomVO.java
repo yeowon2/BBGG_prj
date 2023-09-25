@@ -1,11 +1,13 @@
 package kr.ac.kopo.room.web;
 
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class RoomVO {
 		
 	private Long roomNo;			//매물고유번호
 	private Long partnerNo;			//partner고유번호
+	private String leaseOrMonth;	//전세 / 월세
 	private Long leaseNo;			//전세고유번호
 	private Long monthNo;			//월세고유번호
 	private String roomType;		//매물 타입
@@ -14,16 +16,19 @@ public class RoomVO {
 	private String dong;			//동
 	private String ho;				//호
 	private String moveInAt;		//입주가능여부
+	
+	@DateTimeFormat
 	private Date moveInDate;		//입주가능날짜
-	private Integer roomSize;		//전용면적
-	private Integer buildingFloor;	//건물 전체 층수
-	private Integer roomFloor;		//해당 매물 층수
-	private Integer roomCount;		//방 수
-	private Integer bathAt;			//욕실 수
+	
+	private Long roomSize;			//전용면적
+	private Long buildingFloor;		//건물 전체 층수
+	private Long roomFloor;			//해당 매물 층수
+	private Long roomCount;			//방 수
+	private Long bathAt;			//욕실 수
 	private String elevatorAt;		//엘리베이터 유무
 	private String parkingAt;		//주차 가능 여부
 	private String manageFeeAt;		//공용 관리비 여부
-	private Integer manageFee;		//공용 관리비
+	private Long manageFee;			//공용 관리비
 	private String memoShort;		//매물 소개
 	private String memoDetail;		//매물 설명
 	private Date registDate;		//매물 등록일
@@ -48,6 +53,12 @@ public class RoomVO {
 	}
 	public void setPartnerNo(Long partnerNo) {
 		this.partnerNo = partnerNo;
+	}
+	public String getLeaseOrMonth() {
+		return leaseOrMonth;
+	}
+	public void setLeaseOrMonth(String leaseOrMonth) {
+		this.leaseOrMonth = leaseOrMonth;
 	}
 	public Long getLeaseNo() {
 		return leaseNo;
@@ -103,34 +114,34 @@ public class RoomVO {
 	public void setMoveInDate(Date moveInDate) {
 		this.moveInDate = moveInDate;
 	}
-	public Integer getRoomSize() {
+	public Long getRoomSize() {
 		return roomSize;
 	}
-	public void setRoomSize(Integer roomSize) {
+	public void setRoomSize(Long roomSize) {
 		this.roomSize = roomSize;
 	}
-	public Integer getBuildingFloor() {
+	public Long getBuildingFloor() {
 		return buildingFloor;
 	}
-	public void setBuildingFloor(Integer buildingFloor) {
+	public void setBuildingFloor(Long buildingFloor) {
 		this.buildingFloor = buildingFloor;
 	}
-	public Integer getRoomFloor() {
+	public Long getRoomFloor() {
 		return roomFloor;
 	}
-	public void setRoomFloor(Integer roomFloor) {
+	public void setRoomFloor(Long roomFloor) {
 		this.roomFloor = roomFloor;
 	}
-	public Integer getRoomCount() {
+	public Long getRoomCount() {
 		return roomCount;
 	}
-	public void setRoomCount(Integer roomCount) {
+	public void setRoomCount(Long roomCount) {
 		this.roomCount = roomCount;
 	}
-	public Integer getBathAt() {
+	public Long getBathAt() {
 		return bathAt;
 	}
-	public void setBathAt(Integer bathAt) {
+	public void setBathAt(Long bathAt) {
 		this.bathAt = bathAt;
 	}
 	public String getElevatorAt() {
@@ -151,10 +162,10 @@ public class RoomVO {
 	public void setManageFeeAt(String manageFeeAt) {
 		this.manageFeeAt = manageFeeAt;
 	}
-	public Integer getManageFee() {
+	public Long getManageFee() {
 		return manageFee;
 	}
-	public void setManageFee(Integer manageFee) {
+	public void setManageFee(Long manageFee) {
 		this.manageFee = manageFee;
 	}
 	public String getMemoShort() {

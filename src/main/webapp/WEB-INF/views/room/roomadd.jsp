@@ -23,7 +23,7 @@
         
             <div class="col-lg-4 col-12 mb-5">
                 <h2 class="tm-text-primary mb-5">매물 등록</h2>
-                <form id="contact-form" action="" method="POST" class="tm-contact-form mx-auto">
+                <form id="contact-form" method="POST" class="tm-contact-form mx-auto">
                 	<div>
                 		<!-- 로그인 한 파트너 값 -->		    
 						<input type="hidden" name="partnerNo" class="form-control rounded-0" value=""/>
@@ -90,20 +90,20 @@
 						<div class="form-group">
 						    <h6>전세 / 월세</h6>
 						    <label>
-						        <input type="radio" name="leaseOrMonth" value="lease"> 전세
+						        <input id="leaseOrMonth" type="radio" name="leaseOrMonth" value="lease"> 전세
 						    </label>
 						    <label>
-						        <input type="radio" name="leaseOrMonth" value="month"> 월세
+						        <input id="leaseOrMonth" type="radio" name="leaseOrMonth" value="month"> 월세
 						    </label>
 						</div>
 						<div class="form-group" id="leaseNoField" style="display: none;">
 						    <h6>전세</h6>
-						    <input type="number" name="leaseAmount" class="form-control rounded-0" value="" placeholder="전세금(만원 단위)"/>
+						    <input type="number" name="leasePrice" class="form-control rounded-0" value="" placeholder="전세금(만원 단위)"/>
 						</div>
 						<div class="form-group" id="monthNoField" style="display: none;">
 						    <h6>월세</h6>
-						    <input type="number" name="depositAmount" class="form-control rounded-0" value="" placeholder="보증금(만원 단위)"/>
-						    <input type="number" name="monthlyRent" class="form-control rounded-0" value="" placeholder="월세금(만원 단위)"/>
+						    <input type="number" name="deposltFee" class="form-control rounded-0" value="" placeholder="보증금(만원 단위)"/>
+						    <input type="number" name="monthPrice" class="form-control rounded-0" value="" placeholder="월세금(만원 단위)"/>
 						</div>
 						<script>
 						// 라디오 버튼 이벤트 리스너 추가
@@ -178,10 +178,10 @@
 	                    <div class="form-group">
 	                    	<h6>엘리베이터</h6>
 	                        <label>
-						        <input type="radio" name="elevatorAt" value="y"> 있음
+						        <input id="elevatorAt" type="radio" name="elevatorAt" value="y"> 있음
 						    </label>
 						    <label>
-						        <input type="radio" name="elevatorAt" value="n"> 없음
+						        <input id="elevatorAt" type="radio" name="elevatorAt" value="n"> 없음
 						    </label>
 	                    </div>
                     	
@@ -189,16 +189,16 @@
                     	<div class="form-group">
 						    <h6>입주가능여부</h6>
 						    <label>
-						        <input type="radio" name="moveInAt" value="y"> 즉시입주가능
+						        <input id="moveInAt" type="radio" name="moveInAt" value="y"> 즉시입주가능
 						    </label>
 						    <label>
-						        <input type="radio" name="moveInAt" value="n"> 추후입주가능
+						        <input id="moveInAt" type="radio" name="moveInAt" value="n"> 추후입주가능
 						    </label>
 						</div>
                     	<!-- 입주가능날짜 -->
 	                    <div class="form-group" id="moveInDateField" style="display: none;">
 						    <h6>입주가능날짜</h6>
-						    <input type="date" id="moveInDateInput" name="moveInDate" class="form-control rounded-0" value=""/>
+						    <input type="datetime-local" id="moveInDateInput" name="moveInDate" class="form-control rounded-0" value=""/>
 						</div>
 						<script>
 						    // 라디오 버튼 이벤트 리스너 추가
@@ -231,10 +231,10 @@
 						<div class="form-group">
 						    <h6>관리비 여부</h6>
 						    <label>
-						        <input type="radio" name="manageFeeAt" value="y" > 있음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="y" > 있음
 						    </label>
 						    <label>
-						        <input type="radio" name="manageFeeAt" value="n" > 없음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="n" > 없음
 						    </label>
 						</div>
 						<!-- 관리비 -->
@@ -266,10 +266,10 @@
 	                    <div class="form-group">
 		                    <h6>주차 가능 여부</h6>
 						    <label>
-						        <input type="radio" name="parkingAt" value="y" required> 가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="y" required> 가능
 						    </label>
 						    <label>
-						        <input type="radio" name="parkingAt" value="n" required> 불가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="n" required> 불가능
 						    </label>
 		               	</div>
 		               	<!-- 매물소개 -->
@@ -282,6 +282,7 @@
 	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
 	                    </div>
                   	</div>
+                  	<button>등록</button>
                 </form> 
                                
             </div>

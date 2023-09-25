@@ -73,7 +73,7 @@ public class RoomController {
 	public String roomAdd() {
 		return path + "roomadd";
 	}
-	@PostMapping("/add")
+	@PostMapping("/roomAdd")
 	public String roomAdd(RoomVO roomVO) {
 		service.roomAdd(roomVO);
 		

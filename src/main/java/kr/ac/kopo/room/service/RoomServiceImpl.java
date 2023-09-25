@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.room.dao.RoomDao;
 import kr.ac.kopo.room.web.RoomVO;
@@ -22,8 +23,9 @@ public class RoomServiceImpl implements RoomService {
 	public RoomVO roomSelect(RoomVO roomVO) {
 		return dao.roomSelect(roomVO);
 	}
-
+	
 	@Override
+	@Transactional
 	public void roomAdd(RoomVO roomVO) {
 		dao.roomAdd(roomVO);
 	}

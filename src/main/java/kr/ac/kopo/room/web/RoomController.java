@@ -77,7 +77,7 @@ public class RoomController {
 	public String roomAdd(RoomVO roomVO) {
 		service.roomAdd(roomVO);
 		
-		return "redirect:/roomlist";
+		return "redirect:/roomList";
 	}
  
 }

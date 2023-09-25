@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.room.web.RoomVO;
 
@@ -22,10 +23,12 @@ public class RoomDaoImpl implements RoomDao {
 	public RoomVO roomSelect(RoomVO roomVO) {
 		return sql.selectOne("room.roomSelect", roomVO);
 	}
-
+	
 	@Override
+	@Transactional
 	public void roomAdd(RoomVO roomVO) {
-		sql.insert("room.roomAdd", roomVO);
-	}
-
+		// 첫 번째 INSERT 문 실행
+        sql.insert("room.roomAdd", roomVO);
+    }
+		
 }

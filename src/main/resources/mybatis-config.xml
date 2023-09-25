@@ -20,7 +20,7 @@
   
   	<mappers>
   		 <mapper resource="mybatis/user.xml"/>
-  		<!-- <mapper resource="mybatis/part.xml"/> -->
+  		<mapper resource="mybatis/part.xml"/> 
   		<mapper resource="mybatis/pro.xml"/>
   		<mapper resource="mybatis/login.xml"/>
   		<mapper resource="mybatis/note.xml"/>

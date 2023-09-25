@@ -17,6 +17,7 @@ public class PartDaoImpl implements PartDao {
 	
 	@Override
 	public List<PartVO> list(Pager pager) {
+		
 		return sql.selectList("part.list", pager);
 	}
 

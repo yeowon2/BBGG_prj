@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="user">
+<mapper namespace="part">
 
 	<insert id="add">
-		INSERT INTO tbl_user
+		INSERT INTO tbl_partner
 		(
-			user_id
-			, user_pw
-			, user_name
+			partner_id
+			, partner_pw
+			, partner_name
+			, comp_name
+			, comp_address
 			, phone
+			, regist_num
+			, comp_num
 			, regist_date
-			, update_date
 			, use_at
 		)
 		VALUES (
-			#{userId}
-			, #{userPw}
-			, #{userName}
+			#{partId}
+			, #{partPw}
+			, #{partName}
+			, #{compName}
+			, #{compAddress}
 			, #{phone}
-			, NOW()
+			, #{registNum}
+			, #{compNum}
 			, NOW()
 			, 'Y'
 		)
@@ -28,45 +34,47 @@
 	 
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*) 
-		FROM  tbl_user
+		FROM  tbl_partner
 	</select>
 	
-	<select id="list" resultType="UserVO">
+	<select id="list" resultType="PartVO">
 		SELECT 
-			user_no
-			, user_id
-			, user_name
+			partner_no
+			, partner_id
+			, partner_name
+			, comp_name
 			, phone
-			, Regist_date
-		FROM  tbl_user
+			, regist_date
+		FROM  tbl_partner
 		WHERE use_at = 'Y'
 	</select>
 	
-	<select id="select" resultType="UserVO">
+	<select id="select" resultType="PartVO">
 		SELECT 
-			user_no
-			, user_id
-			, user_nm
+			partner_no
+			, partner_id
+			, partner_name
+			, comp_name
 			, phone
 			, regist_date
-			, update_date
-		FROM tbl_user
-		WHERE user_no = #{userNo}
+		FROM  tbl_partner
+		WHERE part_no = #{partNo}
 	</select>
 	
 	<update id="update">
-		UPDATE tbl_user
+		UPDATE tbl_partner
 		SET 
-			user_pw = #{userPw}
-			, user_name = #{userName}
-			, user_phone = #{userPhone}
+			part_pw = #{partPw}
+			, partner_name = #{partName}
+			, comp_name = #{compName}
+			, phone = #{phone}
 			, update_date = now()
-		WHERE user_no = #{userNo}
+		WHERE part_no = #{partNo}
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM tbl_user
-		WHERE user_no = #{userNo}
+		DELETE FROM tbl_partner
+		WHERE part_no = #{partNo}
 	</delete>
 	
 </mapper>

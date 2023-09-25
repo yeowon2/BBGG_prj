@@ -2,7 +2,9 @@ package kr.ac.kopo.part.web;
 
 import java.util.Date;
 
-public class PartVO {
+import kr.ac.kopo.pager.Pager;
+
+public class PartVO extends Pager{
 
 	private long partNo;
 	private String partId;
@@ -18,6 +20,7 @@ public class PartVO {
 	private Date updateDate;
 	private String useAt;
 	private String PartAuth;
+	
 	public long getPartNo() {
 		return partNo;
 	}

@@ -17,34 +17,6 @@
         <div class="loader-section section-right"></div>
 
     </div>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img alt="" src="../resources/comm/logo.png" style="width: 250px; height: 100px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="/roomList">지도</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-2" href="#">미구현</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-3" href="#">미구현</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-4 active" aria-current="page" href="contact.html">매물 정보</a>
-                </li>
-            </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="../resources/room/image.png"></div>
 
     <div class="container-fluid tm-mt-60">
         <div class="row tm-mb-50">
@@ -138,12 +110,12 @@
 						var radioButtons = document.getElementsByName("leaseOrMonth");
 						for (var i = 0; i < radioButtons.length; i++) {
 						    radioButtons[i].addEventListener('change', function () {
-						        toggleManageFeeField(this.value);
+						    	togglemonthleaseNoField(this.value);
 						    });
 						}
 						
 						// 전세 또는 월세 입력 필드를 토글하는 함수
-						function toggleManageFeeField(value) {
+						function togglemonthleaseNoField(value) {
 						    var leaseNoField = document.getElementById("leaseNoField");
 						    var monthNoField = document.getElementById("monthNoField");
 						
@@ -159,11 +131,11 @@
 						    }
 						}
 						</script>
-
-	                    <!-- 매물타입(원룸,투룸,쓰리룸,오피스텔) -->
-	                    <div class="form-group">
-	                    	<h6>타입</h6>
-	                        <label>
+						
+						<!-- 매물타입(원룸,투룸,쓰리룸,오피스텔) -->
+						<div class="form-group">
+						    <h6>타입</h6>
+						    <label>
 						        <input type="radio" name="roomType" value="o" > 원룸
 						    </label>
 						    <label>
@@ -175,8 +147,8 @@
 						    <label>
 						        <input type="radio" name="roomType" value="f" > 오피스텔
 						    </label>
-	                    </div>
-	                    
+						</div>
+
 	                    <!-- 전용 면적 -->
 	                    <div class="form-group">
 	                    	<h6>전용 면적(평)</h6>

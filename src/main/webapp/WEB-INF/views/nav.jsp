@@ -26,7 +26,7 @@
 	              <div class="header-top-right float-right">
 	                <a href="/login" class="header-top-button"><i class="lni-lock"></i> 로그인</a> |
 	                <a href="/user/add" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a> |
-	                <a href="/part/add" class="header-top-button"><i class="lni-pencil"></i> 중개사 가입</a>
+	                <a href="/partner/add" class="header-top-button"><i class="lni-pencil"></i> 중개사 가입</a>
 	              </div>
               </c:if>
               <c:if test="${loginVO != null}">

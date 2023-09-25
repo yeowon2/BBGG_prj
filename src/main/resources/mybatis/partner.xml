@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="part">
+<mapper namespace="partner">
 
 	<insert id="add">
 		INSERT INTO tbl_partner
@@ -18,9 +18,9 @@
 			, use_at
 		)
 		VALUES (
-			#{partId}
-			, #{partPw}
-			, #{partName}
+			#{partnerId}
+			, #{partnerPw}
+			, #{partnerName}
 			, #{compName}
 			, #{compAddress}
 			, #{phone}
@@ -37,7 +37,7 @@
 		FROM  tbl_partner
 	</select>
 	
-	<select id="list" resultType="PartVO">
+	<select id="list" resultType="PartnerVO">
 		SELECT 
 			partner_no
 			, partner_id
@@ -49,7 +49,7 @@
 		WHERE use_at = 'Y'
 	</select>
 	
-	<select id="select" resultType="PartVO">
+	<select id="select" resultType="PartnerVO">
 		SELECT 
 			partner_no
 			, partner_id
@@ -58,23 +58,23 @@
 			, phone
 			, regist_date
 		FROM  tbl_partner
-		WHERE part_no = #{partNo}
+		WHERE part_no = #{partnerNo}
 	</select>
 	
 	<update id="update">
 		UPDATE tbl_partner
 		SET 
-			part_pw = #{partPw}
-			, partner_name = #{partName}
+			partner_pw = #{partnerPw}
+			, partner_name = #{partnerName}
 			, comp_name = #{compName}
 			, phone = #{phone}
 			, update_date = now()
-		WHERE part_no = #{partNo}
+		WHERE partner_no = #{partnerNo}
 	</update>
 	
 	<delete id="delete">
 		DELETE FROM tbl_partner
-		WHERE part_no = #{partNo}
+		WHERE partner_no = #{partnerNo}
 	</delete>
 	
 </mapper>

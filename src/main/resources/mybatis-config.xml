@@ -12,7 +12,7 @@
   
   	<typeAliases>
 		<typeAlias type="kr.ac.kopo.user.web.UserVO" alias="UserVO"/>
-		<typeAlias type="kr.ac.kopo.part.web.PartVO" alias="PartVO"/>
+		<typeAlias type="kr.ac.kopo.partner.web.PartnerVO" alias="PartnerVO"/>
   		<typeAlias type="kr.ac.kopo.user.web.ProUsersVO" alias="ProUsersVO"/>
   		<typeAlias type="kr.ac.kopo.note.web.NoteVO" alias="NoteVO"/>
   		<typeAlias type="kr.ac.kopo.room.web.RoomVO" alias="RoomVO"/>
@@ -21,7 +21,7 @@
   
   	<mappers>
   		 <mapper resource="mybatis/user.xml"/>
-  		<mapper resource="mybatis/part.xml"/> 
+  		<mapper resource="mybatis/partner.xml"/> 
   		<mapper resource="mybatis/pro.xml"/>
   		<mapper resource="mybatis/login.xml"/>
   		<mapper resource="mybatis/note.xml"/>

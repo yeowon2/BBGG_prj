@@ -1,17 +1,17 @@
-package kr.ac.kopo.part.web;
+package kr.ac.kopo.partner.web;
 
 import java.util.Date;
 
 import kr.ac.kopo.pager.Pager;
 
-public class PartVO extends Pager{
+public class PartnerVO extends Pager{
 
-	private long partNo;
-	private String partId;
-	private String partPw;
+	private long partnerNo;
+	private String partnerId;
+	private String partnerPw;
 	private String compName;
-	private String partName;
-	private String partType;
+	private String partnerName;
+	private String partnerType;
 	private String compAddress;
 	private String phone;
 	private String registNum;
@@ -19,25 +19,24 @@ public class PartVO extends Pager{
 	private Date registDate;
 	private Date updateDate;
 	private String useAt;
-	private String PartAuth;
-	
-	public long getPartNo() {
-		return partNo;
+	private String partnerAuth;
+	public long getPartnerNo() {
+		return partnerNo;
 	}
-	public void setPartNo(long partNo) {
-		this.partNo = partNo;
+	public void setPartnerNo(long partnerNo) {
+		this.partnerNo = partnerNo;
 	}
-	public String getPartId() {
-		return partId;
+	public String getPartnerId() {
+		return partnerId;
 	}
-	public void setPartId(String partId) {
-		this.partId = partId;
+	public void setPartnerId(String partnerId) {
+		this.partnerId = partnerId;
 	}
-	public String getPartPw() {
-		return partPw;
+	public String getPartnerPw() {
+		return partnerPw;
 	}
-	public void setPartPw(String partPw) {
-		this.partPw = partPw;
+	public void setPartnerPw(String partnerPw) {
+		this.partnerPw = partnerPw;
 	}
 	public String getCompName() {
 		return compName;
@@ -45,17 +44,17 @@ public class PartVO extends Pager{
 	public void setCompName(String compName) {
 		this.compName = compName;
 	}
-	public String getPartName() {
-		return partName;
+	public String getPartnerName() {
+		return partnerName;
 	}
-	public void setPartName(String partName) {
-		this.partName = partName;
+	public void setPartnerName(String partnerName) {
+		this.partnerName = partnerName;
 	}
-	public String getPartType() {
-		return partType;
+	public String getPartnerType() {
+		return partnerType;
 	}
-	public void setPartType(String partType) {
-		this.partType = partType;
+	public void setPartnerType(String partnerType) {
+		this.partnerType = partnerType;
 	}
 	public String getCompAddress() {
 		return compAddress;
@@ -99,10 +98,10 @@ public class PartVO extends Pager{
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
-	public String getPartAuth() {
-		return PartAuth;
+	public String getPartnerAuth() {
+		return partnerAuth;
 	}
-	public void setPartAuth(String partAuth) {
-		PartAuth = partAuth;
+	public void setPartnerAuth(String partnerAuth) {
+		this.partnerAuth = partnerAuth;
 	}
 }

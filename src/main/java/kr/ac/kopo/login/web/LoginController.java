@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.ac.kopo.login.service.LoginService;
+import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller
@@ -26,7 +27,14 @@ public class LoginController {
 	@GetMapping("/login")
 	public String login(@ModelAttribute UserVO userVO, Model model, HttpSession session, HttpServletRequest request) {
 
-		return "/login/login";
+		return "login/login";
+	};
+	
+	//로그인 화면 
+	@GetMapping("/partner/login")
+	public String login(@ModelAttribute PartnerVO partnerVO, Model model, HttpSession session, HttpServletRequest request) {
+		
+		return "login/login";
 	};
 	
 	//로그인 처리

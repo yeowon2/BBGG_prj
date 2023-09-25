@@ -1,4 +1,4 @@
-package kr.ac.kopo.part.web;
+package kr.ac.kopo.partner.web;
 
 import java.util.List;
 
@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.kopo.pager.Pager;
-import kr.ac.kopo.part.service.PartService;
+import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller
-@RequestMapping("/part")
-public class PartController {
+@RequestMapping("/partner")
+public class PartnerController {
 
-	private final String path = "part/";
+	private final String path = "partner/";
+	
 	@Autowired
-	PartService service;
+	PartnerService service;
 	
 	@GetMapping("/list")
 	public String list(Model model, Pager pager) {
-		List<PartVO> list = service.list(pager);
+		List<PartnerVO> list = service.list(pager);
 		model.addAttribute("list", list);
 		return path + "list";
 	}
@@ -35,31 +36,31 @@ public class PartController {
 	}
 	
 	@PostMapping("/add")
-	public String add(PartVO partVO) {
-		service.add(partVO);
+	public String add(PartnerVO partnerVO) {
+		service.add(partnerVO);
 		
 		return "redirect:/";
 	}
 	
-	@GetMapping("/update/{partVO}")
-	public String update(@PathVariable Long partNo, Model model) {
-		PartVO partVO = service.select(partNo);
-		model.addAttribute("partVO", partVO);
+	@GetMapping("/update/{partnerNo}")
+	public String update(@PathVariable Long partnerNo, Model model) {
+		PartnerVO partnerVO = service.select(partnerNo);
+		model.addAttribute("partnerVO", partnerVO);
 		
 		return path + "update";
 	}
 	
-	@PostMapping("/update/{partNo}")
-	public String update(@PathVariable Long partNo, PartVO partVO) {
-		partVO.setPartNo(partNo);
-		service.update(partVO);
+	@PostMapping("/update/{partnerNo}")
+	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO) {
+		partnerVO.setPartnerNo(partnerNo);
+		service.update(partnerVO);
 		
 		return "redirect:../list";
 	}
 	
-	@GetMapping("/delete/{partNo}")
-	public String delete(@PathVariable Long partNo) {
-		service.delete(partNo);
+	@GetMapping("/delete/{partnerNo}")
+	public String delete(@PathVariable Long partnerNo) {
+		service.delete(partnerNo);
 		
 		return "redirect:../list";
 	}

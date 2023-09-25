@@ -6,6 +6,8 @@ public class RecentListVO {
 	private Long userNo;	// 회원 고유번호
 	private String useAt;	// 상태코드
 	
+	private int roomId; 
+	
 	public Long getRoomNo() {
 		return roomNo;
 	}
@@ -23,6 +25,12 @@ public class RecentListVO {
 	}
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
+	}
+	public int getRoomId() {
+		return roomId;
+	}
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
 	}
 	
 	

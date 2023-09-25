@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<insert id="add">
+		INSERT INTO tbl_user
+		(
+			user_id
+			, user_pw
+			, user_name
+			, phone
+			, regist_date
+			, update_date
+			, use_at
+		)
+		VALUES (
+			#{userId}
+			, #{userPw}
+			, #{userName}
+			, #{phone}
+			, NOW()
+			, NOW()
+			, 'Y'
+		)
+	</insert>
+
+	 
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM  tbl_user
+	</select>
+	
+	<select id="list" resultType="UserVO">
+		SELECT 
+			user_no
+			, user_id
+			, user_name
+			, phone
+			, Regist_date
+		FROM  tbl_user
+		WHERE use_at = 'Y'
+	</select>
+	
+	<select id="select" resultType="UserVO">
+		SELECT 
+			user_no
+			, user_id
+			, user_nm
+			, phone
+			, regist_date
+			, update_date
+		FROM tbl_user
+		WHERE user_no = #{userNo}
+	</select>
+	
+	<update id="update">
+		UPDATE tbl_user
+		SET 
+			user_pw = #{userPw}
+			, user_name = #{userName}
+			, user_phone = #{userPhone}
+			, update_date = now()
+		WHERE user_no = #{userNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_user
+		WHERE user_no = #{userNo}
+	</delete>
+	
+</mapper>

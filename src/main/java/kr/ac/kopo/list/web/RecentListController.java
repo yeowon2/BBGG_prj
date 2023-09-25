@@ -15,7 +15,7 @@ public class RecentListController {
 	@Autowired
 	RecentListService service;	
 	
-	final String path = "/list";
+	private final String path = "list/";
 	
 	
 	@GetMapping("/recentList")

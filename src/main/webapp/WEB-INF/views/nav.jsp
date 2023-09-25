@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
       <!-- Start Top Bar -->
@@ -17,15 +18,21 @@
             </div>
             <div class="col-lg-5 col-md-4 col-xs-12">
               <div class="roof-social float-right">
-                <a class="facebook" href="#"><i class="lni-facebook-filled"></i></a>
-                <a class="twitter" href="#"><i class="lni-twitter-filled"></i></a>
-                <a class="instagram" href="#"><i class="lni-instagram-filled"></i></a>
-                <a class="linkedin" href="#"><i class="lni-linkedin-filled"></i></a>
+               	<div>
+               		
+               	</div>
               </div>
-              <div class="header-top-right float-right">
-                <a href="login.html" class="header-top-button"><i class="lni-lock"></i> 로그인</a> |
-                <a href="register.html" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a>
-              </div>
+              <c:if test="${loginVO == null}">
+	              <div class="header-top-right float-right">
+	                <a href="/login" class="header-top-button"><i class="lni-lock"></i> 로그인</a> |
+	                <a href="/user/add" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a>
+	              </div>
+              </c:if>
+              <c:if test="${loginVO != null}">
+	              <div class="header-top-right float-right">
+	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a> |
+	              </div>
+              </c:if>
             </div>
           </div>
         </div>
@@ -41,7 +48,7 @@
               <span class="navbar-toggler-icon"></span>
               <span class="lin-menu"></span>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="/resources/assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="/resources/assets/img/logo.png" alt=""></a>
           </div>
 
           <div class="collapse navbar-collapse" id="main-navbar">
@@ -103,14 +110,26 @@
                   <a class="dropdown-item" href="typography.html">Typography</a>
                 </div>
               </li>
+              <li class="nav-item dropdown mx-3">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  마이페이지 <i class="fa fa-angle-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
+                  <a class="dropdown-item" href="/note/sendList/3">보낸 쪽지함</a>
+                </div>
+              </li>
             </ul>
-            <div class="search-add float-right">
+            <!-- <div class="search-add float-right">
               <form method="post">
                 <div class="form-group">
                     <input type="search" name="field-name" value="" placeholder="검색어를 입력하세요" required="">
                     <button type="submit" class="search-btn"><span class="lni-search"></span></button>
                 </div>
               </form>
+            </div> -->
+            <div>
+              
             </div>
           </div>
         </div>

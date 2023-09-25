@@ -31,7 +31,7 @@ public class LoginController {
 		UserVO loginVO = loginService.actionLogin(userVO);
 		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
 			session.setAttribute("loginVO", loginVO);
-			return "redirect:/user/list";
+			return "redirect:/";
 		} else {
 			model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
 			return "redirect:/login";

@@ -9,66 +9,55 @@
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper">
 
-        <!-- Main Content -->
-        <div class="hk-pg-wrapper hk-auth-wrapper">
-            <header class="d-flex justify-content-between align-items-center">
-				<a class="d-flex font-24 font-weight-500 auth-brand" href="#">
-                    Scrooge
-                </a>
-                <div class="btn-group btn-group-sm">
-                    <a href="#" class="btn btn-outline-secondary">Help!</a>
-                    <a href="#" class="btn btn-outline-secondary">About Us</a>
-                </div>
-            </header>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-5 pa-0">
-                        <div class="auth-cover-img overlay-wrap" style="background-image:url(dist/img/bg-2.jpg);">
-                           
-                        </div>
-                    </div>
-					<div class="col-xl-7 pa-0">
-                        <div class="auth-form-wrap py-xl-0 py-50">
-                            <div class="auth-form w-xxl-55 w-xl-75 w-sm-90 w-xs-100">
-                                <form action="/actionLogin" name="loginFomr" method="post">
-                                    <h1 class="display-5 mb-10">로그인</h1>
-                                    <p class="mb-30">Sign in to your account and enjoy unlimited perks.</p>
-                                    <div class="form-group">
-                                        <input class="form-control" name="userId" placeholder="ID(e-Mail)를 입력하세요" type="text" value="">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input class="form-control" name="userPw" placeholder="비밀번호를 입력하세요" type="password" value=""> 
-                                            <div class="input-group-append">
-                                                <span class="input-group-text"><span class="feather-icon"><i data-feather="eye-off"></i></span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mb-25">
-                                        <input class="custom-control-input" id="same-address" type="checkbox" checked>
-                                        <label class="custom-control-label font-14" for="same-address">로그인 유지</label>
-                                    </div>
-                                    <button class="btn btn-danger btn-block" type="submit">로그인</button>
-                                    <p class="font-14 text-center mt-15">Having trouble logging in?</p>
-                                    <div class="option-sep">or</div>
-                                    <div class="form-row">
-                                        <div class="col-sm-6 mb-20">
-                                            <button class="btn btn-indigo btn-block btn-wth-icon"> <span class="icon-label"><i class="fa fa-facebook"></i> </span><span class="btn-text">Login with facebook</span></button>
-                                        </div>
-                                        <div class="col-sm-6 mb-20">
-                                            <button class="btn btn-sky btn-block btn-wth-icon"> <span class="icon-label"><i class="fa fa-twitter"></i> </span><span class="btn-text">Login with Twitter</span></button>
-                                        </div>
-                                    </div>
-                                    <p class="text-center">Do have an account yet? <a href="/user/add">회원가입</a></p>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Page Banner Start -->
+    <div id="page-banner-area" class="page-banner">
+      <div class="page-banner-title">
+        <div class="text-center">
+          <h2>Log</h2>
+          <a href="#"><i class="lni-home"></i> Home</a>
+          <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+          <span class="current">Log</span>
         </div>
-        <!-- /Main Content -->
+      </div>
+    </div>
+    <!-- Page Banner End -->
 
+    <!-- Content section Start --> 
+    <section id="content" class="section-padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6 col-xs-12">
+            <div class="page-login-form box">
+              <h3>
+                로그인
+              </h3>
+              <form class="login-form" method="post" action="/actionLogin">
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-user"></i>
+                    <input type="text" id="sender-email" class="form-control" name="userId" placeholder="이메일 아이디를 입력하세요">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <div class="input-icon">
+                    <i class="lni-lock"></i>
+                    <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력하세요">
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <input type="checkbox" name="rememberme" value=""> 로그인 유지
+                </div> 
+                <button class="btn btn-common log-btn" type="submit">로그인</button>
+              </form>
+              <ul class="form-links">
+                <li class="text-center"><a href="/user/add">회원 가입 하시겠습니까?</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Content section End --> 
     </div>
 	<!-- /HK Wrapper -->
 <%-- <jsp:include page="../footer.jsp"></jsp:include> --%>

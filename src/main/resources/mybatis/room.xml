@@ -121,7 +121,7 @@
 		NOW(),
 		#{lat},
 		#{lng},
-		#{useAt}
+		y
 		)
 	</insert>
 	

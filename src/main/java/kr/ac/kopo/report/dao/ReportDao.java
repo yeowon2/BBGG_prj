@@ -11,5 +11,5 @@ public interface ReportDao {
 
 //	List<ReportVO> reportList(ReportVO reportVO);
 
-	void reportAdd(Long roomNo, ReportVO reportVO, Model model);
+	void reportAdd(Long roomNo, ReportVO reportVO);
 }

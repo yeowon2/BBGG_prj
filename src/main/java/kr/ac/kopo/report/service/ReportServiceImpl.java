@@ -22,8 +22,8 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public void reportAdd(Long roomNo, ReportVO reportVO, Model model) {
-		dao.reportAdd(roomNo, reportVO, model);		
+	public void reportAdd(Long roomNo, ReportVO reportVO) {
+		dao.reportAdd(roomNo, reportVO);		
 	}
 
 	

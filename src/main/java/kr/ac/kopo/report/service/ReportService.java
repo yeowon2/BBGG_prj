@@ -13,6 +13,6 @@ public interface ReportService {
 	List<ReportVO> reportList(ReportVO reportVO);
 	
 	// 허위 매물 등록 정보
-	void reportAdd(Long roomNo, ReportVO reportVO, Model model);
+	void reportAdd(Long roomNo, ReportVO reportVO);
 
 }

@@ -18,8 +18,10 @@
 								use_at, 
 								agree_at)
 		VALUES (#{roomNo}, 
-				#{userNo}, 
-				#{reportCheck1}, #{reportCheck2}, #{reportCheck3}, 
+				1, 
+				#{reportCheck1}, 
+				#{reportCheck2}, 
+				#{reportCheck3}, 
 				#{reportContent}, 
 				"Y", 
 				#{agreeAt})

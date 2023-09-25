@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import kr.ac.kopo.list.service.RecentListService;
 
 @Controller
-public class RecentListController {
+public class ViewListController {
 
-	@Autowired
-	RecentListService service;	
+	/*
+	 * @Autowired RecentListService service;
+	 */
 	
 	private final String path = "list/";
 	
@@ -27,7 +27,7 @@ public class RecentListController {
 		
 		// cookie 
 		Cookie[] cookies = request.getCookies();
-		List <RecentListVO> rList = new ArrayList<RecentListVO>();
+		List <ViewListVO> rList = new ArrayList<ViewListVO>();
 		
 		if(cookies != null) {
 			for (int i = cookies.length-1; i>=0; i--) {
@@ -36,7 +36,7 @@ public class RecentListController {
 				if(cookies[i].getName().startsWith("roomDetailsCookie")) {
 					String no = cookies[i].getValue();
 					
-					RecentListVO rvo = new RecentListVO();
+					ViewListVO rvo = new ViewListVO();
 					rvo.setRoomId(Integer.parseInt(no));
 					
 					rList.add(rvo);

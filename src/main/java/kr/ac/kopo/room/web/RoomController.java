@@ -83,6 +83,7 @@ public class RoomController {
 				for(Cookie cookie : cookies) {
 					if("roomDetailsCookie".equals(cookie.getName())) {
 						roomDetails = cookie.getValue();
+						System.out.println(cookie.getValue());
 						break;
 					}
 				}
@@ -95,7 +96,7 @@ public class RoomController {
 			}
 			
 				// 객실 세보 정보(result)를 가져온 후 roomDetailCookie라는 쿠키를 생성하며 이에 대한 추가 속성을 설정해줄 수 있음
-				Cookie roomDetailsCookie = new Cookie("roomDetailsCookie", result.toString());
+				Cookie roomDetailsCookie = new Cookie("roomDetailsCookie", roomDetails);
 				roomDetailsCookie.setMaxAge(9600); // 3시간동안 쿠키가 유지되도록 함
 				// Http응답에 쿠키를 넣어줄 수 있음
 				response.addCookie(roomDetailsCookie);

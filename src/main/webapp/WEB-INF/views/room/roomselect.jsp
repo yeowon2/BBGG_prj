@@ -39,16 +39,16 @@
 		                </div>
                     </c:if>
                     <!-- 전세, 월세 표시 -->
-                    <c:if test="${result.leaseNo != null && result.monthNo == null}">
+                    <c:if test="${result.leaseOrMonth == lease}">
 	                    <div class="form-group">
 	                    	<h6>전세</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="전세  " required readonly />
+	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="lease, ${result.leasePrice}  " required readonly />
 	                    </div>
                     </c:if>
-                    <c:if test="${result.leaseNo == null && result.monthNo != null}">
+                    <c:if test="${result.leaseOrMonth == month}">
 	                    <div class="form-group">
 	                    	<h6>월세</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="월세  " required readonly />
+	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="month, ${result.deposltFee}, ${result.monthPrice}  " required readonly />
 	                    </div>
                     </c:if>
                     <!-- 입주가능날짜 -->
@@ -61,7 +61,7 @@
                     <c:if test="${result.moveInAt == 'n'}">
 	                    <div class="form-group">
 	                    	<h6>일주가능날짜</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.moveInDate }" required readonly />
+	                        <input type="text" name="name" class="form-control rounded-0" value="<fmt:formatDate value="${result.moveInDate }" pattern="yyyy.MM.dd"/>" readonly />
 	                    </div>
                     </c:if>
                     <!-- 관리비 -->

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.ac.kopo.report.dao.ReportDao;
 import kr.ac.kopo.report.web.ReportVO;
@@ -21,9 +22,10 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public ReportVO reportAdd(RoomVO roomNo) {
-		
-		return null;
+	public void reportAdd(Long roomNo, ReportVO reportVO, Model model) {
+		dao.reportAdd(roomNo, reportVO, model);		
 	}
+
+	
 
 }

@@ -4,6 +4,7 @@ import java.io.Console;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,12 @@ public class ReportController {
 	}
 	
 	@PostMapping("/{roomNo}")
-	public String reportAdd(@PathVariable Long roomNo, HttpSession session, Model model) {
+	public String reportAdd(@PathVariable Long roomNo, HttpSession session, Model model, ReportVO reportVO) {
 		model.addAttribute("roomNo", roomNo);
 		if(session.getId() != null) { //@@@@@@@@@@
-			return path + "/add/{roomNo}";
+			
+			service.reportAdd(roomNo, reportVO, model);
+			return "redirect:/roomSelect/{roomNo}";
 		} else {	
 			model.addAttribute("loginMessage", "로그인 후 이용 가능합니다.");
 			return "redirect:/roomSelect/{roomNo}";
@@ -78,13 +81,13 @@ public class ReportController {
 	}
 	
 	// 허위 매물 진짜로 등록 
-	@GetMapping("/addCom")
-	public String reportAddCom(@ModelAttribute UserVO userVO, RoomVO roomNo, HttpSession session, Model model) {
-		ReportVO repoInfo = service.reportAdd(roomNo); // 매물번호로 repoInfo 객체 생성
-		
-		model.addAttribute("repoInfo", repoInfo);
-		return path + "comp";
-	}
+//	@GetMapping("/addCom")
+//	public String reportAddCom(@ModelAttribute UserVO userVO, RoomVO roomNo, HttpSession session, Model model) {
+//		ReportVO repoInfo = service.reportAdd(roomNo); // 매물번호로 repoInfo 객체 생성
+//		
+//		model.addAttribute("repoInfo", repoInfo);
+//		return path + "comp";
+//	}
 	
 
 }

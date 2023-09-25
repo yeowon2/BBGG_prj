@@ -3,15 +3,26 @@
 
 <mapper namespace="report">
 
-	<select id="select">
+	<select id="selectList">
 		SELECT report.*, report_file.* 
 		FROM report JOIN report_file ON (report.report_no = report_file.report_no)
 	</select>
-	
-	<select id="selectList" resultMap=""></select>
 
-	<insert id="">
-		
+	<insert id="insert">
+		INSERT INTO tbl_report (room_no, 
+								user_no, 
+								report_check1, 
+								report_check2, 
+								report_check3, 
+								report_content, 
+								use_at, 
+								agree_at)
+		VALUES (#{roomNo}, 
+				#{userNo}, 
+				#{reportCheck1}, #{reportCheck2}, #{reportCheck3}, 
+				#{reportContent}, 
+				"Y", 
+				#{agreeAt})
 	</insert>
 	
 	<update id=""></update>

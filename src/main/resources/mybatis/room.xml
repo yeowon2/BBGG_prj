@@ -55,28 +55,28 @@
 	</select>
 	
 	<select id="roomSelect" resultType="RoomVO">
-		SELECT (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.lease_no = tbl_room.lease_no) AS "가격", tbl_room.*
+		SELECT 
+		
+		<choose>
+	        <when test="leaseOrMonth == 'lease'">
+	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.room_no = tbl_room.room_no) AS "전세가격",
+	        </when>
+	        <otherwise>
+	            (SELECT deposlt_fee FROM tbl_month  WHERE tbl_month.room_no = tbl_room.room_no) AS "보증금",
+	            (SELECT month_price FROM tbl_month  WHERE tbl_month.room_no = tbl_room.room_no) AS "월세가격",
+	        </otherwise>
+	    </choose>
+		tbl_room.*
 		FROM tbl_room
 		WHERE room_No = #{roomNo}
 	
 	</select>
 	
 	<insert id="roomAdd">
-	    <if test="leaseOrMonth == 'lease'">
-	        INSERT INTO tbl_lease(lease_price)
-	        VALUES (#{leasePrice})
-	    </if>
-	    <if test="leaseOrMonth == 'month'">
-	        INSERT INTO tbl_lease(deposit_fee, month_price)
-	        VALUES (#{depositFee}, #{monthPrice})
-	    </if>
-	    
 	    INSERT INTO tbl_room
 	    (
 	    partner_no,
 	    lease_or_month,
-	    lease_no,
-	    month_no,
 	    room_type,
 	    address, 
 	    address2,
@@ -91,7 +91,7 @@
 	    bath_at,
 	    elevator_at,
 	    parking_at,
-	    manage_feeAt,
+	    manage_fee_at,
 	    manage_fee, 
 	    memo_short,
 	    memo_detail,
@@ -99,38 +99,23 @@
 	    update_date,
 	    lat,
 	    lng,
-	    
+	    use_at
 	    )
 	    VALUES 
 	    (
 	    1,
-	    
-	    <choose>
-	        <when test="leaseOrMonth == 'lease'">
-	            #{leaseOrMonth}, <!-- 문자열로 변경 -->
-	            #{leaseNo},
-	            NULL,
-	        </when>
-	        <otherwise>
-	            #{leaseOrMonth}, <!-- 문자열로 변경 -->
-	            NULL,
-	            #{monthNo},
-	        </otherwise>
-	    </choose>
-	    
+	    #{leaseOrMonth},
 	    #{roomType},
 	    #{address},
 	    #{address2},
 	    #{dong},
 	    #{ho},
-	    
+	    #{moveInAt},
 	    <choose>
-	        <when test="moveInAt == 'y'">
-	            #{moveInAt}, <!-- 문자열로 변경 -->
+	        <when test="moveInDate == null">
 	            NOW(),
 	        </when>
 	        <otherwise>
-	            #{moveInAt}, <!-- 문자열로 변경 -->
 	            #{moveInDate},
 	        </otherwise>
 	    </choose>
@@ -142,14 +127,13 @@
 	    #{bathAt},
 	    #{elevatorAt},
 	    #{parkingAt},
+	    #{manageFeeAt},
 	    
 	    <choose>
-	        <when test="manageFeeAt == y">
-	            #{manageFeeAt}, <!-- 문자열로 변경 -->
+	        <when test="manageFee != null">
 	            #{manageFee},
 	        </when>
 	        <otherwise>
-	            #{manageFeeAt}, <!-- 문자열로 변경 -->
 	            NULL,
 	        </otherwise>
 	    </choose>
@@ -160,14 +144,20 @@
 	    NOW(),
 	    #{lat},
 	    #{lng},
-	    
+	    'y'
 	    )
+	    
+	    <!-- <selectKey keyColumn="room_no" keyProperty="roomNo" order="AFTER" resultType="int">
+	    	<if test="leaseOrMonth == 'lease'">
+		        INSERT INTO tbl_lease(lease_price, room_no)
+		        VALUES (#{leasePrice}, #{roomNo})
+		    </if>
+		    <if test="leaseOrMonth == 'month'">
+		        INSERT INTO tbl_month(deposit_fee, month_price, room_no)
+		        VALUES (#{depositFee}, #{monthPrice}, #{roomNo})
+		    </if>
+	    </selectKey> -->
+	    
 	</insert>
-
-
-	
-	<!-- 스칼라 부속질의(SELECT 부속질의)
-	SELECT (SELECT rent_price FROM lease  WHERE lease.lease_no = room.lease_no) AS "가격", room.*
-	FROM room; -->
 
 </mapper>

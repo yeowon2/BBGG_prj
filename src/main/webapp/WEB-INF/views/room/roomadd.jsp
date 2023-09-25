@@ -178,10 +178,10 @@
 	                    <div class="form-group">
 	                    	<h6>엘리베이터</h6>
 	                        <label>
-						        <input id="elevatorAt" type="radio" name="elevatorAt" value="y"> 있음
+						        <input id="elevatorAt" type="radio" name="elevatorAt" value="Y"> 있음
 						    </label>
 						    <label>
-						        <input id="elevatorAt" type="radio" name="elevatorAt" value="n"> 없음
+						        <input id="elevatorAt" type="radio" name="elevatorAt" value="N"> 없음
 						    </label>
 	                    </div>
                     	
@@ -189,38 +189,39 @@
                     	<div class="form-group">
 						    <h6>입주가능여부</h6>
 						    <label>
-						        <input id="moveInAt" type="radio" name="moveInAt" value="y"> 즉시입주가능
+						        <input type="radio" name="moveInAt" value="Y"> 즉시입주가능
 						    </label>
 						    <label>
-						        <input id="moveInAt" type="radio" name="moveInAt" value="n"> 추후입주가능
+						        <input type="radio" name="moveInAt" value="N"> 추후입주가능
 						    </label>
 						</div>
                     	<!-- 입주가능날짜 -->
-	                    <div class="form-group" id="moveInDateField" style="display: none;">
+						<div class="form-group" id="moveInDateField" style="display: none;">
 						    <h6>입주가능날짜</h6>
-						    <input type="datetime-local" id="moveInDateInput" name="moveInDate" class="form-control rounded-0" value=""/>
+						    <input type="datetime-local" id="moveInDate" name="moveInDate" class="form-control rounded-0" value=""/>
 						</div>
+						
 						<script>
-						    // 라디오 버튼 이벤트 리스너 추가
-						    var radioButtons = document.getElementsByName("moveInAt");
-						    for (var i = 0; i < radioButtons.length; i++) {
-						        radioButtons[i].addEventListener('change', function () {
-						            toggleMoveInDateField(this.value);
+						    // Flatpickr 달력 초기화 (문서 로드 시 한 번만 호출)
+						    document.addEventListener('DOMContentLoaded', function () {
+						        flatpickr(moveInDate, {
+						            enableTime: false, // 시간 선택 비활성화
+						            dateFormat: "Y-m-d", // 날짜 형식 지정
 						        });
-						    }
-						    // 달력 초기화 및 보이기/숨기기 설정
-						    var moveInDateInput = document.getElementById("moveInDateInput");
-						    var moveInDateField = document.getElementById("moveInDateField");
+						
+						        // 라디오 버튼 이벤트 리스너 추가
+						        var radioButtons = document.getElementsByName("moveInAt");
+						        for (var i = 0; i < radioButtons.length; i++) {
+						            radioButtons[i].addEventListener('change', function () {
+						                toggleMoveInDateField(this.value);
+						            });
+						        }
+						    });
 						
 						    function toggleMoveInDateField(value) {
-						        if (value === "n") {
+						        var moveInDateField = document.getElementById("moveInDateField");
+						        if (value === "N") {
 						            moveInDateField.style.display = "block"; // 보이도록 설정
-						
-						            // Flatpickr 달력 초기화
-						            flatpickr(moveInDateInput, {
-						                enableTime: false, // 시간 선택 비활성화
-						                dateFormat: "Y-m-d", // 날짜 형식 지정
-						            });
 						        } else {
 						            moveInDateField.style.display = "none"; // 숨김
 						        }

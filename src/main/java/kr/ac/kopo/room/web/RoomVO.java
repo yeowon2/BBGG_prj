@@ -8,8 +8,6 @@ public class RoomVO {
 	private Long roomNo;			//매물고유번호
 	private Long partnerNo;			//partner고유번호
 	private String leaseOrMonth;	//전세 / 월세
-	private Long leaseNo;			//전세고유번호
-	private Long monthNo;			//월세고유번호
 	private String roomType;		//매물 타입
 	private String address;			//매물 주소
 	private String address2;		//상세 주소
@@ -17,7 +15,7 @@ public class RoomVO {
 	private String ho;				//호
 	private String moveInAt;		//입주가능여부
 	
-	@DateTimeFormat
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveInDate;		//입주가능날짜
 	
 	private Long roomSize;			//전용면적
@@ -59,18 +57,6 @@ public class RoomVO {
 	}
 	public void setLeaseOrMonth(String leaseOrMonth) {
 		this.leaseOrMonth = leaseOrMonth;
-	}
-	public Long getLeaseNo() {
-		return leaseNo;
-	}
-	public void setLeaseNo(Long leaseNo) {
-		this.leaseNo = leaseNo;
-	}
-	public Long getMonthNo() {
-		return monthNo;
-	}
-	public void setMonthNo(Long monthNo) {
-		this.monthNo = monthNo;
 	}
 	public String getRoomType() {
 		return roomType;

@@ -35,8 +35,8 @@ public class FakeController {
 		return path + "/list";
 	}
 	
-	@GetMapping("/{roomNo}")
-	public String fake(@PathVariable Long roomNo, HttpSession session, Model model) {
+	@GetMapping("/{itemNo}")
+	public String fake(@PathVariable Long itemNo, HttpSession session, Model model) {
 		//model.addAttribute("roomNo", roomNo);
 		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
 		System.out.println(loginVO);
@@ -52,9 +52,9 @@ public class FakeController {
 		}	
 	}
 	
-	@PostMapping("/{roomNo}")
-	public String fakeAdd(@PathVariable Long roomNo, HttpSession session, Model model, FakeVO fakeVO, MultipartHttpServletRequest files) {
-		model.addAttribute("roomNo", roomNo);
+	@PostMapping("/{itemNo}")
+	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, MultipartHttpServletRequest files) {
+		model.addAttribute("itemNo", itemNo);
 		
 		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
 		//System.out.println(loginVO);
@@ -78,11 +78,11 @@ public class FakeController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				} 
-				service.fakeAdd(roomNo, fakeVO, saveFile);
+				service.fakeAdd(itemNo, fakeVO, saveFile);
 				
 				//System.out.println("DB에 저장될 파일명 : " + saveFile);
 				model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
-				model.addAttribute("fakeFinishMsg", "redirect:/roomSelect/{roomNo}"); // @@@@@@@@@@
+				model.addAttribute("fakeFinishMsg", "redirect:/roomSelect/{itemNo}"); // @@@@@@@@@@
 				return "alert";
 			}
 		}

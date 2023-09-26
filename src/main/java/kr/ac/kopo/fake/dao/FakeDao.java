@@ -8,5 +8,5 @@ public interface FakeDao {
 
 //	List<ReportVO> reportList(ReportVO reportVO);
 
-	void fakeAdd(Long roomNo, FakeVO fakeVO, File saveFile);
+	void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile);
 }

@@ -11,6 +11,6 @@ public interface FakeService {
 	List<FakeVO> fakeList(FakeVO fakeVO);
 	
 	// 허위 매물 등록 정보
-	void fakeAdd(Long roomNo, FakeVO fakeVO, File saveFile);
+	void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile);
 
 }

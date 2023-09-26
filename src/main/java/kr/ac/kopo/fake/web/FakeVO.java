@@ -2,7 +2,7 @@ package kr.ac.kopo.fake.web;
 
 public class FakeVO {
 	private long fakeNo;
-	private long roomNo;
+	private long itemNo;
 	private long userNo;
 	private String fakeCheck1;
 	private String fakeCheck2;
@@ -10,18 +10,17 @@ public class FakeVO {
 	private String fakeContent;
 	private String userAt;
 	private String agreeAt;
-	
 	public long getFakeNo() {
 		return fakeNo;
 	}
 	public void setFakeNo(long fakeNo) {
 		this.fakeNo = fakeNo;
 	}
-	public long getRoomNo() {
-		return roomNo;
+	public long getItemNo() {
+		return itemNo;
 	}
-	public void setRoomNo(long roomNo) {
-		this.roomNo = roomNo;
+	public void setItemNo(long itemNo) {
+		this.itemNo = itemNo;
 	}
 	public long getUserNo() {
 		return userNo;
@@ -65,4 +64,6 @@ public class FakeVO {
 	public void setAgreeAt(String agreeAt) {
 		this.agreeAt = agreeAt;
 	}
+	
+	
 }

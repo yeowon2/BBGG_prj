@@ -130,7 +130,7 @@
 	            #{manageFee},
 	        </when>
 	        <otherwise>
-	            0,
+	            NULL,
 	        </otherwise>
 	    </choose>
 	    
@@ -158,8 +158,8 @@
 		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
-	<select id="partList" resultType="">
-		SELECT 
+	<select id="partList" resultType="ItemVO">
+		SELECT  
 	</select>
 	
 </mapper>

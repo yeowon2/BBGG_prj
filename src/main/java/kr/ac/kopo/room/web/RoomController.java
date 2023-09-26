@@ -90,9 +90,7 @@ public class RoomController {
 			}
 			// 우리가 지정해준 roomDetailsCookie의 값이 존재하는지 안 하는지 즉, 쿠키 값이 지정되었었는지 아닌지를 확인하고 지정해주는 코드
 			if(roomDetails != null) {
-				roomDetails = result.toString(); // 만약 null 값이 아니라면 쿠키 값을 업데이트 해주는 것 
-			}else {
-				roomDetails = result.toString(); // 만약 null 값이라면 쿠키 값을 새롭게 지정해주는 것 
+				roomDetails = result.getRoomNo().toString(); // 만약 null 값이 아니라면 쿠키 값을 업데이트 해주는 것 
 			}
 			
 				// 객실 세보 정보(result)를 가져온 후 roomDetailCookie라는 쿠키를 생성하며 이에 대한 추가 속성을 설정해줄 수 있음

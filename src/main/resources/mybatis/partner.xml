@@ -51,12 +51,11 @@
 	
 	<select id="select" resultType="PartnerVO">
 		SELECT 
-			partner_no
-			, user_id
+			comp_name
+			, comp_address
 			, partner_name
-			, comp_name
+			, regist_num
 			, phone
-			, regist_date
 		FROM  tbl_partner
 		WHERE partner_no = #{partnerNo}
 	</select>

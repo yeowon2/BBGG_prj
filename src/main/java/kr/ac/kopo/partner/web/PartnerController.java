@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
@@ -23,13 +22,23 @@ public class PartnerController {
 	@Autowired
 	PartnerService service;
 	
-	@GetMapping("/detail/{partnerNo}")
-	@ResponseBody
-	public PartnerVO detail(@PathVariable Long partnerNo, Model model) {
-		PartnerVO partnerVO = service.detail(partnerNo);
+	@GetMapping("/{partnerNo}")
+	public String partner(@PathVariable Long partnerNo, Model model) {
+		PartnerVO partnerVO = service.select(partnerNo);
+		model.addAttribute("partnerVO", partnerVO);
 		
-		return partnerVO;
+		
+		return "indexPartner";
 	}
+	
+	/*
+	 * @GetMapping("/{partnerNo}")
+	 * 
+	 * @ResponseBody public PartnerVO detail(@PathVariable Long partnerNo, Model
+	 * model) { PartnerVO partnerVO = service.detail(partnerNo);
+	 * 
+	 * return partnerVO; }
+	 */
 	
 	@GetMapping("/list")
 	public String list(Model model, Pager pager) {

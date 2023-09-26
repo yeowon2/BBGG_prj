@@ -4,11 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,6 +22,7 @@ import kr.ac.kopo.user.web.UserVO;
 @Controller
 public class LoginController {
 
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class); 
 	@Autowired
 	private LoginService loginService;
 
@@ -31,15 +35,24 @@ public class LoginController {
 	};
 	
 	@PostMapping("/actionLogin")
-	public String actionLogin(@ModelAttribute UserVO userVO, @ModelAttribute PartnerVO partnerVO, Model model, HttpSession session, HttpServletResponse response, @RequestParam("userType") boolean userType) {
+	public String actionLogin(@ModelAttribute UserVO userVO, 
+			@ModelAttribute PartnerVO partnerVO, 
+			Model model, HttpSession session, HttpServletResponse response, 
+			@RequestParam("userType") boolean userType
+			) {
 	   
 		if (userType) { // 중개사 회원 로그인
 	        // 중개사 회원 로그인 로직을 구현
 	        PartnerVO loginPartnerVO = loginService.actionLoginPartner(partnerVO);
+	       Long partnerNo = loginPartnerVO.getPartnerNo();
+			
 	        if (loginPartnerVO != null && loginPartnerVO.getUserId() != null && !loginPartnerVO.getUserId().equals("")) {
-	            session.setAttribute("loginPartnerVO", loginPartnerVO);
+	        	
+	        	session.setAttribute("loginPartnerVO", loginPartnerVO);
+	        	
+	        	logger.info("partnerNo: {}",partnerNo);
 	           
-	            return "redirect:/partner"; // 중개사 회원 로그인 후 이동할 페이지 주소
+	            return "redirect:/partner/" + partnerNo;
 	        } else {
 	            model.addAttribute("loginMessage", "중개사 로그인 정보가 올바르지 않습니다.");
 	            return "redirect:/login";

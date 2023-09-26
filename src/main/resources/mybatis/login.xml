@@ -19,15 +19,10 @@
 		AND user_pw = #{userPw}
 	</select>
 	
-	 <!-- PartnerVO에 대한 ResultMap -->
-    <resultMap type="kr.ac.kopo.partner.web.PartnerVO" id="PartnerMap">
-        <id property="partnerNo" column="partner_no" /> <!-- 변경된 컬럼명 사용 -->
-        <result property="userId" column="user_id" /> <!-- 변경된 컬럼명 사용 -->
-        <result property="userPw" column="user_pw" /> <!-- 변경된 컬럼명 사용 -->
-    </resultMap>
+	
 
     <!-- PartnerVO를 사용한 로그인 쿼리 -->
-    <select id="partnerActionLogin" resultMap="PartnerMap">
+    <select id="partnerActionLogin" resultType="PartnerVO">
         SELECT
         	partner_no
 	        , user_id

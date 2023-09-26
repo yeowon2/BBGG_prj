@@ -1,6 +1,10 @@
 package kr.ac.kopo.login.dao;
 
+
+
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.logging.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +14,8 @@ import kr.ac.kopo.user.web.UserVO;
 @Repository
 public class LoginDaoImpl implements LoginDao {
 
+	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(LoginDaoImpl.class);
+	
 	@Autowired
 	SqlSession sql;
 	
@@ -20,6 +26,9 @@ public class LoginDaoImpl implements LoginDao {
 
 	@Override
 	public PartnerVO actionLogin(PartnerVO partnerVO) {
-		return sql.selectOne("login.partnerActionLogin", partnerVO);
+		
+		PartnerVO vo = sql.selectOne("login.partnerActionLogin", partnerVO);
+		
+		return vo;
 	}
 }

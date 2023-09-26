@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.report.dao.ReportDao;
 import kr.ac.kopo.report.web.ReportVO;
-import kr.ac.kopo.room.web.RoomVO;
 
 @Service
 public class ReportServiceImpl implements ReportService {

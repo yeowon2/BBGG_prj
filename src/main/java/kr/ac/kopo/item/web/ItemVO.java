@@ -1,14 +1,14 @@
-package kr.ac.kopo.room.web;
+package kr.ac.kopo.item.web;
 
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class RoomVO {
+public class ItemVO {
 		
-	private Long roomNo;			//매물고유번호
+	private Long itemNo;			//매물고유번호
 	private Long partnerNo;			//partner고유번호
 	private String leaseOrMonth;	//전세 / 월세
-	private String roomType;		//매물 타입
+	private String itemType;		//매물 타입
 	private String address;			//매물 주소
 	private String address2;		//상세 주소
 	private String dong;			//동
@@ -18,10 +18,10 @@ public class RoomVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveInDate;		//입주가능날짜
 	
-	private Long roomSize;			//전용면적
+	private Long itemSize;			//전용면적
 	private Long buildingFloor;		//건물 전체 층수
-	private Long roomFloor;			//해당 매물 층수
-	private Long roomCount;			//방 수
+	private Long itemFloor;			//해당 매물 층수
+	private Long itemCount;			//방 수
 	private Long bathAt;			//욕실 수
 	private String elevatorAt;		//엘리베이터 유무
 	private String parkingAt;		//주차 가능 여부
@@ -40,11 +40,11 @@ public class RoomVO {
 	private Long deposltFee;		//월세보증금
 	private Long monthPrice;		//월세가격
 	
-	public Long getRoomNo() {
-		return roomNo;
+	public Long getitemNo() {
+		return itemNo;
 	}
-	public void setRoomNo(Long roomNo) {
-		this.roomNo = roomNo;
+	public void setitemNo(Long itemNo) {
+		this.itemNo = itemNo;
 	}
 	public Long getPartnerNo() {
 		return partnerNo;
@@ -58,11 +58,11 @@ public class RoomVO {
 	public void setLeaseOrMonth(String leaseOrMonth) {
 		this.leaseOrMonth = leaseOrMonth;
 	}
-	public String getRoomType() {
-		return roomType;
+	public String getitemType() {
+		return itemType;
 	}
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
+	public void setitemType(String itemType) {
+		this.itemType = itemType;
 	}
 	public String getAddress() {
 		return address;
@@ -100,11 +100,11 @@ public class RoomVO {
 	public void setMoveInDate(Date moveInDate) {
 		this.moveInDate = moveInDate;
 	}
-	public Long getRoomSize() {
-		return roomSize;
+	public Long getitemSize() {
+		return itemSize;
 	}
-	public void setRoomSize(Long roomSize) {
-		this.roomSize = roomSize;
+	public void setitemSize(Long itemSize) {
+		this.itemSize = itemSize;
 	}
 	public Long getBuildingFloor() {
 		return buildingFloor;
@@ -112,17 +112,17 @@ public class RoomVO {
 	public void setBuildingFloor(Long buildingFloor) {
 		this.buildingFloor = buildingFloor;
 	}
-	public Long getRoomFloor() {
-		return roomFloor;
+	public Long getitemFloor() {
+		return itemFloor;
 	}
-	public void setRoomFloor(Long roomFloor) {
-		this.roomFloor = roomFloor;
+	public void setitemFloor(Long itemFloor) {
+		this.itemFloor = itemFloor;
 	}
-	public Long getRoomCount() {
-		return roomCount;
+	public Long getitemCount() {
+		return itemCount;
 	}
-	public void setRoomCount(Long roomCount) {
-		this.roomCount = roomCount;
+	public void setitemCount(Long itemCount) {
+		this.itemCount = itemCount;
 	}
 	public Long getBathAt() {
 		return bathAt;

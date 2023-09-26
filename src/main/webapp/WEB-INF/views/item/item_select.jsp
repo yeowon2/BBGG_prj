@@ -107,24 +107,24 @@
             <div class="col-lg-4 col-12 mb-5">
                 <div class="tm-address-col">
                     <h2 class="tm-text-primary mb-5">매물 상세 정보</h2>
-                    <c:if test="${result.roomType == 'O' }">
+                    <c:if test="${result.itemType == 'O' }">
                     	<p class="tm-mb-50" >방종류: 원룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 'T' }">
+                    <c:if test="${result.itemType == 'T' }">
                     	<p class="tm-mb-50">방종류: 투룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 'H' }">
+                    <c:if test="${result.itemType == 'H' }">
                     	<p class="tm-mb-50">방종류: 쓰리룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 'F' }">
+                    <c:if test="${result.itemType == 'F' }">
                     	<p class="tm-mb-50">방종류: 오피스텔</p>
                     </c:if>
                     
-                    <p class="tm-mb-50">해당층/건물층: ${result.roomFloor } / ${result.buildingFloor } </p>
+                    <p class="tm-mb-50">해당층/건물층: ${result.itemFloor } / ${result.buildingFloor } </p>
                     
-                    <p class="tm-mb-50">전용면적: ${result.roomSize }평 </p>
+                    <p class="tm-mb-50">전용면적: ${result.itemSize }평 </p>
                     
-                    <p class="tm-mb-50">방 수/욕실 수: ${result.roomCount } / ${result.bathAt } </p>
+                    <p class="tm-mb-50">방 수/욕실 수: ${result.itemCount } / ${result.bathAt } </p>
                     
                     <c:if test="${result.elevatorAt == 'Y' }">
                     	<p class="tm-mb-50">엘리베이터: 있음</p>
@@ -157,8 +157,8 @@
                         120-240 Fusce eleifend varius tempus<br>
                         Duis consectetur at ligula 10660
                     </address>
-                    <c:set var="roomNo" value="${result.roomNo}"/>
-                    <a href='/roomSelect/<c:out value="${roomNo}"/>/add'>
+                    <c:set var="itemNo" value="${result.itemNo}"/>
+                    <a href='/itemSelect/<c:out value="${itemNo}"/>/add'>
 	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
 		                    <span class="btn-text">쪽지보내기</span> 
 	                       	<span class="icon-label">
@@ -171,7 +171,7 @@
 	                        </span>
 	                    </button>
                     </a>
-                    <a href='/report/<c:out value="${roomNo}"/>'>
+                    <a href='/report/<c:out value="${itemNo}"/>'>
 	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
 		                    <span class="btn-text">신고하기</span> 
 	                       	<span class="icon-label">
@@ -198,19 +198,19 @@
         </div>
         <div class="row tm-mb-74 tm-people-row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물1</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물2</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물3</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물4</h2>
             </div>
         </div>
@@ -254,7 +254,7 @@
         </div>
     </footer>
     
-    <script src="../resources/room/js/plugins.js"></script>
+    <script src="../resources/item/js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

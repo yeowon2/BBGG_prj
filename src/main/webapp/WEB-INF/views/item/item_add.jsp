@@ -136,36 +136,36 @@
 						<div class="form-group">
 						    <h6>타입</h6>
 						    <label>
-						        <input type="radio" name="roomType" value="O" > 원룸
+						        <input type="radio" name="itemType" value="O" > 원룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="T" > 투룸
+						        <input type="radio" name="itemType" value="T" > 투룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="H" > 쓰리룸
+						        <input type="radio" name="itemType" value="H" > 쓰리룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="F" > 오피스텔
+						        <input type="radio" name="itemType" value="F" > 오피스텔
 						    </label>
 						</div>
 
 	                    <!-- 전용 면적 -->
 	                    <div class="form-group">
 	                    	<h6>전용 면적(평)</h6>
-	                        <input type="number" name="roomSize" class="form-control rounded-0" value="" required placeholder="단위(평)" />
+	                        <input type="number" name="itemSize" class="form-control rounded-0" value="" required placeholder="단위(평)" />
 	                    </div>
 	                    
 	                    <!-- 건물 층/ 해당 층 -->
 	                    <div class="form-group">
 	                    	<h6>건물층수</h6>
 	                        <input type="number" name="buildingFloor" class="form-control rounded-0" value="" required placeholder="건물 전체 층" />
-	                        <input type="number" name="roomFloor" class="form-control rounded-0" value="" required placeholder="해당 층" />
+	                        <input type="number" name="itemFloor" class="form-control rounded-0" value="" required placeholder="해당 층" />
 	                    </div>
 	                    
 	                    <!-- 방 수 -->
 	                    <div class="form-group">
 	                    	<h6>방 수</h6>
-	                        <input type="number" name="roomCount" class="form-control rounded-0" value="" required placeholder="방 수" />
+	                        <input type="number" name="itemCount" class="form-control rounded-0" value="" required placeholder="방 수" />
 	                    </div>
 	                    
 	                    <!-- 욕실 수 -->
@@ -301,19 +301,19 @@
         </div>
         <div class="row tm-mb-74 tm-people-row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물1</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물2</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물3</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물4</h2>
             </div>
         </div>
@@ -357,7 +357,7 @@
         </div>
     </footer>
     
-    <script src="../resources/room/js/plugins.js"></script>
+    <script src="../resources/item/js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

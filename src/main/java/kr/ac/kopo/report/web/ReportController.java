@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.kopo.item.service.ItmeService;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.note.service.NoteService;
 import kr.ac.kopo.note.web.NoteVO;
 import kr.ac.kopo.report.service.ReportService;
-import kr.ac.kopo.room.service.RoomService;
-import kr.ac.kopo.room.web.RoomVO;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller

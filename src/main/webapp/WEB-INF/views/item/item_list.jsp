@@ -62,7 +62,7 @@
 
 		            // 서버에서 DB 리스트를 가져옵니다.
 		            $.ajax({
-		                url: '/roomList', // 서버에서 데이터를 가져올 엔드포인트
+		                url: '/itemList', // 서버에서 데이터를 가져올 엔드포인트
 		                type: 'GET',
 		                dataType: 'json',
 		                success: function (data) {

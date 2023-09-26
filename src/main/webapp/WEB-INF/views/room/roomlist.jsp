@@ -47,30 +47,48 @@
 		    map = new kakao.maps.Map(mapContainer, mapOptions);
 		}
 		
-		// 서버에서 주소 검색 결과를 가져오는 함수
+		// 서버에서 주소 검색 결과를 가져와 DB 리스트와 비교하여 마커 표시
 		function searchAddress() {
 		    var address = document.getElementById('address').value;
-		
+
 		    // 카카오 맵 API를 사용하여 주소를 좌표로 변환
 		    var geocoder = new kakao.maps.services.Geocoder();
 		    geocoder.addressSearch(address, function (result, status) {
 		        if (status === kakao.maps.services.Status.OK) {
-		            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
+		            var searchCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
 		            // 이전에 표시된 마커들을 모두 삭제
 		            removeAllMarkers();
-		
-		            // 마커 생성 및 표시
-		            var marker = new kakao.maps.Marker({
-		                map: map,
-		                position: coords
+
+		            // 서버에서 DB 리스트를 가져옵니다.
+		            $.ajax({
+		                url: '/roomList', // 서버에서 데이터를 가져올 엔드포인트
+		                type: 'GET',
+		                dataType: 'json',
+		                success: function (data) {
+		                    if (data && data.length > 0) {
+		                        // 가져온 DB 리스트를 반복하여 마커를 생성하고 지도에 표시
+		                        for (var i = 0; i < data.length; i++) {
+		                            var dbCoords = new kakao.maps.LatLng(data[i].lat, data[i].lng);
+
+		                            // 주소 검색 결과 좌표와 DB 리스트 좌표를 비교하여 일치하는 경우에만 마커 표시
+		                            if (searchCoords.equals(dbCoords)) {
+		                                var marker = new kakao.maps.Marker({
+		                                    map: map,
+		                                    position: dbCoords
+		                                });
+		                                markers.push(marker);
+		                            }
+		                        }
+		                    }
+		                },
+		                error: function (error) {
+		                    console.error('데이터를 불러오는데 실패했습니다.', error);
+		                }
 		            });
-		
+
 		            // 검색 결과 위치를 지도 중심으로 설정
-		            map.setCenter(coords);
-		
-		            // 생성된 마커를 배열에 추가
-		            markers.push(marker);
+		            map.setCenter(searchCoords);
 		        } else {
 		            alert('주소를 찾을 수 없습니다.');
 		        }

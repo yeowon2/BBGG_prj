@@ -17,6 +17,8 @@ public interface ItemDao {
 
 	void monthAdd(HashMap<String, Long> map);
 
+	List<ItemVO> partItemList();
+
 	
 
 }

@@ -7,7 +7,7 @@
 
     INSERT INTO tbl_note
     (
-       room_no
+       item_no
 		, user_no 
 		, partner_no 
 		, note_subject 
@@ -16,13 +16,13 @@
 		, use_at 
     )
     VALUES (
-        #{roomNo}
+        #{itemNo}
         , 3
         , 
         (
         	SELECT partner_no 
-			FROM tbl_room 
-			WHERE room_no = #{roomNo}
+			FROM tbl_item 
+			WHERE item_no = #{itemNo}
         )
         , #{noteVO.noteSubject}
         , #{noteVO.noteContent}
@@ -67,7 +67,7 @@
 	<select id="sendDetail" parameterType="java.util.Map" resultMap="NoteMap">
 		SELECT 
 			tbl_partner.comp_name
-			, tbl_note.room_no 
+			, tbl_note.item_no 
 			, note_subject 
 			, note_text1
 			, note_text2
@@ -83,7 +83,7 @@
 	<select id="receiveDetail"  resultMap="NoteMap">
 		SELECT 
 			tbl_user.user_name
-			, tbl_note.room_no 
+			, tbl_note.item_no 
 			, note_subject 
 			, note_text1
 			, note_text2

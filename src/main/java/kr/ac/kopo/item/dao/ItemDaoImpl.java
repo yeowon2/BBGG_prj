@@ -49,6 +49,11 @@ public class ItemDaoImpl implements ItemDao {
 		sql.insert("item.monthAdd", map);
 	}
 
+	@Override
+	public List<ItemVO> partItemList() {
+		return sql.selectList("item.partItemList");
+	}
+
 	
 		
 }

@@ -158,4 +158,8 @@
 		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
+	<select id="partList" resultType="">
+		SELECT 
+	</select>
+	
 </mapper>

@@ -17,6 +17,7 @@
   		<typeAlias type="kr.ac.kopo.note.web.NoteVO" alias="NoteVO"/>
   		<typeAlias type="kr.ac.kopo.item.web.ItemVO" alias="ItemVO"/>
   		<typeAlias type="kr.ac.kopo.report.web.ReportVO" alias="ReportVO"/>
+  		<typeAlias type="kr.ac.kopo.list.web.ViewListVO" alias="ViewListVO"/>
   	</typeAliases>
   
   	<mappers>
@@ -27,5 +28,6 @@
   		<mapper resource="mybatis/note.xml"/>
   		<mapper resource="mybatis/item.xml"/>
   		<mapper resource="mybatis/report.xml"/>
+  		<mapper resource="mybatis/list.xml"/>
   	</mappers>
   </configuration>

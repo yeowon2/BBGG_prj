@@ -7,7 +7,7 @@ import kr.ac.kopo.pager.Pager;
 public class NoteVO extends Pager{
 
 	private Long noteNo;
-	private Long roomNo;
+	private Long itemNo;
 	private Long userNo;
 	private Long partnerNo;
 	private String noteSubject;
@@ -27,11 +27,11 @@ public class NoteVO extends Pager{
 	public void setNoteNo(Long noteNo) {
 		this.noteNo = noteNo;
 	}
-	public Long getRoomNo() {
-		return roomNo;
+	public Long getItemNo() {
+		return itemNo;
 	}
-	public void setRoomNo(Long roomNo) {
-		this.roomNo = roomNo;
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
 	}
 	public Long getUserNo() {
 		return userNo;

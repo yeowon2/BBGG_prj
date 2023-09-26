@@ -52,7 +52,7 @@
                                                             <div>
                                                                 <div data-note-no="${noteVO.noteNo}"></div>
                                                                 <div class="email-head font-weight-700 font-lg-15" id="userName">${noteVO.userName}</div>
-                                                                <div class="email-subject" id="roomNo">${noteVO.roomNo}번 매물</div>
+                                                                <div class="email-subject" id="roomNo">${noteVO.itemNo}번 매물</div>
                                                                 <div class="email-subject" id="noteSubject">제목: ${noteVO.noteSubject} </div>
                                                                 <div class="email-text" >
                                                                     <span># ${noteVO.noteText1}</span>
@@ -122,7 +122,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="email-text-wrap ml-50 mr-50 mt-30">
-                                                    <div id="room-no" class="pa-5"><!-- 매물번호:1번 --></div>
+                                                    <div id="item-no" class="pa-5"><!-- 매물번호:1번 --></div>
                                                     <div id="note-text1" class="pa-5"><!-- #빠른 입주 희망 --></div>
                                                     <div id="note-text2" class="pa-5"><!-- #급구 --></div>
                                                     <div id="note-text3" class="pa-5"></div>
@@ -203,7 +203,7 @@
                     // noteVO 객체에서 필요한 데이터를 추출합니다.
 
                     var userName = noteVO.userName;
-                    var roomNo = noteVO.roomNo;
+                    var itemNo = noteVO.itemNo;
                     var noteSubject = noteVO.noteSubject;
                     var noteText1 = noteVO.noteText1;
                     var noteText2 = noteVO.noteText2;
@@ -220,7 +220,7 @@
                     // DOM 요소를 찾아서 데이터를 넣습니다.
                     
                     document.querySelector('#user-name').textContent = '회원명: ' + userName;
-                    document.querySelector('#room-no').textContent = '매물번호: ' + roomNo;
+                    document.querySelector('#item-no').textContent = '매물번호: ' + itemNo;
                     document.querySelector('#note-subject').textContent = '제목: ' + noteSubject;
                     document.querySelector('#note-text1').textContent = '#' + noteText1;
                     document.querySelector('#note-text2').textContent = '#' + noteText2;

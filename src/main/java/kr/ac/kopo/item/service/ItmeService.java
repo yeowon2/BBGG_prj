@@ -12,4 +12,7 @@ public interface ItmeService {
 
 	void itemAdd(ItemVO itemVO);
 
+	List<ItemVO> partItemList();
+	
+
 }

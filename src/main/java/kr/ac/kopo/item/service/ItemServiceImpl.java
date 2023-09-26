@@ -43,4 +43,9 @@ public class ItemServiceImpl implements ItmeService {
 			dao.monthAdd(map);
 		}
 	}
+
+	@Override
+	public List<ItemVO> partItemList() {
+		return dao.partItemList();
+	}
 }

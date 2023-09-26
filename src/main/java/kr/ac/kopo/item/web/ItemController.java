@@ -83,6 +83,16 @@ public class ItemController {
 		
 		return "redirect:/itemList";
 	}
+	
+	//파트너 매물 목록 조회
+	@GetMapping("/partner/itemList")
+	public String partItemList(Model model) {
+		List<ItemVO> partItemList = service.partItemList();
+		model.addAttribute("partItemList", partItemList);
+		return path + "itemList";
+	}
+
+	
  
 }
 

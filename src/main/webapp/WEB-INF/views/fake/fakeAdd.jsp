@@ -97,16 +97,15 @@
 												<%-- <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 												 action="<%=request.getContextPath()%>/${roomNo}" --%>
 												
-												<form method="post" enctype="multipart/form-data" target="form_if">
+												<form method="post" enctype="multipart/form-data">
 													<input type="hidden" id="roomNo" value="${result.roomNo}">
-													<input type="checkbox" id="reportCheck1" name="reportCheck1" value="F"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-													<input type="checkbox" id="reportCheck2" name="reportCheck2" value="F"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-													<input type="checkbox" id="reportCheck3" name="reportCheck3" value="F"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
-													<textarea id="reportDetail" name="reportDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
-													<input type="file" name="file" multiple />
+													<input type="checkbox" id="fakeCheck1" name="fakeCheck"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+													<input type="checkbox" id="fakeCheck2" name="fakeCheck"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+													<input type="checkbox" id="fakeCheck3" name="fakeCheck"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
+													<textarea id="fakeDetail" name="fakeDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
+													<input type="file" name="file" multiple>
 													<button type="submit" class="btn btn-teal" id="submitBtn" style="float: right;">신고하기</button>	
 										        </form>
-										        <!-- <iframe name="form_if" style="display:none"></iframe> -->
 																					
 					                        </div>
 					                        <div class="modal-footer">
@@ -184,20 +183,18 @@
     <script src="resources/dist/js/modal-data.js"></script>		
     
     <script>
-    const form = document.querySelector("form");
     const submitBtn = document.querySelector("#submitBtn");
-    const reportCheck1 = document.querySelector("#reportCheck1");
-    
-    if( reportCheck1.is(":checked") == true ) {
-    	reportCheck1.value = "T";
+    if(document.getElementById("fakeCheck").checked) {
+    	document.getElementById("")
     }
     
-    const file1 = document.querySelector("#file1");
-    const file2 = document.querySelector("#file2");
 
     submitBtn.addEventListener('click', function () {
     	form.submit();
     }); 
+    </script>
+    <script>
+    	
     </script>
     
 

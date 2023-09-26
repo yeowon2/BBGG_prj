@@ -159,7 +159,7 @@
 	</insert>
 	
 	<select id="partList" resultType="ItemVO">
-		SELECT  
+		
 	</select>
 	
 </mapper>

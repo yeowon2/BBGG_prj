@@ -50,8 +50,8 @@ public class ItemDaoImpl implements ItemDao {
 	}
 
 	@Override
-	public List<ItemVO> partItemList() {
-		return sql.selectList("item.partItemList");
+	public List<ItemVO> partItemList(Long partnerNo) {
+		return sql.selectList("item.partItemList", partnerNo);
 	}
 
 	

@@ -45,7 +45,7 @@ public class ItemServiceImpl implements ItmeService {
 	}
 
 	@Override
-	public List<ItemVO> partItemList() {
-		return dao.partItemList();
+	public List<ItemVO> partItemList(Long partnerNo) {
+		return dao.partItemList(partnerNo);
 	}
 }

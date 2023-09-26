@@ -10,4 +10,9 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
+	
+	@GetMapping("/partner")
+	public String indexPartner() {
+		return "indexPartner";
+	}
 }

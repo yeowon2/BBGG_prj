@@ -136,36 +136,36 @@
 						<div class="form-group">
 						    <h6>타입</h6>
 						    <label>
-						        <input type="radio" name="roomType" value="o" > 원룸
+						        <input type="radio" name="itemType" value="O" > 원룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="t" > 투룸
+						        <input type="radio" name="itemType" value="T" > 투룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="h" > 쓰리룸
+						        <input type="radio" name="itemType" value="H" > 쓰리룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="f" > 오피스텔
+						        <input type="radio" name="itemType" value="F" > 오피스텔
 						    </label>
 						</div>
 
 	                    <!-- 전용 면적 -->
 	                    <div class="form-group">
 	                    	<h6>전용 면적(평)</h6>
-	                        <input type="number" name="roomSize" class="form-control rounded-0" value="" required placeholder="단위(평)" />
+	                        <input type="number" name="itemSize" class="form-control rounded-0" value="" required placeholder="단위(평)" />
 	                    </div>
 	                    
 	                    <!-- 건물 층/ 해당 층 -->
 	                    <div class="form-group">
 	                    	<h6>건물층수</h6>
 	                        <input type="number" name="buildingFloor" class="form-control rounded-0" value="" required placeholder="건물 전체 층" />
-	                        <input type="number" name="roomFloor" class="form-control rounded-0" value="" required placeholder="해당 층" />
+	                        <input type="number" name="itemFloor" class="form-control rounded-0" value="" required placeholder="해당 층" />
 	                    </div>
 	                    
 	                    <!-- 방 수 -->
 	                    <div class="form-group">
 	                    	<h6>방 수</h6>
-	                        <input type="number" name="roomCount" class="form-control rounded-0" value="" required placeholder="방 수" />
+	                        <input type="number" name="itemCount" class="form-control rounded-0" value="" required placeholder="방 수" />
 	                    </div>
 	                    
 	                    <!-- 욕실 수 -->
@@ -232,10 +232,10 @@
 						<div class="form-group">
 						    <h6>관리비 여부</h6>
 						    <label>
-						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="y" > 있음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="Y" > 있음
 						    </label>
 						    <label>
-						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="n" > 없음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="N" > 없음
 						    </label>
 						</div>
 						<!-- 관리비 -->
@@ -255,7 +255,7 @@
 						    function toggleManageFeeField(value) {
 						        var manageFeeField = document.getElementById("manageFeeField");
 						
-						        if (value === "y") {
+						        if (value === "Y") {
 						            manageFeeField.style.display = "block"; // 보이도록 설정
 						        } else {
 						            manageFeeField.style.display = "none"; // 숨김
@@ -267,21 +267,23 @@
 	                    <div class="form-group">
 		                    <h6>주차 가능 여부</h6>
 						    <label>
-						        <input id="parkingAt" type="radio" name="parkingAt" value="y" required> 가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="Y" required> 가능
 						    </label>
 						    <label>
-						        <input id="parkingAt" type="radio" name="parkingAt" value="n" required> 불가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="N" required> 불가능
 						    </label>
 		               	</div>
 		               	<!-- 매물소개 -->
 		               	<div class="form-group">
 			                <h6>매물 소개</h6>
-			                <input type="text" name="name" class="form-control rounded-0" value="" required placeholder="소개란"/>
+			                <input type="text" name="memoShort" class="form-control rounded-0" value="" required placeholder="소개란"/>
 			            </div>
 	                    <div class="form-group">
 	                    	<h6>매물 설명</h6>
-	                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="설명란" required ></textarea>
+	                        <textarea rows="8" name="memoDetail" class="form-control rounded-0" placeholder="설명란" required ></textarea>
 	                    </div>
+	                    <!-- 매물 상태값(Y=등록/판매중, C=판매완료, D=삭제된매물) -->
+	                    <input type="hidden" name="useAt" class="form-control rounded-0" value="Y"/>
                   	</div>
                   	<button>등록</button>
                 </form> 
@@ -299,19 +301,19 @@
         </div>
         <div class="row tm-mb-74 tm-people-row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물1</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물2</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물3</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물4</h2>
             </div>
         </div>
@@ -355,7 +357,7 @@
         </div>
     </footer>
     
-    <script src="../resources/room/js/plugins.js"></script>
+    <script src="../resources/item/js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

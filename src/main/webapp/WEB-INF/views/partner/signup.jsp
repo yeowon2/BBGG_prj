@@ -36,13 +36,13 @@
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-user"></i>
-                    <input type="text" class="form-control" name="partId" placeholder="이메일">
+                    <input type="text" class="form-control" name="partnerId" placeholder="이메일">
                   </div>
                 </div> 
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-lock"></i>
-                    <input type="password" class="form-control" name="partPw" placeholder="비밀번호">
+                    <input type="password" class="form-control" name="partnerPw" placeholder="비밀번호">
                   </div>
                 </div>  
                 <div class="form-group">
@@ -54,7 +54,7 @@
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="partName" placeholder="대표자명">
+                    <input type="text" class="form-control" name="partnerName" placeholder="대표자명">
                   </div>
                 </div> 
                 <div class="form-group">

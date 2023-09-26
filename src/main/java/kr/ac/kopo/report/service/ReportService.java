@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.report.web.ReportVO;
-import kr.ac.kopo.room.web.RoomVO;
 
 public interface ReportService {
 	
@@ -13,6 +13,6 @@ public interface ReportService {
 	List<ReportVO> reportList(ReportVO reportVO);
 	
 	// 허위 매물 등록 정보
-	void reportAdd(Long roomNo, ReportVO reportVO, Model model);
+	void reportAdd(Long roomNo, ReportVO reportVO);
 
 }

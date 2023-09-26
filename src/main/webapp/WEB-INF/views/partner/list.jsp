@@ -28,12 +28,12 @@
 				<tbody>
 					<c:forEach var="item" items="${list}">
 					<tr>
-						<td>${item.partNo}</td>
-						<td>${item.partId}</td>
-						<td>${item.partPw}</td>
+						<td>${item.partnerNo}</td>
+						<td>${item.userId}</td>
+						<td>${item.userPw}</td>
 						<td>${item.compName}</td>
-						<td>${item.partName}</td>
-						<td><a href="/delete/${item.partNo}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="/update/${item.partNo}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
+						<td>${item.partnerName}</td>
+						<td><a href="/delete/${item.partnerNo}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="/update/${item.partnerNo}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
 					</tr>
 					</c:forEach>
 					

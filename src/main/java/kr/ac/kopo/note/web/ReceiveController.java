@@ -24,8 +24,9 @@ public class ReceiveController {
 
 	private String path = "note/receive/";
 
-	@GetMapping("/receiveList")
-	public String receiveList(Model model, NoteVO noteVO) {
+	@GetMapping("/receiveList/{partnerNo}")
+	public String receiveList(@PathVariable Long partnerNo, Model model, NoteVO noteVO) {
+		noteVO.setPartnerNo(partnerNo);
 		List<NoteVO> receiveList = service.receiveList(noteVO);
 		model.addAttribute("receiveList", receiveList);
 

@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.kopo.item.service.ItmeService;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.note.service.NoteService;
 import kr.ac.kopo.note.web.NoteVO;
 import kr.ac.kopo.report.service.ReportService;
-import kr.ac.kopo.room.service.RoomService;
-import kr.ac.kopo.room.web.RoomVO;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller
@@ -44,50 +44,53 @@ public class ReportController {
 	@GetMapping("/{roomNo}")
 	public String report(@PathVariable Long roomNo, HttpSession session, Model model) {
 		//model.addAttribute("roomNo", roomNo);
-		if(session.getId() != null) { //@@@@@@@@@@
+		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
+		System.out.println(loginVO);
+		if(loginVO != null) {String userId = loginVO.getUserId();}
+		// System.out.println(userId);
+		
+		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) { 
 			return path + "/reportAdd";
 		} else {
-			model.addAttribute("loginMessage", "로그인 후 이용 가능합니다.");
-			return "redirect:/login"; //@@@@@@@@@@
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			model.addAttribute("url", "/login");
+			return "/alert"; 
 		}	
 	}
 	
 	@PostMapping("/{roomNo}")
 	public String reportAdd(@PathVariable Long roomNo, HttpSession session, Model model, ReportVO reportVO) {
 		model.addAttribute("roomNo", roomNo);
-		if(session.getId() != null) { //@@@@@@@@@@
+		
+		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
+		System.out.println(loginVO);
+		if(loginVO != null) {String userId = loginVO.getUserId();}
+		
+		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
 			
-			service.reportAdd(roomNo, reportVO, model);
+			service.reportAdd(roomNo, reportVO);
 			return "redirect:/roomSelect/{roomNo}";
 		} else {	
-			model.addAttribute("loginMessage", "로그인 후 이용 가능합니다.");
-			return "redirect:/roomSelect/{roomNo}";
+			model.addAttribute("msg", "로그인 후 이용가능합니다.");
+			model.addAttribute("url", "/login/login");
+			//return "redirect:/roomSelect/{roomNo}";
+			return "/alert"; 
 		} 
 	}
-	
 	// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
-	// 진짜 허위매물 신고 모달창보여드려요
-	@PostMapping("/add/{roomNo}")
-	public String reportAddAct(@PathVariable Long roomNo, HttpSession session, MultipartFile File) {
-		if(session.getId() != null) { //@@@@@@@@@@
-			System.out.println("출력문확인");
-			System.out.println(File.getOriginalFilename()); 
-			System.out.println(File.getSize());
-			System.out.println("작성되었습니다.");
-			return path + "/reportAdd";
-		}
-		return "/login";
-	}
 	
-	// 허위 매물 진짜로 등록 
-//	@GetMapping("/addCom")
-//	public String reportAddCom(@ModelAttribute UserVO userVO, RoomVO roomNo, HttpSession session, Model model) {
-//		ReportVO repoInfo = service.reportAdd(roomNo); // 매물번호로 repoInfo 객체 생성
-//		
-//		model.addAttribute("repoInfo", repoInfo);
-//		return path + "comp";
+//	@PostMapping("/add/{roomNo}")
+//	public String reportAddAct(@PathVariable Long roomNo, HttpSession session, MultipartFile File) {
+//		if(session.getId() != null) { //@@@@@@@@@@
+//			System.out.println("출력문확인");
+//			System.out.println(File.getOriginalFilename()); 
+//			System.out.println(File.getSize());
+//			System.out.println("작성되었습니다.");
+//			return path + "/reportAdd";
+//		}
+//		return "/login";
 //	}
-	
+
 
 }

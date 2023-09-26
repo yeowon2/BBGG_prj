@@ -21,84 +21,84 @@
                 	<c:if test="${result.ho  == null && result.dong == null}">
 	                    <div class="form-group">
 	                    	<h6>주소</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}"required readonly />
+	                        <input type="text" name="address" class="form-control rounded-0" value="${result.address}"required readonly />
 	                    </div>
                     </c:if>
                     <!-- 주소(빌라일경우) 동, 호 까지 출력 -->
                 	<c:if test="${result.dong  == null && result.ho != null}">
 	                    <div class="form-group">
 	                    	<h6>주소</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.ho}호"required readonly />
+	                        <input type="text" name="address" class="form-control rounded-0" value="${result.address}, ${result.ho}호" readonly />
 	                    </div>
                     </c:if>
                     <!-- 주소(아파트일경우) 동, 호 생략 -->
                     <c:if test="${result.dong != null && result.ho != null}">
 	                    <div class="form-group">
 	                    	<h6>주소</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="${result.address}, ${result.dong}동 ${result.ho}호"required readonly />
+		                    <input type="text" name="address" class="form-control rounded-0" value="${result.address}, ${result.dong}동 ${result.ho}호" readonly />
 		                </div>
                     </c:if>
                     <!-- 전세, 월세 표시 -->
-                    <c:if test="${result.leaseOrMonth == lease}">
+                    <c:if test="${result.leaseOrMonth == 'lease'}">
 	                    <div class="form-group">
 	                    	<h6>전세</h6>
-	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="lease, ${result.leasePrice}  " required readonly />
+	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="전세 / 전세:${result.leasePrice}  "  readonly />
 	                    </div>
                     </c:if>
-                    <c:if test="${result.leaseOrMonth == month}">
+                    <c:if test="${result.leaseOrMonth == 'month'}">
 	                    <div class="form-group">
 	                    	<h6>월세</h6>
-	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="month, ${result.deposltFee}, ${result.monthPrice}  " required readonly />
+	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="월세 / 보증금: ${result.deposltFee}, 월세: ${result.monthPrice}  " readonly />
 	                    </div>
                     </c:if>
                     <!-- 입주가능날짜 -->
-                    <c:if test="${result.moveInAt == 'y'}">
+                    <c:if test="${result.moveInAt == 'Y'}">
 	                    <div class="form-group">
 	                    	<h6>일주가능날짜</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="즉시 입주 가능" required readonly />
+	                        <input type="text" name="moveInDate" class="form-control rounded-0" value="즉시 입주 가능"  readonly />
 	                    </div>
                     </c:if>
-                    <c:if test="${result.moveInAt == 'n'}">
+                    <c:if test="${result.moveInAt == 'N'}">
 	                    <div class="form-group">
 	                    	<h6>일주가능날짜</h6>
-	                        <input type="text" name="name" class="form-control rounded-0" value="<fmt:formatDate value="${result.moveInDate }" pattern="yyyy.MM.dd"/>" readonly />
+	                        <input type="text" name="moveInDate" class="form-control rounded-0" value="<fmt:formatDate value="${result.moveInDate }" pattern="yyyy.MM.dd"/>" readonly />
 	                    </div>
                     </c:if>
                     <!-- 관리비 -->
-                    <c:if test="${result.manageFeeAt == 'y'}">
+                    <c:if test="${result.manageFeeAt == 'Y'}">
 	                    <div class="form-group">
 		                    <h6>관리비</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="매월 ${result.manageFee}만원" required readonly />
+		                    <input type="text" name="manageFee" class="form-control rounded-0" value="매월 ${result.manageFee}만원" readonly />
 		               	</div>
 	               	</c:if>
-                    <c:if test="${result.manageFeeAt == 'n'}">
+                    <c:if test="${result.manageFeeAt == 'N'}">
 	                    <div class="form-group">
 		                    <h6>관리비</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="관리비 없음" required readonly />
+		                    <input type="text" name="manageFeeAt" class="form-control rounded-0" value="관리비 없음" readonly />
 		               	</div>
 	               	</c:if>
 	               	<!-- 주차가능여부 -->
-	               	<c:if test="${result.parkingAt == 'y'}">
+	               	<c:if test="${result.parkingAt == 'Y'}">
 	                    <div class="form-group">
 		                    <h6>주차가능여부</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="주차 가능" required readonly />
+		                    <input type="text" name="parkingAt" class="form-control rounded-0" value="주차 가능" readonly />
 		               	</div>
 	               	</c:if>
-	               	<c:if test="${result.parkingAt == 'n'}">
+	               	<c:if test="${result.parkingAt == 'N'}">
 	                    <div class="form-group">
 		                    <h6>주차가능여부</h6>
-		                    <input type="text" name="name" class="form-control rounded-0" value="주차 불가능" required readonly />
+		                    <input type="text" name="parkingAt" class="form-control rounded-0" value="주차 불가능" readonly />
 		               	</div>
 	               	</c:if>
 	               	
 	               	<div class="form-group">
 		                <h6>매물 소개</h6>
-		                <input type="text" name="name" class="form-control rounded-0" value="${result.memoShort }" required readonly />
+		                <input type="text" name="memoShort" class="form-control rounded-0" value="${result.memoShort }" readonly />
 		            </div>
                   
                     <div class="form-group">
                     	<h6>매물 설명</h6>
-                        <textarea rows="8" name="message" class="form-control rounded-0" placeholder="${result.memoDetail }" required readonly></textarea>
+                        <textarea rows="8" name="memoDetail" class="form-control rounded-0" placeholder="${result.memoDetail }" readonly></textarea>
                     </div>
 
                    
@@ -107,29 +107,29 @@
             <div class="col-lg-4 col-12 mb-5">
                 <div class="tm-address-col">
                     <h2 class="tm-text-primary mb-5">매물 상세 정보</h2>
-                    <c:if test="${result.roomType == 'o' }">
+                    <c:if test="${result.itemType == 'O' }">
                     	<p class="tm-mb-50" >방종류: 원룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 't' }">
+                    <c:if test="${result.itemType == 'T' }">
                     	<p class="tm-mb-50">방종류: 투룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 'h' }">
+                    <c:if test="${result.itemType == 'H' }">
                     	<p class="tm-mb-50">방종류: 쓰리룸</p>
                     </c:if>
-                    <c:if test="${result.roomType == 'f' }">
+                    <c:if test="${result.itemType == 'F' }">
                     	<p class="tm-mb-50">방종류: 오피스텔</p>
                     </c:if>
                     
-                    <p class="tm-mb-50">해당층/건물층: ${result.roomFloor } / ${result.buildingFloor } </p>
+                    <p class="tm-mb-50">해당층/건물층: ${result.itemFloor } / ${result.buildingFloor } </p>
                     
-                    <p class="tm-mb-50">전용면적: ${result.roomSize }평 </p>
+                    <p class="tm-mb-50">전용면적: ${result.itemSize }평 </p>
                     
-                    <p class="tm-mb-50">방 수/욕실 수: ${result.roomCount } / ${result.bathAt } </p>
+                    <p class="tm-mb-50">방 수/욕실 수: ${result.itemCount } / ${result.bathAt } </p>
                     
-                    <c:if test="${result.elevatorAt == 'y' }">
+                    <c:if test="${result.elevatorAt == 'Y' }">
                     	<p class="tm-mb-50">엘리베이터: 있음</p>
                     </c:if>
-                    <c:if test="${result.elevatorAt != 'y' }">
+                    <c:if test="${result.elevatorAt != 'Y' }">
                     	<p class="tm-mb-50">엘리베이터: 없음</p>
                     </c:if>
                     
@@ -157,8 +157,8 @@
                         120-240 Fusce eleifend varius tempus<br>
                         Duis consectetur at ligula 10660
                     </address>
-                    <c:set var="roomNo" value="${result.roomNo}"/>
-                    <a href='/roomSelect/<c:out value="${roomNo}"/>/add'>
+                    <c:set var="itemNo" value="${result.itemNo}"/>
+                    <a href='/itemSelect/<c:out value="${itemNo}"/>/add'>
 	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
 		                    <span class="btn-text">쪽지보내기</span> 
 	                       	<span class="icon-label">
@@ -171,7 +171,7 @@
 	                        </span>
 	                    </button>
                     </a>
-                    <a href='/report/<c:out value="${roomNo}"/>'>
+                    <a href='/report/<c:out value="${itemNo}"/>'>
 	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
 		                    <span class="btn-text">신고하기</span> 
 	                       	<span class="icon-label">
@@ -198,19 +198,19 @@
         </div>
         <div class="row tm-mb-74 tm-people-row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-1.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물1</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-2.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물2</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-3.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물3</h2>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
-                <img src="../resources/room/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
+                <img src="../resources/item/img/people-4.jpg" alt="Image" class="mb-4 img-fluid">
                 <h2 class="tm-text-primary mb-4" style="text-align: center;">추천 매물4</h2>
             </div>
         </div>
@@ -254,7 +254,7 @@
         </div>
     </footer>
     
-    <script src="../resources/room/js/plugins.js"></script>
+    <script src="../resources/item/js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

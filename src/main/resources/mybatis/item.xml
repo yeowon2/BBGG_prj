@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="room">
+<mapper namespace="item">
 
-	<!-- <resultMap type="kr.ac.kopo.room.web.RoomVO" id="room">
-		<result property="roomNo" 			column="room_no" />
+	<!-- <resultMap type="kr.ac.kopo.item.web.itemVO" id="item">
+		<result property="itemNo" 			column="item_no" />
 		<result property="agencyNo" 		column="agency_no" />
 		<result property="leaseNo" 			column="lease_no" />
 		<result property="monthNo" 			column="month_no" />
-		<result property="roomType" 		column="room_type" />
+		<result property="itemType" 		column="item_type" />
 		<result property="address" 			column="address" />
 		<result property="dong" 			column="dong" />
 		<result property="ho" 				column="ho" />
 		<result property="moveInAt" 		column="move_in_at" />
 		<result property="moveInDate" 		column="move_in_date" />
-		<result property="roomSize" 		column="room_size" />
+		<result property="itemSize" 		column="item_size" />
 		<result property="buildingFloor" 	column="building_floor" />
-		<result property="roomFloor" 		column="room_floor" />
-		<result property="roomCount" 		column="room_count" />
+		<result property="itemFloor" 		column="item_floor" />
+		<result property="itemCount" 		column="item_count" />
 		<result property="bathAt" 			column="bath_at" />
 		<result property="elevatorAt" 		column="elevator_at" />
 		<result property="parkingAt" 		column="parking_at" />
@@ -32,62 +32,58 @@
 		<result property="lng" 				column="lng" />
 	</resultMap> -->
 	
-	<select id="roomList" resultType="RoomVO">
-		SELECT *	FROM tbl_room WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
-		<!-- <where>
-			<if test="search != #{keyword}">		오라클은 CONCAT을 2개값만 허용해서 이중으로 사용 (myDB는 3개)
-				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')	
-			</if>
-			
-			<if test="search != #{keyword}">
-				lat LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-			
-			<if test="search != #{keyword}">
-				lng LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-		</where> -->
-		<!-- WHERE
-		<if test="searchWrd != null and searchWrd !=''">
-		    (fctry_rdnmadr LIKE CONCAT('%', #{searchWrd},'%') or  
-		    fctry_cmpnm LIKE CONCAT('%', #{searchWrd},'%'))
-		</if> -->
+	<select id="itemList" resultType="itemVO">
+		SELECT *	FROM tbl_item WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
 	</select>
 	
-	<select id="roomSelect" resultType="RoomVO">
+	<!-- <select id="itemSelect" resultType="itemVO">
 		SELECT 
 		
 		<choose>
 	        <when test="leaseOrMonth == 'lease'">
-	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.room_no = tbl_room.room_no) AS "전세가격",
+	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.item_no = tbl_item.item_no) AS "전세가격",
 	        </when>
 	        <otherwise>
-	            (SELECT deposlt_fee FROM tbl_month  WHERE tbl_month.room_no = tbl_room.room_no) AS "보증금",
-	            (SELECT month_price FROM tbl_month  WHERE tbl_month.room_no = tbl_room.room_no) AS "월세가격",
+	            (SELECT deposlt_fee FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "보증금",
+	            (SELECT month_price FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "월세가격",
 	        </otherwise>
 	    </choose>
-		tbl_room.*
-		FROM tbl_room
-		WHERE room_No = #{roomNo}
+		tbl_item.*
+		FROM tbl_item
+		WHERE item_No = #{itemNo}
+	</select> -->
 	
+	<select id="itemSelect" resultType="itemVO">
+		<choose>
+	        <when test="leaseOrMonth == 'lease'">
+	        	SELECT tbl_item.*, tbl_lease.*
+				FROM tbl_item JOIN tbl_lease ON tbl_item.item_no = tbl_lease.item_no
+				WHERE tbl_item.item_no = #{itemNo}
+	        </when>
+	        <otherwise>
+	            SELECT tbl_item.*, tbl_month.*
+				FROM tbl_item JOIN tbl_month ON tbl_item.item_no = tbl_month.item_no
+				WHERE tbl_item.item_no = #{itemNo}
+	        </otherwise>
+	    </choose>
 	</select>
 	
-	<insert id="roomAdd">
-	    INSERT INTO tbl_room
+	<insert id="itemAdd">
+	    INSERT INTO tbl_item
 	    (
 	    partner_no,
 	    lease_or_month,
-	    room_type,
+	    item_type,
 	    address, 
 	    address2,
 	    dong,
 	    ho,
 	    move_in_at, 
 	    move_in_date,
-	    room_size, 
+	    item_size, 
 	    building_floor,
-	    room_floor,
-	    room_count,
+	    item_floor,
+	    item_count,
 	    bath_at,
 	    elevator_at,
 	    parking_at,
@@ -105,7 +101,7 @@
 	    (
 	    1,
 	    #{leaseOrMonth},
-	    #{roomType},
+	    #{itemType},
 	    #{address},
 	    #{address2},
 	    #{dong},
@@ -120,10 +116,10 @@
 	        </otherwise>
 	    </choose>
 	    
-	    #{roomSize},
+	    #{itemSize},
 	    #{buildingFloor},
-	    #{roomFloor},
-	    #{roomCount},
+	    #{itemFloor},
+	    #{itemCount},
 	    #{bathAt},
 	    #{elevatorAt},
 	    #{parkingAt},
@@ -144,20 +140,22 @@
 	    NOW(),
 	    #{lat},
 	    #{lng},
-	    'y'
+	    #{useAt}
 	    )
 	    
-	    <!-- <selectKey keyColumn="room_no" keyProperty="roomNo" order="AFTER" resultType="int">
-	    	<if test="leaseOrMonth == 'lease'">
-		        INSERT INTO tbl_lease(lease_price, room_no)
-		        VALUES (#{leasePrice}, #{roomNo})
-		    </if>
-		    <if test="leaseOrMonth == 'month'">
-		        INSERT INTO tbl_month(deposit_fee, month_price, room_no)
-		        VALUES (#{depositFee}, #{monthPrice}, #{roomNo})
-		    </if>
-	    </selectKey> -->
-	    
+	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
+	    	SELECT LAST_INSERT_ID()
+	    </selectKey>
 	</insert>
-
+	
+	<insert id="leaseAdd">
+	    INSERT INTO tbl_lease(lease_price, item_no)
+		VALUES (#{leasePrice}, #{itemNo})
+	</insert>
+	
+	<insert id="monthAdd">
+		INSERT INTO tbl_month(deposlt_fee, month_price, item_no)
+		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
+	</insert>
+	
 </mapper>

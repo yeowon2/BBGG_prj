@@ -8,9 +8,8 @@
 	<jsp:include page="../../head.jsp"></jsp:include>
   </head>
   <body>
-	<jsp:include page="../../nav.jsp"></jsp:include>
+	<jsp:include page="../../navPartner.jsp"></jsp:include>
 <!-- HK Wrapper -->
-    <div class="hk-wrapper hk-alt-nav">
         <!-- Main Content -->
         <div class="hk-pg-wrapper pb-0 px-0">
             <!-- Container -->
@@ -158,7 +157,6 @@
         </div>
         <!-- /Main Content -->
 
-    </div>
             <%-- <jsp:include page="../../footer.jsp"></jsp:include> --%>
     <!-- /HK Wrapper -->
     <script>

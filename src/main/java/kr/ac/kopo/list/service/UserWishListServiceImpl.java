@@ -3,10 +3,12 @@ package kr.ac.kopo.list.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.list.dao.UserWishListDao;
 import kr.ac.kopo.list.web.UserWishListVO;
 
+@Service
 public class UserWishListServiceImpl implements UserWishListService {
 
 	@Autowired

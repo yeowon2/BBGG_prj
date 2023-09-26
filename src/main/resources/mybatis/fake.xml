@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fake">
+
+	<select id="selectList">
+		SELECT fake.*, fake_file.* 
+		FROM fake JOIN fake_file ON (fake.fake_no = fake_file.fake_no)
+	</select>
+
+	<insert id="insert">
+		INSERT INTO tbl_fake (room_no, 
+								user_no, 
+								fake_check1, 
+								fake_check2, 
+								fake_check3, 
+								fake_content, 
+								use_at, 
+								agree_at,
+								file_name)
+		VALUES (#{roomNo}, 
+				1, 
+				#{fakeCheck1}, 
+				#{fakeCheck2}, 
+				#{fakeCheck3}, 
+				#{fakeContent}, 
+				"Y", 
+				#{agreeAt},
+				#{uniqueName}
+				)
+	</insert>
+	
+	<update id=""></update>
+
+</mapper>

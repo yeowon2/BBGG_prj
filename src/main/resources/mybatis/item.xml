@@ -130,7 +130,7 @@
 	            #{manageFee},
 	        </when>
 	        <otherwise>
-	            NULL,
+	            0,
 	        </otherwise>
 	    </choose>
 	    

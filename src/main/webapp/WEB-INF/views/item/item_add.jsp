@@ -82,8 +82,8 @@
 	                    <div class="form-group">
 	                    	<h6>상세주소</h6>
 	                        <input type="text" name="address2" class="form-control rounded-0" value="" placeholder="주소(건물명)를 입력 해주세요." required/>
-	                        <input type="text" name="dong" class="form-control rounded-0" value="" placeholder="동을 입력 해주세요." />
-	                        <input type="text" name="ho" class="form-control rounded-0" value="" placeholder="호를 입력 해주세요." />
+	                        <input type="text" name="dong" class="form-control rounded-0" value="0" placeholder="동을 입력 해주세요." />
+	                        <input type="text" name="ho" class="form-control rounded-0" value="0" placeholder="호를 입력 해주세요." />
 	                    </div>
                    
                     	<!-- 전세, 월세 표시 -->

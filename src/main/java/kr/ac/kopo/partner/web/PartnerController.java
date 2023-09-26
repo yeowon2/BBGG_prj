@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
@@ -22,12 +23,12 @@ public class PartnerController {
 	@Autowired
 	PartnerService service;
 	
-	@GetMapping("/detail")
-	public String detail(@PathVariable Long partnerNo, Model model) {
+	@GetMapping("/detail/{partnerNo}")
+	@ResponseBody
+	public PartnerVO detail(@PathVariable Long partnerNo, Model model) {
 		PartnerVO partnerVO = service.detail(partnerNo);
-		model.addAttribute("partnerVO", partnerVO);
 		
-		return path +  "detail";
+		return partnerVO;
 	}
 	
 	@GetMapping("/list")

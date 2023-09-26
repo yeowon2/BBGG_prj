@@ -21,7 +21,7 @@
 	
 	 <!-- PartnerVO에 대한 ResultMap -->
     <resultMap type="kr.ac.kopo.partner.web.PartnerVO" id="PartnerMap">
-        <result property="partnerNo" column="partner_no" /> <!-- 변경된 컬럼명 사용 -->
+        <id property="partnerNo" column="partner_no" /> <!-- 변경된 컬럼명 사용 -->
         <result property="userId" column="user_id" /> <!-- 변경된 컬럼명 사용 -->
         <result property="userPw" column="user_pw" /> <!-- 변경된 컬럼명 사용 -->
     </resultMap>

@@ -28,12 +28,12 @@
 										<h6 style="font-weight:bold;">중개사무소 정보</h6>
 									</div>
 									<div class="card-body">
-										<div class="header clearfix">
-							                	<span><c:out value="${loginPartnerVO.compName}"></c:out></span>
-							                	<span><c:out value="${loginPartnerVO.compAddress}"></c:out></span>
-							                	<span><c:out value="${loginPartnerVO.partnerName}"></c:out></span>
-							                	<span><c:out value="${loginPartnerVO.registNum}"></c:out></span>
-							                	<span><c:out value="${loginPartnerVO.phone}"></c:out></span>
+										<div id="partner-card" class="header clearfix" data-partner-no="${loginPartnerVO.partnerNo}">
+							                	<span id="comp-name"></span>
+							                	<span id="comp-address"></span>
+							                	<span id="partner-name"></span>
+							                	<span id="regist-num"></span>
+							                	<span id="phone"></span>
 					              		</div>
 									</div>
 								</div>
@@ -154,6 +154,35 @@
     
 
 <jsp:include page="footer.jsp"></jsp:include>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    var ajaxUrlPrefix = '/partner/detail/'; // AJAX 요청 URL의 공통 부분
+    var partnerNo = document.getElementById('partner-card').getAttribute('data-partner-no');
+    var ajaxUrl = ajaxUrlPrefix + partnerNo; // 파트너 번호를 사용하여 완전한 URL 생성
+
+    // AJAX 요청을 보냅니다.
+    $.ajax({
+        type: "GET",
+        url: ajaxUrl,
+        success: function (data) {
+            // 성공적으로 데이터를 받아온 경우
+            // DOM 요소를 찾아서 데이터를 넣습니다.
+            document.querySelector('#comp-name').textContent = data.compName;
+            document.querySelector('#comp-address').textContent = '주소: ' + data.compAddress;
+            document.querySelector('#partner-name').textContent = '대표명' + data.partnerName;
+            document.querySelector('#regist-num').textContent = '중개등록번호' + data.registNum;
+            document.querySelector('#phone').textContent = '대표번호' + data.phone;
+        },
+        error: function () {
+            // 오류 발생 시 처리
+            alert('데이터를 가져오는 중 오류가 발생했습니다.');
+        }
+    });
+});
+</script>
+
+
 <jsp:include page="js.jsp"></jsp:include>
       <!-- EChartJS JavaScript -->
     <script src="/resources/vendors/echarts/dist/echarts-en.min.js"></script>

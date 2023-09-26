@@ -34,27 +34,9 @@
 	
 	<select id="roomList" resultType="RoomVO">
 		SELECT *	FROM tbl_room WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
-		<!-- <where>
-			<if test="search != #{keyword}">		오라클은 CONCAT을 2개값만 허용해서 이중으로 사용 (myDB는 3개)
-				address LIKE CONCAT(CONCAT('%', #{keyword}), '%')	
-			</if>
-			
-			<if test="search != #{keyword}">
-				lat LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-			
-			<if test="search != #{keyword}">
-				lng LIKE CONCAT(CONCAT('%', #{keyword}), '%')
-			</if>
-		</where> -->
-		<!-- WHERE
-		<if test="searchWrd != null and searchWrd !=''">
-		    (fctry_rdnmadr LIKE CONCAT('%', #{searchWrd},'%') or  
-		    fctry_cmpnm LIKE CONCAT('%', #{searchWrd},'%'))
-		</if> -->
 	</select>
 	
-	<select id="roomSelect" resultType="RoomVO">
+	<!-- <select id="roomSelect" resultType="RoomVO">
 		SELECT 
 		
 		<choose>
@@ -69,7 +51,21 @@
 		tbl_room.*
 		FROM tbl_room
 		WHERE room_No = #{roomNo}
+	</select> -->
 	
+	<select id="roomSelect" resultType="RoomVO">
+		<choose>
+	        <when test="leaseOrMonth == 'lease'">
+	            SELECT tbl_room.*, tbl_lease.*
+				FROM tbl_room JOIN tbl_lease ON tbl_room.room_no = tbl_lease.room_no
+				WHERE tbl_room.room_no = #{roomNo};
+	        </when>
+	        <otherwise>
+	            SELECT tbl_room.*, tbl_month.*
+				FROM tbl_room JOIN tbl_month ON tbl_room.room_no = tbl_month.room_no
+				WHERE tbl_room.room_no = #{roomNo};
+	        </otherwise>
+	    </choose>
 	</select>
 	
 	<insert id="roomAdd">
@@ -144,7 +140,7 @@
 	    NOW(),
 	    #{lat},
 	    #{lng},
-	    'y'
+	    #{useAt}
 	    )
 	    
 	    <selectKey keyProperty="roomNo" resultType="Long" order="AFTER">

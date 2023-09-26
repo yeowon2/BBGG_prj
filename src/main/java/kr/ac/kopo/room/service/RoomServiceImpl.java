@@ -15,7 +15,6 @@ public class RoomServiceImpl implements RoomService {
 	@Autowired
 	RoomDao dao;
 	
-
 	@Override
 	public List<RoomVO> roomList() {
 		return dao.roomList();
@@ -43,9 +42,5 @@ public class RoomServiceImpl implements RoomService {
 			map.put("monthPrice", roomVO.getMonthPrice());
 			dao.monthAdd(map);
 		}
-		
-		
-		
-		
 	}
 }

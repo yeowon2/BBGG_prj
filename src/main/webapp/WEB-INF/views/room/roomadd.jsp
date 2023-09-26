@@ -136,16 +136,16 @@
 						<div class="form-group">
 						    <h6>타입</h6>
 						    <label>
-						        <input type="radio" name="roomType" value="o" > 원룸
+						        <input type="radio" name="roomType" value="O" > 원룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="t" > 투룸
+						        <input type="radio" name="roomType" value="T" > 투룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="h" > 쓰리룸
+						        <input type="radio" name="roomType" value="H" > 쓰리룸
 						    </label>
 						    <label>
-						        <input type="radio" name="roomType" value="f" > 오피스텔
+						        <input type="radio" name="roomType" value="F" > 오피스텔
 						    </label>
 						</div>
 
@@ -232,10 +232,10 @@
 						<div class="form-group">
 						    <h6>관리비 여부</h6>
 						    <label>
-						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="y" > 있음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="Y" > 있음
 						    </label>
 						    <label>
-						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="n" > 없음
+						        <input id="manageFeeAt" type="radio" name="manageFeeAt" value="N" > 없음
 						    </label>
 						</div>
 						<!-- 관리비 -->
@@ -255,7 +255,7 @@
 						    function toggleManageFeeField(value) {
 						        var manageFeeField = document.getElementById("manageFeeField");
 						
-						        if (value === "y") {
+						        if (value === "Y") {
 						            manageFeeField.style.display = "block"; // 보이도록 설정
 						        } else {
 						            manageFeeField.style.display = "none"; // 숨김
@@ -267,10 +267,10 @@
 	                    <div class="form-group">
 		                    <h6>주차 가능 여부</h6>
 						    <label>
-						        <input id="parkingAt" type="radio" name="parkingAt" value="y" required> 가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="Y" required> 가능
 						    </label>
 						    <label>
-						        <input id="parkingAt" type="radio" name="parkingAt" value="n" required> 불가능
+						        <input id="parkingAt" type="radio" name="parkingAt" value="N" required> 불가능
 						    </label>
 		               	</div>
 		               	<!-- 매물소개 -->
@@ -282,6 +282,8 @@
 	                    	<h6>매물 설명</h6>
 	                        <textarea rows="8" name="memoDetail" class="form-control rounded-0" placeholder="설명란" required ></textarea>
 	                    </div>
+	                    <!-- 매물 상태값(Y=등록/판매중, C=판매완료, D=삭제된매물) -->
+	                    <input type="hidden" name="useAt" class="form-control rounded-0" value="Y"/>
                   	</div>
                   	<button>등록</button>
                 </form> 

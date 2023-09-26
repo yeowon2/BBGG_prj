@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
-import kr.ac.kopo.user.web.UserVO;
 
 @Controller
 @RequestMapping("/partner")
@@ -22,6 +21,14 @@ public class PartnerController {
 	
 	@Autowired
 	PartnerService service;
+	
+	@GetMapping("/detail")
+	public String detail(@PathVariable Long partnerNo, Model model) {
+		PartnerVO partnerVO = service.detail(partnerNo);
+		model.addAttribute("partnerVO", partnerVO);
+		
+		return path +  "detail";
+	}
 	
 	@GetMapping("/list")
 	public String list(Model model, Pager pager) {
@@ -39,7 +46,7 @@ public class PartnerController {
 	public String add(PartnerVO partnerVO) {
 		service.add(partnerVO);
 		
-		return "redirect:/";
+		return "redirect:/partner";
 	}
 	
 	@GetMapping("/update/{partnerNo}")

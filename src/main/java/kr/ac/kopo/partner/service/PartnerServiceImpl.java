@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.dao.PartnerDao;
 import kr.ac.kopo.partner.web.PartnerVO;
-import kr.ac.kopo.user.web.UserVO;
 
 @Service
 public class PartnerServiceImpl implements PartnerService {
@@ -41,6 +40,11 @@ public class PartnerServiceImpl implements PartnerService {
 	@Override
 	public void delete(Long partnerNo) {
 		dao.delete(partnerNo);
+	}
+
+	@Override
+	public PartnerVO detail(Long partnerNo) {
+		return dao.detail(partnerNo);
 	}
 
 

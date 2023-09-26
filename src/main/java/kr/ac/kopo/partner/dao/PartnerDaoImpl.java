@@ -46,4 +46,9 @@ public class PartnerDaoImpl implements PartnerDao {
 		return sql.selectOne("partner.total", pager);
 	}
 
+	@Override
+	public PartnerVO detail(Long partnerNo) {
+		return sql.selectOne("partner.detail", partnerNo);
+	}
+
 }

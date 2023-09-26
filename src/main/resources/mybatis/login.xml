@@ -4,17 +4,38 @@
 <mapper namespace="login">
 
 	<resultMap type="kr.ac.kopo.user.web.UserVO" id="UserMap">
+        <result property="userNo" column="user_no" /> <!-- 변경된 컬럼명 사용 -->
 		<result property="userId" column="user_id" />
 		<result property="userPw" column="user_pw" />
 	</resultMap>
 	
 	<select id="actionLogin" resultMap="UserMap">
 		SELECT
-		user_id
-		, user_pw
+			user_no
+			,user_id
+			, user_pw
 		FROM tbl_user
 		WHERE user_id = #{userId}
 		AND user_pw = #{userPw}
 	</select>
+	
+	 <!-- PartnerVO에 대한 ResultMap -->
+    <resultMap type="kr.ac.kopo.partner.web.PartnerVO" id="PartnerMap">
+        <result property="partnerNo" column="partner_no" /> <!-- 변경된 컬럼명 사용 -->
+        <result property="userId" column="user_id" /> <!-- 변경된 컬럼명 사용 -->
+        <result property="userPw" column="user_pw" /> <!-- 변경된 컬럼명 사용 -->
+    </resultMap>
+
+    <!-- PartnerVO를 사용한 로그인 쿼리 -->
+    <select id="partnerActionLogin" resultMap="PartnerMap">
+        SELECT
+        	partner_no
+	        , user_id
+	        , user_pw
+        FROM tbl_partner
+        WHERE user_id = #{userId} <!-- 변경된 컬럼명 사용 -->
+        AND user_pw = #{userPw} <!-- 변경된 컬럼명 사용 -->
+    </select>
+	
 
 </mapper>

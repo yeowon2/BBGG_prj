@@ -28,7 +28,6 @@ public class SendController {
 		noteVO.setUserNo(userNo);
 		List<NoteVO> sendList = service.sendList(noteVO);
 		model.addAttribute("sendList", sendList);
-		System.out.println("userNo:" + noteVO.getUserNo()) ;
 		
 		return path + "list";
 	}

@@ -4,7 +4,6 @@ import java.util.List;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
-import kr.ac.kopo.user.web.UserVO;
 
 public interface PartnerDao {
 
@@ -19,5 +18,7 @@ public interface PartnerDao {
 	void delete(Long partNo);
 
 	int total(Pager pager);
+
+	PartnerVO detail(Long partnerNo);
 
 }

@@ -22,14 +22,14 @@
                		
                	</div>
               </div>
-              <c:if test="${loginVO == null}">
+              <c:if test="${loginPartnerVO == null}">
 	              <div class="header-top-right float-right">
 	                <a href="/login" class="header-top-button"><i class="lni-lock"></i> 로그인</a> |
 	                <a href="/user/add" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a> |
 	                <a href="/partner/add" class="header-top-button"><i class="lni-pencil"></i> 중개사 가입</a>
 	              </div>
               </c:if>
-              <c:if test="${loginVO != null}">
+              <c:if test="${loginPartnerVO != null}">
 	              <div class="header-top-right float-right">
 	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a> |
 	              </div>
@@ -54,51 +54,36 @@
 
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
-              <li class="nav-item mx-3 active">
-                <a class="nav-link m1-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Home 
+              <li class="nav-item active mx-3">
+                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                  HOME
                 </a>
-                
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  매물 보기 
+                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                  매물 목록 
                 </a>
               </li>
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  관심 목록 
+
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                  매물 등록
                 </a>
-                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="property.html">내 관심목록</a>
-                  <a class="dropdown-item" href="single-property.html">최근에 본 방</a>
-                </div>
               </li>
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  TIPS 
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="portfolio-2.html">부동산 가이드</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown m1-2">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
                   고객센터
                 </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="about.html">About Us</a>
-                 
-                </div>
               </li>
-              <c:if test="${loginVO != null}">
+              <c:if test="${loginPartnerVO != null}">
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  마이페이지 <i class="fa fa-angle-down"></i>
+                  마이페이지 
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
-                  <a class="dropdown-item" href="/note/sendList/${loginVO.userNo}">보낸 쪽지함</a>
+                  <a class="dropdown-item" href="/note/receiveList/${loginPartnerVO.partnerNo}">받은 쪽지함</a>
                 </div>
               </li>
               </c:if>   

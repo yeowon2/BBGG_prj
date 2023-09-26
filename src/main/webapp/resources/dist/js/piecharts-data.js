@@ -69,12 +69,10 @@ var echartsConfig = function() {
 					name:'',
 					type:'pie',
 					radius : '55%',
-					color: ['#f83f37', '#fa7d77', '#fff1f1', '#fb9f9b'],
+					color: ['#90d7a3','#3fb95f',],
 					data:[
 						{value:435, name:''},
 						{value:679, name:''},
-						{value:848, name:''},
-						{value:348, name:''},
 					],
 					label: {
 						normal: {
@@ -173,7 +171,7 @@ var echartsConfig = function() {
 		eChart_4.setOption(option3);
 		eChart_4.resize();
 	}
-	if( $('#e_chart_5').length > 0 ){
+	if( $('#e_chart_55').length > 0 ){
 		var eChart_5 = echarts.init(document.getElementById('e_chart_5'));
 		
 		var option4 = {

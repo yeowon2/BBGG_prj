@@ -7,8 +7,8 @@ import kr.ac.kopo.pager.Pager;
 public class PartnerVO extends Pager{
 
 	private long partnerNo;
-	private String partnerId;
-	private String partnerPw;
+	private String userId;
+	private String userPw;
 	private String compName;
 	private String partnerName;
 	private String partnerType;
@@ -20,23 +20,24 @@ public class PartnerVO extends Pager{
 	private Date updateDate;
 	private String useAt;
 	private String partnerAuth;
+	
 	public long getPartnerNo() {
 		return partnerNo;
 	}
 	public void setPartnerNo(long partnerNo) {
 		this.partnerNo = partnerNo;
 	}
-	public String getPartnerId() {
-		return partnerId;
+	public String getUserId() {
+		return userId;
 	}
-	public void setPartnerId(String partnerId) {
-		this.partnerId = partnerId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getPartnerPw() {
-		return partnerPw;
+	public String getUserPw() {
+		return userPw;
 	}
-	public void setPartnerPw(String partnerPw) {
-		this.partnerPw = partnerPw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
 	public String getCompName() {
 		return compName;
@@ -104,4 +105,6 @@ public class PartnerVO extends Pager{
 	public void setPartnerAuth(String partnerAuth) {
 		this.partnerAuth = partnerAuth;
 	}
+	
+	
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -33,6 +34,10 @@
               </h3>
               <form class="login-form" method="post" action="/actionLogin">
                 <div class="form-group">
+	                <div class="form-group">
+	                  <input type="checkbox" name="userType" value="true"> 중개사무소 로그인 
+	                </div> 
+              	<input type="hidden" name="userType" value="false">
                   <div class="input-icon">
                     <i class="lni-user"></i>
                     <input type="text" id="sender-email" class="form-control" name="userId" placeholder="이메일 아이디를 입력하세요">
@@ -44,11 +49,10 @@
                     <input type="password" class="form-control" name="userPw" placeholder="비밀번호를 입력하세요">
                   </div>
                 </div> 
-                <div class="form-group">
-                  <input type="checkbox" name="rememberme" value="true"> 아이디 저장
-                </div> 
+                
                 <button class="btn btn-common log-btn" type="submit">로그인</button>
               </form>
+              
               <ul class="form-links">
                 <li class="text-center"><a href="/user/add">회원 가입 하시겠습니까?</a></li>
               </ul>

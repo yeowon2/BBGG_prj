@@ -27,7 +27,6 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public ItemVO itemSelect(ItemVO itemVO) {
-		System.out.println(itemVO.getLeaseOrMonth());
 		ItemVO vo =  sql.selectOne("item.itemSelect", itemVO);
 		LOGGER.info("LotM: {}", vo.getLeaseOrMonth());
 		return vo;

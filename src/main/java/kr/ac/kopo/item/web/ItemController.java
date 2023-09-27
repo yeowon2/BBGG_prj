@@ -1,6 +1,8 @@
 package kr.ac.kopo.item.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -12,14 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.ac.kopo.item.service.ItmeService;
+import kr.ac.kopo.item.service.ItemService;
 
 @Controller
 public class ItemController {
 	
 	@Autowired
-	ItmeService	service;
+	ItemService	service;
 
 	private String path = "item/";
 	
@@ -91,6 +95,39 @@ public class ItemController {
 		
 		model.addAttribute("partItemList", partItemList);
 		return path + "partItemList";
+	}
+	
+	//매물 상태 변경
+	@PostMapping("/updateStatus")
+	@ResponseBody
+	public String updateStatus( 
+			@RequestParam("itemNo") Long itemNo
+			)
+	{
+		 try {
+	            service.updateStatus(itemNo);
+           String status = service.selectStatus(itemNo);
+	            return status;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return "Error";
+	        }
+	}
+	
+	// 매물 삭제
+	@PostMapping("/deleteItem")
+	@ResponseBody
+	public String deleteItem( 
+			@RequestParam("itemNo") Long itemNo
+			)
+	{
+		 try {
+	            service.deleteItem(itemNo);
+	            return "Success";
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return "Error";
+	        }
 	}
 
 	

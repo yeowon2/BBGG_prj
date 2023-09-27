@@ -9,7 +9,7 @@
 </style>
 <jsp:include page="../head.jsp"></jsp:include>
 </head>
-<jsp:include page="../nav.jsp"></jsp:include>
+<jsp:include page="../navPartner.jsp"></jsp:include>
 <body>
  <!-- Page Banner Start -->
     <div id="page-banner-area" class="page-banner">
@@ -78,13 +78,18 @@
                     <td class="actions">
                     	<div class="row">
                            <div class="col-4 mr-20">
-                               <button aria-expanded="false" class="btn btn-sm btn-green" type="button">거래가능</span></button>
+                           		<c:if test="${item.useAt == 'Y'}">
+									<button aria-expanded="false" class="btn btn-sm btn-green item-status" type="button" data-status="${item.useAt}"></span>거래 가능</button>
+                           		</c:if>
+                           		<c:if test="${item.useAt == 'C'}">
+									<button aria-expanded="false" class="btn btn-sm btn-yellow item-status" type="button" data-status="${item.useAt}"></span>거래 완료</button>
+                           		</c:if>
                            </div>
 							<div class="col-4">
 		                      <a href="#" class="edit"><i class="lni-pencil"></i>수정</a>
 							</div>                    		
 							<div class="col-2">
-		                      <a href="#"><i class="delete lni-trash"></i></a>
+		                      <a class="delete" href="#"><i class="delete lni-trash"></i></a>
 							</div>                    	
                     	</div>
                     </td>
@@ -111,32 +116,76 @@
     <!-- Ueser Section End -->
 <%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 <script>
-    $(document).ready(function () {
-        // 활성화 또는 거래완료 링크를 클릭할 때
-        $(".item-status").click(function (event) {
-            event.preventDefault(); // 기본 이벤트 처리 방지
+$(document).ready(function () {
+    // 각 버튼에 대한 이벤트 처리
+    $(".item-status").click(function (event) {
+        event.preventDefault(); // 기본 이벤트 처리 방지
 
-            var status = $(this).data("status"); // 데이터 속성에서 상태 값을 가져옵니다.
-            var itemNo = $(this).closest("tr").find("td:first").text(); // 상태를 변경할 항목의 ID 또는 식별자를 가져옵니다.
+        var itemNo = $(this).closest("tr").find("td:first").text(); // 상태를 변경할 항목의 ID 또는 식별자를 가져옵니다.
+        var button = $(this); // 현재 클릭된 버튼을 저장
+        var status = button.data("status");
 
-            // AJAX 요청을 보냅니다.
-            $.ajax({
-                type: "POST", // 또는 "GET" 또는 다른 HTTP 메소드
-                url: "/update-status", // 상태를 업데이트하는 서버의 엔드포인트 URL
-                data: {
-                    itemNo: itemNo,
-                    status: status
-                },
-                success: function (response) {
-                    // 서버에서 응답을 처리하는 코드를 여기에 추가합니다.
-                    // 예를 들어, 성공적으로 업데이트되었을 때 화면을 업데이트하거나 메시지를 표시할 수 있습니다.
-                },
-                error: function (error) {
-                    // 오류 처리를 위한 코드를 여기에 추가합니다.
+        // AJAX 요청을 보냅니다.
+        $.ajax({
+            type: "POST",
+            url: "/updateStatus",
+            data: {
+                itemNo: itemNo
+            },
+            success: function (response) {
+                // 클라이언트에서 상태를 변경합니다.
+                if (status === 'Y') {
+                    status = 'C'; // 현재 상태가 거래 가능이면 거래 완료로 변경
+                    button.removeClass("btn-green").addClass("btn-yellow");
+                    button.text("거래 완료");
+                } else if (status === 'C') {
+                    status = 'Y'; // 현재 상태가 거래 완료이면 거래 가능으로 변경
+                    button.removeClass("btn-yellow").addClass("btn-green");
+                    button.text("거래 가능");
                 }
-            });
+                // 버튼의 data-status 속성도 변경합니다.
+                button.data("status", status);
+            },
+            error: function (error) {
+                alert("error 발생");
+            }
         });
     });
+    
+ // 각 버튼에 대한 이벤트 처리
+    $(".delete").click(function (event) {
+        event.preventDefault(); // 기본 이벤트 처리 방지
+
+        var itemNo = $(this).closest("tr").find("td:first").text(); // 삭제할 항목의 ID 또는 식별자를 가져옵니다.
+        var button = $(this); // 현재 클릭된 버튼을 저장
+
+        // AJAX 요청을 보냅니다.
+        $.ajax({
+            type: "POST",
+            url: "/deleteItem", // 업데이트를 처리할 서버의 URL로 변경해야 합니다.
+            data: {
+                itemNo: itemNo
+            },
+            success: function (response) {
+                // 서버로부터의 응답을 받아올 수 있습니다.
+                // 삭제에 성공한 경우 해당 행을 삭제하거나 다른 작업을 수행할 수 있습니다.
+                if (response === 'Success') {
+                    // 삭제에 성공한 경우 해당 행을 삭제
+                    button.closest("tr").remove();
+                } else {
+                    // 삭제에 실패한 경우 적절한 오류 처리를 수행합니다.
+                    alert("삭제 실패");
+                }
+            },
+            error: function (error) {
+                // 오류 처리를 위한 코드를 여기에 추가합니다.
+                alert("error 발생");
+            }
+        });
+    });
+
+});
+
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

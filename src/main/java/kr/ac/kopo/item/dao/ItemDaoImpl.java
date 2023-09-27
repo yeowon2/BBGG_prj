@@ -3,6 +3,7 @@ package kr.ac.kopo.item.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -58,12 +59,23 @@ public class ItemDaoImpl implements ItemDao {
 		    } else if ("month".equals(item.getLeaseOrMonth())) {
 		        item.setPrice(item.getMonthPrice());
 		    }
-		    
-		    for (ItemVO itemVO : list) {
-		    	LOGGER.info("depositFee: {}",itemVO.getDepositFee());
-		    }
 		}
 		return list;
+	}
+
+	@Override
+	public void updateStatus(Long itemNo) {
+		sql.update("updateStatus", itemNo);
+	}
+
+	@Override
+	public String selectStatus(Long itemNo) {
+		return sql.selectOne("selectStatus", itemNo);
+	}
+
+	@Override
+	public void deleteItem(Long itemNo) {
+		sql.update("deleteItem", itemNo);
 	}
 
 	

@@ -55,12 +55,12 @@
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
               <li class="nav-item active mx-3">
-                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/partner/${loginPartnerVO.partnerNo}"  aria-haspopup="true" aria-expanded="false">
                   HOME
                 </a>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/partner/${loginPartnerVO.partnerNo}/itemList"  aria-haspopup="true" aria-expanded="false">
                   매물 목록 
                 </a>
               </li>

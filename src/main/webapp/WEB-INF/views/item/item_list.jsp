@@ -95,62 +95,58 @@
                 localStorage.setItem('locationConfirmed', 'false');
             }
         }
-
-        // 서버에서 주소 검색 결과를 가져와 DB 리스트와 비교하여 마커 표시
-        function searchAddress() {
-            var address = document.getElementById('address').value;
-
-            // 카카오 맵 API를 사용하여 주소를 좌표로 변환
-            var geocoder = new kakao.maps.services.Geocoder();
-            geocoder.addressSearch(address, function (result, status) {
-                if (status === kakao.maps.services.Status.OK) {
-                    var searchCoords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                    // 이전에 표시된 마커들을 모두 삭제
-                    removeAllMarkers();
-
-                    // 서버에서 DB 리스트를 가져옵니다.
-                    $.ajax({
-                        url: '/itemList', // 서버에서 데이터를 가져올 엔드포인트
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function (data) {
-                            if (data && data.length > 0) {
-                                // 가져온 DB 리스트를 반복하여 마커를 생성하고 지도에 표시
-                                for (var i = 0; i < data.length; i++) {
-                                    var dbCoords = new kakao.maps.LatLng(data[i].lat, data[i].lng);
-
-                                    // 주소 검색 결과 좌표와 DB 리스트 좌표를 비교하여 일치하는 경우에만 마커 표시
-                                    if (searchCoords.equals(dbCoords)) {
-                                        var marker = new kakao.maps.Marker({
-                                            map: map,
-                                            position: dbCoords
-                                        });
-                                        markers.push(marker);
-                                    }
-                                }
-                            }
-                        },
-                        error: function (error) {
-                            console.error('데이터를 불러오는데 실패했습니다.', error);
-                        }
-                    });
-
-                    // 검색 결과 위치를 지도 중심으로 설정
-                    map.setCenter(searchCoords);
-                } else {
-                    alert('주소를 찾을 수 없습니다.');
-                }
-            });
-        }
-
-        // 이전에 표시된 마커들을 모두 삭제하는 함수
-        function removeAllMarkers() {
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(null);
-            }
-            markers = [];
-        }
     </script>
+    <!-- 카테고리에 따른 마커 생성 -->
+	<c:forEach var="item" items="${list}">
+		<script>
+			//var lat = [];
+			//var lng = [];
+			
+			console.log(`${item.latitude}, ${item.longitude}`);
+			
+			var positions = [
+				{
+			        title: `${item.itemNo}`, 
+			        latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
+			    }
+			]
+			
+			//마커 이미지의 이미지 주소입니다
+			var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			
+			for (var i = 0; i < positions.length; i ++) {
+				
+				// 마커 이미지의 이미지 크기 입니다
+			    var imageSize = new kakao.maps.Size(24, 35); 
+			    
+			    // 마커 이미지를 생성합니다    
+			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    
+			    // 마커를 생성합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map, // 마커를 표시할 지도
+			        position: positions[i].latlng, // 마커를 표시할 위치
+			        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			        image : markerImage // 마커 이미지 
+			    });
+			    
+			 	// 마커에 클릭이벤트를 등록합니다
+			    kakao.maps.event.addListener(marker, 'click', function() {
+			    	document.getElementById('myModal').style.display = 'block';
+			    	fetch(`item/${item.shopNo}`, {
+			            method: "GET",
+			        });
+			    	document.getElementById('cn').innerHTML = `${item.compName}`;
+			    	document.getElementById('ca').innerHTML = `${item.compAddr1}`;
+			    	document.getElementById('cc').innerHTML = `${item.compCall}`;
+			    	document.getElementById('sn').value = `${item.shopNo}`;
+			
+			    	alert("매장번호" + ${item.shopNo});
+			    });
+			    
+			}
+		</script>
+	
+	</c:forEach>
 
 </html>

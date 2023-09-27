@@ -4,17 +4,34 @@
 <html>
 <head>
 <style>
-
 </style>
 <jsp:include page="../head.jsp"></jsp:include>
 </head>
 <jsp:include page="../nav.jsp"></jsp:include>
 <body>
- <div class="col-lg-8 col-md-7 col-xs-12">
+ <!-- Page Banner Start -->
+    <div id="page-banner-area" class="page-banner">
+      <div class="page-banner-title">
+        <div class="text-center">
+          <h2>My Properties</h2>
+          <a href="#"><i class="lni-home"></i> Home</a>
+          <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
+          <span class="current">매물 보기</span>
+        </div>
+      </div>
+    </div>
+    <!-- Page Banner End -->
+
+    <!-- Ueser Section Start -->
+    <section class="user-page section-padding">
+	    <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-7 col-xs-12">
             <div class="my-properties">
               <table class="table-responsive">
                 <thead>
                   <tr>
+                    <th>매물번호</th>
                     <th>Property</th>
                     <th></th>
                     <th>Date Added</th>
@@ -24,8 +41,9 @@
                 </thead>
                 <tbody>
                   <tr>
+                  	<td></td>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties-3" src="assets/img/property/house-1.jpg" class="img-fluid"></a>
+                      <a href="property.html"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -43,7 +61,7 @@
                   </tr>
                   <tr>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties" src="assets/img/property/house-2.jpg"></a>
+                      <a href="property.html"><img alt="my-properties" src="/resources/assets/img/property/house-2.jpg"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -61,7 +79,7 @@
                   </tr>
                   <tr>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties-2" src="assets/img/property/house-3.jpg"></a>
+                      <a href="property.html"><img alt="my-properties-2" src="/resources/assets/img/property/house-3.jpg"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -97,7 +115,7 @@
                   </tr>
                   <tr>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties" src="assets/img/property/house-5.jpg"></a>
+                      <a href="property.html"><img alt="my-properties" src="/resources/assets/img/property/house-5.jpg"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -115,7 +133,7 @@
                   </tr>
                   <tr>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties-2" src="assets/img/property/house-2.jpg"></a>
+                      <a href="property.html"><img alt="my-properties-2" src="/resources/assets/img/property/house-2.jpg"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -146,6 +164,10 @@
               </div>
             </div>
           </div>
+	      </div>
+	    </div>
+	  </section>
+    <!-- Ueser Section End -->
 <%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

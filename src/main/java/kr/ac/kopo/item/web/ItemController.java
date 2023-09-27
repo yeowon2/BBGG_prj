@@ -85,12 +85,12 @@ public class ItemController {
 	}
 	
 	//파트너 매물 목록 조회
-	@GetMapping("/{partnerNo}/itemList")
+	@GetMapping("/partner/{partnerNo}/itemList")
 	public String partItemList(@PathVariable Long partnerNo, Model model) {
 		List<ItemVO> partItemList = service.partItemList(partnerNo);
 		
 		model.addAttribute("partItemList", partItemList);
-		return "parterItemList";
+		return path + "partItemList";
 	}
 
 	

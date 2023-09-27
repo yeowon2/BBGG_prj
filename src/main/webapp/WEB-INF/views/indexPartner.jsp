@@ -74,9 +74,11 @@
 												<div class="d-flex align-items-center justify-content-between position-relative">
 													<div>
 														<span class="d-block">
-															<button class="btn btn-success btn-wth-icon icon-wthot-bg btn-rounded icon-right">
-															<span class="btn-text">매물 목록</span><span class="icon-label"><i class="fa fa-angle-right"></i></span>
-															</button>
+															<a href="/partner/${partnerVO.partnerNo}/itemList">
+																<button class="btn btn-success btn-wth-icon icon-wthot-bg btn-rounded icon-right">
+																<span class="btn-text">매물 목록</span><span class="icon-label"><i class="fa fa-angle-right"></i></span>
+																</button>
+															</a>
 														</span>
 													</div>
 													

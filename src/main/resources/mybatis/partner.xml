@@ -51,7 +51,8 @@
 	
 	<select id="select" resultType="PartnerVO">
 		SELECT 
-			comp_name
+			partner_no
+			, comp_name
 			, comp_address
 			, partner_name
 			, regist_num
@@ -60,7 +61,7 @@
 		WHERE partner_no = #{partnerNo}
 	</select>
 
-	<select id="detail" resultType="PartnerVO">
+	<!-- <select id="detail" resultType="PartnerVO">
 		SELECT 
 			comp_name
 			, comp_address
@@ -69,7 +70,7 @@
 			, phone
 		FROM  tbl_partner
 		WHERE partner_no = #{partnerNo}
-	</select>
+	</select> -->
 	
 	<update id="update">
 		UPDATE tbl_partner

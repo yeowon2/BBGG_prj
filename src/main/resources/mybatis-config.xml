@@ -21,13 +21,13 @@
   	</typeAliases>
   
   	<mappers>
-  		 <mapper resource="mybatis/user.xml"/>
+  		<mapper resource="mybatis/user.xml"/>
   		<mapper resource="mybatis/partner.xml"/> 
   		<mapper resource="mybatis/pro.xml"/>
   		<mapper resource="mybatis/login.xml"/>
   		<mapper resource="mybatis/note.xml"/>
   		<mapper resource="mybatis/item.xml"/>
   		<mapper resource="mybatis/list.xml"/>
-  		<!-- <mapper resource="mybatis/fake.xml"/> -->
+  		<mapper resource="mybatis/fake.xml"/>
   	</mappers>
   </configuration>

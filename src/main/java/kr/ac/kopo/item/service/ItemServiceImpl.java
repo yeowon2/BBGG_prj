@@ -38,7 +38,7 @@ public class ItemServiceImpl implements ItmeService {
 			dao.leaseAdd(map);
 		}
 		else {
-			map.put("deposltFee", itemVO.getDeposltFee());
+			map.put("depositFee", itemVO.getDepositFee());
 			map.put("monthPrice", itemVO.getMonthPrice());
 			dao.monthAdd(map);
 		}

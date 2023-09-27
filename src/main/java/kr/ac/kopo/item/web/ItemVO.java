@@ -37,8 +37,9 @@ public class ItemVO {
 	
 	private Long leasePrice;		//전세가격
 	
-	private Long deposltFee;		//월세보증금
+	private Long depositFee;		//월세보증금
 	private Long monthPrice;		//월세가격
+	private Long price; // 월세 -> monthPrice / 전세 -> leasePrice
 	
 	public Long getitemNo() {
 		return itemNo;
@@ -202,17 +203,23 @@ public class ItemVO {
 	public void setLeasePrice(Long leasePrice) {
 		this.leasePrice = leasePrice;
 	}
-	public Long getDeposltFee() {
-		return deposltFee;
+	public Long getDepositFee() {
+		return depositFee;
 	}
-	public void setDeposltFee(Long deposltFee) {
-		this.deposltFee = deposltFee;
+	public void setDepositFee(Long depositFee) {
+		this.depositFee = depositFee;
 	}
 	public Long getMonthPrice() {
 		return monthPrice;
 	}
 	public void setMonthPrice(Long monthPrice) {
 		this.monthPrice = monthPrice;
+	}
+	public Long getPrice() {
+		return price;
+	}
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 	
 }

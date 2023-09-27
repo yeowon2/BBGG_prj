@@ -33,7 +33,7 @@
     
     <!-- 추가된 부분 -->
     <result property="leasePrice" column="price" />
-    <result property="deposltFee" column="deposlt_fee" />
+    <result property="depositFee" column="deposit_fee" />
     <result property="monthPrice" column="price" />
 </resultMap>
 
@@ -50,7 +50,7 @@
 	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.item_no = tbl_item.item_no) AS "전세가격",
 	        </when>
 	        <otherwise>
-	            (SELECT deposlt_fee FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "보증금",
+	            (SELECT deposit_fee FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "보증금",
 	            (SELECT month_price FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "월세가격",
 	        </otherwise>
 	    </choose>
@@ -161,8 +161,8 @@
 	</insert>
 	
 	<insert id="monthAdd">
-		INSERT INTO tbl_month(deposlt_fee, month_price, item_no)
-		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
+		INSERT INTO tbl_month(deposit_fee, month_price, item_no)
+		VALUES (#{depositFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
 	
@@ -171,18 +171,24 @@
 		    ti.item_no,
 		    ti.item_type,
 		    ti.lease_or_month,
+		    ti.address2,
+		    ti.address,
+		    ti.regist_date,
 		    CASE 
 		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
 		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
 		        ELSE NULL
 		    END AS price,
-		    tm.deposlt_fee, 
+		    tm.deposit_fee, 
 		    ti.item_floor,
 		    ti.manage_fee,
 		    ti.memo_short
 		FROM tbl_item ti
 		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
-		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month';
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		WHERE ti.use_at = 'Y'
+			AND ti.partner_no = #{partnerNo}
+		ORDER BY ti.regist_date DESC
 	</select>
 	
 </mapper>

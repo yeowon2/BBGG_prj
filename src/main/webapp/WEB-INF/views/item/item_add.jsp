@@ -102,7 +102,7 @@
 						</div>
 						<div class="form-group" id="monthNoField" style="display: none;">
 						    <h6>월세</h6>
-						    <input type="number" name="deposltFee" class="form-control rounded-0" value="" placeholder="보증금(만원 단위)"/>
+						    <input type="number" name="depositFee" class="form-control rounded-0" value="" placeholder="보증금(만원 단위)"/>
 						    <input type="number" name="monthPrice" class="form-control rounded-0" value="" placeholder="월세금(만원 단위)"/>
 						</div>
 						<script>

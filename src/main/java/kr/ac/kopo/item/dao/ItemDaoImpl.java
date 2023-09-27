@@ -50,7 +50,20 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public List<ItemVO> partItemList(Long partnerNo) {
-		return sql.selectList("item.partItemList", partnerNo);
+		
+		List<ItemVO> list = sql.selectList("item.partItemList", partnerNo);
+		for (ItemVO item : list) {
+		    if ("lease".equals(item.getLeaseOrMonth())) {
+		        item.setPrice(item.getLeasePrice());
+		    } else if ("month".equals(item.getLeaseOrMonth())) {
+		        item.setPrice(item.getMonthPrice());
+		    }
+		    
+		    for (ItemVO itemVO : list) {
+		    	LOGGER.info("depositFee: {}",itemVO.getDepositFee());
+		    }
+		}
+		return list;
 	}
 
 	

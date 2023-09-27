@@ -48,7 +48,7 @@
                     <c:if test="${result.leaseOrMonth == 'month'}">
 	                    <div class="form-group">
 	                    	<h6>월세</h6>
-	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="월세 / 보증금: ${result.deposltFee}, 월세: ${result.monthPrice}  " readonly />
+	                        <input type="text" name="leaseOrMonth" class="form-control rounded-0" value="월세 / 보증금: ${result.depositFee}, 월세: ${result.monthPrice}  " readonly />
 	                    </div>
                     </c:if>
                     <!-- 입주가능날짜 -->

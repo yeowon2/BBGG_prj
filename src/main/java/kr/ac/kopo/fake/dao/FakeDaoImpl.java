@@ -22,9 +22,9 @@ public class FakeDaoImpl implements FakeDao {
 //	}
 
 	@Override
-	public void fakeAdd(Long roomNo, FakeVO fakeVO, File saveFile) {
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("roomNo", roomNo);
+		paramMap.put("itemNo", itemNo);
 		paramMap.put("fakeVO", fakeVO);
 		paramMap.put("saveFile", saveFile);
 		System.out.println(saveFile);

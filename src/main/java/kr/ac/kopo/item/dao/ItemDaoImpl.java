@@ -27,7 +27,6 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public ItemVO itemSelect(ItemVO itemVO) {
-		System.out.println(itemVO.getLeaseOrMonth());
 		ItemVO vo =  sql.selectOne("item.itemSelect", itemVO);
 		LOGGER.info("LotM: {}", vo.getLeaseOrMonth());
 		return vo;
@@ -50,8 +49,8 @@ public class ItemDaoImpl implements ItemDao {
 	}
 
 	@Override
-	public List<ItemVO> partItemList() {
-		return sql.selectList("item.partItemList");
+	public List<ItemVO> partItemList(Long partnerNo) {
+		return sql.selectList("item.partItemList", partnerNo);
 	}
 
 	

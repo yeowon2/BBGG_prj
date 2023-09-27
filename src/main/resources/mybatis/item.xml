@@ -58,12 +58,12 @@
 	        <when test="leaseOrMonth == 'lease'">
 	        	SELECT tbl_item.*, tbl_lease.*
 				FROM tbl_item JOIN tbl_lease ON tbl_item.item_no = tbl_lease.item_no
-				WHERE tbl_item.item_no = #{itemNo}
+				WHERE tbl_lease.item_no = #{itemNo}
 	        </when>
 	        <otherwise>
 	            SELECT tbl_item.*, tbl_month.*
 				FROM tbl_item JOIN tbl_month ON tbl_item.item_no = tbl_month.item_no
-				WHERE tbl_item.item_no = #{itemNo}
+				WHERE tbl_month.item_no = #{itemNo}
 	        </otherwise>
 	    </choose>
 	</select>
@@ -97,6 +97,7 @@
 	    lng,
 	    use_at
 	    )
+	    
 	    VALUES 
 	    (
 	    1,
@@ -130,7 +131,7 @@
 	            #{manageFee},
 	        </when>
 	        <otherwise>
-	            0,
+	            NULL,
 	        </otherwise>
 	    </choose>
 	    
@@ -158,8 +159,8 @@
 		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
-	<select id="partList" resultType="">
-		SELECT 
+	<select id="partList" resultType="ItemVO">
+		
 	</select>
 	
 </mapper>

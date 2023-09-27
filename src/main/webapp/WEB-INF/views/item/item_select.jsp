@@ -171,7 +171,7 @@
 	                        </span>
 	                    </button>
                     </a>
-                    <a href='/report/<c:out value="${itemNo}"/>'>
+                    <a href='/fake/<c:out value="${itemNo}"/>'>
 	                    <button class="btn btn-secondary btn-wth-icon icon-wthot-bg btn-rounded icon-right btn-sm">
 		                    <span class="btn-text">신고하기</span> 
 	                       	<span class="icon-label">

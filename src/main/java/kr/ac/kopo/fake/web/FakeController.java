@@ -62,7 +62,7 @@ public class FakeController {
 		
 		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
 		
-			String uploadFolder = "D:\\TECH\\PROJECT\\files";
+			String uploadFolder = "C:\\Temp\\folder";
 			List<MultipartFile> list = files.getFiles("files");
 			for(int i=0; i<list.size(); i++) {
 				String fileRealName = list.get(i).getOriginalFilename(); 
@@ -82,14 +82,15 @@ public class FakeController {
 				
 				//System.out.println("DB에 저장될 파일명 : " + saveFile);
 				model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
-				model.addAttribute("fakeFinishMsg", "redirect:/roomSelect/{itemNo}"); // @@@@@@@@@@
-				return "alert";
+				model.addAttribute("fakeFinishUrl", "/itemSelect/3");
+				return "/alert";
 			}
-		}
-		
+		} else {
 			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");
 			model.addAttribute("loginUrl", "/login/login");
 			//return "redirect:/roomSelect/{roomNo}";
 			return "/alert";  
+		}
+		return "";
 	}
 }

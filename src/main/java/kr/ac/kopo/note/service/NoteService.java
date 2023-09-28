@@ -11,7 +11,7 @@ public interface NoteService {
 
 	List<NoteVO> receiveList(NoteVO noteVO);
 	
-	void add(Long roomNo, NoteVO noteVO);
+	void add(Long itemNo, NoteVO noteVO);
 
 	NoteVO sendDetail(Map<String, Long> paramMap);
 

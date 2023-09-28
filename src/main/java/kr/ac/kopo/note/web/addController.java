@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.ac.kopo.note.service.NoteService;
 
 @Controller
-@RequestMapping("/roomSelect")
+@RequestMapping("/itemSelect")
 public class addController {
 	
 private String path = "note/send/";
@@ -18,18 +18,18 @@ private String path = "note/send/";
 	@Autowired
 	NoteService service;
 
-	@GetMapping("/{roomNo}/add")
-	public String add(@PathVariable Long roomNo) {
+	@GetMapping("/{itemNo}/add")
+	public String add(@PathVariable Long itemNo) {
 
 		return path + "add";
 	}
 	
-	@PostMapping("/{roomNo}/add")
-	public String add(@PathVariable Long roomNo, NoteVO noteVO) {
-		service.add(roomNo, noteVO);
+	@PostMapping("/{itemNo}/add")
+	public String add(@PathVariable Long itemNo, NoteVO noteVO) {
+		service.add(itemNo, noteVO);
 		
 		
-		return "redirect:/roomSelect/{roomNo}";
+		return "redirect:/itemSelect/{itemNo}";
 	}
 	
 }

@@ -3,9 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-
-</style>
+  <style>
+  	body, #content {
+  		background-color: #F5F5F5;
+  	}
+  </style>
 <jsp:include page="../head.jsp"></jsp:include>
 </head>
 <jsp:include page="../nav.jsp"></jsp:include>

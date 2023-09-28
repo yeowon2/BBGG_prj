@@ -31,8 +31,8 @@ public class NoteServiceImpl implements NoteService {
 	
 
 	@Override
-	public void add(Long roomNo, NoteVO noteVO) {
-		dao.add(roomNo, noteVO);
+	public void add(Long itemNo, NoteVO noteVO) {
+		dao.add(itemNo, noteVO);
 	}
 
 	@Override

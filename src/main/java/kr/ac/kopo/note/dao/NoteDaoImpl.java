@@ -33,9 +33,9 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public void add(Long roomNo, NoteVO noteVO) {
+	public void add(Long itemNo, NoteVO noteVO) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("roomNo", roomNo);
+		paramMap.put("itemNo", itemNo);
 		paramMap.put("noteVO", noteVO);
 		sql.insert("note.add", paramMap);
 

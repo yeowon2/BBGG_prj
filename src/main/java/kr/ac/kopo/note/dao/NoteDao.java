@@ -16,7 +16,7 @@ public interface NoteDao {
 
 	int total(Pager pager);
 
-	void add(@Param("roomNo") Long roomNo, @Param("noteVO") NoteVO noteVO);
+	void add(@Param("itemNo") Long itemNo, @Param("noteVO") NoteVO noteVO);
 
 	NoteVO sendDetail(Map<String, Long> paramMap);
 

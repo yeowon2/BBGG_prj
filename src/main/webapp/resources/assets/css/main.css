@@ -1688,6 +1688,10 @@ Property wrapper Style
   color: #888;
 }
 
+.additional-details li span {
+  color: #888;
+}
+
 .property-features {
   width: 100%;
   display: block;

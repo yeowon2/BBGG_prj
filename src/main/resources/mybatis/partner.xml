@@ -61,16 +61,16 @@
 		WHERE partner_no = #{partnerNo}
 	</select>
 
-	<!-- <select id="detail" resultType="PartnerVO">
+	 <select id="detail" resultType="PartnerVO">
 		SELECT 
 			comp_name
-			, comp_address
-			, partner_name
-			, regist_num
+			, comp_address 
+			, partner_name 
+			, regist_num 
 			, phone
-		FROM  tbl_partner
-		WHERE partner_no = #{partnerNo}
-	</select> -->
+			FROM tbl_partner tp JOIN tbl_item ti ON (tp.partner_no = ti.partner_no)
+			WHERE ti.item_no = #{itemNo}
+	</select> 
 	
 	<update id="update">
 		UPDATE tbl_partner

@@ -29,7 +29,7 @@ private String path = "note/send/";
 		service.add(itemNo, noteVO);
 		
 		
-		return "redirect:/itemSelect/{itemNo}";
+		return "redirect:/itemDetail/{itemNo}";
 	}
 	
 }

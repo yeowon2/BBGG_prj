@@ -9,13 +9,13 @@ public interface PartnerDao {
 
 	List<PartnerVO> list(Pager pager);
 
-	void add(PartnerVO partVO);
+	void add(PartnerVO parterVO);
 
-	PartnerVO select(Long partNo);
+	PartnerVO select(Long parterNO);
 
-	void update(PartnerVO partVO);
+	void update(PartnerVO parterVO);
 
-	void delete(Long partNo);
+	void delete(Long parterNO);
 
 	int total(Pager pager);
 

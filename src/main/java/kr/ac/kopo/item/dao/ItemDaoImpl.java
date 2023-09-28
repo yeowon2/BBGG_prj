@@ -78,6 +78,8 @@ public class ItemDaoImpl implements ItemDao {
 		sql.update("deleteItem", itemNo);
 	}
 
-	
-		
+	@Override
+	public ItemVO itemDetail(Long itemNo) {
+		return sql.selectOne("itemDetail", itemNo);
+	}
 }

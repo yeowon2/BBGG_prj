@@ -2,7 +2,6 @@ package kr.ac.kopo.item.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +62,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void deleteItem(Long itemNo) {
 		dao.deleteItem(itemNo);
+	}
+
+	@Override
+	public ItemVO itemDetail(Long itemNo) {
+		return dao.itemDetail(itemNo);
 	}
 }

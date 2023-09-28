@@ -1,7 +1,6 @@
 package kr.ac.kopo.item.service;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.ac.kopo.item.web.ItemVO;
 
@@ -20,6 +19,8 @@ public interface ItemService {
 	String selectStatus(Long itemNo);
 
 	void deleteItem(Long itemNo);
+
+	ItemVO itemDetail(Long itemNo);
 	
 
 }

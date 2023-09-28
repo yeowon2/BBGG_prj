@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" %>
 
 <!DOCTYPE html>
@@ -33,24 +34,24 @@
           <div class="row">
             <div class="col-lg-4 col-md-12 col-xs-12">
               <div class="info">
-                <h4>현대 아파트 </h4>
-                <p class="room-type">매물 번호: 2</p>
-                <p class="address"><i class="lni-map-marker"></i> 대전 대덕구 우암로 394, 101동</p>
+                <h4>${itemVO.address2}</h4>
+                <p class="room-type">매물 번호: ${itemVO.itemNo}</p>
+                <p class="address"><i class="lni-map-marker"></i> ${itemVO.address} ${itemVO.dong} ${itemVO.ho} </p>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
               <div class="details">
                 <div class="details-listing">
                   <p>방 수</p>
-                  <h5>05</h5>
+                  <h5>${itemVO.itemCount}</h5>
                 </div>
                 <div class="details-listing">
                   <p>욕실 수</p>
-                  <h5>06</h5>
+                  <h5>${itemVO.bathAt}</h5>
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5>82㎡(㎡)</h5>
+                  <h5>${itemVO.itemSize}㎡(㎡)</h5>
                 </div>
               </div>
             </div>
@@ -87,30 +88,103 @@
                 <h2 class="desc-title">상세 정보</h2>
                 <ul class="additional-details">        
                   <li class="row">
-                  	<div class="col-lg-2">
-                    	<strong>AC:</strong>
+                  	<div class="col-lg-4">
+                    	<strong>건물이름</strong>
                     </div>
                     <div class="col-lg-8">
-                    	<span>Central</span>
+                    	<span>${itemVO.address2}</span>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>방종류</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<c:choose>
+						    <c:when test="${item.itemType eq 'O'}">
+						        <p>원룸</p>
+						    </c:when>
+						    <c:when test="${item.itemType eq 'T'}">
+						        <p>투룸</p>
+						    </c:when>
+						    <c:when test="${item.itemType eq 'H'}">
+						        <p>쓰리룸</p>
+						    </c:when>
+						    <c:otherwise>
+						        <p>오피스텔</p>
+						    </c:otherwise>
+						</c:choose>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>해당층/건물층</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<span>${itemVO.itemFloor}층/${itemVO.buildingFloor}층</span>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>전용면적</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<span>${itemVO.itemSize}㎡(㎡)</span>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>방 수/욕실 수</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<span>${itemVO.itemCount}개/${itemVO.bathAt}개</span>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>엘리베이터</strong>
+                    </div>
+                    <div class="col-lg-8">
+					    <span>${itemVO.elevatorAt eq 'Y' ? '있음' : '없음'}</span>
+					</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>주차여부</strong>
+                    </div>
+                    <div class="col-lg-8">
+					    <span>${itemVO.parkingAt eq 'Y' ? '가능' : '불가'}</span>
+					</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>입주가능일</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<c:if test="${itemVO.moveInDate == null}">
+	                    	<span>즉시 입주 가능</span>
+                    	</c:if>
+						<c:if test="${itemVO.moveInDate != null}">
+	                    	<span><fmt:formatDate value="${itemVO.moveInDate}" pattern="yyyy.MM.dd"/></span>
+                    	</c:if>
+                  	</div>
+                  </li>
+                  <li class="row">
+                  	<div class="col-lg-4">
+                    	<strong>최초등록일</strong>
+                    </div>
+                    <div class="col-lg-8">
+                    	<span><fmt:formatDate value="${itemVO.registDate}" pattern="yyyy.MM.dd"/></span>
                   	</div>
                   </li>
                   
                 </ul>
               </div>
 
-              <div class="inner-box featured">
-                <h2 class="desc-title">Details</h2>
-                <ul class="property-features">
-                  <li>Building Age: <span>2 Years</span></li>
-                  <li>Parking: <span>Attached Garage</span></li>
-                  <li>Cooling: <span>Central Cooling</span></li>
-                  <li>Heating: <span>Forced Air, Gas</span></li>
-                  <li>Sewer: <span>Public/City</span></li>
-                  <li>Water: <span>City</span></li>
-                  <li>Exercise Room: <span>Yes</span></li>
-                  <li>Storage Room: <span>Yes</span></li>
-                </ul>
-              </div> 
+               <div class="inner-box property-dsc">
+                <h2 class="desc-title">상세 설명</h2>
+               	<p>${itemVO.memoDetail}</p>
+              </div>
 
               <div class="inner-box featured">  
                 <h2 class="desc-title">Features</h2>
@@ -128,7 +202,7 @@
               </div>
 
               <div class="inner-box location-map">
-                <h2 class="desc-title">Location On Map</h2>
+                <h2 class="desc-title">위치 정보</h2>
                 <div id="conatiner-map"></div>
               </div>
            
@@ -145,28 +219,30 @@
                       <a href="#"><img src="/resources/assets/img/productinfo/agent.jpg" alt=""></a>
                     </div>
                     <div class="agent-details">
-                      <h3><a href="#">공인중개사무소 1</a></h3>
+                      <h3><a href="#">${partnerVO.compName}</a></h3>
                       <span><i class="lni-phone-handset"></i>(123) 123-456</span>
                     </div>
                   </div>
                     <div class="row">
 					  <div class="col-lg-12">
-					    <span>대표명: 김대표</span>
+					    <span>대표명: ${partnerVO.partnerName}</span>
 					  </div>
 					</div>
 					
 					<div class="row">
 					  <div class="col-lg-12">
-					    <span><i class="lni-map-marker"></i>주소: 서울특별시 강남구 역삼동</span>
+					    <span><i class="lni-map-marker"></i>주소: ${partnerVO.compAddress}</span>
 					  </div>
 					</div>
 					
 					<div class="row">
 					  <div class="col-lg-12">
-					    <span>중개등록번호: REG1234567</span>
+					    <span>중개등록번호: ${partnerVO.registNum}</span>
 					  </div>
 					</div>
-                  <button class="btn btn-common fullwidth mt-4">쪽지 보내기</button>
+					 <a href='/itemSelect/<c:out value="${itemNo}"/>/add'>
+                  		<button class="btn btn-common fullwidth mt-4">쪽지 보내기</button>
+                	</a>
                 </div>
               </div>
 
@@ -179,8 +255,8 @@
                       <a href="#" class="listing-img-container">
                         <img src="/resources/assets/img/productinfo/listing1.jpg" alt="">
                         <div class="listing-badges">
-                          <span class="featured">Featured</span>
-                          <span>For Sale</span>
+                          <!-- <span class="featured">Featured</span>
+                          <span>For Sale</span> -->
                         </div>
                         <div class="listing-content">
                           <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
@@ -199,8 +275,8 @@
                       <a href="#" class="listing-img-container">
                         <img src="/resources/assets/img/productinfo/listing2.jpg" alt="">
                         <div class="listing-badges">
-                          <span class="featured">Featured</span>
-                          <span>For Sale</span>
+                         <!--  <span class="featured">Featured</span>
+                          <span>For Sale</span> -->
                         </div>
                         <div class="listing-content">
                           <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
@@ -219,8 +295,8 @@
                       <a href="#" class="listing-img-container">
                         <img src="/resources/assets/img/productinfo/listing3.jpg" alt="">
                         <div class="listing-badges">
-                          <span class="featured">Featured</span>
-                          <span>For Sale</span>
+                         <!--  <span class="featured">Featured</span>
+                          <span>For Sale</span> -->
                         </div>
                         <div class="listing-content">
                           <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
@@ -237,7 +313,7 @@
                 </div>
               </div>
               
-              <!-- Mortgage widget -->
+              <!-- Mortgage widget 
               <div class="widget">
                 <h3 class="sidebar-title">Mortgage Calculator</h3>
                 <form class="mortgage-calc">
@@ -261,15 +337,18 @@
                   <button class="btn btn-common">Calculate</button>
                 </form>
               </div>
-
+				-->
               <!-- Social Media -->
               <div class="widget widget-social">
-                <h3 class="sidebar-title">Social Media</h3>
-                <ul class="social-icons">    
-                  <li><a class="twitter" href="#"><i class="lni-twitter-filled"></i></a></li>
-                  <li><a class="facebook" href="#"><i class="lni-facebook-filled"></i></a></li>
-                  <li><a class="google" href="#"><i class="lni-google-plus"></i></a></li>
-                  <li><a class="linkedin" href="#"><i class="lni-linkedin-filled"></i></a></li>
+                <h3 class="sidebar-title">허위 매물 신고하기</h3>
+                <ul class="social-icons"> 
+                <c:set var="itemNo" value="${itemVO.itemNo}"/>
+                    <a href='/fake/<c:out value="${itemNo}"/>'>	   
+                 	<button class="btn btn-danger btn-wth-icon icon-wthot-bg btn-sm">
+                 		<span class="icon-label"><i class="fa fa-exclamation-triangle"></i></span>
+                 		<span class="btn-text">caution</span>
+             		</button>
+             		</a>
                 </ul>
               </div>            
 
@@ -277,12 +356,12 @@
             <!--End sidebar-->       
         </div>
       </div>    
-
+<!--  
       <div class="container">
         <div class="row"> 
           <div class="col-12">
-            <h2 class="desc-title">Similar Properties</h2>
-          </div>          
+            <h2 class="desc-title">포함 여부 고민 중</h2>
+          </div>           
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="property-main">
               <div class="property-wrap">
@@ -363,7 +442,7 @@
           </div>
         </div>
       </div>
-
+-->
     </div>
     <!-- End Content -->    
 

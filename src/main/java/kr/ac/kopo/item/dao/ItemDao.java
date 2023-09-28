@@ -26,4 +26,6 @@ public interface ItemDao {
 
 	void deleteItem(Long itemNo);
 
+	ItemVO itemDetail(Long itemNo);
+
 }

@@ -1,8 +1,6 @@
 package kr.ac.kopo.item.web;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.item.service.ItemService;
+import kr.ac.kopo.partner.service.PartnerService;
+import kr.ac.kopo.partner.web.PartnerVO;
 
 @Controller
 public class ItemController {
@@ -25,6 +25,9 @@ public class ItemController {
 	@Autowired
 	ItemService	service;
 
+	@Autowired
+	PartnerService partnerService;
+	
 	private String path = "item/";
 	
 	//매물 리스트
@@ -129,6 +132,18 @@ public class ItemController {
 	            return "Error";
 	        }
 	}
+	
+	//매물 상세페이지
+	@GetMapping("/itemDetail/{itemNo}")
+	public String itemDetail(@PathVariable Long itemNo, Model model) {
+		ItemVO itemVO = service.itemDetail(itemNo);
+		model.addAttribute("itemVO", itemVO);
+	  
+		PartnerVO partnerVO = partnerService.detail(itemNo);
+		model.addAttribute("partnerVO", partnerVO);
+		
+		return path + "itemDetail";	
+		}
 
 	
  

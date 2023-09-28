@@ -1,6 +1,7 @@
 package kr.ac.kopo.item.web;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -136,16 +137,22 @@ public class ItemController {
 	//매물 상세페이지
 	@GetMapping("/itemDetail/{itemNo}")
 	public String itemDetail(@PathVariable Long itemNo, Model model) {
-		ItemVO itemVO = service.itemDetail(itemNo);
-		model.addAttribute("itemVO", itemVO);
-	  
-		PartnerVO partnerVO = partnerService.detail(itemNo);
-		model.addAttribute("partnerVO", partnerVO);
-		
-		return path + "itemDetail";	
+	    ItemVO itemVO = service.itemDetail(itemNo);
+	    PartnerVO partnerVO = partnerService.detail(itemNo);
+	    long partnerNo = partnerVO.getPartnerNo();
+	    List<ItemVO> partItemList = service.partItemList(partnerNo);
+	    for (ItemVO itemVO2 : partItemList) {
+			System.out.println("============" + itemVO2.getPrice());
 		}
+	    
+	    
+	    model.addAllAttributes(Map.of(
+	        "itemVO", itemVO,
+	        "partnerVO", partnerVO,
+	        "partItemList", partItemList
+	    ));
 
-	
- 
+	    return path + "itemDetail";
+	}
 }
 

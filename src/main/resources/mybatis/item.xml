@@ -175,6 +175,9 @@
 		    ti.address,
 		    ti.regist_date,
 		    ti.use_at,
+		    ti.item_size,
+		    ti.item_count,
+		    ti.bath_at,
 		    CASE 
 		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
 		        WHEN ti.lease_or_month = 'month' THEN tm.month_price

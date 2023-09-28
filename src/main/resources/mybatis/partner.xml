@@ -63,7 +63,8 @@
 
 	 <select id="detail" resultType="PartnerVO">
 		SELECT 
-			comp_name
+			tp.partner_no
+			, comp_name
 			, comp_address 
 			, partner_name 
 			, regist_num 

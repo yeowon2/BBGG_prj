@@ -51,14 +51,23 @@
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5>${itemVO.itemSize}㎡(㎡)</h5>
+                  <h5>${itemVO.itemSize}㎡</h5>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
               <div class="others">
                 <ul class="row">
-				  <li class="col-lg-8"><h3>월세 500/50</h3></li>
+				  <li class="col-lg-8">
+				  	<c:choose>
+                       	<c:when test="${itemVO.depositFee == null}">
+	                        <h4>전세 ${itemVO.price}</h4>
+                       	</c:when>
+                       	<c:otherwise>
+	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.price}</h4>
+                       	</c:otherwise>
+                       </c:choose>
+		  		 	</li>
 				  <li class="col-lg-2"><a href="#"><i class="lni-heart"></i></a></li>
 				</ul>
               </div>
@@ -250,66 +259,23 @@
               <div class="widget mt3">
                 <h3 class="sidebar-title">이 중개사무소의 다른 방</h3>
                 <div id="listing-carousel" class="owl-carousel">
-                  <div class="item">
-                    <div class="listing-item">
-                      <a href="#" class="listing-img-container">
-                        <img src="/resources/assets/img/productinfo/listing1.jpg" alt="">
-                        <div class="listing-badges">
-                          <!-- <span class="featured">Featured</span>
-                          <span>For Sale</span> -->
-                        </div>
-                        <div class="listing-content">
-                          <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
-                          <ul class="listing-content">
-                            <li>Area <span>530 sq ft</span></li>
-                            <li>Rooms <span>3</span></li>
-                            <li>Beds <span>1</span></li>
-                            <li>Baths <span>1</span></li>
-                          </ul>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="listing-item">
-                      <a href="#" class="listing-img-container">
-                        <img src="/resources/assets/img/productinfo/listing2.jpg" alt="">
-                        <div class="listing-badges">
-                         <!--  <span class="featured">Featured</span>
-                          <span>For Sale</span> -->
-                        </div>
-                        <div class="listing-content">
-                          <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
-                          <ul class="listing-content">
-                            <li>Area <span>530 sq ft</span></li>
-                            <li>Rooms <span>3</span></li>
-                            <li>Beds <span>1</span></li>
-                            <li>Baths <span>1</span></li>
-                          </ul>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="listing-item">
-                      <a href="#" class="listing-img-container">
-                        <img src="/resources/assets/img/productinfo/listing3.jpg" alt="">
-                        <div class="listing-badges">
-                         <!--  <span class="featured">Featured</span>
-                          <span>For Sale</span> -->
-                        </div>
-                        <div class="listing-content">
-                          <span class="listing-title">Eagle Apartments <i>$275,000</i></span>
-                          <ul class="listing-content">
-                            <li>Area <span>530 sq ft</span></li>
-                            <li>Rooms <span>3</span></li>
-                            <li>Beds <span>1</span></li>
-                            <li>Baths <span>1</span></li>
-                          </ul>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
+                	<c:forEach var="item" items="${partItemList}">
+	                  <div class="item">
+	                    <div class="listing-item">
+	                      <a href="#" class="listing-img-container">
+	                        <img src="/resources/assets/img/productinfo/listing1.jpg" alt="">
+	                        <div class="listing-content">
+	                          <span class="listing-title">${item.address2} <i>$275,000</i></span>
+	                          <ul class="listing-content row">
+	                            <li class="col-lg-4">면적 <span>${item.itemSize}㎡</span></li>
+	                            <li class="col-lg-4">방 수 <span>${item.itemCount}</span></li>
+	                            <li class="col-lg-4">욕실 수 <span>${item.bathAt}</span></li>
+	                          </ul>
+	                        </div>
+	                      </a>
+	                    </div>
+	                  </div>
+                  </c:forEach>
                 </div>
               </div>
               

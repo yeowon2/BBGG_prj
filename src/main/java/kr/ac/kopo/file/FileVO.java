@@ -1,5 +1,7 @@
 package kr.ac.kopo.file;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FileVO {
 
 	private Long fileNo;
@@ -8,8 +10,10 @@ public class FileVO {
 	private String originalName;
 	private String filePath;
 	private String fileExt;
-	private String primary_at;
-	private String regist_date;
+	private String primaryAt;
+	private String registDate;
+	private MultipartFile uploadFile;
+	
 	public Long getFileNo() {
 		return fileNo;
 	}
@@ -46,18 +50,26 @@ public class FileVO {
 	public void setFileExt(String fileExt) {
 		this.fileExt = fileExt;
 	}
-	public String getPrimary_at() {
-		return primary_at;
+	public String getPrimaryAt() {
+		return primaryAt;
 	}
-	public void setPrimary_at(String primary_at) {
-		this.primary_at = primary_at;
+	public void setPrimaryAt(String primaryAt) {
+		this.primaryAt = primaryAt;
 	}
-	public String getRegist_date() {
-		return regist_date;
+	public String getRegistDate() {
+		return registDate;
 	}
-	public void setRegist_date(String regist_date) {
-		this.regist_date = regist_date;
+	public void setRegistDate(String registDate) {
+		this.registDate = registDate;
 	}
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
+	
 	
 	
 }

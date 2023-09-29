@@ -15,4 +15,9 @@ public class FileDaoImpl implements FileDao {
 		sql.insert("file.add", fileVO);
 	}
 
+	@Override
+	public FileVO detail(Long fileNo) {
+		return sql.selectOne("file.detail", fileNo);
+	}
+
 }

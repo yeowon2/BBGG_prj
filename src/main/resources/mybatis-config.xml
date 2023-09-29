@@ -18,7 +18,7 @@
   		<typeAlias type="kr.ac.kopo.item.web.ItemVO" alias="ItemVO"/>
   		<!-- <typeAlias type="kr.ac.kopo.list.web.ViewListVO" alias="ViewListVO"/> -->
  		<typeAlias type="kr.ac.kopo.fake.web.FakeVO" alias="FakeVO"/> 
- 		<typeAlias type="kr.ac.kopo.file.web.FileVO" alias="FileVO"/> 
+ 		<typeAlias type="kr.ac.kopo.file.FileVO" alias="FileVO"/> 
   	</typeAliases>
   
   	<mappers>

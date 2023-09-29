@@ -18,6 +18,7 @@
   		<typeAlias type="kr.ac.kopo.item.web.ItemVO" alias="ItemVO"/>
   		<!-- <typeAlias type="kr.ac.kopo.list.web.ViewListVO" alias="ViewListVO"/> -->
  		<typeAlias type="kr.ac.kopo.fake.web.FakeVO" alias="FakeVO"/> 
+ 		<typeAlias type="kr.ac.kopo.file.web.FileVO" alias="FileVO"/> 
   	</typeAliases>
   
   	<mappers>
@@ -29,5 +30,6 @@
   		<mapper resource="mybatis/item.xml"/>
   		<mapper resource="mybatis/list.xml"/>
   		<mapper resource="mybatis/fake.xml"/>
+  		<mapper resource="mybatis/file.xml"/>
   	</mappers>
   </configuration>

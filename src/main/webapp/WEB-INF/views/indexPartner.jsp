@@ -4,6 +4,11 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  <style>
+  	.card span {
+  	color:#333333;
+  	}
+  </style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
   <body>

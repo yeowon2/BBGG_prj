@@ -2,42 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="file">
+    <insert id="addList" >
+        INSERT INTO tbl_item_file
+        (
+            item_no,
+            saved_name,
+            use_at,
+            original_name,
+            file_path,
+            file_ext,
+            primary_at,
+            regist_date
+        )
+        VALUES
+        <foreach collection="java.util.List" item="fileVO" separator=",">
+            (
+            #{fileVO.itemNo},
+            #{fileVO.savedName},
+            'Y',
+            #{fileVO.originalName},
+            #{fileVO.filePath},
+            #{fileVO.fileExt},
+            #{fileVO.primaryAt},
+            CURRENT_TIMESTAMP()
+            )
+        </foreach>
+    </insert>
 
-	<insert id="add">
-		INSERT INTO tbl_item_file
-			(
-			item_no, 
-			saved_name, 
-			use_at, 
-			original_name, 
-			file_path, 
-			file_ext, 
-			primary_at, 
-			regist_date
-			)
-		VALUES(
-			#{itemNo},
-			#{savedName},
-			'Y',
-			#{originalName},
-			#{filePath},
-			#{fileExt},
-			#{primaryAt},
-			CURRENT_TIMESTAMP()
-			);
-	</insert>
-	
-	<select id="detail" resultType="FileVO">
-		SELECT 
-			item_no
-			, saved_name
-			, original_name
-			, file_path
-			, file_ext
-			, primary_at
-			, regist_date	
-		FROM tbl_item_file
-		WHERE file_no = #{fileNo}		
-	</select>
-	
+    <select id="detail" resultType="FileVO">
+        SELECT
+            item_no,
+            saved_name,
+            original_name,
+            file_path,
+            file_ext,
+            primary_at,
+            regist_date
+        FROM tbl_item_file
+        WHERE file_no = #{fileNo}
+    </select>
 </mapper>

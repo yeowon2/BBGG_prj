@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <jsp:include page="../head.jsp"></jsp:include>
 
 <link rel="stylesheet" type="text/css" href="../../../resources/css/modal.css">

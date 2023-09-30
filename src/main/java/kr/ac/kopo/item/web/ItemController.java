@@ -83,7 +83,7 @@ public class ItemController {
 	//매물 등록
 	@GetMapping("/itemAdd")
 	public String itemAdd() {
-		return path + "item_add";
+		return path + "itemAdd";
 	}
 	@PostMapping("/itemAdd")
 	public String itemAdd(ItemVO itemVO) {

@@ -133,7 +133,7 @@ strong {
   font-weight: bold; }
 
 body {
-  color: #F5F5F5;
+  color: #333333;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
@@ -17127,7 +17127,7 @@ table.dataTable {
       opacity: 1; }
   .alert.alert-inv.alert-inv-secondary {
     background: #9e9e9e;
-    color: #f5f5f5; }
+    color: #333333; }
     .alert.alert-inv.alert-inv-secondary.alert-dismissible .close:not(:disabled):not(.disabled):focus, .alert.alert-inv.alert-inv-secondary.alert-dismissible .close:not(:disabled):not(.disabled):hover {
       color: #fff;
       text-decoration: none;
@@ -19218,7 +19218,7 @@ table.dataTable {
       border-color: #f83f37; }
     .list-group-item.list-group-inv.list-group-inv-secondary:not(.active) {
       background-color: #9e9e9e;
-      color: #f5f5f5;
+      color: #333333;
       border-color: #9e9e9e; }
 
 /*Google Map*/

@@ -24,10 +24,10 @@ section div {
     <div id="page-banner-area" class="page-banner">
       <div class="page-banner-title">
         <div class="text-center">
-          <h2>Submission Form</h2>
+          <h2>매물 등록하기</h2>
           <a href="#"><i class="lni-home"></i> Home</a>
           <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
-          <span class="current">Submission Form</span>
+          <span class="current">매물 등록하기</span>
         </div>
       </div>
     </div>
@@ -67,13 +67,8 @@ section div {
 		                <div class="col-lg-12 col-md-6">
 		                    <div class="form-group">
 		                       <div class="btn-group">
-		                          <div class="dropdown">
-		                              <button aria-expanded="false" data-toggle="dropdown" class="btn btn-green dropdown-toggle " type="button">거래 종류 <span class="caret"></span></button>
-		                              <div role="menu" class="dropdown-menu">
-		                              <a class="dropdown-item" onclick="showMonthlyFields()">월세</a>
-						              <a class="dropdown-item" onclick="showJeonseFields()">전세</a>
-		                              </div>
-		                          </div>
+		                        <input type="button" class="btn btn-success col-lg-6 ml-10" onclick="showMonthlyFields()" value="월세">
+		                        <input type="button" class="btn btn-yellow col-lg-6 ml-10" onclick="showJeonseFields()" value="전세">
 		                      </div>
 		                    </div>
 		                  </div>
@@ -102,6 +97,7 @@ section div {
 			                    </div>
 			                  </div>
 		                  </div>
+		                </div>
 		                   <div class="col-lg-3 col-md-6">
 		                    <div class="form-group">
 		                      <label>건물 층수</label>
@@ -143,7 +139,7 @@ section div {
 		                     <input type="number" name="price" class="form-control" placeholder="">
 		                    </div>
 		                  </div>
-		                </div>
+	                  </div>
 					</section>
 					<section>
 		                <h3 class="heading">추가 정보</h3>
@@ -157,16 +153,16 @@ section div {
 		                      	<div class="col-lg-2 col-md-4">
 				                    <div class="form-group">
 				                      <div class="form-check">
-				                        <input class="form-check-input" type="checkbox" value="" id="alarm">
-				                        <label class="form-check-label" for="alarm">있음</label>
+				                        <input class="form-check-input" type="checkbox" value="" id="manageAtY">
+				                        <label class="form-check-label" for="manageAtY">있음</label>
 				                      </div>
 				                    </div>
 			                 	</div>
 		                      	<div class="col-lg-2 col-md-4">
 				                    <div class="form-group">
 				                      <div class="form-check">
-				                        <input class="form-check-input" type="checkbox" value="" id="central-heating">
-				                        <label class="form-check-label" for="central-heating">없음</label>
+				                        <input class="form-check-input" type="checkbox" value="" id="manageAtN">
+				                        <label class="form-check-label" for="manageAtN">없음</label>
 				                      </div>
 				                    </div>
 			                 	</div>
@@ -178,8 +174,8 @@ section div {
 		                      	<div class="col-lg-3 col-md-4">
 				                    <div class="form-group">
 				                      <div class="form-check">
-				                        <input class="form-check-input" type="checkbox" value="" id="alarm">
-				                        <label class="form-check-label" for="alarm">있음</label>
+				                        <input class="form-check-input" type="checkbox" value="" id="elevator">
+				                        <label class="form-check-label" for="elevator">있음</label>
 				                      </div>
 				                    </div>
 			                 	</div>
@@ -346,14 +342,26 @@ section div {
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
 <script>
-	function showMonthlyFields() {
-	    document.getElementById("monthlyFields").style.display = "block";
-	    document.getElementById("jeonseFields").style.display = "none";
-	  }
+function showMonthlyFields() {
+    var monthlyFields = document.getElementById("monthlyFields");
+    
+    if (monthlyFields.style.display === "block" || monthlyFields.style.display === "") {
+        monthlyFields.style.display = "none";
+    } else {
+        monthlyFields.style.display = "block";
+    }
+}
+
 	
 	  function showJeonseFields() {
-	    document.getElementById("monthlyFields").style.display = "none";
-	    document.getElementById("jeonseFields").style.display = "block";
+		  var jeonseFields = document.getElementById("jeonseFields");
+	    
+	    if (jeonseFields.style.display === "block" || jeonseFields.style.display === "") {
+	    	jeonseFields.style.display = "none";
+	    } else {
+	    	jeonseFields.style.display = "block";
+	    }
+	 
 	  }
 
     function sample5_execDaumPostcode() {

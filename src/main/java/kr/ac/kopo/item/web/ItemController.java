@@ -80,16 +80,19 @@ public class ItemController {
 				return path + "item_select";
 		}
 	
-	//매물 등록
-	@GetMapping("/itemAdd")
-	public String itemAdd() {
+	//매물 등록폼 이동
+	@GetMapping("/partner/{partnerNo}/itemAdd")
+	public String itemAdd(@PathVariable Long partnerNo) {
 		return path + "itemAdd";
 	}
-	@PostMapping("/itemAdd")
-	public String itemAdd(ItemVO itemVO) {
+	
+	//매물 등록 
+	@PostMapping("/partner/{partnerNo}/itemAdd")
+	public String itemAdd(@PathVariable Long partnerNo, ItemVO itemVO) {
+		itemVO.setPartnerNo(partnerNo);
 		service.itemAdd(itemVO);
 		
-		return "redirect:/itemList";
+		return "redirect:/partner/{partnerNo}/itemList";
 	}
 	
 	//파트너 매물 목록 조회
@@ -101,7 +104,7 @@ public class ItemController {
 		return path + "partItemList";
 	}
 	
-	//매물 상태 변경
+	//매물 거래 상태 변경
 	@PostMapping("/updateStatus")
 	@ResponseBody
 	public String updateStatus( 

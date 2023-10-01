@@ -251,4 +251,8 @@
 		AND i.item_no = #{itemNo}
 	</select>
 	
+	<insert id="addItem">
+		
+	</insert>
+	
 </mapper>

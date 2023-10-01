@@ -30,18 +30,14 @@ public class ItemServiceImpl implements ItemService {
 	public void itemAdd(ItemVO itemVO) {
 		dao.itemAdd(itemVO);
 		
-		HashMap<String, Long> map = new HashMap<String, Long>();
-		map.put("itemNo", itemVO.getitemNo());
-		
-		if(itemVO.getLeaseOrMonth().equals("lease")) {
-			map.put("leasePrice", itemVO.getLeasePrice());
-			dao.leaseAdd(map);
-		}
-		else {
-			map.put("depositFee", itemVO.getDepositFee());
-			map.put("monthPrice", itemVO.getMonthPrice());
-			dao.monthAdd(map);
-		}
+		/*
+		 * HashMap<String, Long> map = new HashMap<String, Long>();
+		 * 
+		 * if(itemVO.getLeaseOrMonth().equals("lease")) { map.put("leasePrice",
+		 * itemVO.getLeasePrice()); dao.leaseAdd(map); } else { map.put("depositFee",
+		 * itemVO.getDepositFee()); map.put("monthPrice", itemVO.getMonthPrice());
+		 * dao.monthAdd(map); }
+		 */
 	}
 
 	@Override

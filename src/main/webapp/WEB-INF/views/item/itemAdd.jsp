@@ -175,7 +175,7 @@ thead tr:nth-child(3) th {
         <div class="row">
           <div class="col-lg-12 mt-30">
             <div class="submit-form">
-              <form>
+              <form method="post">
               	<section>
 	              	<h3 class="heading">위치 정보</h3>
 	                <div class="row mb-3">
@@ -229,7 +229,7 @@ thead tr:nth-child(3) th {
 		                    <div class="form-group">
 		                       <div class="btn-group">
 		                        <input type="button" id="monthButton" class="btn btn-outline-success col-lg-6 ml-10" onclick="showMonthlyFields()" value="월세">
-		                        <input type="button" id="leaseButton" class="btn btn-outline-warning col-lg-6 ml-10" onclick="showLeaseFields()" value="전세">
+		                        <input type="button"  id="leaseButton" class="btn btn-outline-warning col-lg-6 ml-10" onclick="showLeaseFields()" value="전세">
 		                      </div>
 		                    </div>
 		                  </div>
@@ -296,21 +296,21 @@ thead tr:nth-child(3) th {
 		                    <div class="form-group row">
 		                      <label class="col-lg-2">관리비</label>
 		                	  <div class="col-lg-4 col-md-4">
-		                      	<input type="number" name="manageFee" class="form-control" placeholder="">
+		                      	<input type="number" name="manageFee" class="form-control" placeholder="" value="0">
 		                      </div>
 		                      	<div class="col-lg-2 col-md-4">
 				                    <div class="form-group">
 				                      <div class="form-check">
-				                        <input class="form-check-input" name="manageAt" type="checkbox" value="Y" id="manageAtY">
-				                        <label class="form-check-label" for="manageAtY">있음</label>
+				                        <input class="form-check-input" name="manageFeeAt" type="checkbox" value="Y" id="manageFeeAtY">
+				                        <label class="form-check-label" for="manageFeeAtY">있음</label>
 				                      </div>
 				                    </div>
 			                 	</div>
 		                      	<div class="col-lg-2 col-md-4">
 				                    <div class="form-group">
 				                      <div class="form-check">
-				                        <input class="form-check-input" name="manageAt" type="checkbox" value="N" id="manageAtN">
-				                        <label class="form-check-label" for="manageAtN">없음</label>
+				                        <input class="form-check-input" name="manageFeeAt" type="checkbox" value="N" id="manageFeeAtN">
+				                        <label class="form-check-label" for="manageFeeAtN">없음</label>
 				                      </div>
 				                    </div>
 			                 	</div>
@@ -365,7 +365,7 @@ thead tr:nth-child(3) th {
 			                      <div class="col-lg-4 col-md-4">
 					                    <div class="form-group">
 					                      <div class="form-check">
-					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="" id="moveInAtY">
+					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="Y" id="moveInAtY">
 					                        <label class="form-check-label" for="moveInAtY">즉시 입주</label>
 					                      </div>
 					                    </div>
@@ -373,7 +373,7 @@ thead tr:nth-child(3) th {
 			                      	<div class="col-lg-4 col-md-4">
 					                    <div class="form-group">
 					                      <div class="form-check">
-					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="" id="moveInAtN">
+					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="N" id="moveInAtN">
 					                        <label class="form-check-label" for="moveInAtN">날짜 협의</label>
 					                      </div>
 					                    </div>
@@ -478,6 +478,9 @@ thead tr:nth-child(3) th {
                   		</div>
                 	</div>
                 </section>
+                <div>
+                	<button class="btn btn-success" type="submit">등록</button>
+                </div>
               </form>
             </div>
 
@@ -494,8 +497,8 @@ thead tr:nth-child(3) th {
 // Checkbox 토글 모음 시작
 // checkbox 요소들을 배열로 관리
 var checkboxes = [
-  { id: "manageAtY", counterpartId: "manageAtN" },
-  { id: "manageAtN", counterpartId: "manageAtY" },
+  { id: "manageFeeAtY", counterpartId: "manageFeeAtN" },
+  { id: "manageFeeAtN", counterpartId: "manageFeeAtY" },
   { id: "elevatorY", counterpartId: "elevatorN" },
   { id: "elevatorN", counterpartId: "elevatorY" },
   { id: "parkingAtY", counterpartId: "parkingAtN" },
@@ -544,14 +547,14 @@ moveInAtNCheckbox.addEventListener('change', function () {
 });
 
 // "관리비" 입력란 요소 가져오기
-var manageAtYCheckbox = document.getElementById("manageAtY");
-var manageAtNCheckbox = document.getElementById("manageAtN");
+var manageAtFeeYCheckbox = document.getElementById("manageFeeAtY");
+var manageAtFeeNCheckbox = document.getElementById("manageFeeAtN");
 var manageFeeInput = document.querySelector('input[name="manageFee"]');
 
 // "있음" 체크박스 상태 변경 시 이벤트 처리
-manageAtYCheckbox.addEventListener('change', function () {
+manageAtFeeYCheckbox.addEventListener('change', function () {
     // "있음" 체크박스가 선택되면 "관리비" 입력란 활성화
-    if (manageAtYCheckbox.checked) {
+    if (manageAtFeeYCheckbox.checked) {
         manageFeeInput.removeAttribute('readonly');
     } else {
         // "있음" 체크박스가 선택 해제되면 "관리비" 입력란 비활성화
@@ -560,9 +563,9 @@ manageAtYCheckbox.addEventListener('change', function () {
 });
 
 // "없음" 체크박스 상태 변경 시 이벤트 처리
-manageAtNCheckbox.addEventListener('change', function () {
+manageFeeAtNCheckbox.addEventListener('change', function () {
     // "없음" 체크박스가 선택되면 "관리비" 입력란 비활성화
-    if (manageAtNCheckbox.checked) {
+    if (manageFeeAtNCheckbox.checked) {
         manageFeeInput.setAttribute('readonly', 'readonly');
     } else {
         // "없음" 체크박스가 선택 해제되면 "관리비" 입력란 활성화
@@ -571,6 +574,7 @@ manageAtNCheckbox.addEventListener('change', function () {
 });
 
 
+var form = document.querySelector('form');
 
 function showMonthlyFields() {
     var monthlyFields = document.getElementById("monthlyFields");
@@ -585,9 +589,15 @@ function showMonthlyFields() {
         monthlyFields.style.display = "block";
         monthButton.classList.remove("btn-outline-success");
         monthButton.classList.add("btn-success");
+        
+        var monthInput = document.createElement("input");
+        monthInput.type = "hidden";
+        monthInput.name = "leaseOrMonth";
+        monthInput.value = "month"; // 월세 버튼이 선택되었을 때 값을 설정합니다.
+        form.appendChild(monthInput); // 폼에 추가합니다.
+        
     }
 }
-
 	
 	  function showLeaseFields() {
 		  var leaseFields = document.getElementById("leaseFields");
@@ -601,6 +611,13 @@ function showMonthlyFields() {
 	    	leaseFields.style.display = "block";
 	    	leaseButton.classList.remove("btn-outline-warning");
 	    	leaseButton.classList.add("btn-warning");
+	    	
+	    	var leaseInput = document.createElement("input");
+	    	leaseInput.type = "hidden";
+	    	leaseInput.name = "leaseOrMonth";
+	    	leaseInput.value = "lease"; // 월세 버튼이 선택되었을 때 값을 설정합니다.
+	        form.appendChild(leaseInput); // 폼에 추가합니다.
+	    	
 	    }
 	 
 	  }

@@ -252,7 +252,59 @@
 	</select>
 	
 	<insert id="addItem">
-		
+		INSERT INTO tbl_item
+			(
+			partner_no, 
+			item_type, 
+			address, 
+			dong, 
+			ho, 
+			move_in_at, 
+			move_in_date, 
+			item_size, 
+			building_floor, 
+			item_floor, 
+			item_count, 
+			bath_at, 
+			elevator_at, 
+			parking_at, 
+			manage_fee_at, 
+			manage_fee, 
+			memo_short, 
+			memo_detail, 
+			regist_date, 
+			use_at, 
+			lat, 
+			lng, 
+			address2, 
+			lease_or_month
+			)
+			VALUES(
+			#{partnerNo}, 
+			#{itemType}, 
+			#{address}, 
+			#{dong}, 
+			#{ho}, 
+			#{moveInAt}, 
+			#{moveInDate}, 
+			#{itemSize}, 
+			#{buildingFloor}, 
+			#{itemFloor}, 
+			#{itemCount}, 
+			#{bathAt}, 
+			#{elevatorAt}, 
+			#{parkingAt}, 
+			#{manageFeeAt}, 
+			#{manageFee}, 
+			#{memoShort}, 
+			#{memoDetail}, 
+			NOW(), 
+			'Y', 
+			#{lat}, 
+			#{lng}, 
+			#{address2}, 
+			#{leaseOrMonth}
+			)
 	</insert>
 	
 </mapper>

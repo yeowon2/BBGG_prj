@@ -35,7 +35,7 @@ public class ItemDaoImpl implements ItemDao {
 	@Override
 	public void itemAdd(ItemVO itemVO) {
 		// 첫 번째 INSERT 문 실행
-        sql.insert("item.itemAdd", itemVO);
+        sql.insert("item.addItem", itemVO);
     }
 
 	@Override

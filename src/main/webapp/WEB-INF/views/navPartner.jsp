@@ -66,7 +66,7 @@
               </li>
 
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#"  aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/partner/${loginPartnerVO.partnerNo}/itemAdd"  aria-haspopup="true" aria-expanded="false">
                   매물 등록
                 </a>
               </li>

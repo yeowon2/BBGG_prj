@@ -19777,7 +19777,7 @@ table.dataTable {
   .emailapp-wrap.emailapp-sidebar-toggle .emailapp-sidebar {
     left: -200px; }
   .emailapp-wrap.emailapp-sidebar-toggle .email-box {
-    margin-left: 0; }
+    margin-left: 0; } 
   .emailapp-wrap .email-box {
     margin-left: 200px;
     display: -webkit-box;
@@ -19808,9 +19808,9 @@ table.dataTable {
           .emailapp-wrap .email-box .email-star.starred > .feather-icon > svg polygon {
             fill: #22af47 !important; }
     .emailapp-wrap .email-box .emailapp-left {
-      -ms-flex: 0 0 40%;
-      flex: 0 0 40%;
-      max-width: 40%;
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
       border-right: 1px solid #e0e3e4;
       position: relative;
       z-index: 4;
@@ -19945,9 +19945,9 @@ table.dataTable {
         .emailapp-wrap .email-box .emailapp-left .emailapp-emails-list .email-hr-wrap > hr {
           margin: 0; }
     .emailapp-wrap .email-box .emailapp-right {
-      -ms-flex: 0 0 60%;
-      flex: 0 0 60%;
-      max-width: 60%; }
+      -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
+      max-width: 50%; }
       .emailapp-wrap .email-box .emailapp-right header {
         display: -webkit-box;
         display: -ms-flexbox;

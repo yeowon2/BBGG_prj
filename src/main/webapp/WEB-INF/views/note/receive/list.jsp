@@ -6,10 +6,19 @@
 <html lang="ko">
   <head>
 	<jsp:include page="../../head.jsp"></jsp:include>
+	<style>
+		section {
+		background-color:#F5F5F5;
+	}
+	section.section-padding {
+		padding: 30px;
+	}
+	</style>
   </head>
   <body>
 	<jsp:include page="../../navPartner.jsp"></jsp:include>
 <!-- HK Wrapper -->
+<section class="section-padding">
         <!-- Main Content -->
         <div class="hk-pg-wrapper pb-0 px-0">
             <!-- Container -->
@@ -156,7 +165,7 @@
             <!-- /Container -->
         </div>
         <!-- /Main Content -->
-
+</section>
             <%-- <jsp:include page="../../footer.jsp"></jsp:include> --%>
     <!-- /HK Wrapper -->
     <script>

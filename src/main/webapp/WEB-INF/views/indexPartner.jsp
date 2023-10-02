@@ -5,6 +5,10 @@
 <html lang="ko">
   <head>
   <style>
+  	.card span.btn-text {
+  	color:#ffffff;
+  	}
+ 
   	.card span {
   	color:#333333;
   	}
@@ -98,9 +102,11 @@
 												<div class="d-flex align-items-end justify-content-between">
 													<div>
 														<span class="d-block">
-															<button class="btn btn-success btn-wth-icon icon-wthot-bg btn-rounded icon-right">
-															<span class="btn-text">매물 등록</span><span class="icon-label"><i class="fa fa-angle-right"></i></span>
-															</button>
+															<a href="/partner/${partnerVO.partnerNo}/itemAdd">
+																<button class="btn btn-success btn-wth-icon icon-wthot-bg btn-rounded icon-right">
+																<span class="btn-text">매물 등록</span><span class="icon-label"><i class="fa fa-angle-right"></i></span>
+																</button>
+															</a>
 														</span>
 													</div>
 												</div>

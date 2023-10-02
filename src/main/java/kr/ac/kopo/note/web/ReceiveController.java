@@ -30,7 +30,7 @@ public class ReceiveController {
 		List<NoteVO> receiveList = service.receiveList(noteVO);
 		model.addAttribute("receiveList", receiveList);
 
-		return path + "list";
+		return path + "noteList";
 	}
 	
 

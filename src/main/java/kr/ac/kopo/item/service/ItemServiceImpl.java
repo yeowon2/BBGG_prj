@@ -28,16 +28,14 @@ public class ItemServiceImpl implements ItemService {
 	@Transactional
 	@Override
 	public void itemAdd(ItemVO itemVO) {
+		
+		if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
+			itemVO.setLeaseOrMonth("lease");
+		} else if(itemVO.getLeasePrice() == null) {
+			itemVO.setLeaseOrMonth("month");
+		}
 		dao.itemAdd(itemVO);
 		
-		/*
-		 * HashMap<String, Long> map = new HashMap<String, Long>();
-		 * 
-		 * if(itemVO.getLeaseOrMonth().equals("lease")) { map.put("leasePrice",
-		 * itemVO.getLeasePrice()); dao.leaseAdd(map); } else { map.put("depositFee",
-		 * itemVO.getDepositFee()); map.put("monthPrice", itemVO.getMonthPrice());
-		 * dao.monthAdd(map); }
-		 */
 	}
 
 	@Override

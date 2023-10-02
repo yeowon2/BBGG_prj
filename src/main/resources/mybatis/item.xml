@@ -74,98 +74,6 @@
 	    </choose>
 	</select>
 	
-	<insert id="itemAdd">
-	    INSERT INTO tbl_item
-	    (
-	    partner_no,
-	    lease_or_month,
-	    item_type,
-	    address, 
-	    address2,
-	    dong,
-	    ho,
-	    move_in_at, 
-	    move_in_date,
-	    item_size, 
-	    building_floor,
-	    item_floor,
-	    item_count,
-	    bath_at,
-	    elevator_at,
-	    parking_at,
-	    manage_fee_at,
-	    manage_fee, 
-	    memo_short,
-	    memo_detail,
-	    regist_date,
-	    update_date,
-	    lat,
-	    lng,
-	    use_at
-	    )
-	    
-	    VALUES 
-	    (
-	    1,
-	    #{leaseOrMonth},
-	    #{itemType},
-	    #{address},
-	    #{address2},
-	    #{dong},
-	    #{ho},
-	    #{moveInAt},
-	    <choose>
-	        <when test="moveInDate == null">
-	            NOW(),
-	        </when>
-	        <otherwise>
-	            #{moveInDate},
-	        </otherwise>
-	    </choose>
-	    
-	    #{itemSize},
-	    #{buildingFloor},
-	    #{itemFloor},
-	    #{itemCount},
-	    #{bathAt},
-	    #{elevatorAt},
-	    #{parkingAt},
-	    #{manageFeeAt},
-	    
-	    <choose>
-	        <when test="manageFee != null">
-	            #{manageFee},
-	        </when>
-	        <otherwise>
-	            NULL,
-	        </otherwise>
-	    </choose>
-	    
-	    #{memoShort},
-	    #{memoDetail},
-	    NOW(),
-	    NOW(),
-	    #{lat},
-	    #{lng},
-	    #{useAt}
-	    )
-	    
-	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
-	    	SELECT LAST_INSERT_ID()
-	    </selectKey>
-	</insert>
-	
-	<insert id="leaseAdd">
-	    INSERT INTO tbl_lease(lease_price, item_no)
-		VALUES (#{leasePrice}, #{itemNo})
-	</insert>
-	
-	<insert id="monthAdd">
-		INSERT INTO tbl_month(deposit_fee, month_price, item_no)
-		VALUES (#{depositFee}, #{monthPrice}, #{itemNo})
-	</insert>
-	
-	
 	<select id="partItemList" resultMap="ItemMap">
 		SELECT 
 		    ti.item_no,
@@ -286,7 +194,14 @@
 			#{dong}, 
 			#{ho}, 
 			#{moveInAt}, 
-			#{moveInDate}, 
+			<choose>
+		        <when test="moveInDate == null">
+		            NOW(),
+		        </when>
+		        <otherwise>
+		            #{moveInDate},
+		        </otherwise>
+		    </choose>
 			#{itemSize}, 
 			#{buildingFloor}, 
 			#{itemFloor}, 
@@ -305,6 +220,16 @@
 			#{address2}, 
 			#{leaseOrMonth}
 			)
+	</insert>
+	
+	<insert id="leaseAdd">
+	    INSERT INTO tbl_lease(lease_price, item_no)
+		VALUES (#{leasePrice}, #{itemNo})
+	</insert>
+	
+	<insert id="monthAdd">
+		INSERT INTO tbl_month(deposit_fee, month_price, item_no)
+		VALUES (#{depositFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
 </mapper>

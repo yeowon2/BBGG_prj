@@ -90,11 +90,7 @@ public class ItemController {
 	@PostMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo, ItemVO itemVO) {
 		itemVO.setPartnerNo(partnerNo);
-		System.out.println(itemVO.getLeaseOrMonth());
-		System.out.println(itemVO.getLeasePrice());
-		System.out.println(itemVO.getMonthPrice());
 		service.itemAdd(itemVO);
-		
 		
 		return "redirect:/partner/{partnerNo}/itemList";
 	}

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.kopo.item.web.ItemVO;
 
@@ -33,9 +34,27 @@ public class ItemDaoImpl implements ItemDao {
 	}
 	
 	@Override
+	@Transactional
 	public void itemAdd(ItemVO itemVO) {
 		// 첫 번째 INSERT 문 실행
         sql.insert("item.addItem", itemVO);
+        
+        Long itemNo = itemVO.getitemNo();
+        
+        HashMap<String, Long> paramMap = new HashMap<String, Long>();
+        
+        if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
+        	paramMap.put("leasePrice", itemVO.getLeasePrice());
+        	paramMap.put("itemNo", itemNo);
+        	sql.insert("item.leaseAdd", paramMap);
+        	
+		} else if(itemVO.getLeasePrice() == null) {
+			paramMap.put("depositFee", itemVO.getDepositFee());
+			paramMap.put("monthPrice", itemVO.getMonthPrice());
+			paramMap.put("itemNo", itemNo);
+			sql.insert("item.monthAdd", paramMap);
+		}
+        
     }
 
 	@Override

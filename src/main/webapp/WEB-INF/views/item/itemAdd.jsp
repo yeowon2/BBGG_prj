@@ -585,15 +585,22 @@ function showMonthlyFields() {
         monthButton.classList.remove("btn-success");
         monthButton.classList.add("btn-outline-success");
         
+        // 월세 버튼이 해제되면 해당 hidden input을 제거합니다.
+        var monthHiddenInput = document.querySelector('input[name="leaseOrMonth"][value="month"]');
+        if (monthHiddenInput) {
+        	monthHiddenInput.remove();
+        }
+        
     } else {
         monthlyFields.style.display = "block";
         monthButton.classList.remove("btn-outline-success");
         monthButton.classList.add("btn-success");
         
+        // 월세 버튼이 선택되었을 때 값을 설정하고 hidden input을 추가합니다.
         var monthInput = document.createElement("input");
         monthInput.type = "hidden";
         monthInput.name = "leaseOrMonth";
-        monthInput.value = "month"; // 월세 버튼이 선택되었을 때 값을 설정합니다.
+        monthInput.value = "month";
         form.appendChild(monthInput); // 폼에 추가합니다.
         
     }
@@ -607,6 +614,13 @@ function showMonthlyFields() {
 	    	leaseFields.style.display = "none";
 	    	leaseButton.classList.remove("btn-warning");
 	    	leaseButton.classList.add("btn-outline-warning");
+	    	
+	    	 // 월세 버튼이 해제되면 해당 hidden input을 제거합니다.
+	        var LeasehiddenInput = document.querySelector('input[name="leaseOrMonth"][value="lease"]');
+	        if (LeasehiddenInput) {
+	        	LeasehiddenInput.remove();
+	        }
+	    	
 	    } else {
 	    	leaseFields.style.display = "block";
 	    	leaseButton.classList.remove("btn-outline-warning");

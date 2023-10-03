@@ -21,9 +21,10 @@ public class ItemDaoImpl implements ItemDao {
 	@Autowired
 	SqlSession sql;
 
+	
 	@Override
-	public List<ItemVO> itemList() {
-		return sql.selectList("item.itemList");
+	public List<ItemVO> itemList(ItemVO itemVO) {
+		return sql.selectList("item.itemList", itemVO);
 	}
 
 	@Override
@@ -100,4 +101,11 @@ public class ItemDaoImpl implements ItemDao {
 	public ItemVO itemDetail(Long itemNo) {
 		return sql.selectOne("itemDetail", itemNo);
 	}
+
+	@Override
+	public String lomSelect(Long itemNo) {
+		return sql.selectOne("lomSelect", itemNo);
+	}
+
+	
 }

@@ -21,5 +21,7 @@ public interface NoteService {
 
 	NoteVO receiveDetail(Long noteNo);
 
+	boolean updateStatus(Long noteNo);
+
 	
 }

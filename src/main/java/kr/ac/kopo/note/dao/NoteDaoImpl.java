@@ -5,15 +5,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.item.dao.ItemDaoImpl;
 import kr.ac.kopo.note.web.NoteVO;
 import kr.ac.kopo.pager.Pager;
 
 @Repository
 public class NoteDaoImpl implements NoteDao {
 
+	private static final Logger logger = LoggerFactory.getLogger(NoteDaoImpl.class);
+	
 	@Autowired
 	SqlSession sql;
 	
@@ -34,6 +39,8 @@ public class NoteDaoImpl implements NoteDao {
 
 	@Override
 	public void add(Long itemNo, NoteVO noteVO) {
+		logger.info("userNo = {}", noteVO.getUserNo());
+		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("noteVO", noteVO);
@@ -59,6 +66,12 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public boolean delete(Long noteNo) {
 		 int result = sql.update("note.delete", noteNo);
+		 return result > 0;
+	}
+
+	@Override
+	public boolean updateStatus(Long noteNo) {
+		 int result = sql.update("note.updateStatus", noteNo);
 		 return result > 0;
 	}
 

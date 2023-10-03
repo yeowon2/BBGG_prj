@@ -61,10 +61,10 @@
 				  <li class="col-lg-8">
 				  	<c:choose>
                        	<c:when test="${itemVO.depositFee == null}">
-	                        <h4>전세 ${itemVO.price}</h4>
+	                        <h4>전세 ${itemVO.leasePrice}</h4>
                        	</c:when>
                        	<c:otherwise>
-	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.price}</h4>
+	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>
@@ -249,7 +249,8 @@
 					    <span>중개등록번호: ${partnerVO.registNum}</span>
 					  </div>
 					</div>
-					 <a href='/itemSelect/<c:out value="${itemNo}"/>/add'>
+					<a href="javascript:void(0)" class="email-compose" data-toggle="modal" data-target="#exampleModalEmail">쪽지 보내기</a>
+					 <a href='/itemDetail/<c:out value="${itemNo}"/>/add'>
                   		<button class="btn btn-common fullwidth mt-4">쪽지 보내기</button>
                 	</a>
                 </div>
@@ -322,6 +323,52 @@
             <!--End sidebar-->       
         </div>
       </div>    
+      
+      <!-- Compose email -->
+                            <div class="modal fade" id="exampleModalEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalEmail" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-grey-dark-5">
+                                            <h6 class="modal-title text-white" id="exampleModalPopoversLabel">New Email</h6>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">To</span>
+                                                        </div>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Cc / Bcc</span>
+                                                        </div>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Subject</span>
+                                                        </div>
+                                                        <input type="text" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-0">
+                                                    <button class="btn btn-success" type="submit">전송하기</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Compose email -->
 <!--  
       <div class="container">
         <div class="row"> 

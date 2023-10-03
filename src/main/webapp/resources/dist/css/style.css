@@ -19968,6 +19968,10 @@ table.dataTable {
         .emailapp-wrap .email-box .emailapp-right header .email-options-wrap {
           margin-left: auto;
           display: flex; }
+        .emailapp-wrap .email-box .emailapp-right header .email-options-wrap h5 {
+          margin-right: auto;
+          display: flex;
+          text-align: left;  }
           .emailapp-wrap .email-box .emailapp-right header .email-options-wrap > a {
             margin-left: 25px;
             display: inline-block; }
@@ -19975,19 +19979,7 @@ table.dataTable {
             display: block; }
       .emailapp-wrap .email-box .emailapp-right .email-body {
         background: #fff; }
-        .emailapp-wrap .email-box .emailapp-right .email-body .email-subject-head {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          justify-content: space-between;
-          -webkit-justify-content: space-between;
-          -ms-flex-pack: space-between; }
-          .emailapp-wrap .email-box .emailapp-right .email-body .email-subject-head h4, .emailapp-wrap .email-box .emailapp-right .email-body .email-subject-head > div {
-            margin-bottom: 10px; }
-          .emailapp-wrap .email-box .emailapp-right .email-body .email-subject-head .email-star {
-            display: block;
-            text-align: right;
-            margin-left: 10px; }
+        `
         .emailapp-wrap .email-box .emailapp-right .email-body .email-head {
           display: -webkit-box;
           display: -ms-flexbox;

@@ -82,4 +82,17 @@ public class ReceiveController {
 
 	}
 
+	@PostMapping("/updateStatus/{noteNo}")
+	public ResponseEntity<String> updateStatus(@PathVariable Long noteNo) {
+		boolean updated = service.updateStatus(noteNo);
+
+		if (updated) {
+			// 성공 시 200 OK 응답을 반환
+			return ResponseEntity.ok("Success");
+		} else {
+			// 실패 시 500 Internal Server Error 응답을 반환
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Update failed");
+		}
+
+	}
 }

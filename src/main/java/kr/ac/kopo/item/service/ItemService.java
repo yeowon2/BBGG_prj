@@ -6,7 +6,7 @@ import kr.ac.kopo.item.web.ItemVO;
 
 public interface ItemService {
 
-	List<ItemVO> itemList();
+	List<ItemVO> itemList(ItemVO itemVO);
 
 	ItemVO itemSelect(ItemVO itemVO);
 
@@ -21,6 +21,10 @@ public interface ItemService {
 	void deleteItem(Long itemNo);
 
 	ItemVO itemDetail(Long itemNo);
+
+	String lomSelect(Long itemNo);
+
+	
 	
 
 }

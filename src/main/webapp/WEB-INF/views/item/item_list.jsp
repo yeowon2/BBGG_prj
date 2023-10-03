@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-   <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer"></script>
-	
+ 
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
+    
     <jsp:include page="../head.jsp"></jsp:include>
+   
     <style>
         /* 스타일을 추가하여 검색창을 원하는 위치에 배치합니다. */
         #search-container {
@@ -31,11 +31,13 @@
 	
 	<div id="map" style="width:100%;height:750px;"></div>
 	
-	<div id="search-container">
-	    <label for="address">주소 입력:</label>
-	    <input type="text" id="address" placeholder="주소를 입력하세요.">
-	    <button onclick="searchAddress()">검색하기</button>
-	</div>
+	
+	<form method="post" id="search-container">
+		<label for="search">주소 입력:</label>
+	    <input type="text" name="search" id="search" placeholder="주소를 입력하세요.">
+		<!-- <button onclick="applyFn()">적용</button> -->
+		<button type="submit">검색</button>
+	</form>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
 	<script>
@@ -107,7 +109,7 @@
 			//var lat = [];
 			//var lng = [];
 			
-			console.log(`${item.latitude}, ${item.longitude}`);
+			console.log(`${item.lat}, ${item.lng}`);
 			
 			var positions = [
 				{
@@ -138,15 +140,15 @@
 			 	// 마커에 클릭이벤트를 등록합니다
 			    kakao.maps.event.addListener(marker, 'click', function() {
 			    	document.getElementById('myModal').style.display = 'block';
-			    	fetch(`item/${item.shopNo}`, {
+			    	fetch(`item/${item.itemNo}`, {
 			            method: "GET",
 			        });
-			    	document.getElementById('cn').innerHTML = `${item.compName}`;
-			    	document.getElementById('ca').innerHTML = `${item.compAddr1}`;
-			    	document.getElementById('cc').innerHTML = `${item.compCall}`;
-			    	document.getElementById('sn').value = `${item.shopNo}`;
+			    	document.getElementById('타입').innerHTML = `${item.itemType}`;
+			    	document.getElementById('도로명').innerHTML = `${item.address}`;
+			    	document.getElementById('상세주소').innerHTML = `${item.address2}`;
+			    	document.getElementById('no').value = `${item.itemNo}`;
 			
-			    	alert("매장번호" + ${item.shopNo});
+			    	alert("매물번호" + ${item.itemNo});
 			    });
 			    
 			}

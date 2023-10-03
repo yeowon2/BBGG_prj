@@ -8,7 +8,7 @@ import kr.ac.kopo.item.web.ItemVO;
 
 public interface ItemDao {
 
-	List<ItemVO> itemList();
+	List<ItemVO> itemList(ItemVO itemVO);
 
 	ItemVO itemSelect(ItemVO itemVO);
 
@@ -27,5 +27,9 @@ public interface ItemDao {
 	void deleteItem(Long itemNo);
 
 	ItemVO itemDetail(Long itemNo);
+
+	String lomSelect(Long itemNo);
+
+	
 
 }

@@ -20,26 +20,26 @@
 </head>
 <body>
 
-<form method="post" action="/shop/list">
-<select id="si" name="si">
-	<option value="서울">서울</option>
-	<option value="대전">대전</option>
-</select>
-<select id="gu" name="gu">
-	<option value="동구">동구</option>
-	<option value="서구">서구</option>
-</select>
-<select id="dong" name="dong">
-	<option value="가양1동">가양1동</option>
-	<option value="가양2동">가양2동</option>
-</select>
-<select id="categoryNo" name="categoryNo">
-	<option value="1">한식</option>
-	<option value="2">일식</option>
-</select>
-<!-- <button onclick="applyFn()">적용</button> -->
-<button type="submit">적용</button>
-</form>
+	<form method="post" action="/shop/list">
+		<select id="si" name="si">
+			<option value="서울">서울</option>
+			<option value="대전">대전</option>
+		</select>
+		<select id="gu" name="gu">
+			<option value="동구">동구</option>
+			<option value="서구">서구</option>
+		</select>
+		<select id="dong" name="dong">
+			<option value="가양1동">가양1동</option>
+			<option value="가양2동">가양2동</option>
+		</select>
+		<select id="categoryNo" name="categoryNo">
+			<option value="1">한식</option>
+			<option value="2">일식</option>
+		</select>
+		<!-- <button onclick="applyFn()">적용</button> -->
+		<button type="submit">적용</button>
+	</form>
 
 <div id="map" style="width:500px;height:400px;"></div>
 

@@ -55,6 +55,11 @@ public class NoteServiceImpl implements NoteService {
 		return dao.delete(noteNo);
 	}
 
+	@Override
+	public boolean updateStatus(Long noteNo) {
+		return dao.updateStatus(noteNo);
+	}
+
 
 
 }

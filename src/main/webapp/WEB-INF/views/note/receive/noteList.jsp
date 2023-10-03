@@ -34,7 +34,7 @@
                                         <a href="javascript:void(0)" id="emailapp_sidebar_move" class="emailapp-sidebar-move" >
                                             <span class="feather-icon"><i data-feather="menu"></i></span>
                                         </a>
-                                        <span class="">Inbox</span>
+                                        <span class="">받은 쪽지함</span>
                                         <a href="javascript:void(0)" class="email-compose" data-toggle="modal" data-target="#exampleModalEmail">
                                             <span class="feather-icon"><i data-feather="edit"></i></span>
                                         </a>
@@ -49,49 +49,48 @@
                                     </form>
                                     <div class="emailapp-emails-list">
                                         <div class="nicescroll-bar">
-                                            <a href="javascript:void(0);" class="media">
-                                                <div class="media-img-wrap">
-                                                    <div class="avatar">
-                                                        <img src="dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
-                                                    </div>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        <div class="email-head">Clay Masse (8)</div>
-                                                        <div class="email-subject">Creation timelines for the standard lorem ipsum</div>
-                                                        <div class="email-text">
-                                                            <p>So how did the classical Latin become so incoherent? According to McClintock.</p>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="last-email-details"><span class="badge badge-danger badge-indicator"></span> 2:30 PM</div>
-                                                        <span class="email-star"><span class="feather-icon"><i data-feather="star"></i></span></span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <div class="email-hr-wrap">
-                                                <hr>
-                                            </div>
-                                            <a href="javascript:void(0);" class="media read-email">
-                                                <div class="media-img-wrap">
-                                                    <div class="avatar">
-                                                        <img src="dist/img/avatar8.jpg" alt="user" class="avatar-img rounded-circle">
-                                                    </div>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        <div class="email-head">Prischila Shy</div>
-                                                        <div class="email-subject">Coming full circle, the internet's remixing</div>
-                                                        <div class="email-text">
-                                                            <p>Of course, we'd be remiss not to include the veritable cadre of lorem ipsum knock offs featuring</p>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="last-email-details"><span class="email-attachment-label"><span class="feather-icon"><i data-feather="paperclip"></i></span></span><span class="badge badge-warning badge-indicator"></span> 2:30 PM</div>
-                                                        <span class="email-star"><span class="feather-icon"><i data-feather="star"></i></span></span>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                       		 <c:forEach var="noteVO" items="${receiveList}">
+	                                            <a href="javascript:void(0);" class="media" class="noteNo" data-note-no="${noteVO.noteNo}">
+	                                                <div class="media-img-wrap">
+	                                                    <div class="avatar">
+	                                                        <img src="/resources/dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
+	                                                    </div>
+	                                                </div>
+	                                                <div class="media-body">
+                                                      <div>
+                                                             <div data-note-no="${noteVO.noteNo}"></div>
+                                                             <div class="email-head font-weight-700 font-lg-15" id="userName">${noteVO.userName}</div>
+                                                             <div class="email-subject" id="roomNo">매물 번호: ${noteVO.itemNo}</div>
+                                                             <div class="email-subject" id="noteSubject">제목: ${noteVO.noteSubject} </div>
+                                                             <%-- <div class="email-text" >
+                                                                 <span># ${noteVO.noteText1}</span>
+                                                                 <span># ${noteVO.noteText2}</span>
+                                                                 <span># ${noteVO.noteText3}</span>
+                                                             </div> --%>
+                                                             <div class="email-text" id="noteContent">
+                                                                 <p>${noteVO.noteContent}</p>
+                                                             </div>
+                                                         </div>
+	                                                    <div>
+	                                                        <div class="last-email-details"><span class="badge badge-danger badge-indicator"></span> 
+	                                                        	<fmt:formatDate value="${noteVO.registDate}" pattern="yyyy/MM/dd HH:mm"/>
+	                                                        </div>
+	                                                        <span class="email-star list-check" style="color:#008080">
+		                                                        <c:if test="${noteVO.useAt eq 'C'}">
+				                                            		<i class="bi bi-check text-warning">
+					                                            		<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+																		  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+																		</svg>
+																	</i> 
+																</c:if>
+			                                            	</span>
+	                                                    </div>
+	                                                </div>
+	                                            </a>
+	                                            <div class="email-hr-wrap">
+	                                                <hr>
+	                                            </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
@@ -100,171 +99,58 @@
                                         <a id="back_email_list" href="javascript:void(0)" class="back-email-list">
                                             <span class="feather-icon"><i data-feather="chevron-left"></i></span>
                                         </a>
+                                        	<h5 class="font-weight-700 font-lg-16 text-left" id="item-no" >매물 번호</h5>
                                         <div class="email-options-wrap">
-                                            <a href="javascript:void(0)" class=""><span class="feather-icon"><i data-feather="printer"></i></span></a>
-                                            <a href="javascript:void(0)" class=""><span class="feather-icon"><i data-feather="trash"></i></span></a>
-                                            <a href="javascript:void(0)" class="text-smoke"><span class="feather-icon"><i data-feather="more-vertical"></i></span></a>
+                                            <a href="" class="note-status" id="use-at">
+                                            		<i class="bi bi-check">
+	                                            		<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+														  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+														</svg>
+													</i>
+                                            </a>
+                                            <a href="" class="btn-delete"><span class="feather-icon"><i data-feather="trash"></i></span></a>
                                         </div>
                                     </header>
                                     <div class="email-body">
                                         <div class="nicescroll-bar">
                                             <div>
                                                 <div class="email-subject-head">
-                                                    <h4>Application for the post of Managing Director</h4>
-                                                    <div class="d-flex align-items-center">
-                                                        <span class="badge badge-secondary">inbox</span>
-                                                        <a href="javascript:void(0)" class="email-star starred"><span class="feather-icon"><i data-feather="star"></i></span></a>
-                                                    </div>
+                                                    <h5 class="font-weight-700 font-lg-16" id="note-subject">제목</h5>
+                                                    
                                                 </div>
                                                 <hr class="mt-10 mb-20">
                                                 <div class="email-head">
                                                     <div class="media">
                                                         <div class="media-img-wrap">
                                                             <div class="avatar">
-                                                                <img src="dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
+                                                                <img src="/resources/dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
                                                             </div>
                                                         </div>
                                                         <div class="media-body">
-                                                            <span class="text-capitalize sender-name d-inline-block">Evie ono</span>
-                                                            <span class="sender-email d-inline-block">(evieono@Scrooge.com)</span>
-                                                            <span class="d-block">
-																	to
-																	<span>me</span>
-                                                            </span>
+                                                            <span class="text-capitalize sender-name d-inline-block" id="user-name">Evie ono</span>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="head-other-wrap">
                                                         <div class="d-inline-block mr-5">
-                                                            <span class="d-inline-block">10:06 AM</span>
-                                                            <span class="d-inline-block">(2 hours ago)</span>
-                                                        </div>
-                                                        <div class="d-inline-block dropdown">
-                                                            <a class="dropdown-toggle no-caret" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="zmdi   zmdi-more-vert"></i></a>
-                                                            <div class="dropdown-menu bullet dropdown-menu-right" role="menu">
-                                                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-reply" aria-hidden="true"></i>Reply</a>
-                                                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-share" aria-hidden="true"></i>Forward</a>
-                                                                <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon wb-trash" aria-hidden="true"></i>Delete</a>
-                                                            </div>
+                                                            <span class="d-inline-block" id="regist-date">10:06 AM</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="email-text-wrap mt-30">
-                                                    <span class="d-block email-title text-capitalize mb-30">dear sir,</span>
-                                                    <p class="mb-30">Faucibus rutrum. Phasellus sodales vulputate urna, vel accumsan augue egestas ac. Donec vitae leo at sem lobortis porttitor eu consequat risus. Mauris sed congue orci. Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna, vel accumsan augue egestas ac. Donec vitae leo at sem lobortis porttitor eu consequat risus.
-                                                    </p>
-                                                    <p>Donec vitae leo at sem lobortis porttitor eu consequat risus. Mauris sed congue orci.Mauris sed congue orci. Donec ultrices faucibus rutrum. Phasellus sodales vulputate urna, vel accumsan augue egestas ac</p>
-                                                    <p class="mt-30">Thank you for your time.</p>
+                                                    
+                                                    <p id="note-content">내용</p>
                                                     <div class="email-end-detail mt-35">
-                                                        <span class="text-capitalize d-block">evie one</span>
-                                                        <span class="d-block">+12 234 443</span>
-                                                        <span class="d-block">evieone@Scrooge.com</span>
+                                                        <span class="d-block" id="phone">+12 234 443</span>
+                                                        <span class="d-block" id="userId">evieone@Scrooge.com</span>
                                                     </div>
                                                 </div>
                                                 <hr class="hr-light">
-                                                <div class="email-attachment-wrap">
-                                                    <div class="email-attachment-block">
-                                                        <a href="javascript:void(0)">
-															<div class="card card-sm w-200p">
-																<div class="card-body d-flex align-items-center">
-																	<img src="dist/img/jpgicon.png" class="d-inline-block mr-10" alt="attachicon" />
-																	<span class="d-inline-block mnw-0">
-																		<span class="d-block file-name text-truncate">concept_design.jpg</span>
-																		<small class="d-block file-size text-truncate">5.78 MB</small>
-																	</span>
-																</div>
-															</div>
-														</a>	
-														<a href="javascript:void(0)">
-															<div class="card card-sm w-200p">
-																<div class="card-body d-flex align-items-center">
-																	<img src="dist/img/pdficon.png" class="d-inline-block mr-10" alt="attachicon" />
-																	<span class="d-inline-block mnw-0">
-																			<span class="d-block file-name text-truncate">Design-titleccv.pdf</span>
-																	<small class="d-block file-size text-truncate">2.1 MB</small>
-																	</span>
-																</div>
-															</div>
-														</a>
-                                                    </div>
-                                                    <div class="d-flex ml-auto">
-                                                        <a href="javascript:void(0)"><i class="zmdi zmdi-download"></i></a>
-                                                        <a href="javascript:void(0)"><i class="zmdi zmdi-more"></i></a>
-                                                    </div>
-                                                </div>
-
-                                                <hr class="hr-light">
-                                                <div class="email-reply-block">
-                                                    Click here to <a href="javascript:void(0)" class="text-capitalize">reply</a> or <a href="javascript:void(0)" class="text-capitalize">forwrd</a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Compose email -->
-                            <div class="modal fade" id="exampleModalEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalEmail" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-grey-dark-5">
-                                            <h6 class="modal-title text-white" id="exampleModalPopoversLabel">New Email</h6>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">To</span>
-                                                        </div>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Cc / Bcc</span>
-                                                        </div>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="input-group input-group-sm">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Subject</span>
-                                                        </div>
-                                                        <input type="text" class="form-control form-control-sm">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="tinymce-wrap">
-                                                        <textarea class="tinymce"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-													<div class="fileinput fileinput-new input-group" data-provides="fileinput">
-														<div class="input-group-prepend">
-															<span class="input-group-text">Upload</span>
-														</div>
-														<div class="form-control text-truncate" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
-														<span class="input-group-append">
-																	<span class=" btn btn-danger btn-file"><span class="fileinput-new">Select file</span><span class="fileinput-exists">Change</span>
-														<input type="file" name="...">
-														</span>
-														<a href="#" class="btn btn-secondary fileinput-exists" data-dismiss="fileinput">Remove</a>
-														</span>
-													</div>
-												</div>
-                                                <div class="form-group mb-0">
-                                                    <button class="btn btn-danger" type="submit">Send</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Compose email -->
                         </div>
                     </div>
                 </div>
@@ -278,6 +164,165 @@
     </div>
     <!-- /HK Wrapper -->
 </section>
+    <script>
+   
+    
+    //날짜 변환 함수 
+   function formatDateTime(unixTimestamp) {
+    var date = new Date(unixTimestamp);
+    var options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+    return date.toLocaleDateString('ko-KR', options);
+}
+
+    document.addEventListener("DOMContentLoaded", function () {
+    // AJAX 요청을 보낼 URL을 지정합니다.
+    var ajaxUrlPrefix = '/note/receiveDetail/'; // AJAX 요청 URL의 공통 부분
+
+    // 클래스 이름이 media인 요소들을 선택합니다.
+    var mediaElements = document.querySelectorAll('.media');
+    
+    // 각 media 요소에 클릭 이벤트를 추가합니다.
+    mediaElements.forEach(function (element) {
+        element.addEventListener('click', function () {
+            // media 요소를 클릭했을 때의 동작을 여기에 추가합니다.
+            // 이 부분에서 AJAX 요청을 보내고 응답을 처리할 수 있습니다.
+            // element 객체를 이용하여 클릭한 media 요소에 대한 정보를 사용할 수 있습니다.
+
+            // media 요소에서 필요한 정보 추출 예시:
+            var noteNo = element.dataset.noteNo; // element는 해당 요소입니다.
+			//var userNoValue = element.dataset.userNo;
+
+            var currentPath = window.location.pathname;
+            var parts = currentPath.split('/'); // 경로를 '/'로 분할하여 배열로 만듭니다.
+            var userNo = parts[parts.length - 1]; // 배열의 마지막 요소를 가져옵니다.
+
+
+            var ajaxUrl = ajaxUrlPrefix + noteNo; // 노트 ID를 이용하여 완전한 AJAX 요청 URL을 생성합니다.
+
+            // AJAX 요청을 보내고 응답을 처리합니다.
+            fetch(ajaxUrl)
+                .then(function (response) {
+                    // AJAX 요청이 성공하면 JSON 데이터를 파싱합니다.
+                    return response.json();
+                })
+                .then(function (noteVO) {
+                    // noteVO 객체에서 필요한 데이터를 추출합니다.
+
+                    var userName = noteVO.userName;
+                    var itemNo = noteVO.itemNo;
+                    var noteSubject = noteVO.noteSubject;
+                    var noteText1 = noteVO.noteText1;
+                    var noteText2 = noteVO.noteText2;
+                    var noteText3 = noteVO.noteText3;
+                    var noteContent = noteVO.noteContent;
+                    var useAt = noteVO.useAt;
+                    noteContent = noteContent.replace(/\n/g, '<br>');
+                    
+                    var registDate = noteVO.registDate;
+                    //registDate - Date Format
+                    var formattedRegistDate = formatDateTime(registDate);
+                 
+                    
+                    
+                    // DOM 요소를 찾아서 데이터를 넣습니다.
+                    
+                    document.querySelector('#user-name').textContent = userName;
+                    document.querySelector('#item-no').textContent = '매물번호: ' + itemNo;
+                    document.querySelector('#note-subject').textContent = noteSubject;
+              /*       document.querySelector('#note-text1').textContent = '#' + noteText1;
+                    document.querySelector('#note-text2').textContent = '#' + noteText2;
+                    document.querySelector('#note-text3').textContent = '#' + noteText3; */
+                    document.querySelector('#note-content').innerHTML = '<p>' + noteContent + '</p>';
+                    document.querySelector('#regist-date').textContent = formattedRegistDate;
+                 // "data-note-no" 속성을 추가합니다.
+                    document.querySelector('#use-at').setAttribute('data-note-no', noteNo);
+                    document.querySelector('#use-at').setAttribute('data-use-at', useAt);
+                })
+                
+                var statusButton = document.querySelector('.note-status');
+            	
+           		 
+                statusButton.addEventListener('click', function (event) {
+                    event.preventDefault(); // 기본 이벤트 처리 방지
+                    
+                    // AJAX 요청을 보냅니다.
+    				$.ajax({
+    	                type: "POST",
+    	                url: "/note/updateStatus/" + noteNo, // URL 수정
+    	                data: {
+    	                    noteNo: noteNo
+    	                },
+    	                success: function (response) {
+    	                    // AJAX 요청이 성공하면 추가 작업을 수행할 수 있습니다.
+    	                    // 예를 들어, 화면에 상태를 업데이트하거나 메시지를 표시할 수 있습니다.
+    	                  var listCheck = element.querySelector('.list-check');
+
+    	                 // 새로운 <i> 태그를 생성합니다.
+    	                 var checkIcon = document.createElement('i');
+    	                 checkIcon.classList.add('bi', 'bi-check', 'text-warning');
+
+    	                 // <i> 태그 안에 SVG 아이콘 코드를 직접 추가합니다.
+    	                 checkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">'
+    	                                    + '<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>'
+    	                                    + '</svg>';
+
+    	                 // <i> 태그를 <span class="list-check"> 요소에 추가합니다.
+    	                 if (listCheck && listCheck.querySelector('i') === null) {
+							    listCheck.appendChild(checkIcon);
+							}
+    	                    
+    	                },
+    	                error: function (error) {
+    	                    alert("error 발생");
+    	                }
+    	            });
+                });
+           
+           		 
+           		 
+           	// JavaScript code to handle delete button clicks
+           	    var deleteButtons = document.querySelectorAll('.btn-delete');
+           	    deleteButtons.forEach(function (element) {
+           	        element.addEventListener('click', function (e) {
+           	        	var aTag = document.querySelector('a[data-note-no="' + noteNo + '"]');
+           	        	
+           	            if (confirm('정말로 삭제하시겠습니까?')) {
+           	                fetch('/note/delete/' + noteNo, {
+           	                    method: 'GET'
+           	                })
+           	                .then(function (response) {
+           	                    if (response.ok) {
+           	                        // 업데이트 성공 시 해당 노트를 화면에서 제거합니다.
+           	                        if (aTag) {
+           	                        	aTag.remove(); // 해당 노트를 화면에서 제거
+           	                        }
+           	                    } else {
+           	                        console.error('Error:', response);
+           	                    }
+           	                })
+           	                
+           	            }
+           	        });
+           	    });	 
+                
+        });
+    });
+});
+
+  
+    // JavaScript code to clear form fields when the modal is closed
+    $('#exampleModalEmail').on('hidden.bs.modal', function () {
+    });
+    
+ 
+
+ // 쪽지 상태 변경 AJAX 부분을 따로 묶어 수정
+    document.addEventListener("DOMContentLoaded", function () {
+      
+    });
+
+    
+</script>
 <jsp:include page="../../js.jsp"></jsp:include>
   </body>
 </html>

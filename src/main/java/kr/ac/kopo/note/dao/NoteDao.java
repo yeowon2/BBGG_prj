@@ -26,5 +26,7 @@ public interface NoteDao {
 
 	boolean delete(Long noteNo);
 
+	boolean updateStatus(Long noteNo);
+
 
 }

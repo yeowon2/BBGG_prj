@@ -17,7 +17,7 @@
     )
     VALUES (
         #{itemNo}
-        , 3
+        , #{noteVO.userNo}
         , 
         (
         	SELECT partner_no 
@@ -60,7 +60,7 @@
 			tbl_note.*, tbl_user.user_name
 		FROM  tbl_note 
 			JOIN tbl_user ON (tbl_note.user_no = tbl_user.user_no )
-		WHERE tbl_note.use_at = 'Y'
+		WHERE tbl_note.use_at IN ('Y', 'C') 
 		ORDER BY tbl_note.regist_date DESC
 	</select>
 	
@@ -90,6 +90,9 @@
 			, note_text3
 			, note_content
 			, tbl_note.regist_date
+			, tbl_note.use_at
+			, tbl_user.phone
+			, tbl_user.user_id
 		FROM tbl_note JOIN tbl_user ON (tbl_user.user_no = tbl_note.user_no) 
   		WHERE tbl_note.note_no = #{noteNo}
 	</select>
@@ -109,6 +112,12 @@
 	<update id="delete">
 		UPDATE tbl_note
 		SET use_at = 'N'
+		WHERE note_no = #{noteNo}
+	</update>
+	
+	<update id="updateStatus">
+		UPDATE tbl_note
+		SET use_at = 'C'
 		WHERE note_no = #{noteNo}
 	</update>
 	

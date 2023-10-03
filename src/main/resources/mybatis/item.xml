@@ -39,7 +39,11 @@
 
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT *	FROM tbl_item WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
+		SELECT *	FROM tbl_item 
+		<if test="search != null">
+			WHERE address LIKE CONCAT('%', #{search}, '%')
+			AND address2 LIKE CONCAT('%', #{search}, '%')
+		</if>
 	</select>
 	
 	<!-- <select id="itemSelect" resultType="itemVO">
@@ -59,7 +63,13 @@
 		WHERE item_No = #{itemNo}
 	</select> -->
 	
-	<select id="itemSelect" resultType="itemVO">
+	<select id="lomSelect" resultType="String">
+		SELECT tbl_item.lease_or_month
+		FROM tbl_item
+		WHERE tbl_item.item_no = #{itemNo}
+	</select>
+	
+	<select id="itemSelect" resultMap="ItemMap">
 		<choose>
 	        <when test="leaseOrMonth == 'lease'">
 	        	SELECT tbl_item.*, tbl_lease.*

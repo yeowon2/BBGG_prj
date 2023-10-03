@@ -34,16 +34,22 @@ public class ItemController {
 	//매물 리스트
 	@GetMapping("/itemList")
 	public String itemList(Model model) {
-		List<ItemVO> list = service.itemList();
-		model.addAttribute("list", list);
-
 		return path + "item_list";
+	}
+	@PostMapping("/itemList")
+	public String itemList(Model model, ItemVO itemVO) {
+		List<ItemVO> list = service.itemList(itemVO);
+		model.addAttribute("list", list);
+		return "redirect:/itemList";
 	}
 		
 	//매물 상세페이지
-		@GetMapping("/itemSelect/{itemNo}")
-		public String itemSelect(ItemVO itemVO, Model model, @PathVariable Long itemNo, 
-				HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("/itemSelect/{itemNo}")
+	public String itemSelect(ItemVO itemVO, Model model, @PathVariable Long itemNo, 
+			HttpServletRequest request, HttpServletResponse response) {
+			
+			String lomitem = service.lomSelect(itemNo);
+			itemVO.setLeaseOrMonth(lomitem);
 			
 			ItemVO result = service.itemSelect(itemVO);
 			model.addAttribute("result", result);
@@ -158,4 +164,3 @@ public class ItemController {
 	    return path + "itemDetail";
 	}
 }
-

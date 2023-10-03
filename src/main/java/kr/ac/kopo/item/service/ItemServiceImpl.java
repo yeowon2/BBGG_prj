@@ -1,6 +1,5 @@
 package kr.ac.kopo.item.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ public class ItemServiceImpl implements ItemService {
 	ItemDao dao;
 	
 	@Override
-	public List<ItemVO> itemList() {
-		return dao.itemList();
+	public List<ItemVO> itemList(ItemVO itemVO) {
+		return dao.itemList(itemVO);
 	}
 
 	@Override
@@ -62,4 +61,11 @@ public class ItemServiceImpl implements ItemService {
 	public ItemVO itemDetail(Long itemNo) {
 		return dao.itemDetail(itemNo);
 	}
+
+	@Override
+	public String lomSelect(Long itemNo) {
+		return dao.lomSelect(itemNo);
+	}
+
+	
 }

@@ -39,6 +39,15 @@ public class ItemVO {
 	
 	private Long depositFee;		//월세보증금
 	private Long monthPrice;		//월세가격
+	
+	private String search;			//검색
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	private Long price; // 월세 -> monthPrice / 전세 -> leasePrice
 	
 	public Long getitemNo() {

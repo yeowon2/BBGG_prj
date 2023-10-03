@@ -14,18 +14,18 @@
 	var fakeFinishMsg = "${fakeFinishMsg}";
 	var fakeFinishUrl = "${fakeFinishUrl}";
 	
-	var msg = "재시도 부탁드립니다";
+	//var msg = "재시도 부탁드립니다";
 	var url = "/"
 
-	if(loginMsg != null) {	
+	if(loginMsg != null && fakeFinishMsg == null) {	
 		alert(loginMsg);
 		document.location.href = loginUrl;
-	} else if(fakeFinishMsg != null) {
+	} else if(fakeFinishMsg != null && loginMsg == null) {
 		alert(fakeFinishMsg);
 		window.history.go(-1);
-	} else {
-		alert(msg);
-		document.location.href = fakeFinishUrl;
+	} else if(loginMsg == null && fakeFinishMsg == null) {
+		alert("재시도 부탁드립니다.");
+		window.history.go(-1);
 	}
 </script>
 

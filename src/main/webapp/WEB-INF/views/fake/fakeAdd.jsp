@@ -103,7 +103,7 @@
 													<input type="checkbox" id="fakeCheck2" name="fakeCheck"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
 													<input type="checkbox" id="fakeCheck3" name="fakeCheck"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
 													<textarea id="fakeDetail" name="fakeDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
-													<input type="file" name="file" multiple>
+													<input type="file" name="file">
 													<button type="submit" class="btn btn-teal" id="submitBtn" style="float: right;">신고하기</button>	
 										        </form>
 																					

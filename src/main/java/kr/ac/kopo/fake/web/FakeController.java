@@ -43,13 +43,16 @@ public class FakeController {
 	public String fake(@PathVariable Long itemNo, HttpSession session, Model model) {
 		//model.addAttribute("roomNo", roomNo);
 		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
-		System.out.println(loginVO);
-		if(loginVO != null) {String userId = loginVO.getUserId();}
-		else { // @@@@@@@@@@
-			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");
-			model.addAttribute("loginUrl", "/login");
-			return "/alert";
-		}
+//		System.out.println(loginVO);
+
+//		if(loginVO == null) {
+//			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");
+//			model.addAttribute("loginUrl", "/login");
+//			return "/alert";
+//			}
+//		else { // @@@@@@@@@@
+//			String userId = loginVO.getUserId();
+//		}
 		// System.out.println(userId);
 		
 		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) { 
@@ -95,9 +98,9 @@ public class FakeController {
 					String[] uuids = uuid.toString().split("-");
 					
 					String uniqueName = uuids[0];
-					System.out.println("생성된 고유문자열" + uniqueName);
+					System.out.println("생성된 고유문자열" + uniqueName); 
 					
-					File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension);
+					File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); 
 					
 //					String uuid = UUID.randomUUID().toString();
 					//String saveFile = uploadFolder + File.separator + uuid + "_" + fileRealName;
@@ -113,7 +116,7 @@ public class FakeController {
 						e.printStackTrace();
 					} catch (IOException e) {
 						e.printStackTrace();
-					} 
+					}  // 여기까지는 OK
 					//service.fakeAdd(itemNo, fakeVO, saveFile);
 					
 					//System.out.println("DB에 저장될 파일명 : " + saveFile);

@@ -17,13 +17,17 @@ public class FileDaoImpl implements FileDao {
 	SqlSession sql;
 
 	@Override
-	public void insertFileList(List<FileVO> fileVOList) {
+	public long insertFileList(List<FileVO> fileVOList) {
+		int fileSeq = 1; // 초기 값 설정
+		long fileNo = 0;
 		FileVO fileVO = null;
 		for (FileVO vo : fileVOList) {
 			fileVO = vo;
+			fileVO.setFileSeq(fileSeq);
 			sql.insert("file.insertFile", fileVO);
+			fileNo = fileVO.getFileNo();
 		}
-		
+		return fileNo;
 	}
 
 	@Override

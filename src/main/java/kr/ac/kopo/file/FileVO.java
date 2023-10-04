@@ -8,7 +8,7 @@ public class FileVO {
 	private Long fileNo;
 	
 	//첨부파일 순번
-	private Long fileSeq;
+	private int fileSeq;
 	
 	//파일 사이즈
 	private Long fileSize;
@@ -36,11 +36,11 @@ public class FileVO {
 		this.fileNo = fileNo;
 	}
 
-	public Long getFileSeq() {
+	public int getFileSeq() {
 		return fileSeq;
 	}
 
-	public void setFileSeq(Long fileSeq) {
+	public void setFileSeq(int fileSeq) {
 		this.fileSeq = fileSeq;
 	}
 
@@ -91,6 +91,4 @@ public class FileVO {
 	public void setRegistDate(Date registDate) {
 		this.registDate = registDate;
 	}
-
-	
 }

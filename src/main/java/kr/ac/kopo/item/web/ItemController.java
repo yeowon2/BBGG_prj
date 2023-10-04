@@ -104,13 +104,15 @@ public class ItemController {
 		
 		//매물사진 업로드처리
 		List<FileVO> fileVOList = null;
-
+		Long fileNo = null;
+		
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
-        	fileService.insertFileList(fileVOList);
+        	fileNo = fileService.insertFileList(fileVOList);
         }
-		
+        itemVO.setFileNo(fileNo);
+        
 		service.itemAdd(itemVO);
 		
 		return "redirect:/partner/{partnerNo}/itemList";

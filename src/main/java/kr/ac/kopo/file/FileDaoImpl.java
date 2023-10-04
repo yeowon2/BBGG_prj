@@ -21,11 +21,9 @@ public class FileDaoImpl implements FileDao {
 		FileVO fileVO = null;
 		for (FileVO vo : fileVOList) {
 			fileVO = vo;
+			sql.insert("file.insertFile", fileVO);
 		}
-		logger.info("filePath = {}", fileVO.getFilePath());
-		logger.info("savedName = {}", fileVO.getSavedName());
 		
-		sql.insert("file.insertFile", fileVO);
 	}
 
 	@Override

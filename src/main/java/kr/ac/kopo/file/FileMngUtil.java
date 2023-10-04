@@ -7,12 +7,14 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Map.Entry;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class FileMngUtil {
-
+	private static final Logger logger = LoggerFactory.getLogger(FileMngUtil.class);
 	/*
 	 * 파일 첨부를 하는 곳에서 공통으로 사용 가능
 	 * keyString에는 저장파일명에 붙이고 싶은 prefix를 원하는데로 setting 가능
@@ -48,7 +50,6 @@ public class FileMngUtil {
 			String fileExt = originalName.substring(index + 1);
 			
 			//저장 파일명
-			
 			String savedName = keyString + UUID.randomUUID().toString();
 			
 			//파일 사이즈
@@ -56,7 +57,8 @@ public class FileMngUtil {
 			
 			//파일 저장
 			if(!"".equals(originalName)) {
-				filePath = storePathString + File.separator + savedName;
+				filePath = storePath + File.separator + savedName;
+				
 				file.transferTo(new File(filePath));
 			}
 			

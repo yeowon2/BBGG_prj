@@ -196,7 +196,7 @@
 			lat, 
 			lng, 
 			address2, 
-			lease_or_month
+			lease_or_month,
 			file_no
 			)
 			VALUES(

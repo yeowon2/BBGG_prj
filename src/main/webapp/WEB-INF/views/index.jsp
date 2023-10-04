@@ -17,23 +17,17 @@
               <h4 class="intro-sub-heading">Find Your Dream Apartment!</h4>
               <h2 class="intro-title">Find Best Properties in One Place</h2>
               <div class="content">
-                <div class="row">
-                  <div class="search-add col-lg-6 col-md-6 col-xs-12">
-		              <form method="post">
+                <div class="row justify-content-center align-items-center" style="height: 100%; width: 100%;">
+                  	<div class="search-add col-lg-6 col-md-6 col-xs-12">
+		              <form method="post" action="/itemList">
 		                <div class="form-group">
 		                	<div class="row">
-		                    	<input class="col-lg-6" type="search" name="field-name" value="" placeholder="검색어를 입력하세요" required="">
-		                    	<button type="submit" class="search-btn col-lg-1"><span class="lni-search"></span></button>
+		                    	<input class="col-lg-6" type="text" name="search" id="search" value="" placeholder="도로명 또는 건물명을 입력하세요." required="" >
+		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i>검색</button>
 		                	</div>
 		                </div>
 		              </form>
-		            </div>
-                  
-                  <div class="col-lg-2 col-md-6 col-xs-12">
-                    <div class="text-right btn-section">
-                      <button type="button" class="btn btn-common"><i class="lni-search"></i>검색</button>
-                    </div>
-                  </div>
+		         	</div>
                 </div>
               </div>
             </div>

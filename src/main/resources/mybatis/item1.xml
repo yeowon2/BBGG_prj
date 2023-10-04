@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="item">
+
+	<resultMap type="kr.ac.kopo.item.web.ItemVO" id="ItemMap">
+    <id property="itemNo" column="item_no" />
+    <result property="partnerNo" column="partner_no" />
+    <result property="leaseOrMonth" column="lease_or_month" />
+    <result property="itemType" column="item_type" />
+    <result property="address" column="address" />
+    <result property="address2" column="address2" />
+    <result property="dong" column="dong" />
+    <result property="ho" column="ho" />
+    <result property="moveInAt" column="move_in_at" />
+    <result property="moveInDate" column="move_in_date" />
+    <result property="itemSize" column="item_size" />
+    <result property="buildingFloor" column="building_floor" />
+    <result property="itemFloor" column="item_floor" />
+    <result property="itemCount" column="item_count" />
+    <result property="bathAt" column="bath_at" />
+    <result property="elevatorAt" column="elevator_at" />
+    <result property="parkingAt" column="parking_at" />
+    <result property="manageFeeAt" column="manage_fee_at" />
+    <result property="manageFee" column="manage_fee" />
+    <result property="memoShort" column="memo_short" />
+    <result property="memoDetail" column="memo_detail" />
+    <result property="registDate" column="regist_date" />
+    <result property="updateDate" column="update_date" />
+    <result property="useAt" column="use_at" />
+    <result property="lat" column="lat" />
+    <result property="lng" column="lng" />
+    
+    <!-- 추가된 부분 -->
+    <result property="leasePrice" column="price" />
+    <result property="deposltFee" column="deposlt_fee" />
+    <result property="monthPrice" column="price" />
+</resultMap>
+
+	
+	<select id="itemList" resultType="itemVO">
+		SELECT *	FROM tbl_item WHERE address LIKE CONCAT(CONCAT('%', #{address}), '%')
+	</select>
+	
+	<!-- <select id="itemSelect" resultType="itemVO">
+		SELECT 
+		
+		<choose>
+	        <when test="leaseOrMonth == 'lease'">
+	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.item_no = tbl_item.item_no) AS "전세가격",
+	        </when>
+	        <otherwise>
+	            (SELECT deposlt_fee FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "보증금",
+	            (SELECT month_price FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "월세가격",
+	        </otherwise>
+	    </choose>
+		tbl_item.*
+		FROM tbl_item
+		WHERE item_No = #{itemNo}
+	</select> -->
+	
+	<select id="itemSelect" resultType="itemVO">
+		<choose>
+	        <when test="leaseOrMonth == 'lease'">
+	        	SELECT tbl_item.*, tbl_lease.*
+				FROM tbl_item JOIN tbl_lease ON tbl_item.item_no = tbl_lease.item_no
+				WHERE tbl_lease.item_no = #{itemNo}
+	        </when>
+	        <otherwise>
+	            SELECT tbl_item.*, tbl_month.*
+				FROM tbl_item JOIN tbl_month ON tbl_item.item_no = tbl_month.item_no
+				WHERE tbl_month.item_no = #{itemNo}
+	        </otherwise>
+	    </choose>
+	</select>
+	
+	<insert id="itemAdd">
+	    INSERT INTO tbl_item
+	    (
+	    partner_no,
+	    lease_or_month,
+	    item_type,
+	    address, 
+	    address2,
+	    dong,
+	    ho,
+	    move_in_at, 
+	    move_in_date,
+	    item_size, 
+	    building_floor,
+	    item_floor,
+	    item_count,
+	    bath_at,
+	    elevator_at,
+	    parking_at,
+	    manage_fee_at,
+	    manage_fee, 
+	    memo_short,
+	    memo_detail,
+	    regist_date,
+	    update_date,
+	    lat,
+	    lng,
+	    use_at
+	    )
+	    
+	    VALUES 
+	    (
+	    1,
+	    #{leaseOrMonth},
+	    #{itemType},
+	    #{address},
+	    #{address2},
+	    #{dong},
+	    #{ho},
+	    #{moveInAt},
+	    <choose>
+	        <when test="moveInDate == null">
+	            NOW(),
+	        </when>
+	        <otherwise>
+	            #{moveInDate},
+	        </otherwise>
+	    </choose>
+	    
+	    #{itemSize},
+	    #{buildingFloor},
+	    #{itemFloor},
+	    #{itemCount},
+	    #{bathAt},
+	    #{elevatorAt},
+	    #{parkingAt},
+	    #{manageFeeAt},
+	    
+	    <choose>
+	        <when test="manageFee != null">
+	            #{manageFee},
+	        </when>
+	        <otherwise>
+	            NULL,
+	        </otherwise>
+	    </choose>
+	    
+	    #{memoShort},
+	    #{memoDetail},
+	    NOW(),
+	    NOW(),
+	    #{lat},
+	    #{lng},
+	    #{useAt}
+	    )
+	    
+	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
+	    	SELECT LAST_INSERT_ID()
+	    </selectKey>
+	</insert>
+	
+	<insert id="leaseAdd">
+	    INSERT INTO tbl_lease(lease_price, item_no)
+		VALUES (#{leasePrice}, #{itemNo})
+	</insert>
+	
+	<insert id="monthAdd">
+		INSERT INTO tbl_month(deposlt_fee, month_price, item_no)
+		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
+	</insert>
+	
+	
+	<select id="partItemList" resultMap="ItemMap">
+		SELECT 
+		    ti.item_no,
+		    ti.item_type,
+		    ti.lease_or_month,
+		    CASE 
+		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
+		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
+		        ELSE NULL
+		    END AS price,
+		    tm.deposlt_fee, 
+		    ti.item_floor,
+		    ti.manage_fee,
+		    ti.memo_short
+		FROM tbl_item ti
+		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month';
+	</select>
+	
+</mapper>

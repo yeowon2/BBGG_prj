@@ -33,6 +33,8 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+            overflow-y: scroll;
+            max-height: 500px;
         }
     </style>
 </head>
@@ -47,7 +49,7 @@
 		    	<!-- 방종류 -->
 			    <select id="type" name="type">
 					<option value="">원룸,투룸,쓰리룸,오피스텔</option>
-					<option value="O">원룸</option>
+					<option value="O" ${list.itemType == 1 ? "selected" : ""}>원룸</option>
 					<option value="T">투룸</option>
 					<option value="H">쓰리룸</option>
 					<option value="F">오피스텔</option>
@@ -62,7 +64,7 @@
 				</select>
 	    	</div>
 	        <label for="search">주소 입력:</label>
-	        <input type="text" name="search" id="search" placeholder="주소를 입력하세요.">
+	        <input type="text" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요.">
 	        <!-- <button onclick="applyFn()">적용</button> -->
 	        <button type="submit">검색</button>
 	    </form>
@@ -131,12 +133,12 @@
 	            ]
 	
 	            //마커 이미지의 이미지 주소입니다
-	            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	            var imageSrc = "../resources/comm/marker.png"; 
 	
 	            for (var i = 0; i < positions.length; i++) {
 	
 	                // 마커 이미지의 이미지 크기 입니다
-	                var imageSize = new kakao.maps.Size(24, 35); 
+	                var imageSize = new kakao.maps.Size(28, 35); 
 	
 	                // 마커 이미지를 생성합니다    
 	                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -151,14 +153,8 @@
 	
 	                // 마커에 클릭 이벤트를 등록합니다
 	                kakao.maps.event.addListener(marker, 'click', function() {
-	                    // 결과를 리스트 창에 동적으로 추가
-	                    var listContainer = document.getElementById('list-container');
-	                    var listItem = document.createElement('div');
-	                    listItem.innerHTML = `
-	                        
-	                    `;
-	
-	                    alert("매물번호 " + ${item.itemNo});
+	                	// 클릭한 마커의 위치로 지도 중심 이동
+	                    map.setCenter(marker.getPosition());
 	                });
 	            }
 	        </script>

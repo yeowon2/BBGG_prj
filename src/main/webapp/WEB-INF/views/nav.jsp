@@ -61,7 +61,7 @@
                 
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/itemList">
                   매물 보기 
                 </a>
               </li>

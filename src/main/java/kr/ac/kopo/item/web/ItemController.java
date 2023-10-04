@@ -15,19 +15,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.ac.kopo.file.FileMngUtil;
+import kr.ac.kopo.file.FileService;
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.service.ItemService;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.partner.web.PartnerVO;
 
 @Controller
 public class ItemController {
+	private final String fileStorePath = "D:/upload";
 	
 	@Autowired
 	ItemService	service;
 
 	@Autowired
 	PartnerService partnerService;
+	
+
+    @Autowired
+    FileService fileService;
+    
+    @Autowired
+    FileMngUtil fileUtil;
+    
 	
 	private String path = "item/";
 	
@@ -85,8 +99,18 @@ public class ItemController {
 	
 	//매물 등록 
 	@PostMapping("/partner/{partnerNo}/itemAdd")
-	public String itemAdd(@PathVariable Long partnerNo, ItemVO itemVO) {
+	public String itemAdd(@PathVariable Long partnerNo, ItemVO itemVO, final MultipartHttpServletRequest multiRequest) throws Exception{
 		itemVO.setPartnerNo(partnerNo);
+		
+		//매물사진 업로드처리
+		List<FileVO> fileVOList = null;
+
+        final Map<String, MultipartFile> files = multiRequest.getFileMap();
+        if(!files.isEmpty()) {
+        	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
+        	fileService.insertFileList(fileVOList);
+        }
+		
 		service.itemAdd(itemVO);
 		
 		return "redirect:/partner/{partnerNo}/itemList";

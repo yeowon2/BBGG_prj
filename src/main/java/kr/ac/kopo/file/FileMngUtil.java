@@ -19,7 +19,7 @@ public class FileMngUtil {
 	 * 파일 첨부를 하는 곳에서 공통으로 사용 가능
 	 * keyString에는 저장파일명에 붙이고 싶은 prefix를 원하는데로 setting 가능
 	 * */
-	List<FileVO> parseFileInfo(Map<String, MultipartFile> files, String keyString, String storePath) throws Exception {
+	public List<FileVO> parseFileInfo(Map<String, MultipartFile> files, String keyString, String storePath) throws Exception {
 		
 		//파일저장경로
 		String storePathString = "";

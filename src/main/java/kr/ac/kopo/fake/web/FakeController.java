@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ac.kopo.fake.service.FakeService;
+import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller
@@ -33,10 +34,10 @@ public class FakeController {
 	final String path = "/fake";
 	
 	@GetMapping("/list")
-	public String fakeList(Model model, FakeVO fakeVO) {
-		List<FakeVO> list = service.fakeList(fakeVO);
-		model.addAttribute("list", list);
-		return path + "/list";
+	public String fakeList(Model model, FakeVO fakeVO, Pager pager) {
+		List<FakeVO> fakeList = service.fakeList(fakeVO, pager);
+		model.addAttribute("fakeList", fakeList);
+		return path + "/fakeList";
 	}
 	
 	@GetMapping("/{itemNo}")
@@ -53,7 +54,7 @@ public class FakeController {
 	}
 	
 	@PostMapping("/{itemNo}")
-	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, @RequestParam("file") MultipartFile file) {
+	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, @RequestParam("file") MultipartFile file) throws Exception {
 		model.addAttribute("itemNo", itemNo);
 		
 		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
@@ -62,11 +63,13 @@ public class FakeController {
 		
 		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file != null) {
 		
+			// 파일첨부를 했을 때와 안했을 때 구분 필요
+			
 			String uploadFolder = "C:\\Temp\\folder";
 
 			String fileRealName = file.getOriginalFilename();
 			long size = file.getSize();
-			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
 			
 			System.out.println("파일명 : "  + fileRealName);
 			System.out.println("용량크기(byte) : " + size);
@@ -96,7 +99,10 @@ public class FakeController {
 			return "/alert";			
 			
 		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file == null) {
+			
 			//service.fakeAdd(itemNo, fakeVO);
+			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
+			model.addAttribute("fakeFinishUrl", "/itemSelect/3");
 			return "/alert";  
 		} else {
 			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");

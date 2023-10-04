@@ -2,14 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fake">
+	<sql id="search">
+		SELECT tbl_fake.* FROM tbl_fake 
+		
+		<where>
+			<if test="search == 1">
+				tbl_fake.fake_no = #{keyword}
+			</if>
+			
+			<if test="search == 2">
+				tbl_fake.item_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 3">
+				tbl_fake.user_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+		
+		ORDER BY tbl_fake.fake_no
+	</sql>
 
-	<select id="selectList">
-		SELECT fake.*, fake_file.* 
-		FROM fake JOIN fake_file ON (fake.fake_no = fake_file.fake_no)
+	<select id="selectList" resultType="fakeVO">
+		SELECT *
+		FROM (SELECT sub.*, ROW_NUMBER() OVER() rnum 
+			FROM
+		        (<include refid="search"></include>) sub) ) numbered_rows
+		        
+		<if test="perPage != 0">
+			<![CDATA[
+			WHERE rnum > ((#{page}-1)*#{perPage}) AND rnum <= (#{page}*#{perPage})
+			]]>
+		</if>
+	</select>
+	
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) FROM (<include refid="search"></include>) 
 	</select>
 
 	<insert id="insert">
-		INSERT INTO tbl_fake (room_no, 
+		INSERT INTO tbl_fake (item_no, 
 								user_no, 
 								fake_check1, 
 								fake_check2, 
@@ -18,7 +49,7 @@
 								use_at, 
 								agree_at,
 								file_name)
-		VALUES (#{roomNo}, 
+		VALUES (#{itemNo}, 
 				1, 
 				#{fakeCheck1}, 
 				#{fakeCheck2}, 

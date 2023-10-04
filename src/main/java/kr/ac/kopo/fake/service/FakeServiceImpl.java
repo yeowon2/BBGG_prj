@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.fake.dao.FakeDao;
 import kr.ac.kopo.fake.web.FakeVO;
+import kr.ac.kopo.pager.Pager;
 
 @Service
 public class FakeServiceImpl implements FakeService {
@@ -16,8 +17,12 @@ public class FakeServiceImpl implements FakeService {
 	FakeDao dao;
 	
 	@Override
-	public List<FakeVO> fakeList(FakeVO fakeVO) {
-		return null; // @@@@@@@@@@
+	public List<FakeVO> fakeList(FakeVO fakeVO, Pager pager) {
+		int total = dao.total(pager);
+		
+		pager.setTotal(total);
+		
+		return dao.list(pager);
 	}
 
 	@Override

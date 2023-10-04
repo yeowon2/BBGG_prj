@@ -40,69 +40,18 @@
 	</form>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
+	
 	<script>
-        var map;
-        var markers = [];
-
-        // 카카오 지도 초기화
-        function initMap(centerCoords) {
-            var mapContainer = document.getElementById('map');
-            var mapOptions = {
-                center: centerCoords ? centerCoords : new kakao.maps.LatLng(36.35107, 127.4544), // 초기 중심 좌표
-                level: 3 // 초기 확대 레벨
-            };
-            map = new kakao.maps.Map(mapContainer, mapOptions);
-        }
-
-        // 페이지 로드 시 지도 초기화
-        window.onload = function () {
-            // 사용자 동의 여부 확인
-            var locationConfirmed = localStorage.getItem('locationConfirmed');
-
-            if (!locationConfirmed || locationConfirmed === 'false') {
-                // 사용자가 동의하지 않은 경우
-                showLocationConfirmation();
-            } else {
-                // 사용자가 이미 동의한 경우
-                getCurrentLocation();
-            }
-        };
-
-        // 현재 위치를 가져오기 전에 동의/비동의 알럿 창 표시
-        function showLocationConfirmation() {
-            var userAgrees = confirm('현재 위치 정보를 사용하시겠습니까?');
-            if (userAgrees) {
-                // 동의한 경우
-                getCurrentLocation();
-                localStorage.setItem('locationConfirmed', 'true');
-            } else {
-                // 비동의한 경우
-                localStorage.setItem('locationConfirmed', 'false');
-            }
-        }
-
-        // 현재 위치 정보 가져오기
-        function getCurrentLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var latitude = position.coords.latitude;
-                    var longitude = position.coords.longitude;
-                    var currentCoords = new kakao.maps.LatLng(latitude, longitude);
-
-                    // 지도 초기화
-                    initMap(currentCoords);
-                }, function (error) {
-                    // 위치 정보를 가져오는데 실패한 경우
-                    alert('현재 위치 정보를 가져오는데 실패했습니다.');
-                    localStorage.setItem('locationConfirmed', 'false');
-                });
-            } else {
-                // Geolocation을 지원하지 않는 경우
-                alert('현재 위치 정보를 가져올 수 없습니다.');
-                localStorage.setItem('locationConfirmed', 'false');
-            }
-        }
-    </script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = { 
+	        center: new kakao.maps.LatLng(36.35107, 127.4544), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };
+	
+		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+	</script>
+    
     <!-- 카테고리에 따른 마커 생성 -->
 	<c:forEach var="item" items="${list}">
 		<script>
@@ -153,7 +102,6 @@
 			    
 			}
 		</script>
-	
 	</c:forEach>
 
 </html>

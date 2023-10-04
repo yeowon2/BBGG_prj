@@ -42,7 +42,7 @@
 		SELECT *	FROM tbl_item 
 		<if test="search != null">
 			WHERE address LIKE CONCAT('%', #{search}, '%')
-			AND address2 LIKE CONCAT('%', #{search}, '%')
+			OR address2 LIKE CONCAT('%', #{search}, '%')
 		</if>
 	</select>
 	

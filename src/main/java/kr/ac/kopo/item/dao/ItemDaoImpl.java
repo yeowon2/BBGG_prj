@@ -16,7 +16,7 @@ import kr.ac.kopo.item.web.ItemVO;
 @Repository
 public class ItemDaoImpl implements ItemDao {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(ItemDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ItemDaoImpl.class);
 	
 	@Autowired
 	SqlSession sql;
@@ -30,7 +30,7 @@ public class ItemDaoImpl implements ItemDao {
 	@Override
 	public ItemVO itemSelect(ItemVO itemVO) {
 		ItemVO vo =  sql.selectOne("item.itemSelect", itemVO);
-		LOGGER.info("LotM: {}", vo.getLeaseOrMonth());
+		logger.info("LotM: {}", vo.getLeaseOrMonth());
 		return vo;
 	}
 	

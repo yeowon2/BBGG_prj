@@ -17,18 +17,21 @@ public class FileDaoImpl implements FileDao {
 	SqlSession sql;
 
 	@Override
-	public long insertFileList(List<FileVO> fileVOList) {
-		int fileSeq = 1; // 초기 값 설정
-		long fileNo = 0;
-		FileVO fileVO = null;
-		for (FileVO vo : fileVOList) {
-			fileVO = vo;
-			fileVO.setFileSeq(fileSeq);
-			sql.insert("file.insertFile", fileVO);
-			fileNo = fileVO.getFileNo();
-		}
-		return fileNo;
+	public String insertFileList(List<FileVO> fileVOList) {
+	    int fileSeq = 1; // 초기 값 설정
+	    FileVO fileVO = null;
+	    for (FileVO vo : fileVOList) {
+	        fileVO = vo;
+	        fileVO.setFileSeq(fileSeq);
+	       sql.insert("file.insertFile", fileVO);
+	       
+	        
+	        fileSeq++;
+	    }
+	    return fileVO.getFileId();
 	}
+
+	
 
 	@Override
 	public List<FileVO> selectFileList() {

@@ -3,10 +3,11 @@ package kr.ac.kopo.item.web;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +22,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
 import kr.ac.kopo.file.FileVO;
+import kr.ac.kopo.item.dao.ItemDaoImpl;
 import kr.ac.kopo.item.service.ItemService;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.partner.web.PartnerVO;
 
 @Controller
 public class ItemController {
+	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
+	
 	private final String fileStorePath = "D:/upload";
 	
 	@Autowired
@@ -104,14 +108,16 @@ public class ItemController {
 		
 		//매물사진 업로드처리
 		List<FileVO> fileVOList = null;
-		Long fileNo = null;
+		String fileId = null;
 		
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
-        	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
-        	fileNo = fileService.insertFileList(fileVOList);
+        	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
+        	fileId = fileService.insertFileList(fileVOList);
+        	logger.info("==========================fileId = {}", fileId);
+        	
         }
-        itemVO.setFileNo(fileNo);
+        itemVO.setFileId(fileId);
         
 		service.itemAdd(itemVO);
 		

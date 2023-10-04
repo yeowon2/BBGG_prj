@@ -32,12 +32,12 @@ public class FileController {
     @PostMapping("/add")
     public String add(final MultipartHttpServletRequest multiRequest) throws Exception {
         List<FileVO> fileVOList = null;
-        long fileNo;
         
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
-        	fileNo = service.insertFileList(fileVOList);
+        	String fileId = service.insertFileList(fileVOList);
+        	
         }
         
         return "redirect:.";

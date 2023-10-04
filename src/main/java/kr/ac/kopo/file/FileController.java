@@ -5,17 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/file")
 public class FileController {
 
     private final String path = "file/";
+    private final String fileStorePath = "D:/upload/";
 
     @Autowired
     FileService service;
+    
+    @Autowired
+    FileMngUtil fileUtil;
+    
 
     @GetMapping("/add")
     public String add() {
@@ -23,15 +30,24 @@ public class FileController {
     }
 
     @PostMapping("/add")
-    public String add(FileVO fileVO, @RequestParam("imageFiles") List<MultipartFile> imageFiles) {
-        service.add(imageFiles);
-        return "redirect:/file";
+    public String add(final MultipartHttpServletRequest multiRequest) throws Exception {
+        List<FileVO> fileVOList = null;
+
+        final Map<String, MultipartFile> files = multiRequest.getFileMap();
+        if(!files.isEmpty()) {
+        	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
+        	service.insertFileList(fileVOList);
+        }
+        
+        return "redirect:.";
+    }
+    
+    @GetMapping("/detail")
+    public String detail(Model model) {
+    	service.selectFileList();
+    	
+    	return path + "detailFile";
     }
 
-    @GetMapping("/detail/{fileNo}")
-    public String detail(@PathVariable Long fileNo, Model model) {
-        FileVO fileVO = service.detail(fileNo);
-        model.addAttribute("fileVO", fileVO);
-        return path + "detailFile";
-    }
+   
 }

@@ -11,20 +11,22 @@ public class FileDaoImpl implements FileDao {
 
 	@Autowired
 	SqlSession sql;
+
+	@Override
+	public void insertFileList(List<FileVO> fileVOList) {
+		FileVO fileVO = null;
+		for (FileVO vo : fileVOList) {
+			fileVO = vo;
+		}
+		
+		sql.insert("file.insertFile", fileVO);
+	}
+
+	@Override
+	public List<FileVO> selectFileList() {
+		return sql.selectList("file.selectFileList");
+	}
 	
-	@Override
-	public void add(FileVO fileVO) {
-		sql.insert("file.add", fileVO);
-	}
-
-	@Override
-	public FileVO detail(Long fileNo) {
-		return sql.selectOne("file.detail", fileNo);
-	}
-
-	@Override
-	public void addList(List<FileVO> fileVOList) {
-		sql.insert("file.addList", fileVOList);
-	}
+	
 
 }

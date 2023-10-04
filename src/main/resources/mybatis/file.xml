@@ -2,43 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="file">
-    <insert id="addList" >
-        INSERT INTO tbl_item_file
+    <insert id="insertFile" >
+        INSERT INTO tbl_file
         (
-            item_no,
-            saved_name,
-            use_at,
-            original_name,
-            file_path,
-            file_ext,
-            primary_at,
-            regist_date
+            saved_name
+            , original_name
+            , file_path
+            , file_ext
+            , file_size
+            , regist_date
         )
         VALUES
-        <foreach collection="java.util.List" item="fileVO" separator=",">
-            (
-            #{fileVO.itemNo},
-            #{fileVO.savedName},
-            'Y',
-            #{fileVO.originalName},
-            #{fileVO.filePath},
-            #{fileVO.fileExt},
-            #{fileVO.primaryAt},
-            CURRENT_TIMESTAMP()
-            )
-        </foreach>
+       (
+       	#{savedName}
+       	, #{originalName}
+       	, #{filePath}
+       	, #{fileExt}
+       	, #{fileSize}
+       	, #{registDate}
+       )
     </insert>
 
-    <select id="detail" resultType="FileVO">
-        SELECT
-            item_no,
-            saved_name,
-            original_name,
-            file_path,
-            file_ext,
-            primary_at,
-            regist_date
-        FROM tbl_item_file
-        WHERE file_no = #{fileNo}
-    </select>
+   
 </mapper>

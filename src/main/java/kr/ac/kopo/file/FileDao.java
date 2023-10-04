@@ -4,9 +4,7 @@ import java.util.List;
 
 public interface FileDao {
 
-	void add(FileVO fileVO);
+	void insertFileList(List<FileVO> fileVOList);
 
-	FileVO detail(Long fileNo);
-
-	 void addList(List<FileVO> fileVOList);
+	List<FileVO> selectFileList();
 }

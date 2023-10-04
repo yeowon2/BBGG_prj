@@ -175,7 +175,7 @@ thead tr:nth-child(3) th {
         <div class="row">
           <div class="col-lg-12 mt-30">
             <div class="submit-form">
-              <form method="post">
+              <form method="post" enctype="multipart/form-data">
               	<section>
 	              	<h3 class="heading">위치 정보</h3>
 	                <div class="row mb-3">

@@ -12,7 +12,7 @@ public class FileServiceImpl implements FileService {
 	FileDao dao;
 
 	@Override
-	public long insertFileList(List<FileVO> fileVOList) {
+	public String insertFileList(List<FileVO> fileVOList) {
 		return dao.insertFileList(fileVOList);
 	}
 

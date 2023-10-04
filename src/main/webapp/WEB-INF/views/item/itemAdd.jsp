@@ -471,7 +471,7 @@ thead tr:nth-child(3) th {
                 	<section class="hk-sec-wrapper">
 							<div  class="row">
 								<div class="col-sm">
-									<input type="file" id="input-file-now" class="dropify" multiple="multiple"/>
+									<input name="files" type="file" id="input-file-now" class="dropify" multiple="multiple"/>
 								</div>
 							</div>
 						</section>

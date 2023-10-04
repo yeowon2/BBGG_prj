@@ -30,7 +30,7 @@
     <result property="useAt" column="use_at" />
     <result property="lat" column="lat" />
     <result property="lng" column="lng" />
-    <result property="fileNo" column="file_no" />
+    <result property="fileId" column="file_id" />
     
     <!-- 추가된 부분 -->
     <result property="leasePrice" column="price" />
@@ -196,7 +196,7 @@
 			lat, 
 			lng, 
 			address2, 
-			lease_or_month
+			lease_or_month,
 			file_no
 			)
 			VALUES(

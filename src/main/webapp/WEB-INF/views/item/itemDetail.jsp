@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" %>
+<%@ page import="kr.ac.kopo.item.web.ItemVO" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="javax.servlet.http.Cookie" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -26,6 +29,34 @@
       </div>
     </div>
     <!-- Page Banner End -->
+    
+    <!-- cookie part start -->
+	    <c:set var="itemNo" value="${itemVO.itemNo}" />
+	    <c:set var="itemType" value="${itemVO.itemType}" />
+	    <c:set var="memoShort" value="${itemVO.memoShort}" />
+		
+		<c:set var="itemInfo">
+			매물고유번호 : ${itemNo};
+			매물타입 : ${itemType};
+			매물소개 : ${memoShort};
+		</c:set>
+		<c:out value="${itemInfo}"/>
+		
+		<!-- 쿠키 설정 -->
+		<c:set var="itemCookie" value="${itemInfo}"/>
+		<c:set var="cookieName" value="${itemInfoCookie}"/>
+		<c:set var="cookieMaxAge" value="60*60*5"/> <!-- 유지시간을 5시간으로 지정 -->
+		
+		<!-- 쿠키 생성 후 응답에 추가 -->
+		<c:if test="${not empty itemCookie}">
+			<c:import url="/list/recentList.jsp">
+				<c:param name="cookieName" value="${cookieName}"/>
+				<c:param name="cookieValue" value="${itemCookie}"/>
+				<c:param name="cookieMaxAge" value="${cookieMaxAge}"/>
+			</c:import>
+		</c:if>
+		
+	<!-- cookie part end -->
 
     <!-- Start Content -->
     <div id="content" class="section-padding">

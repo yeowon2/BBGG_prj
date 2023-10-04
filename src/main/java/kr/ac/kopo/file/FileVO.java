@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class FileVO {
 
-	//첨부파일 아이디
-	private Long fileNo;
+	//첨부파일 고유ID
+	private String fileId;
 	
 	//첨부파일 순번
 	private int fileSeq;
@@ -28,14 +28,7 @@ public class FileVO {
 	//파일 생성일자
 	private Date registDate;
 
-	public Long getFileNo() {
-		return fileNo;
-	}
-
-	public void setFileNo(Long fileNo) {
-		this.fileNo = fileNo;
-	}
-
+	
 	public int getFileSeq() {
 		return fileSeq;
 	}
@@ -90,5 +83,13 @@ public class FileVO {
 
 	public void setRegistDate(Date registDate) {
 		this.registDate = registDate;
+	}
+
+	public String getFileId() {
+		return fileId;
+	}
+
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
 	}
 }

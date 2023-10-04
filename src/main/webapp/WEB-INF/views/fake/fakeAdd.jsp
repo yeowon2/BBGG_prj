@@ -17,10 +17,12 @@
 <!-- modal-window CSS -->
 <link rel="stylesheet" href="/resources/dist/css/modal-window.css" type="text/css">
 <!-- Toggles CSS -->
-<link href="vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-<link href="vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+<link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
 <!-- Custom CSS -->
 <link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap Dropzone CSS -->
+<link href="/resources/vendors/dropify/dist/css/dropify.min.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<jsp:include page="../nav.jsp"></jsp:include>
@@ -103,7 +105,18 @@
 													<input type="checkbox" id="fakeCheck2" name="fakeCheck"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
 													<input type="checkbox" id="fakeCheck3" name="fakeCheck"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
 													<textarea id="fakeDetail" name="fakeDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
-													<input type="file" name="file">
+														<div class="row">
+															<div class="col-xl-12">
+																<section class="hk-sec-wrapper">
+																	<p class="mb-40">파일을 <a href="http://jeremyfagis.github.io/dropify/" target="_blank">여기에 </a>가져다 놓으세요.</p>
+																	<div  class="row">
+																		<div class="col-sm">
+																			<input type="file" id="input-file-now" class="dropify" name="file" />
+																		</div>
+																	</div>
+																</section>
+															</div>
+														</div>
 													<button type="submit" class="btn btn-teal" id="submitBtn" style="float: right;">신고하기</button>	
 										        </form>
 																					
@@ -148,39 +161,48 @@
     <!-- /HK Wrapper -->
 		
 	<!-- jQuery -->
-    <script src="resources/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="../../resources/vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="resources/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../resources/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Slimscroll JavaScript -->
-    <script src="resources/dist/js/jquery.slimscroll.js"></script>
+    <script src="../../resources/dist/js/jquery.slimscroll.js"></script>
 
     <!-- Fancy Dropdown JS -->
-    <script src="resources/dist/js/dropdown-bootstrap-extended.js"></script>
+    <script src="../../resources/dist/js/dropdown-bootstrap-extended.js"></script>
 
     <!-- Owl JavaScript -->
-    <script src="resourcesvendors/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="../../resources/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
 
     <!-- FeatherIcons JavaScript -->
-    <script src="resources/dist/js/feather.min.js"></script>
+    <script src="../../resources/dist/js/feather.min.js"></script>
 
     <!-- Tinymce JavaScript -->
-    <script src="resources/vendors/tinymce/tinymce.min.js"></script>
+    <script src="../../resources/vendors/tinymce/tinymce.min.js"></script>
 
     <!-- Tinymce Wysuhtml5 Init JavaScript -->
-    <script src="resources/dist/js/tinymce-data.js"></script>
+    <script src="../../resources/dist/js/tinymce-data.js"></script>
 
     <!-- Toggles JavaScript -->
-    <script src="resources/vendors/jquery-toggles/toggles.min.js"></script>
-    <script src="resources/dist/js/toggle-data.js"></script>
+    <script src="../../resources/vendors/jquery-toggles/toggles.min.js"></script>
+    <script src="../../resources/dist/js/toggle-data.js"></script>
 
     <!-- Init JavaScript -->
-    <script src="resources/dist/js/init.js"></script>		
+    <script src="../../resources/dist/js/init.js"></script>		
     
     <!-- modal-data JavaScript -->
-    <script src="resources/dist/js/modal-data.js"></script>		
+    <script src="../../resources/dist/js/modal-data.js"></script>		
+    
+    <!-- Dropify JavaScript -->
+	<script src="../../resources/vendors/dropify/dist/js/dropify.min.js"></script>
+	
+	<!-- Form Flie Upload Data JavaScript -->
+	<script src="../../resources/dist/js/form-file-upload-data.js"></script>
+	
+	<!-- FeatherIcons JavaScript -->
+	<script src="../../resources/dist/js/feather.min.js"></script>
     
     <script>
     const submitBtn = document.querySelector("#submitBtn");

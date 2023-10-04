@@ -15,7 +15,7 @@ import java.util.Map;
 public class FileController {
 
     private final String path = "file/";
-    private final String fileStorePath = "D:/upload/";
+    private final String fileStorePath = "D:/upload";
 
     @Autowired
     FileService service;
@@ -41,6 +41,7 @@ public class FileController {
         
         return "redirect:.";
     }
+    
     
     @GetMapping("/detail")
     public String detail(Model model) {

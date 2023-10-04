@@ -26,6 +26,7 @@ public class FileMngUtil {
 		File saveFolder = new File(storePathString);
 		if(!saveFolder.exists() || saveFolder.isFile()) {
 			saveFolder.mkdirs();
+			
 		}
 		
 		//파일변수

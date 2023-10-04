@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="file">
-    <insert id="insertFile" >
+    <insert id="insertFile" useGeneratedKeys="true" keyProperty="fileNo">
         INSERT INTO tbl_file
         (
             saved_name
@@ -11,6 +11,7 @@
             , file_ext
             , file_size
             , regist_date
+            , file_seq
         )
         VALUES
        (
@@ -20,8 +21,7 @@
        	, #{fileExt}
        	, #{fileSize}
        	, #{registDate}
+       	, #{fileSeq}
        )
     </insert>
-
-   
 </mapper>

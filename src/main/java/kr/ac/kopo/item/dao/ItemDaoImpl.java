@@ -40,7 +40,7 @@ public class ItemDaoImpl implements ItemDao {
 		// 첫 번째 INSERT 문 실행
         sql.insert("item.addItem", itemVO);
         
-        Long itemNo = itemVO.getitemNo();
+        Long itemNo = itemVO.getItemNo();
         
         HashMap<String, Long> paramMap = new HashMap<String, Long>();
         

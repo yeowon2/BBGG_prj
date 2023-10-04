@@ -175,7 +175,7 @@ thead tr:nth-child(3) th {
         <div class="row">
           <div class="col-lg-12 mt-30">
             <div class="submit-form">
-              <form method="post">
+              <form method="post" enctype="multipart/form-data">
               	<section>
 	              	<h3 class="heading">위치 정보</h3>
 	                <div class="row mb-3">
@@ -468,17 +468,14 @@ thead tr:nth-child(3) th {
 	                  </div>
 	                </div>
 	                </section>
-                	<section>
-                		<h3 class="heading">사진 업로드</h3>
-                		<div class="row mb-3">
-                  			<div class="col-lg-12">
-                    			<div id="drop-file" class="drop-file mb-5">
-                      		<div class="drop-message"><span>Drop files here to upload</span></div>
-                    	</div>
-                  		</div>
-                	</div>
-                </section>
-                <div>
+                	<section class="hk-sec-wrapper">
+							<div  class="row">
+								<div class="col-sm">
+									<input type="file" id="input-file-now" class="dropify" multiple="multiple"/>
+								</div>
+							</div>
+						</section>
+              		  <div>
                 	<button class="btn btn-success" type="submit">등록</button>
                 </div>
               </form>

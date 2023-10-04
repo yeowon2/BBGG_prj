@@ -280,31 +280,6 @@
                 </div>
               </div>
               
-              <!-- Mortgage widget 
-              <div class="widget">
-                <h3 class="sidebar-title">Mortgage Calculator</h3>
-                <form class="mortgage-calc">
-                  <p class="tip-content">Set This Property Price</p>
-                  <div class="calc-input">
-                    <input type="text" class="form-control" name="amount" placeholder="Sale Price" required="">
-                    <label>$</label>
-                  </div>
-                  <div class="calc-input">
-                    <input type="text" class="form-control" placeholder="Down Payment">
-                    <label  class="fa fa-usd">$</label>
-                  </div>
-                  <div class="calc-input">
-                    <input type="text" class="form-control" placeholder="Loan Term (Years)" required="">
-                    <label class="lni-calendar"></label>
-                  </div>
-                  <div class="calc-input">
-                    <input type="text" class="form-control" placeholder="Interest Rate" required="">
-                    <label>%</label>
-                  </div>
-                  <button class="btn btn-common">Calculate</button>
-                </form>
-              </div>
-				-->
               <!-- Social Media -->
               <div class="widget widget-social">
                 <h3 class="sidebar-title">허위 매물 신고하기</h3>
@@ -425,93 +400,6 @@
                                 </div>
                             </div>
                             <!-- /Compose email -->
-<!--  
-      <div class="container">
-        <div class="row"> 
-          <div class="col-12">
-            <h2 class="desc-title">포함 여부 고민 중</h2>
-          </div>           
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-1.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-red">For Sale</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Amazing oceanfront apartment</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Drive Street, Los Angeles, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,500</span>
-                      </div>
-                     <p><span>4 bds</span> . <span>4 ba</span> . <span>2500 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-2.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label">For Rent</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Family Condo</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Louis, Missouri, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$27,00</span>
-                      </div>
-                     <p><span>6 bds</span> . <span>8 ba</span> . <span>2600 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-3.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-yellow">New</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Guaranteed modern home</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Avenue C, New York, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,750</span>
-                      </div>
-                     <p><span>8 bds</span> . <span>8 ba</span> . <span>3000 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
--->
     </div>
     <!-- End Content -->    
 

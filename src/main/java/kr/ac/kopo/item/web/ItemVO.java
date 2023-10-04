@@ -40,195 +40,268 @@ public class ItemVO {
 	private Long depositFee;		//월세보증금
 	private Long monthPrice;		//월세가격
 	
+	private Long price;
+	
 	private String search;			//검색
 	
-	public String getSearch() {
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
-	private Long price; // 월세 -> monthPrice / 전세 -> leasePrice
-	
-	public Long getitemNo() {
+	private Long fileNo;			//첨부파일 고유번호
+
+	public Long getItemNo() {
 		return itemNo;
 	}
-	public void setitemNo(Long itemNo) {
+
+	public void setItemNo(Long itemNo) {
 		this.itemNo = itemNo;
 	}
+
 	public Long getPartnerNo() {
 		return partnerNo;
 	}
+
 	public void setPartnerNo(Long partnerNo) {
 		this.partnerNo = partnerNo;
 	}
+
 	public String getLeaseOrMonth() {
 		return leaseOrMonth;
 	}
+
 	public void setLeaseOrMonth(String leaseOrMonth) {
 		this.leaseOrMonth = leaseOrMonth;
 	}
-	public String getitemType() {
+
+	public String getItemType() {
 		return itemType;
 	}
-	public void setitemType(String itemType) {
+
+	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getAddress2() {
 		return address2;
 	}
+
 	public void setAddress2(String address2) {
 		this.address2 = address2;
 	}
+
 	public String getDong() {
 		return dong;
 	}
+
 	public void setDong(String dong) {
 		this.dong = dong;
 	}
+
 	public String getHo() {
 		return ho;
 	}
+
 	public void setHo(String ho) {
 		this.ho = ho;
 	}
+
 	public String getMoveInAt() {
 		return moveInAt;
 	}
+
 	public void setMoveInAt(String moveInAt) {
 		this.moveInAt = moveInAt;
 	}
+
 	public Date getMoveInDate() {
 		return moveInDate;
 	}
+
 	public void setMoveInDate(Date moveInDate) {
 		this.moveInDate = moveInDate;
 	}
-	public Long getitemSize() {
+
+	public Long getItemSize() {
 		return itemSize;
 	}
-	public void setitemSize(Long itemSize) {
+
+	public void setItemSize(Long itemSize) {
 		this.itemSize = itemSize;
 	}
+
 	public Long getBuildingFloor() {
 		return buildingFloor;
 	}
+
 	public void setBuildingFloor(Long buildingFloor) {
 		this.buildingFloor = buildingFloor;
 	}
-	public Long getitemFloor() {
+
+	public Long getItemFloor() {
 		return itemFloor;
 	}
-	public void setitemFloor(Long itemFloor) {
+
+	public void setItemFloor(Long itemFloor) {
 		this.itemFloor = itemFloor;
 	}
-	public Long getitemCount() {
+
+	public Long getItemCount() {
 		return itemCount;
 	}
-	public void setitemCount(Long itemCount) {
+
+	public void setItemCount(Long itemCount) {
 		this.itemCount = itemCount;
 	}
+
 	public Long getBathAt() {
 		return bathAt;
 	}
+
 	public void setBathAt(Long bathAt) {
 		this.bathAt = bathAt;
 	}
+
 	public String getElevatorAt() {
 		return elevatorAt;
 	}
+
 	public void setElevatorAt(String elevatorAt) {
 		this.elevatorAt = elevatorAt;
 	}
+
 	public String getParkingAt() {
 		return parkingAt;
 	}
+
 	public void setParkingAt(String parkingAt) {
 		this.parkingAt = parkingAt;
 	}
+
 	public String getManageFeeAt() {
 		return manageFeeAt;
 	}
+
 	public void setManageFeeAt(String manageFeeAt) {
 		this.manageFeeAt = manageFeeAt;
 	}
+
 	public Long getManageFee() {
 		return manageFee;
 	}
+
 	public void setManageFee(Long manageFee) {
 		this.manageFee = manageFee;
 	}
+
 	public String getMemoShort() {
 		return memoShort;
 	}
+
 	public void setMemoShort(String memoShort) {
 		this.memoShort = memoShort;
 	}
+
 	public String getMemoDetail() {
 		return memoDetail;
 	}
+
 	public void setMemoDetail(String memoDetail) {
 		this.memoDetail = memoDetail;
 	}
+
 	public Date getRegistDate() {
 		return registDate;
 	}
+
 	public void setRegistDate(Date registDate) {
 		this.registDate = registDate;
 	}
+
 	public Date getUpdateDate() {
 		return updateDate;
 	}
+
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
+
 	public String getUseAt() {
 		return useAt;
 	}
+
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
+
 	public Double getLat() {
 		return lat;
 	}
+
 	public void setLat(Double lat) {
 		this.lat = lat;
 	}
+
 	public Double getLng() {
 		return lng;
 	}
+
 	public void setLng(Double lng) {
 		this.lng = lng;
 	}
+
 	public Long getLeasePrice() {
 		return leasePrice;
 	}
+
 	public void setLeasePrice(Long leasePrice) {
 		this.leasePrice = leasePrice;
 	}
+
 	public Long getDepositFee() {
 		return depositFee;
 	}
+
 	public void setDepositFee(Long depositFee) {
 		this.depositFee = depositFee;
 	}
+
 	public Long getMonthPrice() {
 		return monthPrice;
 	}
+
 	public void setMonthPrice(Long monthPrice) {
 		this.monthPrice = monthPrice;
 	}
+
 	public Long getPrice() {
 		return price;
 	}
+
 	public void setPrice(Long price) {
 		this.price = price;
 	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public Long getFileNo() {
+		return fileNo;
+	}
+
+	public void setFileNo(Long fileNo) {
+		this.fileNo = fileNo;
+	}
+
+	
 	
 }

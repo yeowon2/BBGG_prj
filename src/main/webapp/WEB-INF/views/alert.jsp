@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>BBGG msg</title>
 </head>
 <body>
 <script type="text/javascript">
@@ -17,13 +17,13 @@
 	//var msg = "재시도 부탁드립니다";
 	var url = "/"
 
-	if(loginMsg != null && fakeFinishMsg == null) {	
+	if(loginMsg != null) {	// 로그인 안 한 상태
 		alert(loginMsg);
 		document.location.href = loginUrl;
-	} else if(fakeFinishMsg != null && loginMsg == null) {
+	} else if(fakeFinishMsg != null) { // 허위 매물 신고 완성 상태
 		alert(fakeFinishMsg);
 		window.history.go(-1);
-	} else if(loginMsg == null && fakeFinishMsg == null) {
+	} else {
 		alert("재시도 부탁드립니다.");
 		window.history.go(-1);
 	}

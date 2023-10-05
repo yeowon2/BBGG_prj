@@ -5,10 +5,7 @@ import java.util.Date;
 public class FileVO {
 
 	//첨부파일 고유ID
-	private String fileId;
-	
-	//첨부파일 순번
-	private int fileSeq;
+	private Long fileNo;
 	
 	//파일 사이즈
 	private Long fileSize;
@@ -29,13 +26,6 @@ public class FileVO {
 	private Date registDate;
 
 	
-	public int getFileSeq() {
-		return fileSeq;
-	}
-
-	public void setFileSeq(int fileSeq) {
-		this.fileSeq = fileSeq;
-	}
 
 	public Long getFileSize() {
 		return fileSize;
@@ -85,11 +75,14 @@ public class FileVO {
 		this.registDate = registDate;
 	}
 
-	public String getFileId() {
-		return fileId;
+	public Long getFileNo() {
+		return fileNo;
 	}
 
-	public void setFileId(String fileId) {
-		this.fileId = fileId;
+	public void setFileNo(Long fileNo) {
+		this.fileNo = fileNo;
 	}
+
+	
+	
 }

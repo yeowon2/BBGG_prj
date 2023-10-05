@@ -15,7 +15,7 @@ import java.util.Map;
 public class FileController {
 
     private final String path = "file/";
-    private final String fileStorePath = "D:/upload";
+    private final String fileStorePath = "E:/upload";
 
     @Autowired
     FileService service;
@@ -32,11 +32,12 @@ public class FileController {
     @PostMapping("/add")
     public String add(final MultipartHttpServletRequest multiRequest) throws Exception {
         List<FileVO> fileVOList = null;
+        long fileNo = 0;
         
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
-        	String fileId = service.insertFileList(fileVOList);
+        	fileNo = service.insertFileList(fileVOList);
         	
         }
         
@@ -44,11 +45,11 @@ public class FileController {
     }
     
     
-    @GetMapping("/detail")
-    public String detail(Model model) {
-    	service.selectFileList();
-    	
-    	return path + "detailFile";
+    @GetMapping("/list")
+    public String list(Model model) {
+    	List<FileVO> FileVOList = service.selectFileList();
+    	model.addAttribute("FileVOList", FileVOList);
+    	return path + "listFile";
     }
 
    

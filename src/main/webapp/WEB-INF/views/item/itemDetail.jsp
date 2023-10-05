@@ -1,9 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" %>
-<%@ page import="kr.ac.kopo.item.web.ItemVO" %>
-<%@ page import="java.net.URLEncoder" %>
-<%@ page import="javax.servlet.http.Cookie" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,34 +26,6 @@
       </div>
     </div>
     <!-- Page Banner End -->
-    
-    <!-- cookie part start -->
-	    <c:set var="itemNo" value="${itemVO.itemNo}" />
-	    <c:set var="itemType" value="${itemVO.itemType}" />
-	    <c:set var="memoShort" value="${itemVO.memoShort}" />
-		
-		<c:set var="itemInfo">
-			매물고유번호 : ${itemNo};
-			매물타입 : ${itemType};
-			매물소개 : ${memoShort};
-		</c:set>
-		<c:out value="${itemInfo}"/>
-		
-		<!-- 쿠키 설정 -->
-		<c:set var="itemCookie" value="${itemInfo}"/>
-		<c:set var="cookieName" value="${itemInfoCookie}"/>
-		<c:set var="cookieMaxAge" value="60*60*5"/> <!-- 유지시간을 5시간으로 지정 -->
-		
-		<!-- 쿠키 생성 후 응답에 추가 -->
-		<c:if test="${not empty itemCookie}">
-			<c:import url="/list/recentList.jsp">
-				<c:param name="cookieName" value="${cookieName}"/>
-				<c:param name="cookieValue" value="${itemCookie}"/>
-				<c:param name="cookieMaxAge" value="${cookieMaxAge}"/>
-			</c:import>
-		</c:if>
-		
-	<!-- cookie part end -->
 
     <!-- Start Content -->
     <div id="content" class="section-padding">
@@ -123,7 +92,6 @@
               </div>  
               
               
-
               <div class="inner-box short-info">
                 <h2 class="desc-title">상세 정보</h2>
                 <ul class="additional-details">        
@@ -220,12 +188,10 @@
                   
                 </ul>
               </div>
-
                <div class="inner-box property-dsc">
                 <h2 class="desc-title">상세 설명</h2>
                	<p>${itemVO.memoDetail}</p>
               </div>
-
               <div class="inner-box featured">  
                 <h2 class="desc-title">Features</h2>
                 <ul class="property-features checkboxes">
@@ -240,14 +206,12 @@
                   <li><i class="lni-check-box"></i> Alarm</li>
                 </ul>
               </div>
-
               <div class="inner-box location-map">
                 <h2 class="desc-title">위치 정보</h2>
                 <div id="conatiner-map"></div>
               </div>
            
             </div>
-
             <!--Sidebar-->
             <aside id="sidebar" class="col-lg-4 col-md-12 col-xs-12 right-sidebar">
               <!-- Widget -->
@@ -286,7 +250,6 @@
                 	</a>
                 </div>
               </div>
-
               <!-- Property Featured Widget -->
               <div class="widget mt3">
                 <h3 class="sidebar-title">이 중개사무소의 다른 방</h3>
@@ -324,7 +287,6 @@
              		</a>
                 </ul>
               </div>            
-
             </aside>
             <!--End sidebar-->       
         </div>
@@ -421,7 +383,6 @@
                                             <h5 class="mb-10" >내용</h5>
                                             <textarea class="form-control" rows="15" name="noteContent" ></textarea>
                                         </div>
-
                                         
                                         <hr>
                                         <button class="btn btn-success" type="submit">전송</button>
@@ -433,20 +394,16 @@
                             <!-- /Compose email -->
     </div>
     <!-- End Content -->    
-
-
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // 체크박스 요소들과 textarea 요소를 가져옵니다.
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const textarea = document.querySelector('textarea[name="noteContent"]');
-
         // 체크박스가 변경될 때마다 실행되는 함수를 정의합니다.
         function updateTextarea() {
             // textarea의 내용을 초기화합니다.
             textarea.value = "";
-
             // 체크된 체크박스의 내용을 textarea에 추가합니다.
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
@@ -455,7 +412,6 @@
                 }
             });
         }
-
         // 체크박스 상태가 변경될 때 updateTextarea 함수를 실행합니다.
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', updateTextarea);
@@ -466,9 +422,7 @@
 $(document).ready(function() {
     $("form").submit(function(event) {
         event.preventDefault();
-
         var formData = new FormData(this);
-
         $.ajax({
             url: "/your-server-endpoint-url", 
             type: "POST", 
@@ -485,7 +439,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
 <jsp:include page="../js.jsp"></jsp:include>
   </body>
 </html>

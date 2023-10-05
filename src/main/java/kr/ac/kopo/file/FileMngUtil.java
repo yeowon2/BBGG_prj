@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileMngUtil {
 	private static final Logger logger = LoggerFactory.getLogger(FileMngUtil.class);
-	  private static int fileIdCounter = 1; // 초기 파일 ID 값
 	/*
 	 * 파일 첨부를 하는 곳에서 공통으로 사용 가능
 	 * keyString에는 저장파일명에 붙이고 싶은 prefix를 원하는데로 setting 가능
@@ -51,9 +49,6 @@ public class FileMngUtil {
 			int index = originalName.lastIndexOf(".");
 			String fileExt = originalName.substring(index + 1);
 			
-			  // 파일 ID 설정 (FILE_0001, FILE_0002, ... 형식으로 증가)
-            String fileId = String.format("FILE_%04d", fileIdCounter++);
-			
 			//저장 파일명
 			String savedName = keyString + UUID.randomUUID().toString();
 			
@@ -68,7 +63,6 @@ public class FileMngUtil {
 			}
 			
 			fileVO = new FileVO();
-			fileVO.setFileId(fileId);
 			fileVO.setFileExt(fileExt);
 			fileVO.setFilePath(storePathString);
 			fileVO.setFileSize(fileSize);

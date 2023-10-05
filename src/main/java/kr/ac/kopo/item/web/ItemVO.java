@@ -44,7 +44,7 @@ public class ItemVO {
 	
 	private String search;			//검색
 	
-	private String fileId;			//첨부파일 고유번호
+	private Long fileNo;			//첨부파일 고유번호
 
 	public Long getItemNo() {
 		return itemNo;
@@ -294,15 +294,11 @@ public class ItemVO {
 		this.search = search;
 	}
 
-	public String getFileId() {
-		return fileId;
+	public Long getFileNo() {
+		return fileNo;
 	}
 
-	public void setFileId(String fileId) {
-		this.fileId = fileId;
+	public void setFileNo(Long fileNo) {
+		this.fileNo = fileNo;
 	}
-
-
-	
-	
 }

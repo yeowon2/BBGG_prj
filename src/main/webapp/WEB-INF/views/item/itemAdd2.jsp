@@ -150,16 +150,6 @@ thead tr:nth-child(3) th {
   .datepicker-dropdown.datepicker-orient-right:after {
     right: calc(50% - 5px) !important;
   }
-  .fileBox {
-  	height:25px;
-  }
-  .fileLabel {
-  	width:250px; 
-  	height:250px; 
-  	border:2px solid #ccc
-  }
-  
-
 
 }	
 </style>
@@ -490,7 +480,33 @@ thead tr:nth-child(3) th {
 										</div>
 									</div>
 									<div class="form-group row" id="fileContainer">
-												
+										<div class="fileBox col-lg-4">	 
+											 <label for="file1" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+        									 <div class="fileinput input-group">
+										        <div class="custom-file">
+										            <input type="file" class="custom-file-input btn-file" id="file1" aria-describedby="fileInputAddon">
+										            <label class="custom-file-label" for="file1">Choose file</label>
+										        </div>
+										    </div>
+										</div>
+										<div class="fileBox col-lg-4">	 
+											 <label for="file2" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+        									 <div class="fileinput input-group">
+										        <div class="custom-file">
+										            <input type="file" class="custom-file-input btn-file" id="file2" aria-describedby="fileInputAddon">
+										            <label class="custom-file-label" for="file2">Choose file</label>
+										        </div>
+										    </div>
+										</div>
+										<div class="fileBox col-lg-4">	 
+											 <label for="file3" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+        									 <div class="fileinput input-group">
+										        <div class="custom-file">
+										            <input type="file" class="custom-file-input btn-file" id="file3" aria-describedby="fileInputAddon">
+										            <label class="custom-file-label" for="file3">Choose file</label>
+										        </div>
+										    </div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -523,29 +539,13 @@ document.querySelector('#plusFile').addEventListener('click', function () {
         newFileBox.className = 'fileBox col-lg-4';
         newFileBox.innerHTML = `
             <label for="file${fileIndex}" id="label${fileIndex}" style="width:250px; height:100px; border:1px solid #ccc;">
-                <img src="#" id="thumbnail${fileIndex}" alt="미리보기" style="max-width: 100%; max-height: 100%; display: none;">
             </label>
             <input type="file" name="file${fileIndex}" id="file${fileIndex}" class="fileInput" style="display:none">
         `;
         
         fileContainer.appendChild(newFileBox);
         
-        // 파일 입력 필드에 change 이벤트 추가
-        var fileInput = document.getElementById(`file${fileIndex}`);
-        var thumbnail = document.getElementById(`thumbnail${fileIndex}`);
-        var label = document.getElementById(`label${fileIndex}`);
         
-        fileInput.addEventListener('change', function () {
-            // 파일 선택 시 미리보기 생성
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    thumbnail.src = e.target.result;
-                    thumbnail.style.display = 'block';
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        });
         
         fileIndex++; // 파일 인덱스 증가
     }
@@ -624,9 +624,9 @@ manageAtFeeYCheckbox.addEventListener('change', function () {
 });
 
 // "없음" 체크박스 상태 변경 시 이벤트 처리
-manageAtFeeNCheckbox.addEventListener('change', function () {
+manageFeeAtNCheckbox.addEventListener('change', function () {
     // "없음" 체크박스가 선택되면 "관리비" 입력란 비활성화
-    if (manageAtFeeNCheckbox.checked) {
+    if (manageFeeAtNCheckbox.checked) {
         manageFeeInput.setAttribute('readonly', 'readonly');
     } else {
         // "없음" 체크박스가 선택 해제되면 "관리비" 입력란 활성화

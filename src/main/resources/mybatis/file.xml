@@ -3,27 +3,34 @@
 
 <mapper namespace="file">
     <insert id="insertFile">
-        INSERT INTO tbl_file
+        INSERT INTO tbl_item_file
         (
-        	file_id
-            , saved_name
+            saved_name
             , original_name
             , file_path
             , file_ext
             , file_size
             , regist_date
-            , file_seq
+            , item_no
         )
         VALUES
        (
-       	#{fileId}
-       	, #{savedName}
+       	#{savedName}
        	, #{originalName}
        	, #{filePath}
        	, #{fileExt}
        	, #{fileSize}
        	, NOW()
-       	, #{fileSeq}
+       	, 40
        )
+       <selectKey keyProperty="fileNo" resultType="Long" order="AFTER">
+       		SELECT LAST_INSERT_ID()
+       </selectKey>
     </insert>
+    
+    <select id="selectFileList" resultType="FileVO">
+    	SELECT *
+    	FROM tbl_item_file
+    	ORDER BY regist_date DESC
+    </select>
 </mapper>

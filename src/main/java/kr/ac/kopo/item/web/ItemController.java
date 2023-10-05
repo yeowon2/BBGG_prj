@@ -98,7 +98,7 @@ public class ItemController {
 	//매물 등록폼 이동
 	@GetMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo) {
-		return path + "itemAdd";
+		return path + "itemAdd2";
 	}
 	
 	//매물 등록 
@@ -108,16 +108,15 @@ public class ItemController {
 		
 		//매물사진 업로드처리
 		List<FileVO> fileVOList = null;
-		String fileId = null;
+		long fileNo = 0;
 		
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
-        	fileId = fileService.insertFileList(fileVOList);
-        	logger.info("==========================fileId = {}", fileId);
+        	fileNo = fileService.insertFileList(fileVOList);
         	
         }
-        itemVO.setFileId(fileId);
+        itemVO.setFileNo(fileNo);
         
 		service.itemAdd(itemVO);
 		

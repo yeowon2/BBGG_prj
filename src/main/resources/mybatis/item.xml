@@ -162,7 +162,12 @@
 	       i.lng,
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee
+	       m.deposit_fee,
+	       (
+	       	SELECT *
+	       	FROM tbl_item_file if
+	       	WHERE if.item_no = i.item_no
+	       )
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
@@ -196,8 +201,7 @@
 			lat, 
 			lng, 
 			address2, 
-			lease_or_month,
-			file_no
+			lease_or_month
 			)
 			VALUES(
 			#{partnerNo}, 
@@ -230,9 +234,11 @@
 			#{lat}, 
 			#{lng}, 
 			#{address2}, 
-			#{leaseOrMonth},
-			#{fileNo}
+			#{leaseOrMonth}
 			)
+		<selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
+       		SELECT LAST_INSERT_ID()
+       </selectKey>
 	</insert>
 	
 	<insert id="leaseAdd">

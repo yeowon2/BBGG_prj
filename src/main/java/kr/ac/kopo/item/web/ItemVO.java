@@ -1,7 +1,11 @@
 package kr.ac.kopo.item.web;
 
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
+import kr.ac.kopo.file.FileVO;
 
 public class ItemVO {
 		
@@ -45,6 +49,8 @@ public class ItemVO {
 	private String search;			//검색
 	
 	private Long fileNo;			//첨부파일 고유번호
+	
+	private List<FileVO> fileVOList;
 
 	public Long getItemNo() {
 		return itemNo;
@@ -300,5 +306,13 @@ public class ItemVO {
 
 	public void setFileNo(Long fileNo) {
 		this.fileNo = fileNo;
+	}
+
+	public List<FileVO> getFileVOList() {
+		return fileVOList;
+	}
+
+	public void setFileVOList(List<FileVO> fileVOList) {
+		this.fileVOList = fileVOList;
 	}
 }

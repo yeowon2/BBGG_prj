@@ -484,7 +484,7 @@ thead tr:nth-child(3) th {
 											 <label for="file1" style="width:250px; height:100px; border:1px solid #ccc;"></label>
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
-										            <input type="file" class="custom-file-input btn-file" id="file1" aria-describedby="fileInputAddon">
+										            <input name="file1" type="file" class="custom-file-input btn-file" id="file1" aria-describedby="fileInputAddon">
 										            <label class="custom-file-label" for="file1">Choose file</label>
 										        </div>
 										    </div>
@@ -493,7 +493,7 @@ thead tr:nth-child(3) th {
 											 <label for="file2" style="width:250px; height:100px; border:1px solid #ccc;"></label>
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
-										            <input type="file" class="custom-file-input btn-file" id="file2" aria-describedby="fileInputAddon">
+										            <input name="file2" type="file" class="custom-file-input btn-file" id="file2" aria-describedby="fileInputAddon">
 										            <label class="custom-file-label" for="file2">Choose file</label>
 										        </div>
 										    </div>
@@ -502,7 +502,7 @@ thead tr:nth-child(3) th {
 											 <label for="file3" style="width:250px; height:100px; border:1px solid #ccc;"></label>
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
-										            <input type="file" class="custom-file-input btn-file" id="file3" aria-describedby="fileInputAddon">
+										            <input name="file3" type="file" class="custom-file-input btn-file" id="file3" aria-describedby="fileInputAddon">
 										            <label class="custom-file-label" for="file3">Choose file</label>
 										        </div>
 										    </div>

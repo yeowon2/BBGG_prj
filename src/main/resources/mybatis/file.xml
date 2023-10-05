@@ -21,11 +21,8 @@
        	, #{fileExt}
        	, #{fileSize}
        	, NOW()
-       	, 40
+       	, #{itemNo}
        )
-       <selectKey keyProperty="fileNo" resultType="Long" order="AFTER">
-       		SELECT LAST_INSERT_ID()
-       </selectKey>
     </insert>
     
     <select id="selectFileList" resultType="FileVO">

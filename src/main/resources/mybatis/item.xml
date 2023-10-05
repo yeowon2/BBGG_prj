@@ -41,10 +41,18 @@
 	
 	<select id="itemList" resultType="itemVO">
 		SELECT *	FROM tbl_item 
-		<if test="search != null">
-			WHERE address LIKE CONCAT('%', #{search}, '%')
-			OR address2 LIKE CONCAT('%', #{search}, '%')
-		</if>
+		<where>
+			<if test="search != null and !search.equals('')">
+				(address LIKE CONCAT('%', #{search}, '%') OR address2 LIKE CONCAT('%', #{search}, '%'))
+				<if test="itemType != null and !itemType.equals('')">
+					AND item_type LIKE #{itemType}
+				</if>
+				<if test="leaseOrMonth != null and !leaseOrMonth.equals('')">
+					AND lease_or_month LIKE #{leaseOrMonth}
+				</if>
+			</if>
+		</where>
+		
 	</select>
 	
 	<!-- <select id="itemSelect" resultType="itemVO">
@@ -162,7 +170,12 @@
 	       i.lng,
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee
+	       m.deposit_fee,
+	       (
+	       	SELECT *
+	       	FROM tbl_item_file if
+	       	WHERE if.item_no = i.item_no
+	       )
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
@@ -196,8 +209,7 @@
 			lat, 
 			lng, 
 			address2, 
-			lease_or_month,
-			file_no
+			lease_or_month
 			)
 			VALUES(
 			#{partnerNo}, 
@@ -230,9 +242,11 @@
 			#{lat}, 
 			#{lng}, 
 			#{address2}, 
-			#{leaseOrMonth},
-			#{fileNo}
+			#{leaseOrMonth}
 			)
+		<selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
+       		SELECT LAST_INSERT_ID()
+       </selectKey>
 	</insert>
 	
 	<insert id="leaseAdd">

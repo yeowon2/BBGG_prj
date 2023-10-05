@@ -47,20 +47,20 @@
 	    <form method="post" id="search-container">
 	    	<div>
 		    	<!-- 방종류 -->
-			    <select id="type" name="type">
+			    <select id="itemType" name="itemType">
 					<option value="">원룸,투룸,쓰리룸,오피스텔</option>
-					<option value="O" ${list.itemType == 1 ? "selected" : ""}>원룸</option>
-					<option value="T">투룸</option>
-					<option value="H">쓰리룸</option>
-					<option value="F">오피스텔</option>
+					<option value="O" >원룸</option>
+					<option value="T" >투룸</option>
+					<option value="H" >쓰리룸</option>
+					<option value="F" >오피스텔</option>
 				</select>
 	    	</div>
 	    	<div>
 		    	<!-- 월-전세 -->
-			    <select id="lom" name="lom">
+			    <select id="leaseOrMonth" name="leaseOrMonth">
 					<option value="">월세,전세</option>
-					<option value="L">월세</option>
-					<option value="M">전세</option>
+					<option value="month" >월세</option>
+					<option value="lease" >전세</option>
 				</select>
 	    	</div>
 	        <label for="search">주소 입력:</label>
@@ -86,6 +86,7 @@
 		    	<table>
 		    		<thead>
 		    			<tr>
+		    				<th><div>번호</div></th>
 		    				<th><div>타입</div></th>
 		    				<th><div>도로명</div></th>
 		    				<th><div>상세주소</div></th>
@@ -95,6 +96,7 @@
 		    		<tbody>
 		    			<c:forEach var="item" items="${list}">
 				    			<tr>
+				    				<td><div><a href="/itemDetail/${item.itemNo}">${item.itemNo}</a></div></td>
 				    				<td>
 				    					<div>
 					    					<c:if test="${item.itemType == 'O' }">원룸</c:if>

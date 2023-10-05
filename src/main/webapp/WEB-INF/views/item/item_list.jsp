@@ -68,6 +68,44 @@
 	        <!-- <button onclick="applyFn()">적용</button> -->
 	        <button type="submit">검색</button>
 	    </form>
+	    <script>
+		 	// 페이지 로드 시 저장된 검색 조건을 불러와서 설정
+		    window.addEventListener('load', function () {
+		        var selectedItemType = localStorage.getItem('selectedItemType');
+		        var selectedLeaseOrMonth = localStorage.getItem('selectedLeaseOrMonth');
+		        var searchKeyword = localStorage.getItem('searchKeyword');
+	
+		        // 검색 조건 셀렉트 박스와 검색어 필드에 이전 값 설정
+		        if (selectedItemType) {
+		            document.getElementById('itemType').value = selectedItemType;
+		        }
+		        if (selectedLeaseOrMonth) {
+		            document.getElementById('leaseOrMonth').value = selectedLeaseOrMonth;
+		        }
+		        if (searchKeyword) {
+		            document.getElementById('search').value = searchKeyword;
+		        }
+		    });
+	
+		    // 폼 제출 시 선택한 옵션과 검색어를 저장
+		    document.getElementById('search-container').addEventListener('submit', function (e) {
+		        var selectedItemType = document.getElementById('itemType').value;
+		        var selectedLeaseOrMonth = document.getElementById('leaseOrMonth').value;
+		        var searchKeyword = document.getElementById('search').value;
+	
+		        // localStorage에 저장
+		        localStorage.setItem('selectedItemType', selectedItemType);
+		        localStorage.setItem('selectedLeaseOrMonth', selectedLeaseOrMonth);
+		        localStorage.setItem('searchKeyword', searchKeyword);
+		    });
+		    
+		 	// 페이지를 나갈 때 저장된 검색어 초기화
+		    window.addEventListener('beforeunload', function () {
+		        localStorage.removeItem('selectedItemType');
+		        localStorage.removeItem('selectedLeaseOrMonth');
+		        localStorage.removeItem('searchKeyword');
+		    });
+	    </script>
 	
 	    <script>
 	        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -75,10 +113,8 @@
 	            center: new kakao.maps.LatLng(36.35107, 127.4544), // 지도의 중심좌표
 	            level: 3 // 지도의 확대 레벨
 	        };
-	
 	        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	        var map = new kakao.maps.Map(mapContainer, mapOption); 
-	        
 	    </script>
 	    
 	    <!-- 검색 결과를 표시할 리스트 창 -->
@@ -96,7 +132,7 @@
 		    		<tbody>
 		    			<c:forEach var="item" items="${list}">
 				    			<tr>
-				    				<td><div><a href="/itemDetail/${item.itemNo}">${item.itemNo}</a></div></td>
+				    				<td><div><a href="javascript:void(0);" onclick="moveMapToMarker('${item.itemNo}');">${item.itemNo}</a></div></td>
 				    				<td>
 				    					<div>
 					    					<c:if test="${item.itemType == 'O' }">원룸</c:if>
@@ -105,8 +141,8 @@
 					    					<c:if test="${item.itemType == 'F' }">오피스텔</c:if>
 				    					</div>
 				    				</td>
-				    				<td><div><a href="/itemDetail/${item.itemNo}">${item.address}</a></div></td>
-				    				<td><div><a href="/itemDetail/${item.itemNo}">${item.address2}</a></div></td>
+				    				<td><div><a href="/itemDetail/${item.itemNo}" target="_blank">${item.address}</a></div></td>
+				    				<td><div><a href="/itemDetail/${item.itemNo}" target="_blank">${item.address2}</a></div></td>
 				    				<td>
 				    					<div>
 					    					<c:if test="${item.manageFeeAt == 'Y' }">${item.manageFee}</c:if>
@@ -120,46 +156,53 @@
 		    </div>
 	    
 	    <!-- 카테고리에 따른 마커 생성 -->
-	    <c:forEach var="item" items="${list}">
-	    
-	        <script>
-	            // var lat = [];
-	            // var lng = [];
-	            console.log(`${item.lat}, ${item.lng}`);
-	
-	            var positions = [
-	                {
-	                    title: `${item.itemNo}`, 
-	                    latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
-	                }
-	            ]
-	
-	            //마커 이미지의 이미지 주소입니다
-	            var imageSrc = "../resources/comm/marker.png"; 
-	
-	            for (var i = 0; i < positions.length; i++) {
-	
-	                // 마커 이미지의 이미지 크기 입니다
-	                var imageSize = new kakao.maps.Size(28, 35); 
-	
-	                // 마커 이미지를 생성합니다    
-	                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-	
-	                // 마커를 생성합니다
-	                var marker = new kakao.maps.Marker({
-	                    map: map, // 마커를 표시할 지도
-	                    position: positions[i].latlng, // 마커를 표시할 위치
-	                    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-	                    image : markerImage // 마커 이미지 
-	                });
-	
-	                // 마커에 클릭 이벤트를 등록합니다
-	                kakao.maps.event.addListener(marker, 'click', function() {
-	                	// 클릭한 마커의 위치로 지도 중심 이동
-	                    map.setCenter(marker.getPosition());
-	                });
-	            }
-	        </script>
-	    </c:forEach>
+		<c:forEach var="item" items="${list}">
+		
+		    <script>
+		        var positions = [
+		            {
+		                title: "${item.itemNo}",
+		                latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
+		            }
+		        ]
+		
+		        // 마커 이미지의 이미지 주소입니다
+		        var imageSrc = "../resources/comm/marker.png";
+		
+		        for (var i = 0; i < positions.length; i++) {
+		
+		            // 마커 이미지의 이미지 크기 입니다
+		            var imageSize = new kakao.maps.Size(28, 35);
+		
+		            // 마커 이미지를 생성합니다    
+		            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		
+		            // 마커를 생성합니다
+		            var marker = new kakao.maps.Marker({
+		                map: map, // 마커를 표시할 지도
+		                position: positions[i].latlng, // 마커를 표시할 위치
+		                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		                image : markerImage // 마커 이미지 
+		            });
+		            
+		            // 마커에 클릭 이벤트를 등록합니다
+		            kakao.maps.event.addListener(marker, 'click', function() {
+		                // 클릭한 마커의 위치로 지도 중심 이동
+		                map.setCenter(marker.getPosition());
+		                
+		             	// 클릭한 마커의 번호에 해당하는 페이지로 새 창으로 이동
+		                var itemNo = this.getTitle(); // 클릭한 마커의 title 속성에 itemNo가 저장되어 있음
+		                var url = "/itemDetail/" + itemNo; // 이동할 페이지의 URL을 생성
+		                window.open(url, "_blank"); // 페이지를 새 창으로 열기
+		            });
+		        }
+		        
+		        // 검색 결과가 있을 때, 첫 번째 마커를 기준으로 지도 중심을 설정합니다
+		        if (positions.length > 0) {
+		            map.setCenter(positions[0].latlng);
+		        }
+		    </script>
+		</c:forEach>
+
     </body>
 </html>

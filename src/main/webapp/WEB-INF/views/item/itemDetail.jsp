@@ -79,15 +79,11 @@
           <div class="col-lg-8 col-md-12 col-xs-12">
               <div class="property-slider">
                 <div id="property-slider" class="owl-carousel owl-theme">
+                <c:forEach var="fileVO" items="${itemVO.fileVOList}">
                   <div class="item">
-                    <img src="/resources/assets/img/productinfo/img1.jpg" alt="">                      
+                    <img src="/upload/${fileVO.savedName}" alt="">                      
                   </div>
-                  <div class="item">
-                    <img src="/resources/assets/img/productinfo/img2.jpg" alt="">
-                  </div>
-                  <div class="item">
-                    <img src="/resources/assets/img/productinfo/img3.jpg" alt="">
-                  </div>
+                </c:forEach>
                 </div>
               </div>  
               
@@ -208,7 +204,7 @@
               </div>
               <div class="inner-box location-map">
                 <h2 class="desc-title">위치 정보</h2>
-                <div id="conatiner-map"></div>
+                <div id="container-map"></div>
               </div>
            
             </div>
@@ -393,7 +389,11 @@
                             </div>
                             <!-- /Compose email -->
     </div>
-    <!-- End Content -->    
+    <!-- End Content -->   
+    <template id="latLong">
+    	<span id="lat">${itemVO.lat}</span>
+    	<span id="lng">${itemVO.lng}</span>
+    </template> 
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -417,6 +417,26 @@
             checkbox.addEventListener('change', updateTextarea);
         });
     });
+    
+ // 카카오 맵 API를 초기화합니다.
+ 	var lat = document.querySelector('#lat');
+ 	var lng = document.querySelector('#lng');
+    const mapContainer = document.getElementById('container-map');
+    const options = {
+        center: new kakao.maps.LatLng(lat, lng), // 위도와 경도를 설정합니다.
+        level: 3, // 확대 수준을 설정합니다.
+    };
+    const map = new kakao.maps.Map(mapContainer, options);
+
+    // 마커를 생성합니다.
+    const markerPosition = new kakao.maps.LatLng(lat, lat); // 위도와 경도를 설정합니다.
+    const marker = new kakao.maps.Marker({
+        position: markerPosition,
+    });
+
+    // 마커를 지도에 추가합니다.
+    marker.setMap(map);
+
 </script>
 <script>
 $(document).ready(function() {

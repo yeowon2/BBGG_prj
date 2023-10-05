@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.web.ItemVO;
 
 @Repository
@@ -105,6 +106,11 @@ public class ItemDaoImpl implements ItemDao {
 	@Override
 	public String lomSelect(Long itemNo) {
 		return sql.selectOne("lomSelect", itemNo);
+	}
+
+	@Override
+	public List<FileVO> selectFile(Long itemNo) {
+		return sql.selectList("item.selectFile", itemNo);
 	}
 
 	

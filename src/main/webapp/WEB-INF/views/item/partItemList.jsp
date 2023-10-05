@@ -44,11 +44,7 @@
                   <tr>
                   	<td>${item.itemNo}</td>
                     <td class="image">
-<<<<<<< HEAD
                       <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
-=======
-                      <a href="/itemDetail/"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
->>>>>>> 568836ced9d42d9d575bc7eb0548c6b856f1ba7f
                     </td>
                     <td>
                       <div class="inner">
@@ -83,10 +79,10 @@
                     	<div class="row">
                            <div class="col-4 mr-20">
                            		<c:if test="${item.useAt == 'Y'}">
-									<button aria-expanded="false" class="btn btn-sm btn-green item-status" type="button" data-status="${item.useAt}"></span>거래 가능</button>
+									<button aria-expanded="false" class="btn btn-sm btn-green item-status" type="button" data-status="${item.useAt}">거래 가능</button>
                            		</c:if>
                            		<c:if test="${item.useAt == 'C'}">
-									<button aria-expanded="false" class="btn btn-sm btn-yellow item-status" type="button" data-status="${item.useAt}"></span>거래 완료</button>
+									<button aria-expanded="false" class="btn btn-sm btn-yellow item-status" type="button" data-status="${item.useAt}">거래 완료</button>
                            		</c:if>
                            </div>
 							<div class="col-4">

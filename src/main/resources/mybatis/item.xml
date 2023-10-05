@@ -30,12 +30,15 @@
     <result property="useAt" column="use_at" />
     <result property="lat" column="lat" />
     <result property="lng" column="lng" />
-    <result property="fileNo" column="file_no" />
     
     <!-- 추가된 부분 -->
     <result property="leasePrice" column="price" />
     <result property="depositFee" column="deposit_fee" />
     <result property="monthPrice" column="price" />
+	
+	<collection property="fileVOList" column="item_file_no" select="selectFile" javaType="ArrayList" ofType="FileVO" autoMapping="true">
+		<id property="fileNo" column="file_no"/>
+	</collection>    
 </resultMap>
 
 	
@@ -145,7 +148,7 @@
 	</update>
 	
 	<select id="itemDetail" resultMap="ItemMap">
-		SELECT 
+			SELECT 
 		   i.item_no,
 	       i.partner_no,
 	       i.item_type,
@@ -170,17 +173,12 @@
 	       i.lng,
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee,
-	       (
-	       	SELECT *
-	       	FROM tbl_item_file if
-	       	WHERE if.item_no = i.item_no
-	       )
+	       m.deposit_fee
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
 	WHERE i.use_at In ('Y', 'C')
-		AND i.item_no = #{itemNo}
+		AND i.item_no = #{itemNo};
 	</select>
 	
 	<insert id="addItem">
@@ -258,5 +256,19 @@
 		INSERT INTO tbl_month(deposit_fee, month_price, item_no)
 		VALUES (#{depositFee}, #{monthPrice}, #{itemNo})
 	</insert>
+	
+	<select id="selectFile" resultType="FileVO">
+		SELECT 
+			file_no
+			, saved_name
+			, original_name
+			, file_path
+			, file_ext
+			, regist_date
+			, file_size
+			, item_no
+		FROM tbl_item_file
+		WHERE item_no = #{itemNo}
+	</select>
 	
 </mapper>

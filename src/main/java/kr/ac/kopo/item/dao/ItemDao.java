@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.web.ItemVO;
 
 public interface ItemDao {
@@ -29,6 +30,8 @@ public interface ItemDao {
 	ItemVO itemDetail(Long itemNo);
 
 	String lomSelect(Long itemNo);
+
+	List<FileVO> selectFile(Long itemNo);
 
 	
 

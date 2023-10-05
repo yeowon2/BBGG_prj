@@ -77,7 +77,10 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public ItemVO itemDetail(Long itemNo) {
-		return dao.itemDetail(itemNo);
+		List<FileVO> fileVOList = dao.selectFile(itemNo);
+		ItemVO itemVO = dao.itemDetail(itemNo);
+		itemVO.setFileVOList(fileVOList);
+		return itemVO;
 	}
 
 	@Override

@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer"></script>
+	
+	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
   <style>
   	body, #content {
   		background-color: #F5F5F5;
@@ -204,7 +209,12 @@
               </div>
               <div class="inner-box location-map">
                 <h2 class="desc-title">위치 정보</h2>
-                <div id="container-map"></div>
+                <div id="container-map">
+                	<!-- Map -->
+	                <div class="mapouter mb-4">
+	                    <div id="staticMap" style="width:100%;height:740px;"></div> 
+	                </div> 
+                </div>
               </div>
            
             </div>
@@ -418,10 +428,32 @@
         });
     });
     
- // 카카오 맵 API를 초기화합니다.
- 	var lat = document.querySelector('#lat');
+    var lat = document.querySelector('#lat');
  	var lng = document.querySelector('#lng');
-    const mapContainer = document.getElementById('container-map');
+ 	
+	// 이미지 지도에서 마커가 표시될 위치입니다 
+	var markerPosition  = new kakao.maps.LatLng(lat, lng); 
+	
+	// 이미지 지도에 표시할 마커입니다
+	// 이미지 지도에 표시할 마커는 Object 형태입니다
+	var marker = {
+	    position: markerPosition
+	};
+	
+	var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+	    staticMapOption = { 
+	        center: new kakao.maps.LatLng(lat, lng), // 이미지 지도의 중심좌표
+	        level: 3, // 이미지 지도의 확대 레벨
+	        marker: marker // 이미지 지도에 표시할 마커 
+	    };    
+	
+	// 이미지 지도를 생성합니다
+	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+	
+    
+ // 카카오 맵 API를 초기화합니다.
+ 	
+ /*    const mapContainer = document.getElementById('container-map');
     const options = {
         center: new kakao.maps.LatLng(lat, lng), // 위도와 경도를 설정합니다.
         level: 3, // 확대 수준을 설정합니다.
@@ -435,7 +467,7 @@
     });
 
     // 마커를 지도에 추가합니다.
-    marker.setMap(map);
+    marker.setMap(map); */
 
 </script>
 <script>

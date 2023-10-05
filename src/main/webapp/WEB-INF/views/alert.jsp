@@ -14,17 +14,17 @@
 	var fakeFinishMsg = "${fakeFinishMsg}";
 	var fakeFinishUrl = "${fakeFinishUrl}";
 	
-	//var msg = "재시도 부탁드립니다";
+	var msg = "재시도 부탁드립니다";
 	var url = "/"
-
-	if(loginMsg != null) {	// 로그인 안 한 상태
+	
+	if(loginMsg !== null && !!fakeFinishMsg === false) { // 로그인 안 한 상태
 		alert(loginMsg);
 		document.location.href = loginUrl;
-	} else if(fakeFinishMsg != null) { // 허위 매물 신고 완성 상태
+	} else if(fakeFinishMsg !== null && !!loginMsg === false) { // 허위 매물 신고 완성 상태
 		alert(fakeFinishMsg);
-		window.history.go(-1);
+		document.location.href = fakeFinishUrl;
 	} else {
-		alert("재시도 부탁드립니다.");
+		alert(msg);
 		window.history.go(-1);
 	}
 </script>

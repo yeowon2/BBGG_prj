@@ -42,7 +42,7 @@ public class FakeController {
 	
 	@GetMapping("/{itemNo}")
 	public String fake(@PathVariable Long itemNo, HttpSession session, Model model) {
-		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
 		
 		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) { 
 			return path + "/fakeAdd";
@@ -95,14 +95,14 @@ public class FakeController {
 			//service.fakeAdd(itemNo, fakeVO, saveFile);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
-			model.addAttribute("fakeFinishUrl", "/itemSelect/3");
+			model.addAttribute("fakeFinishUrl", "/itemList"); 
 			return "/alert";			
 			
-		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file == null) {
+		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file == null) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
 			
 			//service.fakeAdd(itemNo, fakeVO);
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
-			model.addAttribute("fakeFinishUrl", "/itemSelect/3");
+			model.addAttribute("fakeFinishUrl", "/itemSelect/3"); // @@@@@ test용
 			return "/alert";  
 		} else {
 			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");

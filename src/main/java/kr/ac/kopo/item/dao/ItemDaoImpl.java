@@ -44,12 +44,12 @@ public class ItemDaoImpl implements ItemDao {
         
         HashMap<String, Long> paramMap = new HashMap<String, Long>();
         
-        if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
+        if(itemVO.getLeaseOrMonth() == "lease") {
         	paramMap.put("leasePrice", itemVO.getLeasePrice());
         	paramMap.put("itemNo", itemNo);
         	sql.insert("item.leaseAdd", paramMap);
         	
-		} else if(itemVO.getLeasePrice() == null) {
+		} else if(itemVO.getLeaseOrMonth() == "month") {
 			paramMap.put("depositFee", itemVO.getDepositFee());
 			paramMap.put("monthPrice", itemVO.getMonthPrice());
 			paramMap.put("itemNo", itemNo);

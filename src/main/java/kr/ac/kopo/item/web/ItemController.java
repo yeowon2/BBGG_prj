@@ -108,17 +108,13 @@ public class ItemController {
 		
 		//매물사진 업로드처리
 		List<FileVO> fileVOList = null;
-		long fileNo = 0;
 		
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
-        	fileNo = fileService.insertFileList(fileVOList);
-        	
         }
-        itemVO.setFileNo(fileNo);
         
-		service.itemAdd(itemVO);
+		service.itemAdd(itemVO, fileVOList);
 		
 		return "redirect:/partner/{partnerNo}/itemList";
 	}
@@ -172,10 +168,6 @@ public class ItemController {
 	    PartnerVO partnerVO = partnerService.detail(itemNo);
 	    long partnerNo = partnerVO.getPartnerNo();
 	    List<ItemVO> partItemList = service.partItemList(partnerNo);
-	    for (ItemVO itemVO2 : partItemList) {
-			System.out.println("============" + itemVO2.getPrice());
-		}
-	    
 	    
 	    model.addAllAttributes(Map.of(
 	        "itemVO", itemVO,

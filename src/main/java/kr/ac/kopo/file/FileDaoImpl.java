@@ -12,29 +12,19 @@ import org.springframework.stereotype.Repository;
 public class FileDaoImpl implements FileDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileDaoImpl.class);
-	
+
 	@Autowired
 	SqlSession sql;
 
 	@Override
-	public Long insertFileList(List<FileVO> fileVOList) {
-	    long fileNo = 0;
-	    FileVO fileVO = null;
-	    for (FileVO vo : fileVOList) {
-	        fileVO = vo;
-	       sql.insert("file.insertFile", fileVO);
-	       fileNo = fileVO.getFileNo();
-	       
-	    }
-	    return fileNo;
+	public List<FileVO> selectFileList() {
+		return sql.selectList("file.selectFileList");
+
 	}
 
 	@Override
-	public List<FileVO> selectFileList() {
-		return sql.selectList("file.selectFileList");
-		
+	public void insertFile(FileVO fileVO) {
+		sql.insert("file.insertFile", fileVO);
 	}
-	
-	
 
 }

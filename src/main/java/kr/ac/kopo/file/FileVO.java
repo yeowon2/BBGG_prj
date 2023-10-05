@@ -4,28 +4,29 @@ import java.util.Date;
 
 public class FileVO {
 
-	//첨부파일 고유ID
+	// 첨부파일 고유ID
 	private Long fileNo;
-	
-	//파일 사이즈
+
+	// 파일 사이즈
 	private Long fileSize;
-	
-	//저장파일명
+
+	// 저장파일명
 	private String savedName;
-	
-	//원파일명
+
+	// 원파일명
 	private String originalName;
-	
-	//파일 저장 경로
+
+	// 파일 저장 경로
 	private String filePath;
-	
-	//파일 확장자
+
+	// 파일 확장자
 	private String fileExt;
-	
-	//파일 생성일자
+
+	// 파일 생성일자
 	private Date registDate;
 
-	
+	// 매물 아이디
+	private Long itemNo;
 
 	public Long getFileSize() {
 		return fileSize;
@@ -83,6 +84,12 @@ public class FileVO {
 		this.fileNo = fileNo;
 	}
 
-	
-	
+	public Long getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(Long itemNo) {
+		this.itemNo = itemNo;
+	}
+
 }

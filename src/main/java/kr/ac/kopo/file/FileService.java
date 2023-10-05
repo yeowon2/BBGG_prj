@@ -11,10 +11,7 @@ public interface FileService {
 //    FileVO selectFile(FileVO fileVO);
 
     //단일 파일 등록
-//    String insertFile(FileVO fileVO);
-
-    //다중 파일 등록
-    Long insertFileList(List<FileVO> fileVOList);
+	void insertFile(List<FileVO> fileVOList);
 
     //단일 파일 수정
 //    void updateFile(FileVO fileVO);

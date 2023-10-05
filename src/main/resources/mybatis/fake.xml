@@ -7,15 +7,19 @@
 		
 		<where>
 			<if test="search == 1">
-				tbl_fake.fake_no = #{keyword}
+				tbl_fake.item_no = #{keyword}
 			</if>
 			
 			<if test="search == 2">
-				tbl_fake.item_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+				tbl_partner.comp_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			
 			<if test="search == 3">
 				tbl_fake.user_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 4">
+				tbl_fake.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 		</where>
 		
@@ -23,10 +27,13 @@
 	</sql>
 
 	<select id="selectList" resultType="fakeVO">
-		SELECT *
-		FROM (SELECT sub.*, ROW_NUMBER() OVER() rnum 
-			FROM
-		        (<include refid="search"></include>) sub) ) numbered_rows
+		SELECT sup.*
+		FROM (SELECT sub.*, ROW_NUMBER() OVER() as rnum 
+			  FROM (SELECT tf.*, tp.comp_name 
+					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
+					WHERE tf.item_no  = ti.item_no 
+						AND ti.partner_no = tp.partner_no 
+					ORDER BY tf.fake_no) AS sub) AS sup
 		        
 		<if test="perPage != 0">
 			<![CDATA[
@@ -36,7 +43,7 @@
 	</select>
 	
 	<select id="total" resultType="Integer">
-		SELECT COUNT(*) FROM (<include refid="search"></include>) 
+		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
 	</select>
 
 	<insert id="insert">

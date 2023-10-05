@@ -63,16 +63,17 @@
 										<div class="col">
 											<select name="search" class="form-select form-select-sm">
 												<option value="0">검색 항목을 선택하세요</option>
-												<option value="1" ${pager.search == 1 ? "selected" : ""}>도서번호</option>
-												<option value="2" ${pager.search == 2 ? "selected" : ""}>도서명</option>
-												<option value="3" ${pager.search == 3 ? "selected" : ""}>출판사</option>
+												<option value="1" ${pager.search == 1 ? "selected" : ""}>매물번호</option>
+												<option value="2" ${pager.search == 2 ? "selected" : ""}>부동산명</option>
+												<option value="3" ${pager.search == 3 ? "selected" : ""}>회원명</option>
+												<option value="3" ${pager.search == 4 ? "selected" : ""}>상태</option>
 											</select>
 										</div>
 										<div class="col">
 											<input type="text" name="keyword" class="form-control form-control-sm" value="${pager.keyword}">
 										</div>
 										<div class="col-1 d-grid">
-											<button class="btn btn-sm btn-primary">검색</button>
+											<button class="badge badge-soft-success">검색</button>
 										</div>
 									</div>
 								</form>
@@ -85,9 +86,9 @@
                                                 <tr>
                                                     <th>순번</th>
                                                     <th>매물번호</th>
+                                                    <th>내용</th>
                                                     <th>부동산명</th>
-                                                    <th>지역명</th>
-                                                    <th>현재상태</th>
+                                                    <th>상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,14 +96,14 @@
 	                                                <tr>
 	                                                    <th scope="row">${item.fakeNo}</th>
 	                                                    <td>${item.itemNo}</td>
-	                                                    <td>${item.userNo}</td>
-	                                                    <td>${item.userNo}</td>
-	                                                    <td><span class="badge badge-danger">진행중</span> </td>
+	                                                    <td>${item.fakeContent}</td>
+	                                                    <td>${item.compName}</td>
+	                                                    <td><span class="badge badge-green">${item.useAt}</span></td>
 	                                                </tr>
 	                                            </c:forEach>
 	                                            <c:if test="${list.size() < 1}">
 													<tr>
-														<td colspan="5">검색 된 도서가 없습니다.</td>
+														<td colspan="5">검색 된 내역이 없습니다.</td>
 													</tr>
 												</c:if>
                                             </tbody>

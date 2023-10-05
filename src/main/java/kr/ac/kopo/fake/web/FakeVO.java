@@ -8,8 +8,12 @@ public class FakeVO {
 	private String fakeCheck2;
 	private String fakeCheck3;
 	private String fakeContent;
-	private String userAt;
+	private String useAt;
 	private String agreeAt;
+	
+	private String compName; // 부동산 이름
+	
+	
 	public long getFakeNo() {
 		return fakeNo;
 	}
@@ -52,11 +56,11 @@ public class FakeVO {
 	public void setFakeContent(String fakeContent) {
 		this.fakeContent = fakeContent;
 	}
-	public String getUserAt() {
-		return userAt;
+	public String getUseAt() {
+		return useAt;
 	}
-	public void setUserAt(String userAt) {
-		this.userAt = userAt;
+	public void setUseAt(String useAt) {
+		this.useAt = useAt;
 	}
 	public String getAgreeAt() {
 		return agreeAt;
@@ -64,6 +68,11 @@ public class FakeVO {
 	public void setAgreeAt(String agreeAt) {
 		this.agreeAt = agreeAt;
 	}
-	
+	public String getCompName() {
+		return compName;
+	}
+	public void setCompName(String compName) {
+		this.compName = compName;
+	}
 	
 }

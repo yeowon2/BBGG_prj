@@ -44,7 +44,11 @@
                   <tr>
                   	<td>${item.itemNo}</td>
                     <td class="image">
+<<<<<<< HEAD
                       <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
+=======
+                      <a href="/itemDetail/"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
+>>>>>>> 568836ced9d42d9d575bc7eb0548c6b856f1ba7f
                     </td>
                     <td>
                       <div class="inner">

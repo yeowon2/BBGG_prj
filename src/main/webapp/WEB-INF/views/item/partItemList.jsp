@@ -44,7 +44,7 @@
                   <tr>
                   	<td>${item.itemNo}</td>
                     <td class="image">
-                      <a href="property.html"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
+                      <a href="/itemDetail/"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
                     </td>
                     <td>
                       <div class="inner">

@@ -451,23 +451,7 @@
 	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 	
     
- // 카카오 맵 API를 초기화합니다.
- 	
- /*    const mapContainer = document.getElementById('container-map');
-    const options = {
-        center: new kakao.maps.LatLng(lat, lng), // 위도와 경도를 설정합니다.
-        level: 3, // 확대 수준을 설정합니다.
-    };
-    const map = new kakao.maps.Map(mapContainer, options);
-
-    // 마커를 생성합니다.
-    const markerPosition = new kakao.maps.LatLng(lat, lat); // 위도와 경도를 설정합니다.
-    const marker = new kakao.maps.Marker({
-        position: markerPosition,
-    });
-
-    // 마커를 지도에 추가합니다.
-    marker.setMap(map); */
+ 
 
 </script>
 <script>

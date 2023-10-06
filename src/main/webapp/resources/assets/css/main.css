@@ -966,17 +966,19 @@ intro section style
 
 .search-container .content {
   background: #fff;
-  padding: 30px;
+  padding: 5px;
   border-radius: 4px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .search-container .form-group {
-  margin-bottom: 30px !important;
+  margin-bottom: 15px !important;
+  width: 100%
 }
 
 .search-container .form-group input {
-  height: 48px;
+  height: 60px;
+  width: 100%
 }
 
 .search-container .search-category-container select {

@@ -76,7 +76,7 @@
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>
-				  <li class="col-lg-2"><a href="#"><i class="lni-heart"></i></a></li>
+				  <li class="col-lg-2"><button type="button" class="btn btn-outline-success list"><i class="lni-thumbs-up"></i></button></li>
 				</ul>
               </div>
             </div>

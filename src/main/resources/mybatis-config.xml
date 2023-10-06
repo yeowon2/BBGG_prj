@@ -31,5 +31,6 @@
   		<mapper resource="mybatis/list.xml"/>
   		<mapper resource="mybatis/fake.xml"/>
   		<mapper resource="mybatis/file.xml"/>
+  		<mapper resource="mybatis/admin.xml"/>
   	</mappers>
   </configuration>

@@ -76,7 +76,12 @@
 	                                                        	<fmt:formatDate value="${noteVO.registDate}" pattern="yyyy/MM/dd HH:mm"/>
 	                                                        </div>
 	                                                        <span class="email-star list-check" style="color:#008080;">
+	                                                       		<c:if test="${noteVO.useAt == 'Y'}">
 				                                            		<span class="badge badge-success response" data-note-no="${noteVO.noteNo}" style="margin:0 auto;">응답 대기</span>
+																</c:if>
+	                                                       		<c:if test="${noteVO.useAt == 'C'}">
+				                                            		<span class="badge badge-secondary response" data-note-no="${noteVO.noteNo}" style="margin:0 auto;">응답 완료</span>
+																</c:if>
 			                                            	</span>
 	                                                    </div>
 	                                                </div>
@@ -232,8 +237,11 @@
                  // "data-note-no" 속성을 추가합니다.
                     document.querySelector('#use-at').setAttribute('data-note-no', noteNo);
                     document.querySelector('#use-at').setAttribute('data-use-at', useAt);
-                    document.querySelectorAll('.response').setAttribute('data-note-no', noteNo);
-                    document.querySelectorAll('.response').setAttribute('data-use-at', useAt);
+                    document.querySelectorAll('.response').forEach(function (element) {
+                        element.setAttribute('data-note-no', noteNo);
+                        element.setAttribute('data-use-at', useAt);
+                    });
+                    
                 })
                 
            
@@ -253,22 +261,16 @@
                         },
                         success: function (response) {
                             // AJAX 요청이 성공하면 response 클래스를 가진 span 요소의 색상을 변경합니다.
-                            var responseElements = document.querySelectorAll('.response[data-note-no="' + noteNo + '"]');
-                            responseElements.forEach(function (responseElement) {
-                                responseElement.classList.remove('badge-success'); 
-                                responseElement.classList.add('badge-secondary'); 
-                            });
+                            var response = document.querySelector('.response[data-note-no="' + noteNo + '"]');
+	                            response.classList.remove('badge-success'); 
+	                            response.classList.add('badge-secondary'); 
                             
-                            // 클릭 이벤트 핸들러를 제거합니다.
-                            statusButton.removeEventListener('click', handleStatusButtonClick);
                         },
                         error: function (error) {
                             alert("error 발생");
                         }
                     });
                 });
-             // 클릭 이벤트 핸들러를 등록합니다.
-                statusButton.addEventListener('click', handleStatusButtonClick);
                 
            	// 노트 삭제하기 
            	    var deleteButtons = document.querySelectorAll('.btn-delete');

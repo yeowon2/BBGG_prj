@@ -89,4 +89,35 @@
 		WHERE partner_no = #{partnerNo}
 	</delete>
 	
+		<select id="respWaitCount" resultType="integer">
+		SELECT COUNT(*) 
+		FROM tbl_note tn 
+		WHERE use_at = 'Y'
+		AND partner_no = #{partnerNo}
+				
+	</select>
+
+	<select id="respCompCount" resultType="integer">
+		SELECT COUNT(*) 
+		FROM tbl_note tn 
+		WHERE use_at = 'C'
+		AND partner_no = #{partnerNo}
+	</select>
+
+	<select id="itemWaitCount" resultType="integer">
+		SELECT COUNT(*) 
+		FROM tbl_item  
+		WHERE use_at = 'Y'
+		AND partner_no = #{partnerNo}
+				
+	</select>
+
+	<select id="itemCompCount" resultType="integer">
+		SELECT COUNT(*) 
+		FROM tbl_item  
+		WHERE use_at = 'C'
+		AND partner_no = #{partnerNo}
+	</select>
+	
+	
 </mapper>

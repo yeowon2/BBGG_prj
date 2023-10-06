@@ -21,7 +21,7 @@
                 <li><a href="#">Bayonne, New York</a></li>
                 <li><a href="#">Greenville, Chicago</a></li>
                 <li><a href="#">The Heights, New Jersey</a></li>
-                <li><a href="#">Bayonne, Washington DC</a></li>
+                <li><a href="#">Ulsan, Korea</a></li>
                 <li><a href="#">Greenville, San Francisco</a></li>
               </ul>
             </div>
@@ -35,7 +35,7 @@
                   <a href="#"><i class="lni-phone-handset"></i> (518) 2014-040 43</a>
                 </li>
                 <li>
-                  <a href="#"><i class="lni-envelope"></i> hello@estatex.com</a>
+                  <a href="#"><i class="lni-envelope"></i> BBGG@estatex.com</a>
                 </li>
               </ul>
             </div>
@@ -81,4 +81,4 @@
       <div class="loader" id="loader-1"></div>
     </div>
     <!-- End Preloader -->
-/html>
+</html>

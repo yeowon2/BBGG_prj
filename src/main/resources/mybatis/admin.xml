@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<sql id="where">
+		WHERE DATE_FORMAT(regist_date, "%Y-%m-%d") = CURDATE()
+	</sql>
+	
+	<select id="countUser" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_user tu
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countPartner" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_partner tp
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countItem" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_item ti
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countFake" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_fake tf  
+		(<include refid="where"></include>)
+	</select>
+
+	<select id="selectUserList" resultType="userVO">
+		SELECT 
+			user_no
+			, user_id
+			, user_name
+			, phone
+			, Regist_date
+		FROM  tbl_user
+		WHERE use_at = 'Y'
+	</select>
+	
+	<select id="selectPartnerList" resultType="PartnerVO">
+		SELECT 
+			partner_no
+			, user_id
+			, partner_name
+			, comp_name
+			, phone
+			, regist_date
+		FROM  tbl_partner
+		WHERE use_at = 'Y'
+	</select>
+
+</mapper>

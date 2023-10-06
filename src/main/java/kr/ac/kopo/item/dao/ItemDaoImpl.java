@@ -85,27 +85,27 @@ public class ItemDaoImpl implements ItemDao {
 
 	@Override
 	public void updateStatus(Long itemNo) {
-		sql.update("updateStatus", itemNo);
+		sql.update("item.updateStatus", itemNo);
 	}
 
 	@Override
 	public String selectStatus(Long itemNo) {
-		return sql.selectOne("selectStatus", itemNo);
+		return sql.selectOne("item.selectStatus", itemNo);
 	}
 
 	@Override
 	public void deleteItem(Long itemNo) {
-		sql.update("deleteItem", itemNo);
+		sql.update("item.deleteItem", itemNo);
 	}
 
 	@Override
 	public ItemVO itemDetail(Long itemNo) {
-		return sql.selectOne("itemDetail", itemNo);
+		return sql.selectOne("item.itemDetail", itemNo);
 	}
 
 	@Override
 	public String lomSelect(Long itemNo) {
-		return sql.selectOne("lomSelect", itemNo);
+		return sql.selectOne("item.lomSelect", itemNo);
 	}
 
 	@Override

@@ -11,8 +11,11 @@
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
   <style>
-  	body, #content {
+  	body, #content  {
   		background-color: #F5F5F5;
+  	}
+  	.property-details, .listing-content {
+  	background-color:#FFFFFF;
   	}
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -184,6 +187,8 @@
                     </div>
                     <div class="col-lg-8">
                     	<span><fmt:formatDate value="${itemVO.registDate}" pattern="yyyy.MM.dd"/></span>
+                  		<span id="lat" style="display:none">${itemVO.lat}</span>
+    					<span id="lng" style="display:none">${itemVO.lng}</span>
                   	</div>
                   </li>
                   
@@ -212,7 +217,7 @@
                 <div id="container-map">
                 	<!-- Map -->
 	                <div class="mapouter mb-4">
-	                    <div id="staticMap" style="width:100%;height:740px;"></div> 
+	                    <div id="staticMap" style="width:100%;height:400px;"></div> 
 	                </div> 
                 </div>
               </div>
@@ -250,8 +255,7 @@
 					    <span>중개등록번호: ${partnerVO.registNum}</span>
 					  </div>
 					</div>
-					<a href="javascript:void(0)" class="email-compose" data-toggle="modal" data-target="#exampleModalEmail">쪽지 보내기</a>
-					 <a href='/itemDetail/<c:out value="${itemNo}"/>/add'>
+					 <a href="javascript:void(0)" class="email-compose" data-toggle="modal" data-target="#exampleModalEmail">
                   		<button class="btn btn-common fullwidth mt-4">쪽지 보내기</button>
                 	</a>
                 </div>
@@ -400,10 +404,7 @@
                             <!-- /Compose email -->
     </div>
     <!-- End Content -->   
-    <template id="latLong">
-    	<span id="lat">${itemVO.lat}</span>
-    	<span id="lng">${itemVO.lng}</span>
-    </template> 
+    
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -428,9 +429,10 @@
         });
     });
     
-    var lat = document.querySelector('#lat');
- 	var lng = document.querySelector('#lng');
- 	
+    
+ 	// 위도와 경도 가져오기
+    var lat = parseFloat(document.querySelector('#lat').textContent);
+    var lng = parseFloat(document.querySelector('#lng').textContent);
 	// 이미지 지도에서 마커가 표시될 위치입니다 
 	var markerPosition  = new kakao.maps.LatLng(lat, lng); 
 	
@@ -442,7 +444,7 @@
 	
 	var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
 	    staticMapOption = { 
-	        center: new kakao.maps.LatLng(lat, lng), // 이미지 지도의 중심좌표
+	        center: markerPosition, // 이미지 지도의 중심좌표
 	        level: 3, // 이미지 지도의 확대 레벨
 	        marker: marker // 이미지 지도에 표시할 마커 
 	    };    
@@ -450,25 +452,6 @@
 	// 이미지 지도를 생성합니다
 	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 	
-    
- // 카카오 맵 API를 초기화합니다.
- 	
- /*    const mapContainer = document.getElementById('container-map');
-    const options = {
-        center: new kakao.maps.LatLng(lat, lng), // 위도와 경도를 설정합니다.
-        level: 3, // 확대 수준을 설정합니다.
-    };
-    const map = new kakao.maps.Map(mapContainer, options);
-
-    // 마커를 생성합니다.
-    const markerPosition = new kakao.maps.LatLng(lat, lat); // 위도와 경도를 설정합니다.
-    const marker = new kakao.maps.Marker({
-        position: markerPosition,
-    });
-
-    // 마커를 지도에 추가합니다.
-    marker.setMap(map); */
-
 </script>
 <script>
 $(document).ready(function() {

@@ -77,7 +77,7 @@ public class ReceiveController {
 			return ResponseEntity.ok("Success");
 		} else {
 			// 삭제 실패 시 500 Internal Server Error 응답을 반환
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Update failed");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("delete failed");
 		}
 
 	}

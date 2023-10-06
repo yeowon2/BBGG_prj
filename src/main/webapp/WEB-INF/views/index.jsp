@@ -22,8 +22,11 @@
 		              <form method="post" action="/itemList">
 		                <div class="form-group">
 		                	<div class="row">
+			                	<div class="input-group-prepend">
+				                	<span class="feather-icon"><i class="lni-search"></i></span>
+				                </div>
 		                    	<input class="col-lg-6" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" >
-		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i>검색</button>
+		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i></button>
 		                	</div>
 		                </div>
 		              </form>

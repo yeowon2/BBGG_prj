@@ -406,6 +406,7 @@
     <!-- End Content -->   
     
 <jsp:include page="../footer.jsp"></jsp:include>
+<script src="/resources/list/list.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // 체크박스 요소들과 textarea 요소를 가져옵니다.

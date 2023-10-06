@@ -30,7 +30,7 @@
 		(<include refid="where"></include>)
 	</select>
 
-	<select id="selectUserList" resultType="userVO">
+	<select id="selectUserList" resultType="UserVO">
 		SELECT 
 			user_no
 			, user_id
@@ -39,6 +39,9 @@
 			, Regist_date
 		FROM  tbl_user
 		WHERE use_at = 'Y'
+			AND <![CDATA[			
+				user_no <= 10
+			]]>
 	</select>
 	
 	<select id="selectPartnerList" resultType="PartnerVO">
@@ -51,6 +54,39 @@
 			, regist_date
 		FROM  tbl_partner
 		WHERE use_at = 'Y'
+			AND <![CDATA[partner_no <= 10]]>
+	</select>
+	
+	<select id="selectItemList" resultType="ItemVO">
+		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price 	
+		FROM tbl_item i LEFT JOIN tbl_lease l ON i.item_no  = l.item_no 
+				LEFT JOIN tbl_month m ON i.item_no = m.item_no
+				LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
+		<where>
+			<if test="search != null and !search.equals('')">
+				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
+				<if test="itemType != null and !itemType.equals('')">
+					AND i.item_type LIKE #{itemType}
+				</if>
+				<if test="leaseOrMonth != null and !leaseOrMonth.equals('')">
+					AND i.lease_or_month LIKE #{leaseOrMonth}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectFakeList" resultType="FakeVO">
+		SELECT sup.*
+		FROM (SELECT sub.*, ROW_NUMBER() OVER() as rnum 
+			  FROM (SELECT tf.*, tp.comp_name 
+					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
+					WHERE tf.item_no = ti.item_no 
+						AND ti.partner_no = tp.partner_no 
+					ORDER BY tf.fake_no DESC) AS sub) AS sup
+		WHERE <![CDATA[
+				sup.use_at = 'I'
+				AND sup.fake_no <= 10
+			]]>
 	</select>
 
 </mapper>

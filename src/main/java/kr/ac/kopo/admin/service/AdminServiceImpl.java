@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.admin.dao.AdminDao;
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.dao.ItemDao;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -39,5 +40,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ItemVO> itemList(ItemVO itemVO) {
 		return adminDao.itemList(itemVO);
+	}
+
+	@Override
+	public List<FakeVO> fakeList(FakeVO fakeVO) {
+		return adminDao.fakeList(fakeVO);
 	}
 }

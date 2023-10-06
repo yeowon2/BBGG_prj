@@ -145,6 +145,7 @@
 									<div id="chart_1" class="morris-chart" style="height:345px;"></div>
 								</div>
 							</div>
+							
 							<div class="card">
 								<div class="card-header card-header-action">
 									<h6>최근 신고</h6>
@@ -177,6 +178,48 @@
 															<td>${item.itemNo}</td>
 															<td>${item.fakeContent}</td>
 															<td>${item.compName}</td>
+															<td>${item.useAt}</td>
+														</tr>
+													</c:forEach>													
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="card">
+								<div class="card-header card-header-action">
+									<h6>신규 가입자</h6>
+									<div class="d-flex align-items-center card-action-wrap">
+										<a href="#" class="inline-block refresh mr-15">
+											<i class="ion ion-md-arrow-down"></i>
+										</a>
+										<a href="#" class="inline-block full-screen">
+											<i class="ion ion-md-expand"></i>
+										</a>
+									</div>
+								</div>
+								<div class="card-body pa-0">
+									<div class="table-wrap">
+										<div class="table-responsive">
+											<table class="table table-striped table-sm table-hover mb-0">
+												<thead class="">
+													<tr>
+														<th class="w-25">사용자번호</th>
+														<th>아이디</th>
+														<th>이름</th>
+														<th>가입날짜</th>
+														<th>상태</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="item" items="${userList}">
+														<tr>
+															<td>${item.userNo}</td>
+															<td>${item.userId}</td>
+															<td>${item.userName}</td>
+															<td>${item.registDate}</td>
 															<td>${item.useAt}</td>
 														</tr>
 													</c:forEach>													

@@ -6,8 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
-import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.user.web.UserVO;
 
@@ -19,17 +19,22 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public List<UserVO> userList(UserVO userVO) {
-		return sql.selectUserList("user.list", userVO);
+		return sql.selectList("admin.selectUserList", userVO);
 	}
 
 	@Override
 	public List<PartnerVO> partnerList(PartnerVO partnerVO) {
-		return sql.selectPartnerList("partner.list", partnerVO);
+		return sql.selectList("admin.selectPartnerList", partnerVO);
 	}
 	
 	@Override
 	public List<ItemVO> itemList(ItemVO itemVO) {
-		return sql.selectItemList("item.itemList", itemVO);
+		return sql.selectList("admin.selectItemList", itemVO);
+	}
+
+	@Override
+	public List<FakeVO> fakeList(FakeVO fakeVO) {
+		return sql.selectList("admin.selectFakeList", fakeVO);
 	}
 
 }

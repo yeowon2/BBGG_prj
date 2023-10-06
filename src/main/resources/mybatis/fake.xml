@@ -33,7 +33,7 @@
 					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
 					WHERE tf.item_no  = ti.item_no 
 						AND ti.partner_no = tp.partner_no 
-					ORDER BY tf.fake_no) AS sub) AS sup
+					ORDER BY tf.fake_no DESC) AS sub) AS sup
 		        
 		<if test="perPage != 0">
 			<![CDATA[

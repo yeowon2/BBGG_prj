@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<sql id="where">
+		WHERE DATE_FORMAT(regist_date, "%Y-%m-%d") = CURDATE()
+	</sql>
+	
+	<select id="countUser" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_user tu
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countPartner" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_partner tp
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countItem" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_item ti
+		(<include refid="where"></include>)
+	</select>
+	
+	<select id="countFake" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_fake tf  
+		(<include refid="where"></include>)
+	</select>
+
+	<select id="selectUserList" resultType="UserVO">
+		SELECT 
+			user_no
+			, user_id
+			, user_name
+			, phone
+			, Regist_date
+		FROM  tbl_user
+		WHERE use_at = 'Y'
+			AND <![CDATA[			
+				user_no <= 10
+			]]>
+	</select>
+	
+	<select id="selectPartnerList" resultType="PartnerVO">
+		SELECT 
+			partner_no
+			, user_id
+			, partner_name
+			, comp_name
+			, phone
+			, regist_date
+		FROM  tbl_partner
+		WHERE use_at = 'Y'
+			AND <![CDATA[partner_no <= 10]]>
+	</select>
+	
+	<select id="selectItemList" resultType="ItemVO">
+		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price 	
+		FROM tbl_item i LEFT JOIN tbl_lease l ON i.item_no  = l.item_no 
+				LEFT JOIN tbl_month m ON i.item_no = m.item_no
+				LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
+		<where>
+			<if test="search != null and !search.equals('')">
+				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
+				<if test="itemType != null and !itemType.equals('')">
+					AND i.item_type LIKE #{itemType}
+				</if>
+				<if test="leaseOrMonth != null and !leaseOrMonth.equals('')">
+					AND i.lease_or_month LIKE #{leaseOrMonth}
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectFakeList" resultType="FakeVO">
+		SELECT sup.*
+		FROM (SELECT sub.*, ROW_NUMBER() OVER() as rnum 
+			  FROM (SELECT tf.*, tp.comp_name 
+					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
+					WHERE tf.item_no = ti.item_no 
+						AND ti.partner_no = tp.partner_no 
+					ORDER BY tf.fake_no DESC) AS sub) AS sup
+		WHERE <![CDATA[
+				sup.use_at = 'I'
+				AND sup.fake_no <= 10
+			]]>
+	</select>
+
+</mapper>

@@ -14,30 +14,19 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <h4 class="intro-sub-heading">Find Your Dream Apartment!</h4>
-              <h2 class="intro-title">Find Best Properties in One Place</h2>
+              <h4 class="intro-sub-heading">전국 방방곡곡에서 찾아왔어요!</h4>
+              <h2 class="intro-title">어떤 방을 찾고 있나요?</h2>
               <div class="content">
-                <div class="row justify-content-center align-items-center" style="height: 100%; width: 100%;">
+                <div class="row justify-content-center align-items-center">
                   	<div class="search-add col-lg-6 col-md-6 col-xs-12">
 		              <form method="post" action="/itemList">
 		                <div class="form-group">
 		                	<div class="row">
-		                		<!-- 방종류 -->
-							    <select id="itemType" name="itemType">
-									<option value="">원룸,투룸,쓰리룸,오피스텔</option>
-									<option value="O" >원룸</option>
-									<option value="T" >투룸</option>
-									<option value="H" >쓰리룸</option>
-									<option value="F" >오피스텔</option>
-								</select>
-						    	<!-- 월-전세 -->
-							    <select id="leaseOrMonth" name="leaseOrMonth">
-									<option value="">월세,전세</option>
-									<option value="month" >월세</option>
-									<option value="lease" >전세</option>
-								</select>
-		                    	<input class="col-lg-6" type="text" name="search" id="search" value="" placeholder="도로명 또는 건물명을 입력하세요." required="" >
-		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i>검색</button>
+			                	<div class="input-group-prepend">
+				                	<span class="feather-icon"><i class="lni-search"></i></span>
+				                </div>
+		                    	<input class="col-lg-6" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" >
+		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i></button>
 		                	</div>
 		                </div>
 		              </form>

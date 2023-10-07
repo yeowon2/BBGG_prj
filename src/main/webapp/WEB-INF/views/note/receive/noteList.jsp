@@ -75,13 +75,12 @@
 	                                                        <div class="last-email-details"><span class="badge badge-danger badge-indicator"></span> 
 	                                                        	<fmt:formatDate value="${noteVO.registDate}" pattern="yyyy/MM/dd HH:mm"/>
 	                                                        </div>
-	                                                        <span class="email-star list-check" style="color:#008080">
-		                                                        <c:if test="${noteVO.useAt eq 'C'}">
-				                                            		<i class="bi bi-check text-warning">
-					                                            		<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-																		  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
-																		</svg>
-																	</i> 
+	                                                        <span class="email-star list-check" style="color:#008080;">
+	                                                       		<c:if test="${noteVO.useAt == 'Y'}">
+				                                            		<span class="badge badge-success response" data-note-no="${noteVO.noteNo}" style="margin:0 auto;">응답 대기</span>
+																</c:if>
+	                                                       		<c:if test="${noteVO.useAt == 'C'}">
+				                                            		<span class="badge badge-secondary response" data-note-no="${noteVO.noteNo}" style="margin:0 auto;">응답 완료</span>
 																</c:if>
 			                                            	</span>
 	                                                    </div>
@@ -115,8 +114,10 @@
                                         <div class="nicescroll-bar">
                                             <div>
                                                 <div class="email-subject-head">
-                                                    <h5 class="font-weight-700 font-lg-16" id="note-subject">제목</h5>
-                                                    
+                                                     <div class="d-flex align-items-center row">
+		                                                <h5 class="font-weight-700 font-lg-16 col-lg-10" id="note-subject">제목</h5>
+                                                        <span class="badge badge-success response" style="margin:0 auto;">응답 대기</span>
+                                                    </div>
                                                 </div>
                                                 <hr class="mt-10 mb-20">
                                                 <div class="email-head">
@@ -229,58 +230,49 @@
                     document.querySelector('#user-name').textContent = userName;
                     document.querySelector('#item-no').textContent = '매물번호: ' + itemNo;
                     document.querySelector('#note-subject').textContent = noteSubject;
-              /*       document.querySelector('#note-text1').textContent = '#' + noteText1;
-                    document.querySelector('#note-text2').textContent = '#' + noteText2;
-                    document.querySelector('#note-text3').textContent = '#' + noteText3; */
+            
                     document.querySelector('#note-content').innerHTML = '<p>' + noteContent + '</p>';
                     document.querySelector('#regist-date').textContent = formattedRegistDate;
+                    
                  // "data-note-no" 속성을 추가합니다.
                     document.querySelector('#use-at').setAttribute('data-note-no', noteNo);
                     document.querySelector('#use-at').setAttribute('data-use-at', useAt);
+                    document.querySelectorAll('.response').forEach(function (element) {
+                        element.setAttribute('data-note-no', noteNo);
+                        element.setAttribute('data-use-at', useAt);
+                    });
+                    
                 })
                 
+           
+             // 거래 상태 토글 버튼 선택
                 var statusButton = document.querySelector('.note-status');
-            	
-           		 
+
+                // 클릭 이벤트 처리
                 statusButton.addEventListener('click', function (event) {
                     event.preventDefault(); // 기본 이벤트 처리 방지
-                    
+
                     // AJAX 요청을 보냅니다.
-    				$.ajax({
-    	                type: "POST",
-    	                url: "/note/updateStatus/" + noteNo, // URL 수정
-    	                data: {
-    	                    noteNo: noteNo
-    	                },
-    	                success: function (response) {
-    	                    // AJAX 요청이 성공하면 추가 작업을 수행할 수 있습니다.
-    	                    // 예를 들어, 화면에 상태를 업데이트하거나 메시지를 표시할 수 있습니다.
-    	                  var listCheck = element.querySelector('.list-check');
-
-    	                 // 새로운 <i> 태그를 생성합니다.
-    	                 var checkIcon = document.createElement('i');
-    	                 checkIcon.classList.add('bi', 'bi-check', 'text-warning');
-
-    	                 // <i> 태그 안에 SVG 아이콘 코드를 직접 추가합니다.
-    	                 checkIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">'
-    	                                    + '<path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>'
-    	                                    + '</svg>';
-
-    	                 // <i> 태그를 <span class="list-check"> 요소에 추가합니다.
-    	                 if (listCheck && listCheck.querySelector('i') === null) {
-							    listCheck.appendChild(checkIcon);
-							}
-    	                    
-    	                },
-    	                error: function (error) {
-    	                    alert("error 발생");
-    	                }
-    	            });
+                    $.ajax({
+                        type: "POST",
+                        url: "/note/updateStatus/" + noteNo, // URL 수정
+                        data: {
+                            noteNo: noteNo
+                        },
+                        success: function (response) {
+                            // AJAX 요청이 성공하면 response 클래스를 가진 span 요소의 색상을 변경합니다.
+                            var response = document.querySelector('.response[data-note-no="' + noteNo + '"]');
+	                            response.classList.remove('badge-success'); 
+	                            response.classList.add('badge-secondary'); 
+                            
+                        },
+                        error: function (error) {
+                            alert("error 발생");
+                        }
+                    });
                 });
-           
-           		 
-           		 
-           	// JavaScript code to handle delete button clicks
+                
+           	// 노트 삭제하기 
            	    var deleteButtons = document.querySelectorAll('.btn-delete');
            	    deleteButtons.forEach(function (element) {
            	        element.addEventListener('click', function (e) {

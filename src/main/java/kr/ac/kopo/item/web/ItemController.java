@@ -168,6 +168,8 @@ public class ItemController {
 	    PartnerVO partnerVO = partnerService.detail(itemNo);
 	    long partnerNo = partnerVO.getPartnerNo();
 	    List<ItemVO> partItemList = service.partItemList(partnerNo);
+	    logger.info("=============lat = {}",itemVO.getLat());
+	    logger.info("lng = {}",itemVO.getLng() );
 	    
 	    model.addAllAttributes(Map.of(
 	        "itemVO", itemVO,

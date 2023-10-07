@@ -43,15 +43,18 @@
 
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT *	FROM tbl_item 
+		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price 	
+		FROM tbl_item i LEFT JOIN tbl_lease l ON i.item_no  = l.item_no 
+				LEFT JOIN tbl_month m ON i.item_no = m.item_no
+				LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
 		<where>
 			<if test="search != null and !search.equals('')">
-				(address LIKE CONCAT('%', #{search}, '%') OR address2 LIKE CONCAT('%', #{search}, '%'))
+				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
 				<if test="itemType != null and !itemType.equals('')">
-					AND item_type LIKE #{itemType}
+					AND i.item_type LIKE #{itemType}
 				</if>
 				<if test="leaseOrMonth != null and !leaseOrMonth.equals('')">
-					AND lease_or_month LIKE #{leaseOrMonth}
+					AND i.lease_or_month LIKE #{leaseOrMonth}
 				</if>
 			</if>
 		</where>

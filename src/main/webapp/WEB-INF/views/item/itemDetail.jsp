@@ -5,9 +5,6 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-  <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer"></script>
-	
 	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
   <style>
@@ -434,6 +431,7 @@
  	// 위도와 경도 가져오기
     var lat = parseFloat(document.querySelector('#lat').textContent);
     var lng = parseFloat(document.querySelector('#lng').textContent);
+    
 	// 이미지 지도에서 마커가 표시될 위치입니다 
 	var markerPosition  = new kakao.maps.LatLng(lat, lng); 
 	
@@ -454,6 +452,7 @@
 	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 	
 </script>
+
 <script>
 $(document).ready(function() {
     $("form").submit(function(event) {

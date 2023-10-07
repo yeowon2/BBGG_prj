@@ -196,7 +196,7 @@
                 
                 <!-- Map -->
                 <div class="mapouter mb-4">
-                    <div id="staticMap" style="width:100%;height:740px;"></div> 
+                    <div id="map" style="width:100%;height:740px;"></div> 
                 </div> 
                                              
             </div>
@@ -267,31 +267,108 @@
     </script>
     
     <script>
-    
-    	var lats = ${result.lat};
-    	var lngs = ${result.lng};
-		
+	    var lats = ${result.lat};
+	    var lngs = ${result.lng};
+	    
+	    // 이미지 지도에서 마커가 표시될 위치입니다 
+	    var markerPosition  = new kakao.maps.LatLng(lats, lngs);
+	    
+	    // 마커 이미지의 이미지 주소입니다
+	    var imageSrc = "../resources/comm/homemarker.png";
+	    
+	    // 마커 이미지의 이미지 크기 입니다
+	    var imageSize = new kakao.maps.Size(35, 35);
+	
+	    // 마커 이미지를 생성합니다    
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+	    
+	    // 지도를 표시할 div 요소를 선택합니다
+	    var mapContainer = document.getElementById('map');
+	
+	    // 지도 옵션을 설정합니다
+	    var mapOption = {
+	        center: markerPosition, // 지도의 중심좌표
+	        level: 3, // 지도의 확대 레벨
+	    };
+	
+	    // 지도를 생성합니다
+	    var map = new kakao.maps.Map(mapContainer, mapOption);
+	
+	    // 마커를 생성하고 지도에 표시합니다
+	    var marker = new kakao.maps.Marker({
+	        position: markerPosition,
+	        image: markerImage, // 마커 이미지 설정
+	    });
+	    marker.setMap(map);
+	
+	    // 이미지 지도를 생성합니다
+	    var staticMapContainer = document.getElementById('staticMap');
+	
+	    // 이미지 지도 옵션을 설정합니다
+	    var staticMapOption = {
+	        center: markerPosition, // 이미지 지도의 중심좌표
+	        level: 3, // 이미지 지도의 확대 레벨
+	        marker: marker // 이미지 지도에 표시할 마커
+	    };
+	
+	    var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+	
+	    // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+	    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+	</script>
+
+	<!-- 지도 API -->
+	<!-- <script>
+		//위도와 경도 가져오기
+		var lat = parseFloat(document.querySelector('#lat').textContent);
+		var lng = parseFloat(document.querySelector('#lng').textContent);
+			
 		// 이미지 지도에서 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(lats, lngs); 
+		var markerPosition  = new kakao.maps.LatLng(lat, lng);
+				    
+		// 마커 이미지의 이미지 주소입니다
+		var imageSrc = "../resources/comm/homemarker.png";
+		    
+		// 마커 이미지의 이미지 크기 입니다
+		var imageSize = new kakao.maps.Size(35, 35);
 		
-		// 이미지 지도에 표시할 마커입니다
-		// 이미지 지도에 표시할 마커는 Object 형태입니다
-		var marker = {
-		    position: markerPosition
+		// 마커 이미지를 생성합니다    
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		    
+		// 지도를 표시할 div 요소를 선택합니다
+		var mapContainer = document.getElementById('map');
+		
+		// 지도 옵션을 설정합니다
+		var mapOption = {
+			center: markerPosition, // 지도의 중심좌표
+			level: 3, // 지도의 확대 레벨
 		};
 		
-		var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-		    staticMapOption = { 
-		        center: new kakao.maps.LatLng(lats, lngs), // 이미지 지도의 중심좌표
-		        level: 3, // 이미지 지도의 확대 레벨
-		        marker: marker // 이미지 지도에 표시할 마커 
-		    };    
+		// 지도를 생성합니다
+		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		// 마커를 생성하고 지도에 표시합니다
+		var marker = new kakao.maps.Marker({
+			position: markerPosition,
+			image: markerImage, // 마커 이미지 설정
+		});
+		marker.setMap(map);
 		
 		// 이미지 지도를 생성합니다
+		var staticMapContainer = document.getElementById('staticMap');
+		
+		// 이미지 지도 옵션을 설정합니다
+		var staticMapOption = {
+			center: markerPosition, // 이미지 지도의 중심좌표
+			level: 3, // 이미지 지도의 확대 레벨
+			marker: marker // 이미지 지도에 표시할 마커
+		};
+		
 		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
 		
-		//지도에 교통정보를 표시하도록 지도타입을 추가합니다
-		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC); 
-	</script>
+		// 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+		map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+	</script> -->
+
 </body>
 </html>

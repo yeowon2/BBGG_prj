@@ -4,7 +4,7 @@
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
       <!-- Start Top Bar -->
-      <div class="top-bar">
+      <div class="top-bar" >
         <div class="container">
           <div class="row">
             <div class="col-lg-7 col-md-8 col-xs-12">

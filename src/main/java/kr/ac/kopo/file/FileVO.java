@@ -25,8 +25,11 @@ public class FileVO {
 	// 파일 생성일자
 	private Date registDate;
 
-	// 매물 아이디
+	// 매물 고유번호
 	private Long itemNo;
+	
+	// partner 고유번호
+	private Long partnerNo;
 
 	public Long getFileSize() {
 		return fileSize;
@@ -90,6 +93,14 @@ public class FileVO {
 
 	public void setItemNo(Long itemNo) {
 		this.itemNo = itemNo;
+	}
+
+	public Long getPartnerNo() {
+		return partnerNo;
+	}
+
+	public void setPartnerNo(Long partnerNo) {
+		this.partnerNo = partnerNo;
 	}
 
 }

@@ -19,6 +19,7 @@
   		<typeAlias type="kr.ac.kopo.list.web.UserWishListVO" alias="UserWishListVO"/>
  		<typeAlias type="kr.ac.kopo.fake.web.FakeVO" alias="FakeVO"/> 
  		<typeAlias type="kr.ac.kopo.file.FileVO" alias="FileVO"/> 
+ 		<typeAlias type="kr.ac.kopo.partner.web.RespVO" alias="RespVO"/> 
   	</typeAliases>
   
   	<mappers>

@@ -29,6 +29,9 @@
 			, NOW()
 			, 'Y'
 		)
+		<selectKey keyProperty="partnerNo" order="AFTER" resultType="Long">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 
 	 
@@ -89,35 +92,47 @@
 		WHERE partner_no = #{partnerNo}
 	</delete>
 	
-		<select id="respWaitCount" resultType="integer">
-		SELECT COUNT(*) 
-		FROM tbl_note tn 
-		WHERE use_at = 'Y'
-		AND partner_no = #{partnerNo}
+		<select id="respWaitCount" resultType="RespVO">
+		SELECT date_list.date, IFNULL(tn_count.count, 0) AS count
+		FROM (
+		    SELECT DATE(NOW()) AS date
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 1 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 2 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 3 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 4 DAY))
+		) AS date_list
+		LEFT JOIN (
+		    SELECT DATE(regist_date) AS date, COUNT(*) AS count
+		    FROM tbl_note tn 
+		    WHERE use_at = 'Y'
+		    AND partner_no = #{partnerNo}
+		    AND regist_date BETWEEN DATE_SUB(NOW(), INTERVAL 4 DAY) AND NOW()
+		    GROUP BY DATE(regist_date)
+		) AS tn_count
+		ON date_list.date = tn_count.date
+		ORDER BY date_list.date;
 				
 	</select>
 
-	<select id="respCompCount" resultType="integer">
-		SELECT COUNT(*) 
-		FROM tbl_note tn 
-		WHERE use_at = 'C'
-		AND partner_no = #{partnerNo}
+	<select id="respCompCount" resultType="RespVO">
+		SELECT date_list.date, IFNULL(tn_count.count, 0) AS count
+		FROM (
+		    SELECT DATE(NOW()) AS date
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 1 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 2 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 3 DAY))
+		    UNION SELECT DATE(DATE_SUB(NOW(), INTERVAL 4 DAY))
+		) AS date_list
+		LEFT JOIN (
+		    SELECT DATE(regist_date) AS date, COUNT(*) AS count
+		    FROM tbl_note tn 
+		    WHERE use_at = 'C'
+		    AND partner_no = #{partnerNo}
+		    AND regist_date BETWEEN DATE_SUB(NOW(), INTERVAL 4 DAY) AND NOW()
+		    GROUP BY DATE(regist_date)
+		) AS tn_count
+		ON date_list.date = tn_count.date
+		ORDER BY date_list.date;
 	</select>
 
-	<select id="itemWaitCount" resultType="integer">
-		SELECT COUNT(*) 
-		FROM tbl_item  
-		WHERE use_at = 'Y'
-		AND partner_no = #{partnerNo}
-				
-	</select>
-
-	<select id="itemCompCount" resultType="integer">
-		SELECT COUNT(*) 
-		FROM tbl_item  
-		WHERE use_at = 'C'
-		AND partner_no = #{partnerNo}
-	</select>
-	
-	
 </mapper>

@@ -48,9 +48,9 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
-	 <link rel="stylesheet" href="../resources/room/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../resources/room/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../resources/room/css/templatemo-style.css">
+	 <link rel="stylesheet" href="/resources/room/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/room/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/resources/room/css/templatemo-style.css">
     
     <!-- Flatpickr 스타일 및 스크립트 파일 로드 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

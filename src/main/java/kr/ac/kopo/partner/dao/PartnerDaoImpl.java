@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
+import kr.ac.kopo.partner.web.RespVO;
 
 @Repository
 public class PartnerDaoImpl implements PartnerDao {
@@ -22,8 +23,10 @@ public class PartnerDaoImpl implements PartnerDao {
 	}
 
 	@Override
-	public void add(PartnerVO partnerVO) {
+	public Long add(PartnerVO partnerVO) {
 		sql.insert("partner.add", partnerVO);
+		Long partnerNo = partnerVO.getPartnerNo();
+		return partnerNo;
 	}
 
 	@Override
@@ -49,6 +52,16 @@ public class PartnerDaoImpl implements PartnerDao {
 	@Override
 	public PartnerVO detail(Long partnerNo) {
 		return sql.selectOne("partner.detail", partnerNo);
+	}
+
+	@Override
+	public List<RespVO> getRespWaitCount(Long partnerNo) {
+		return sql.selectList("partner.respWaitCount", partnerNo);
+	}
+
+	@Override
+	public List<RespVO> getRespCompCount(Long partnerNo) {
+		return sql.selectList("partner.respCompCount", partnerNo);
 	}
 
 }

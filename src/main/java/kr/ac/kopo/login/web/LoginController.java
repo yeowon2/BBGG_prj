@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,6 +22,7 @@ import kr.ac.kopo.user.web.UserVO;
 public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class); 
+	
 	@Autowired
 	private LoginService loginService;
 
@@ -50,8 +50,6 @@ public class LoginController {
 	        	
 	        	session.setAttribute("loginPartnerVO", loginPartnerVO);
 	        	
-	        	logger.info("partnerNo: {}",partnerNo);
-	           
 	            return "redirect:/partner/" + partnerNo;
 	        } else {
 	            model.addAttribute("loginMessage", "중개사 로그인 정보가 올바르지 않습니다.");

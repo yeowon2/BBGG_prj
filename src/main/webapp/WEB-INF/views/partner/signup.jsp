@@ -38,52 +38,28 @@
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-user"></i>
-                    <input type="text" class="form-control" name="partnerId" placeholder="이메일">
+                    <input type="text" class="form-control" name="userId" placeholder="이메일">
                   </div>
                 </div> 
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-lock"></i>
-                    <input type="password" class="form-control" name="partnerPw" placeholder="비밀번호">
+                    <input type="password" class="form-control" name="userPw" placeholder="비밀번호">
                   </div>
                 </div>  
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="compName" placeholder="상호명">
+                    <input type="text" class="form-control" name="userName" placeholder="이름">
                   </div>
                 </div> 
                 <div class="form-group">
                   <div class="input-icon">
                     <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="partnerName" placeholder="대표자명">
+                    <input type="text" class="form-control" name="phone" placeholder="폰 번호">
                   </div>
                 </div> 
-                <div class="form-group">
-                  <div class="input-icon">
-                    <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="compAddress" placeholder="주소">
-                  </div>
-                </div> 
-                <div class="form-group">
-                  <div class="input-icon">
-                    <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="phone" placeholder="폰번호">
-                  </div>
-                </div> 
-                <div class="form-group">
-                  <div class="input-icon">
-                    <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="registNum" placeholder="중개등록번호">
-                  </div>
-                </div> 
-                <div class="form-group">
-                  <div class="input-icon">
-                    <i class="lni-envelope"></i>
-                    <input type="text" class="form-control" name="compNum" placeholder="사업자등록번호">
-                  </div>
-                </div> 
-                <button class="btn btn-common log-btn mt-3" type="submit">가입</button>
+                <button class="btn btn-common log-btn mt-3" type="submit">2차 인증하기</button>
                 <p class="text-center">이미 계정이 있으신가요?<a href="/login"> 로그인</a></p>
               </form>
             </div>

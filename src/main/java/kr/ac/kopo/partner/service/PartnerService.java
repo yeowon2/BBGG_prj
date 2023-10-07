@@ -1,6 +1,7 @@
 package kr.ac.kopo.partner.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
@@ -9,7 +10,7 @@ public interface PartnerService {
 
 	List<PartnerVO> list(Pager pager);
 
-	void add(PartnerVO partnerVO);
+	Long add(PartnerVO partnerVO);
 
 	PartnerVO select(Long partnerNo);
 
@@ -18,5 +19,7 @@ public interface PartnerService {
 	void delete(Long partnerNo);
 
 	PartnerVO detail(Long partnerNo);
-	
+
+	Map<String, List> getRespCount(Long partnerNo);
+
 }

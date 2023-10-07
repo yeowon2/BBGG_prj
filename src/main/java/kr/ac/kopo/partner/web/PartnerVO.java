@@ -19,7 +19,6 @@ public class PartnerVO extends Pager{
 	private Date registDate;
 	private Date updateDate;
 	private String useAt;
-	private String partnerAuth;
 	
 	public long getPartnerNo() {
 		return partnerNo;
@@ -99,12 +98,4 @@ public class PartnerVO extends Pager{
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
 	}
-	public String getPartnerAuth() {
-		return partnerAuth;
-	}
-	public void setPartnerAuth(String partnerAuth) {
-		this.partnerAuth = partnerAuth;
-	}
-	
-	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -62,7 +63,7 @@
 										<div class="col-6"></div>
 										<div class="col">
 											<select name="search" class="form-select form-select-sm">
-												<option value="0">검색 항목을 선택하세요</option>
+												<option value="0">검색 항목 선택</option>
 												<option value="1" ${pager.search == 1 ? "selected" : ""}>매물번호</option>
 												<option value="2" ${pager.search == 2 ? "selected" : ""}>부동산명</option>
 												<option value="3" ${pager.search == 3 ? "selected" : ""}>회원명</option>
@@ -84,21 +85,28 @@
                                         <table class="table mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>순번</th>
+                                                    <th>부동산명</th>
+                                                    <th>신고번호</th>
                                                     <th>매물번호</th>
                                                     <th>내용</th>
-                                                    <th>부동산명</th>
+                                                    <th>신고날짜</th>
                                                     <th>상태</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             	<c:forEach var="item" items="${fakeList}">
 	                                                <tr>
-	                                                    <th scope="row">${item.fakeNo}</th>
+	                                                    <th scope="row">${item.compName}</th>
+	                                                    <td>${item.fakeNo}</td>
 	                                                    <td>${item.itemNo}</td>
 	                                                    <td>${item.fakeContent}</td>
-	                                                    <td>${item.compName}</td>
-	                                                    <td><span class="badge badge-green">${item.useAt}</span></td>
+	                                                    <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
+	                                                    <td>
+	                                                    	<!-- Button trigger modal -->
+						        							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+	                                                    		<span class="badge badge-green">${item.useAt}</span>
+	                                                    	</button>
+	                                                    </td>
 	                                                </tr>
 	                                            </c:forEach>
 	                                            <c:if test="${list.size() < 1}">
@@ -106,6 +114,50 @@
 														<td colspan="5">검색 된 내역이 없습니다.</td>
 													</tr>
 												</c:if>
+												
+												<!-- Modal Carousel-->
+			                                    <div class="modal fade" id="exampleModalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCarousel" aria-hidden="true">
+			                                        <div class="modal-dialog modal-lg" role="document">
+			                                            <div class="modal-content">
+			                                                <div class="modal-header">
+			                                                    <h5 class="modal-title">첨부파일</h5>
+			                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			                                                        <span aria-hidden="true">×</span>
+			                                                    </button>
+			                                                </div>
+			                                                <div class="modal-body pa-0">
+			                                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			                                                        <ol class="carousel-indicators">
+			                                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			                                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			                                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			                                                        </ol>
+			                                                        <div class="carousel-inner">
+			                                                        	<c:forEach var="item" items="${fakeList}">
+				                                                            <div class="carousel-item active">
+				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="첫번째 첨부파일">
+				                                                            </div>
+				                                                            <div class="carousel-item">
+				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="두번째 첨부파일">
+				                                                            </div>
+				                                                            <div class="carousel-item">
+				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="세번째 첨부파일">
+				                                                            </div>
+			                                                            </c:forEach>
+			                                                        </div>
+			                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			                                                            <span class="sr-only">Previous</span>
+			                                                        </a>
+			                                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			                                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			                                                            <span class="sr-only">Next</span>
+			                                                        </a>
+			                                                    </div>
+			                                                </div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
                                             </tbody>
                                             
                                             <tfoot>

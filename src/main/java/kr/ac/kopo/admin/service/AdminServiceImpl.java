@@ -7,12 +7,8 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.admin.dao.AdminDao;
 import kr.ac.kopo.fake.web.FakeVO;
-import kr.ac.kopo.item.dao.ItemDao;
 import kr.ac.kopo.item.web.ItemVO;
-import kr.ac.kopo.pager.Pager;
-import kr.ac.kopo.partner.dao.PartnerDao;
 import kr.ac.kopo.partner.web.PartnerVO;
-import kr.ac.kopo.user.dao.UserDao;
 import kr.ac.kopo.user.web.UserVO;
 
 @Service

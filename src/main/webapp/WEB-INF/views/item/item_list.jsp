@@ -56,7 +56,52 @@
 	        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 	        overflow-y: auto;
 	    }
-	
+	    
+	    .property-item .media-img-wrap {
+	    	margin: 5px;
+		    width: 25%;
+		    display: flex; 
+		    justify-content: center; 
+		    align-items: center;
+		    /* 아래의 margin-right 속성은 요소 사이의 간격을 설정합니다. */
+		}
+		.img-fluid{
+			margin: 2px;
+			width: 100%;
+			height: 100%;
+			
+		}
+		
+		.property-item .media-body {
+			margin: 5px;
+		    width: 75%;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+		
+		/* 이미지 위에 번호를 겹치시키기 위한 스타일 */
+		.image-number {
+		    position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    background-color: rgba(0, 0, 0, 0.7);
+		    color: #fff;
+		    padding: 5px 5px;
+		    border-radius: 5px;
+		    z-index: 1;
+		    display: none; /* 초기에는 숨겨둠 */
+		    text-align: center;
+		}
+		
+		.email-text {
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
+		    -webkit-box-orient: vertical;
+		}
+		
 	    /* 지도 스타일 설정 */
 	    #map {
 	        position: absolute;
@@ -68,20 +113,11 @@
 	        z-index: 0; /* 지도를 가장 뒤로 배치 
 	    }
 	    
-	    /* 스타일을 추가하여 선택한 매물을 노란색으로 표시합니다. */
-	    .property-item.selected {
-	        background-color: yellow;
-	    }
+	    /* 클릭한 링크에 대한 스타일 */
+		.property-item.clicked {
+		    background-color: rgba(255, 255, 255, 0.5); /* 흰색 배경색을 반투명하게 설정합니다. */
+		}
 	    
-	    /* 반짝이는 효과를 정의하는 클래스 */
-		.marker-blink {
-		    animation: blink 1s infinite; /* 1초 간격으로 반짝이게 함 */
-		}
-		
-		@keyframes blink {
-		    0%, 100% { opacity: 1; } /* 투명도를 1로 설정 */
-		    50% { opacity: 0; } /* 투명도를 0으로 설정 */
-		}
 	</style>
 </head>
 	
@@ -91,7 +127,7 @@
 	        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	        mapOption = { 
 	            center: new kakao.maps.LatLng(36.35107, 127.4544), // 지도의 중심좌표
-	            level: 3 // 지도의 확대 레벨
+	            level: 4 // 지도의 확대 레벨
 	        };
 	        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	        var map = new kakao.maps.Map(mapContainer, mapOption); 
@@ -121,52 +157,56 @@
 		            <div class="input-group-prepend">
 		                <span class="feather-icon"><i data-feather="search"></i></span>
 		            </div>
-		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요.">
+		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="">
+		        	<!-- 초기화 버튼 추가 -->
+        			<button type="button" id="resetSearch"><img src="../resources/comm/reset.png" alt="Reset" style="width: 20px; height: 20px; justify-content: center; align-items: center;" /></button>
 		        </div>
 		    </form>
 		
 		    <div class="emailapp-emails-list" id="list-container">
 		        <div class="nicescroll-bar">
 		            <c:forEach var="item" items="${list}">
-		                <a href="/itemDetail/${item.itemNo}" target="_blank" onclick="handleClick('${item.itemNo}')" class="property-item" id="property-${item.itemNo}">
-		                    <div class="media-img-wrap">
-		                        <div class="avatar">
-		                            <img src="/resources/dist/img/avatar1.jpg" alt="user" class="avatar-img rounded-circle">
-		                        </div>
-		                    </div>
-		                    
-		                    <div class="media-body">
-		                        <div>
-		                            <div class="email-head font-weight-700 font-lg-15"><h5>${item.address} (${item.address2})</h5></div>
-		                            <c:if test="${item.leaseOrMonth == 'lease' }">
-		                                <div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
-		                            </c:if>
-		                            <c:if test="${item.leaseOrMonth == 'month' }">
-		                                <div class="email-subject"><h5>월세 ${item.depositFee} / ${item.monthPrice}</h5></div>
-		                            </c:if>
-		                            <c:if test="${item.itemType == 'O' }">
-		                                <div class="email-subject">원룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
-		                            </c:if>
-		                            <c:if test="${item.itemType == 'T' }">
-		                                <div class="email-subject">투룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
-		                            </c:if>
-		                            <c:if test="${item.itemType == 'H' }">
-		                                <div class="email-subject">쓰리룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
-		                            </c:if>
-		                            <c:if test="${item.itemType == 'F' }">
-		                                <div class="email-subject">오피스텔, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
-		                            </c:if>
-		                            <div class="email-subject">${item.memoShort} </div>
-		                            <div class="email-text">
-		                                <p>${item.memoDetail}</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    
-		                </a>
-		                <div class="email-hr-wrap">
-		                    <hr>
-		                </div>
+			            <c:if test="${item.useAt == 'Y' }">
+			                <a href="/itemDetail/${item.itemNo}" target="_blank" onclick="handleClick('${item.itemNo}')" class="property-item" id="property-${item.itemNo}" style="display: flex;">
+			                    <div class="media-img-wrap" style="position: relative;">
+			                    	<img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"  onmouseover="showNumber('${item.itemNo}')" onmouseout="hideNumber('${item.itemNo}')">
+			                    	<div class="image-number" id="number-${item.itemNo}">매물<br/>${item.itemNo}</div>
+			                    </div>
+			                    <div class="media-body">
+			                        <div>
+			                            <div class="email-head font-weight-700 font-lg-15"><h5>${item.address}　<i class="lni-map-marker"></i></h5></div>
+			                            <div class="email-head font-weight-700 font-lg-15"><h6>(${item.address2})</h6></div>
+			                            <c:if test="${item.leaseOrMonth == 'lease' }">
+			                                <div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
+			                            </c:if>
+			                            <c:if test="${item.leaseOrMonth == 'month' }">
+			                                <div class="email-subject"><h5>월세 ${item.depositFee} / ${item.monthPrice}</h5></div>
+			                            </c:if>
+			                            <c:choose>
+			                            	<c:when test="${item.itemType == 'O' }">
+			                            		<div class="email-subject">원룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            	</c:when>
+			                            	<c:when test="${item.itemType == 'T' }">
+			                            		<div class="email-subject">투룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            	</c:when>
+			                            	<c:when test="${item.itemType == 'H' }">
+			                            		<div class="email-subject">쓰리룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            	</c:when>
+			                            	<c:when test="${item.itemType == 'F' }">
+			                            		<div class="email-subject">오피스텔, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            	</c:when>
+			                            </c:choose>
+			                            <div class="email-subject">${item.memoShort} </div>
+			                            <div class="email-text">
+			                                <p>${item.memoDetail}</p>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </a>
+			                <div class="email-hr-wrap">
+			                    <hr>
+			                </div>
+			            </c:if>
 		            </c:forEach>
 		        </div>
 		    </div>
@@ -174,54 +214,72 @@
 		
 		<!-- 카테고리에 따른 마커 생성 -->
 		<c:forEach var="item" items="${list}">
-		
-		    <script>
-		        var positions = [
-		            {
-		                title: "${item.itemNo}",
-		                latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
-		            }
-		        ]
-		
-		        // 마커 이미지의 이미지 주소입니다
-		        var imageSrc = "../resources/comm/marker.png";
-		
-		        for (var i = 0; i < positions.length; i++) {
-		
-		            // 마커 이미지의 이미지 크기 입니다
-		            var imageSize = new kakao.maps.Size(28, 35);
-		
-		            // 마커 이미지를 생성합니다    
-		            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-		
-		            // 마커를 생성합니다
-		            var marker = new kakao.maps.Marker({
-		                map: map, // 마커를 표시할 지도
-		                position: positions[i].latlng, // 마커를 표시할 위치
-		                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-		                image : markerImage // 마커 이미지 
-		            });
-		            
-		            // 마커에 클릭 이벤트를 등록합니다
-		            kakao.maps.event.addListener(marker, 'click', function() {
-		                // 클릭한 마커의 위치로 지도 중심 이동
-		                map.setCenter(marker.getPosition());
-		                
-		             	// 클릭한 마커의 번호에 해당하는 페이지로 새 창으로 이동
-		                var itemNo = this.getTitle(); // 클릭한 마커의 title 속성에 itemNo가 저장되어 있음
-		                var url = "/itemDetail/" + itemNo; // 이동할 페이지의 URL을 생성
-		                window.open(url, "_blank"); // 페이지를 새 창으로 열기
-		            });
-		        }
-		        
-		        // 검색 결과가 있을 때, 첫 번째 마커를 기준으로 지도 중심을 설정합니다
-		        if (positions.length > 0) {
-		            map.setCenter(positions[0].latlng);
-		        }
-		        
-		    </script>
+			<c:if test="${item.useAt == 'Y' }">
+			    <script>
+			        var positions = [
+			            {
+			                title: "${item.itemNo}",
+			                latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
+			            }
+			        ]
+			
+			        // 마커 이미지의 이미지 주소입니다
+			        var imageSrc = "../resources/comm/marker.png";
+			
+			        for (var i = 0; i < positions.length; i++) {
+			
+			            // 마커 이미지의 이미지 크기 입니다
+			            var imageSize = new kakao.maps.Size(28, 35);
+			
+			            // 마커 이미지를 생성합니다    
+			            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+			
+			            // 마커를 생성합니다
+			            var marker = new kakao.maps.Marker({
+			                map: map, // 마커를 표시할 지도
+			                position: positions[i].latlng, // 마커를 표시할 위치
+			                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			                image : markerImage // 마커 이미지 
+			            });
+			            
+			            // 마커에 클릭 이벤트를 등록합니다
+			            kakao.maps.event.addListener(marker, 'click', function() {
+			                // 클릭한 마커의 위치로 지도 중심 이동
+			                map.setCenter(marker.getPosition());
+			                
+			             	// 클릭한 마커의 번호에 해당하는 페이지로 새 창으로 이동
+			                var itemNo = this.getTitle(); // 클릭한 마커의 title 속성에 itemNo가 저장되어 있음
+			                var url = "/itemDetail/" + itemNo; // 이동할 페이지의 URL을 생성
+			                window.open(url, "_blank"); // 페이지를 새 창으로 열기
+			            });
+			        }
+			        
+			        // 검색 결과가 있을 때, 첫 번째 마커를 기준으로 지도 중심을 설정합니다
+			        if (positions.length > 0) {
+			            map.setCenter(positions[0].latlng);
+			        }
+			    </script>
+			</c:if>
 		</c:forEach>
-
+		
+		<script>
+		    // 이미지 위에 번호를 나타내는 함수
+		    function showNumber(itemNo) {
+		        var numberElement = document.getElementById('number-' + itemNo);
+		        if (numberElement) {
+		            numberElement.style.display = 'block';
+		        }
+		    }
+		
+		    // 이미지 위에 번호를 숨기는 함수
+		    function hideNumber(itemNo) {
+		        var numberElement = document.getElementById('number-' + itemNo);
+		        if (numberElement) {
+		            numberElement.style.display = 'none';
+		        }
+		    }
+		</script>
+		
 		<script>
 		 	// 페이지 로드 시 저장된 검색 조건을 불러와서 설정
 		    window.addEventListener('load', function () {
@@ -253,30 +311,29 @@
 		        localStorage.setItem('searchKeyword', searchKeyword);
 		    });
 		    
+		 	// 초기화 버튼 클릭 시 검색어 필드 초기화
+		    document.getElementById('resetSearch').addEventListener('click', function () {
+		        document.getElementById('search').value = ''; // 검색어 필드를 빈 문자열로 설정
+		        document.getElementById('itemType').value = ''; // 방종류 select 요소 초기화
+		        document.getElementById('leaseOrMonth').value = ''; // 월-전세 select 요소 초기화
+		    });
 	    </script>
 	    
 	    <!-- 매물 봤다면 봤다는 표시 -->
 	    <script>
-		 	// 클릭한 매물을 저장할 변수
-		    var selectedProperty = null;
+		 	// JavaScript 코드
+		    document.addEventListener('DOMContentLoaded', function() {
+		        // 모든 링크 요소를 가져옵니다.
+		        var links = document.querySelectorAll('.property-item');
 	
-		    // 매물을 클릭했을 때 호출되는 함수
-		    function handleClick(propertyId) {
-		        // 선택한 매물의 ID를 저장
-		        selectedProperty = propertyId;
-	
-		        // 모든 매물 요소에 클래스를 제거
-		        var propertyElements = document.querySelectorAll('.property-item');
-		        propertyElements.forEach(function (element) {
-		            element.classList.remove('selected');
+		        // 각 링크에 대한 클릭 이벤트를 처리합니다.
+		        links.forEach(function(link) {
+		            link.addEventListener('click', function() {
+		                // 클릭한 링크에 'clicked' 클래스를 추가합니다.
+		                link.classList.add('clicked');
+		            });
 		        });
-	
-		        // 선택한 매물에 클래스를 추가하여 노란색 스타일 적용
-		        var selectedElement = document.getElementById('property-' + propertyId);
-		        if (selectedElement) {
-		            selectedElement.classList.add('selected');
-		        }
-		    }
+		    });
 		</script>
 	    
     </body>

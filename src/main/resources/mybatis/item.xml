@@ -43,13 +43,19 @@
 
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price 	
-		FROM tbl_item i LEFT JOIN tbl_lease l ON i.item_no  = l.item_no 
-				LEFT JOIN tbl_month m ON i.item_no = m.item_no
-				LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
+		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price, f.*
+		FROM tbl_item i 
+		LEFT JOIN tbl_lease l ON i.item_no = l.item_no 
+		LEFT JOIN tbl_month m ON i.item_no = m.item_no
+		LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
 		<where>
 			<if test="search != null and !search.equals('')">
 				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
+				AND f.file_no = (
+				    SELECT MIN(file_no)
+				    FROM tbl_item_file
+				    WHERE item_no = i.item_no
+				)
 				<if test="itemType != null and !itemType.equals('')">
 					AND i.item_type LIKE #{itemType}
 				</if>
@@ -58,7 +64,6 @@
 				</if>
 			</if>
 		</where>
-		
 	</select>
 	
 	<!-- <select id="itemSelect" resultType="itemVO">

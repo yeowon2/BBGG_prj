@@ -49,6 +49,12 @@ public class ItemVO {
 	private String search;			//검색
 	
 	private Long fileNo;			//첨부파일 고유번호
+	private String saved_name;			//첨부파일 고유번호
+	private String original_name;			//첨부파일 고유번호
+	private String file_path;			//첨부파일 고유번호
+	private String file_ext;			//첨부파일 고유번호
+	private Date regist_date;			//첨부파일 고유번호
+	private Long file_size;			//첨부파일 고유번호
 	
 	private List<FileVO> fileVOList;
 
@@ -314,5 +320,53 @@ public class ItemVO {
 
 	public void setFileVOList(List<FileVO> fileVOList) {
 		this.fileVOList = fileVOList;
+	}
+
+	public String getSaved_name() {
+		return saved_name;
+	}
+
+	public void setSaved_name(String saved_name) {
+		this.saved_name = saved_name;
+	}
+
+	public String getOriginal_name() {
+		return original_name;
+	}
+
+	public void setOriginal_name(String original_name) {
+		this.original_name = original_name;
+	}
+
+	public String getFile_path() {
+		return file_path;
+	}
+
+	public void setFile_path(String file_path) {
+		this.file_path = file_path;
+	}
+
+	public String getFile_ext() {
+		return file_ext;
+	}
+
+	public void setFile_ext(String file_ext) {
+		this.file_ext = file_ext;
+	}
+
+	public Date getRegist_date() {
+		return regist_date;
+	}
+
+	public void setRegist_date(Date regist_date) {
+		this.regist_date = regist_date;
+	}
+
+	public Long getFile_size() {
+		return file_size;
+	}
+
+	public void setFile_size(Long file_size) {
+		this.file_size = file_size;
 	}
 }

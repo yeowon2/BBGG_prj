@@ -18,16 +18,16 @@
               <h2 class="intro-title">어떤 방을 찾고 있나요?</h2>
               <div class="content">
                 <div class="row justify-content-center align-items-center">
-                  	<div class="search-add col-lg-6 col-md-6 col-xs-12">
-		              <form method="post" action="/itemList">
+                  	<div class="search-add col-lg-12 col-md-12 col-xs-12">
+		              <form method="post" action="/itemList" >
 		                <div class="form-group">
-		                	<div class="row">
+		                	<!-- <div class="row"> -->
 			                	<div class="input-group-prepend">
 				                	<span class="feather-icon"><i class="lni-search"></i></span>
 				                </div>
-		                    	<input class="col-lg-6" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" >
+		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" >
 		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i></button>
-		                	</div>
+		                	<!-- </div> -->
 		                </div>
 		              </form>
 		         	</div>

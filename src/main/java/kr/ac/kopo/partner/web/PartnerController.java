@@ -120,13 +120,6 @@ public class PartnerController {
 		return path + "update";
 	}
 	
-	@PostMapping("/update/{partnerNo}")
-	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO) {
-		partnerVO.setPartnerNo(partnerNo);
-		service.update(partnerVO);
-		
-		return "redirect:../list";
-	}
 	
 	@GetMapping("/delete/{partnerNo}")
 	public String delete(@PathVariable Long partnerNo) {
@@ -147,4 +140,13 @@ public class PartnerController {
 		
 		return path + "myPage";
 	}
+	
+	@PostMapping("/update/{partnerNo}")
+	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO) {
+		partnerVO.setPartnerNo(partnerNo);
+		service.update(partnerVO);
+		
+		return "redirect:/partner/myPage";
+	}
+	
 }

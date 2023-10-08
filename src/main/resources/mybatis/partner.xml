@@ -60,6 +60,7 @@
 			, partner_name
 			, regist_num
 			, phone
+			, memo
 		FROM  tbl_partner
 		WHERE partner_no = #{partnerNo}
 	</select>
@@ -80,10 +81,12 @@
 	<update id="update">
 		UPDATE tbl_partner
 		SET 
-			user_pw = #{userPw}
-			, partner_name = #{partnerName}
-			, comp_name = #{compName}
+			comp_name = #{compName}
+			, comp_address = #{compAddress}
+			, regist_num = #{registNum}
+			, comp_num = #{compNum}
 			, phone = #{phone}
+			, memo = #{memo}
 			, update_date = now()
 		WHERE partner_no = #{partnerNo}
 	</update>

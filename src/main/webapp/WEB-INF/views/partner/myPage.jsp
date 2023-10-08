@@ -25,7 +25,7 @@
           <h2>My Profile</h2>
           <a href="#"><i class="lni-home"></i> Home</a>
           <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
-          <span class="current">내 정보 수정</span>
+          <span class="current">중개사무소 정보 수정</span>
         </div>
       </div>
     </div>
@@ -39,7 +39,21 @@
              <div class="widget mt3">
                 <div class="agent-inner row">
                     <div class="agent-photo col-lg-12">
-                      <a href="#"><img src="/resources/assets/img/productinfo/agent.jpg" alt=""></a>
+                    	<c:if test="${partnerVO.fileNo != null}">
+	                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="">
+	                      <div class="">
+	                      	<button class="btn btn-outline-warning btn-sm">변경</button>
+	                      	<button class="btn btn-outline-danger btn-sm">삭제</button>
+	                      </div>
+                      </c:if>
+                      <c:if test="${partnerVO.fileNo == null}">
+                      	  <img id="defaultImage" src="/resources/assets/img/productinfo/agent.jpg" alt="">
+	                      <img id="imagePreview" src="#" alt="미리보기 이미지" style="max-width: 100%; height: auto; display: none;">	
+	                      <input type="file" id="fileInput" name="file" style="display: none;">
+	                      <div class="">
+	                      	<button id="uploadButton" class="btn btn-outline-info btn-sm">업로드</button>
+	                      </div>
+                      </c:if>
                     </div>
                     
                 </div>
@@ -47,42 +61,48 @@
           </div>
           <div class="col-lg-8 col-md-7 col-xs-12">
             <div class="my-address">
-              <h3 class="heading">My Account</h3>
-              <form>
+              <h3 class="heading">중개사무소 정보</h3>
+              <form method="post" action="/partner/update/${partnerVO.partnerNo}">
                 <div class="row">
                   <div class="col-lg-12 ">
                     <div class="form-group">
-                      <label>Your Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="John Deo">
+                      <label>상호명</label>
+                      <input type="text" name="compName" class="form-control" value="${partnerVO.compName}">
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label>Your Title</label>
-                      <input type="text" name="title" class="form-control" placeholder="Your Title">
+                      <label>주소</label>
+                      <input type="text" name="compAddress" class="form-control" value="${partnerVO.compAddress}">
                     </div>
                   </div>
                   <div class="col-lg-12 ">
                     <div class="form-group">
-                      <label>Phone</label>
-                       <input type="text" name="phone" class="form-control" placeholder="Phone">
+                      <label>중개등록번호</label>
+                       <input type="text" name="registNum" class="form-control" value="${partnerVO.registNum}">
                     </div>
                   </div>
                   <div class="col-lg-12 ">
                     <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" name="email" class="form-control" placeholder="Email">
+                      <label>사업자등록번호</label>
+                      <input type="text" name="compNum" class="form-control" value="${partnerVO.compNum}">
+                    </div>
+                  </div>
+                  <div class="col-lg-12 ">
+                    <div class="form-group">
+                      <label>대표번호</label>
+                      <input type="text" name="phone" class="form-control" value="${partnerVO.phone}">
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label>About Me</label>
-                      <textarea class="form-control" rows="5" name="message">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
+                      <label>소개글</label>
+                      <textarea class="form-control" rows="5" name="memo">${partnerVO.memo}</textarea>
                     </div>
                   </div>
                   <div class="col-lg-12">
-                    <div class="send-btn">
-                      <button type="submit" class="btn btn-common">Send Changes</button>
+                    <div class="send-btn float-right">
+                      <button type="submit" class="btn btn-success">수정하기</button>
                     </div>
                   </div>
                 </div>
@@ -95,6 +115,25 @@
     <!-- Ueser Section End -->
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
+  document.getElementById("uploadButton").addEventListener("click", function () {
+    document.getElementById("fileInput").click();
+  });
+
+  document.getElementById("fileInput").addEventListener("change", function () {
+    // 선택한 파일 이름 표시
+    var selectedFile = this.files[0];
+
+    // 선택한 이미지 파일의 미리보기 표시
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var imagePreview = document.getElementById("imagePreview");
+      imagePreview.src = e.target.result;
+      imagePreview.style.display = "block";
+      var defaultImage = document.getElementById("defaultImage");
+      defaultImage.style.display = "none";
+    };
+    reader.readAsDataURL(selectedFile);
+  });
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

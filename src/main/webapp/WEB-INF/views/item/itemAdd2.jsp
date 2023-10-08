@@ -152,6 +152,9 @@ thead tr:nth-child(3) th {
   }
 
 }	
+.fileBox {
+	height:300px;
+}
 </style>
 <jsp:include page="../head.jsp"></jsp:include>
 </head>
@@ -474,14 +477,14 @@ thead tr:nth-child(3) th {
                 			 <h3 class="heading">사진 업로드</h3>
 							<div  class="row">
 								<div class="col-sm">
-									<div class="form-group col-lg-12">
+									<!-- <div class="form-group col-lg-12">
 										<div class="">
 											<button type="button" id="plusFile" class="btn btn-sm btn-success">파일 추가</button>
 										</div>
-									</div>
+									</div> -->
 									<div class="form-group row" id="fileContainer">
 										<div class="fileBox col-lg-4">	 
-											 <label for="file1" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+											<img id="imagePreview1" src="#" alt="미리보기 이미지" style="max-width: 100%; height: 300px; display: none;">	
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
 										            <input name="file1" type="file" class="custom-file-input btn-file" id="file1" aria-describedby="fileInputAddon">
@@ -490,7 +493,7 @@ thead tr:nth-child(3) th {
 										    </div>
 										</div>
 										<div class="fileBox col-lg-4">	 
-											 <label for="file2" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+											<img id="imagePreview2" src="#" alt="미리보기 이미지" style="max-width: 100%; height: 300px; display: none;">	
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
 										            <input name="file2" type="file" class="custom-file-input btn-file" id="file2" aria-describedby="fileInputAddon">
@@ -499,7 +502,7 @@ thead tr:nth-child(3) th {
 										    </div>
 										</div>
 										<div class="fileBox col-lg-4">	 
-											 <label for="file3" style="width:250px; height:100px; border:1px solid #ccc;"></label>
+											<img id="imagePreview3" src="#" alt="미리보기 이미지" style="max-width: 100%; height: 300px; display: none;">	
         									 <div class="fileinput input-group">
 										        <div class="custom-file">
 										            <input name="file3" type="file" class="custom-file-input btn-file" id="file3" aria-describedby="fileInputAddon">
@@ -512,7 +515,7 @@ thead tr:nth-child(3) th {
 							</div>
 						</section>
               		  <div>
-                	<button class="btn btn-success" type="submit">등록</button>
+                	<button class="btn btn-success float-right" type="submit">등록</button>
                 </div>
               </form>
             </div>
@@ -608,14 +611,14 @@ moveInAtNCheckbox.addEventListener('change', function () {
 });
 
 // "관리비" 입력란 요소 가져오기
-var manageAtFeeYCheckbox = document.getElementById("manageFeeAtY");
-var manageAtFeeNCheckbox = document.getElementById("manageFeeAtN");
+var manageFeeAtYCheckbox = document.getElementById("manageFeeAtY");
+var manageFeeAtNCheckbox = document.getElementById("manageFeeAtN");
 var manageFeeInput = document.querySelector('input[name="manageFee"]');
 
 // "있음" 체크박스 상태 변경 시 이벤트 처리
-manageAtFeeYCheckbox.addEventListener('change', function () {
+manageFeeAtYCheckbox.addEventListener('change', function () {
     // "있음" 체크박스가 선택되면 "관리비" 입력란 활성화
-    if (manageAtFeeYCheckbox.checked) {
+    if (manageFeeAtYCheckbox.checked) {
         manageFeeInput.removeAttribute('readonly');
     } else {
         // "있음" 체크박스가 선택 해제되면 "관리비" 입력란 비활성화

@@ -19,6 +19,8 @@ public class PartnerVO extends Pager{
 	private Date registDate;
 	private Date updateDate;
 	private String useAt;
+	private String memo;
+	private Long fileNo;
 	
 	public long getPartnerNo() {
 		return partnerNo;
@@ -97,5 +99,17 @@ public class PartnerVO extends Pager{
 	}
 	public void setUseAt(String useAt) {
 		this.useAt = useAt;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+	public Long getFileNo() {
+		return fileNo;
+	}
+	public void setFileNo(Long fileNo) {
+		this.fileNo = fileNo;
 	}
 }

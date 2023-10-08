@@ -9,6 +9,7 @@
 <link href="vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
 <!-- Morris Charts CSS -->
 <link href="vendors/morris.js/morris.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 	<jsp:include page="nav.jsp"></jsp:include>
@@ -17,7 +18,7 @@
     <div class="hk-pg-wrapper">
 		<!-- Container -->
 		<div class="container mt-xl-50 mt-sm-30 mt-15">
-			<!-- Row -->
+			<!-- Row -->			
                <div class="row">
                    <div class="col-xl-12">
 					<div class="hk-row">
@@ -25,18 +26,21 @@
 							<div class="card-group hk-dash-type-2">
 								<div class="card card-sm">
 									<div class="card-body">
-										<div class="d-flex justify-content-between mb-5">
-											<div>
-												<span class="d-block font-15 text-dark font-weight-500">일반회원</span>
+										<c:forEach var="item" items="${userList}">
+											<div class="d-flex justify-content-between mb-5">										
+												<div>
+													<span class="d-block font-15 text-dark font-weight-500">일반회원</span>
+												</div>
+												<div>
+													
+													<span class="text-danger font-14 font-weight-500">${item.countUser}</span>
+												</div>
 											</div>
 											<div>
-												<span class="text-danger font-14 font-weight-500">-15%</span>
+												<span class="d-block display-4 text-dark mb-5">${item.countUser}</span>
+												<small class="d-block">당일 신규 가입 회원(명)</small>
 											</div>
-										</div>
-										<div>
-											<span class="d-block display-4 text-dark mb-5">18M</span>
-											<small class="d-block">당일 신규 가입 회원(명)</small>
-										</div>
+										</c:forEach>
 									</div>
 								</div>
 							
@@ -47,11 +51,11 @@
 												<span class="d-block font-15 text-dark font-weight-500">부동산회원</span>
 											</div>
 											<div>
-												<span class="text-danger font-14 font-weight-500">-15.5%</span>
+												<span class="text-danger font-14 font-weight-500">${admin.countPartner}</span>
 											</div>
 										</div>
 										<div>
-											<span class="d-block display-4 text-dark mb-5"><span class="counter-anim">468,856</span></span>
+											<span class="d-block display-4 text-dark mb-5"><span class="counter-anim">${admin.countPartner}</span></span>
 											<small class="d-block">당일 신규 가입 회원(개)</small>
 										</div>
 									</div>
@@ -64,11 +68,11 @@
 												<span class="d-block font-15 text-dark font-weight-500">매물</span>
 											</div>
 											<div>
-												<span class="text-warning font-14 font-weight-500">-2.8%</span>
+												<span class="text-warning font-14 font-weight-500">TEST</span>
 											</div>
 										</div>
 										<div>
-											<span class="d-block display-4 text-dark mb-5">73</span>
+											<span class="d-block display-4 text-dark mb-5">${admin.countItem}</span>
 											<small class="d-block">당일 등록된 매물(건)</small>
 										</div>
 									</div>
@@ -81,11 +85,11 @@
 												<span class="d-block font-15 text-dark font-weight-500">신고</span>
 											</div>
 											<div>
-												<span class="text-danger font-14 font-weight-500">-75%</span>
+												<span class="text-danger font-14 font-weight-500">${admin.countFake}</span>
 											</div>
 										</div>
 										<div>
-											<span class="d-block display-4 text-dark mb-5">48:65</span>
+											<span class="d-block display-4 text-dark mb-5">${admin.countFake}</span>
 											<small class="d-block">당일 신고(건)</small>
 										</div>
 									</div>

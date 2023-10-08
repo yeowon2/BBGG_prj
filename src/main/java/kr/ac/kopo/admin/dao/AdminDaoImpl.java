@@ -17,6 +17,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Autowired
 	SqlSession sql;
 
+	
 	@Override
 	public List<UserVO> userList(UserVO userVO) {
 		return sql.selectList("admin.selectUserList", userVO);
@@ -36,5 +37,24 @@ public class AdminDaoImpl implements AdminDao {
 	public List<FakeVO> fakeList(FakeVO fakeVO) {
 		return sql.selectList("admin.selectFakeList", fakeVO);
 	}
-
+	
+	@Override
+	public int countUser(UserVO userVO) {
+		return sql.selectOne("admin.countUser", userVO);
+	}
+	
+	@Override
+	public int countPartner(PartnerVO partnerVO) {
+		return sql.selectOne("admin.countPartner", partnerVO);
+	}
+	
+	@Override
+	public int countItem(ItemVO itemVO) {
+		return sql.selectOne("admin.countItem", itemVO);
+	}
+	
+	@Override
+	public int countFake(FakeVO fakeVO) {
+		return sql.selectOne("admin.countFake", fakeVO);
+	}
 }

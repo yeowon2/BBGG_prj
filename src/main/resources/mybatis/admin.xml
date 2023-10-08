@@ -3,31 +3,31 @@
 
 <mapper namespace="admin">
 	<sql id="where">
-		WHERE DATE_FORMAT(regist_date, "%Y-%m-%d") = CURDATE()
+		WHERE DATE_FORMAT(regist_date, '%Y-%m-%d') = CURDATE()
 	</sql>
 	
 	<select id="countUser" resultType="Integer">
 		SELECT COUNT(*)
-		FROM tbl_user tu
-		(<include refid="where"></include>)
+		FROM tbl_user
+		<include refid="where"></include>
 	</select>
 	
 	<select id="countPartner" resultType="Integer">
 		SELECT COUNT(*)
-		FROM tbl_partner tp
-		(<include refid="where"></include>)
+		FROM tbl_partner
+		<include refid="where"></include>
 	</select>
 	
 	<select id="countItem" resultType="Integer">
 		SELECT COUNT(*)
-		FROM tbl_item ti
-		(<include refid="where"></include>)
+		FROM tbl_item
+		<include refid="where"></include>
 	</select>
 	
 	<select id="countFake" resultType="Integer">
 		SELECT COUNT(*)
-		FROM tbl_fake tf  
-		(<include refid="where"></include>)
+		FROM tbl_fake  
+		<include refid="where"></include>
 	</select>
 
 	<select id="selectUserList" resultType="UserVO">

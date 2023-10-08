@@ -10,11 +10,8 @@ import kr.ac.kopo.user.web.UserVO;
 public interface AdminService {
 	
 	List<UserVO> userList(UserVO userVO);
-	
-	List<PartnerVO> partnerList(PartnerVO partnerVO);
-	
+	List<PartnerVO> partnerList(PartnerVO partnerVO);	
 	List<ItemVO> itemList(ItemVO itemVO);
-
 	List<FakeVO> fakeList(FakeVO fakeVO);
 
 }

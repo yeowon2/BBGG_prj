@@ -13,4 +13,9 @@ public interface AdminDao {
 	List<PartnerVO> partnerList(PartnerVO partnerVO);
 	List<ItemVO> itemList(ItemVO itemVO);
 	List<FakeVO> fakeList(FakeVO fakeVO);
+	
+	int countUser(UserVO userVO);
+	int countPartner(PartnerVO partnerVO);
+	int countItem(ItemVO itemVO);
+	int countFake(FakeVO fakeVO);
 }

@@ -21,5 +21,7 @@ public interface PartnerService {
 	PartnerVO detail(Long partnerNo);
 
 	Map<String, List> getRespCount(Long partnerNo);
+	
+	Map<String, Integer> getItemCount(Long partnerNo);
 
 }

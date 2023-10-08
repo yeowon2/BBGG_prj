@@ -75,6 +75,7 @@
 			FROM tbl_partner tp JOIN tbl_item ti ON (tp.partner_no = ti.partner_no)
 			WHERE ti.item_no = #{itemNo}
 	</select> 
+
 	
 	<update id="update">
 		UPDATE tbl_partner
@@ -134,5 +135,21 @@
 		ON date_list.date = tn_count.date
 		ORDER BY date_list.date;
 	</select>
+	
+	<select id="itemWaitCount" resultType="integer">
+		SELECT COUNT(*)
+		FROM tbl_item ti 
+		WHERE use_at = 'Y'
+		AND partner_no = #{partnerNo}
+	</select>
+	
+	
+	<select id="itemCompCount" resultType="integer">
+		SELECT COUNT(*)
+		FROM tbl_item ti 
+		WHERE use_at = 'C'
+		AND partner_no = #{partnerNo}
+	</select>
+
 
 </mapper>

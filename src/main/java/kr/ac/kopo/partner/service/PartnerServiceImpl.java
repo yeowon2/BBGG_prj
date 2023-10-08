@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.kopo.file.FileDaoImpl;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.dao.PartnerDao;
 import kr.ac.kopo.partner.web.PartnerVO;
@@ -14,6 +17,8 @@ import kr.ac.kopo.partner.web.RespVO;
 
 @Service
 public class PartnerServiceImpl implements PartnerService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PartnerServiceImpl.class);
 
 	@Autowired
 	PartnerDao dao;
@@ -58,5 +63,20 @@ public class PartnerServiceImpl implements PartnerService {
 		result.put("respWaitCount", respWaitCount);
 		result.put("respCompCount", respCompCount);
 		return result;
+	}
+
+	@Override
+	public Map<String, Integer> getItemCount(Long partnerNo) {
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		int itemWaitCount = dao.getItemWaitCount(partnerNo);
+		int itemCompCount = dao.getItemCompCount(partnerNo);
+		logger.info("잔여매물 ={}", itemWaitCount);
+		logger.info("거래완료 ={}", itemCompCount);
+		result.put("itemWaitCount" ,itemWaitCount);
+		result.put("itemCompCount" ,itemCompCount);
+		
+		return result;
+		
+		
 	}
 }

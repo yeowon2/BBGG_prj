@@ -26,5 +26,9 @@ public interface PartnerDao {
 	List<RespVO> getRespWaitCount(Long partnerNo);
 
 	List<RespVO> getRespCompCount(Long partnerNo);
+	
+	int getItemWaitCount(Long partnerNo);
+	
+	int getItemCompCount(Long partnerNo);
 
 }

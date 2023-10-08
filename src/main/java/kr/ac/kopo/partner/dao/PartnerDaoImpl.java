@@ -30,8 +30,8 @@ public class PartnerDaoImpl implements PartnerDao {
 	}
 
 	@Override
-	public PartnerVO select(Long partnerVO) {
-		return sql.selectOne("partner.select", partnerVO);
+	public PartnerVO select(Long partnerNo) {
+		return sql.selectOne("partner.select", partnerNo);
 	}
 
 	@Override
@@ -63,5 +63,19 @@ public class PartnerDaoImpl implements PartnerDao {
 	public List<RespVO> getRespCompCount(Long partnerNo) {
 		return sql.selectList("partner.respCompCount", partnerNo);
 	}
+
+	@Override
+	public int getItemWaitCount(Long partnerNo) {
+		return sql.selectOne("partner.itemWaitCount", partnerNo);
+	}
+
+	@Override
+	public int getItemCompCount(Long partnerNo) {
+		return sql.selectOne("partner.itemCompCount", partnerNo);
+	}
+	
+	
+	
+	
 
 }

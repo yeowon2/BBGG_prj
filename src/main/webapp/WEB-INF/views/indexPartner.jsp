@@ -71,7 +71,7 @@
 												<span class="d-10 bg-green rounded-circle d-inline-block"></span><span style="font-weight:bold;">잔여 매물</span>
 											</div>
 										</div>
-										<div id="e_chart_2" class="echart" style="height:291px;"></div>
+										<div id="itemChart" class="echart" style="height:291px;"></div>
 									</div>
 								</div>
 							</div>
@@ -147,23 +147,7 @@
 												<span class="d-10 bg-green-light-2 rounded-circle d-inline-block"></span><span style="font-weight:bold;">응답 완료</span>
 											</div>
 										</div>
-										<!--<div id="flot_line_chart_moving" class="" style="height:234px;"></div>-->
 										<div id="e_chart_5" class="echart" style="height:345px;"></div>
-										<!-- <div class="row mt-20 text-center">
-											<div class="col-4">
-												<span class="d-block text-capitalize">Weekly Users</span>
-												<span class="d-block text-dark font-weight-500 font-20">324,222</span>
-											</div>
-											<div class="col-4">
-												<span class="d-block text-capitalize">Monthly Users</span>
-												<span class="d-block text-dark font-weight-500 font-20">123,432</span>
-											</div>
-											<div class="col-4">
-												<span class="d-block text-capitalize">Trend</span>
-												<span class="d-block">
-												<i class="zmdi zmdi-trending-up text-success font-24"></i>
-											</span>
-											</div> -->
 										</div>
 									</div>
 								</div>
@@ -189,7 +173,7 @@
       <!-- EChartJS JavaScript -->
     <script src="/resources/vendors/echarts/dist/echarts-en.min.js"></script>
    <script src="/resources/dist/js/barcharts-data2.js"></script> 
-    <script src="/resources/dist/js/piecharts-data.js"></script>
+    <script src="/resources/dist/js/piecharts-data2.js"></script>
     
   </body>
 </html>

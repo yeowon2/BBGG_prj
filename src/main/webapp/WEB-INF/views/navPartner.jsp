@@ -82,7 +82,7 @@
                   마이페이지 
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
+                  <a class="dropdown-item" href="/partner/myPage">내 정보 수정</a>
                   <a class="dropdown-item" href="/note/receiveList/${loginPartnerVO.partnerNo}">받은 쪽지함</a>
                 </div>
               </li>

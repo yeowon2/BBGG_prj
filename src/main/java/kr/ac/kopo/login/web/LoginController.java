@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.login.service.LoginService;
@@ -66,7 +67,37 @@ public class LoginController {
 	            model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
 	            return "redirect:/login";
 	        }
+	    }
+		
+	}
+	
+	@RequestMapping(value = "/kakaoLogin")
+	public String kakaoMember(@ModelAttribute UserVO userVO, HttpServletRequest request, Model model, HttpSession session) {
+		// userVO에 값이 있는지 확인
+	    if (userVO != null && userVO.getUserId() != null && !userVO.getUserId().isEmpty()) {
+	        // 값이 있다면 로그인을 수행
+	        UserVO loginVO = loginService.actionLogin(userVO);
+	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().isEmpty()) {
+	            session.setAttribute("loginVO", loginVO);
+	            return "redirect:/";
+	        } else {
+	            model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
+	            return "redirect:/login";
+	        }
 	    } 
+	    else {
+	        // 값이 없다면 회원가입을 수행
+	        UserVO kakaovo = loginService.actionLogin(userVO);
+	        if (kakaovo.getUserId() == null || kakaovo.getUserId().isEmpty()) {
+	        	kakaovo.setUserId(kakaovo.getUserId());
+				kakaovo.setUserPw("");
+				kakaovo.setUserName("kakao가입자" + kakaovo.getUserNo());
+				kakaovo.setPhone("kakao가입자" + kakaovo.getUserNo());
+				return "redirect:/";
+	        }
+	        session.setAttribute("kakaovo", kakaovo);
+	        return "redirect:/";
+	    }
 	}
 
 	//로그아웃 처리

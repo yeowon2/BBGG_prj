@@ -43,19 +43,19 @@
 
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price, f.*
+		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price<!-- , f.* -->
 		FROM tbl_item i 
 		LEFT JOIN tbl_lease l ON i.item_no = l.item_no 
 		LEFT JOIN tbl_month m ON i.item_no = m.item_no
-		LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
+		<!-- LEFT JOIN tbl_item_file f ON i.item_no = f.item_no -->
 		<where>
 			<if test="search != null and !search.equals('')">
 				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
-				AND f.file_no = (
+				<!-- AND f.file_no = (
 				    SELECT MIN(file_no)
 				    FROM tbl_item_file
 				    WHERE item_no = i.item_no
-				)
+				) -->
 				<if test="itemType != null and !itemType.equals('')">
 					AND i.item_type LIKE #{itemType}
 				</if>
@@ -277,6 +277,29 @@
 			, item_no
 		FROM tbl_item_file
 		WHERE item_no = #{itemNo}
+	</select>
+	
+	<select id="selectRecentList" resultMap="ItemMap">
+		SELECT 
+		    ti.item_no,
+		    ti.lease_or_month,
+		    ti.address2,
+		    ti.address,
+		    ti.item_size,
+		    ti.item_count,
+		    ti.bath_at,
+		    CASE 
+		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
+		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
+		        ELSE NULL
+		    END AS price,
+		    tm.deposit_fee
+		FROM tbl_item ti
+		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		WHERE ti.use_at = 'Y'
+		ORDER BY ti.regist_date DESC
+		LIMIT 6
 	</select>
 	
 </mapper>

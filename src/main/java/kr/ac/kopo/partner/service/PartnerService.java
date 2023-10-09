@@ -3,6 +3,7 @@ package kr.ac.kopo.partner.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 
@@ -14,7 +15,7 @@ public interface PartnerService {
 
 	PartnerVO select(Long partnerNo);
 
-	void update(PartnerVO partnerVO);
+	void update(PartnerVO partnerVO, FileVO fileVO);
 
 	void delete(Long partnerNo);
 

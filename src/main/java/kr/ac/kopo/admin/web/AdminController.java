@@ -1,6 +1,7 @@
 package kr.ac.kopo.admin.web;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ public class AdminController {
 	
 	@GetMapping("/admin")
 	public String admin(Model model, UserVO userVO, PartnerVO partnerVO, ItemVO itemVO, FakeVO fakeVO) {
+		
 		List<UserVO> userList = adminService.userList(userVO);
 		model.addAttribute("userList", userList);
 		
@@ -33,6 +35,14 @@ public class AdminController {
 		List<FakeVO> fakeList = adminService.fakeList(fakeVO);
 		model.addAttribute("fakeList", fakeList);
 		
+		model.addAttribute("userCount", adminService.userCount());
+		model.addAttribute("userYestdCount", adminService.userYestdCount());
+		model.addAttribute("partnerCount", adminService.partnerCount());
+		model.addAttribute("partnerYestdCount", adminService.partnerYestdCount());
+		model.addAttribute("itemCount", adminService.itemCount());
+		model.addAttribute("itemYestdCount", adminService.itemYestdCount());
+		model.addAttribute("fakeCount", adminService.fakeCount());
+		model.addAttribute("fakeYestdCount", adminService.fakeYestdCount());
 		return "/indexAdmin";
 	}
 }

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.partner.web.RespVO;
@@ -72,6 +73,11 @@ public class PartnerDaoImpl implements PartnerDao {
 	@Override
 	public int getItemCompCount(Long partnerNo) {
 		return sql.selectOne("partner.itemCompCount", partnerNo);
+	}
+
+	@Override
+	public FileVO selectFile(Long partnerNo) {
+		return sql.selectOne("partner.selectFile", partnerNo);
 	}
 	
 	

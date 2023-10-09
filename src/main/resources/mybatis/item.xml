@@ -279,4 +279,27 @@
 		WHERE item_no = #{itemNo}
 	</select>
 	
+	<select id="selectRecentList" resultMap="ItemMap">
+		SELECT 
+		    ti.item_no,
+		    ti.lease_or_month,
+		    ti.address2,
+		    ti.address,
+		    ti.item_size,
+		    ti.item_count,
+		    ti.bath_at,
+		    CASE 
+		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
+		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
+		        ELSE NULL
+		    END AS price,
+		    tm.deposit_fee
+		FROM tbl_item ti
+		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		WHERE ti.use_at = 'Y'
+		ORDER BY ti.regist_date DESC
+		LIMIT 6
+	</select>
+	
 </mapper>

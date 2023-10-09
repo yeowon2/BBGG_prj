@@ -7,4 +7,11 @@ public interface FileDao {
 	List<FileVO> selectFileList();
 
 	void insertFile(FileVO fileVO);
+
+	void insertPartnerFile(FileVO fileVO);
+
+	void updatePartnerFile(FileVO fileVO);
+	
+	FileVO selectItemFile(Long itemNo);
+
 }

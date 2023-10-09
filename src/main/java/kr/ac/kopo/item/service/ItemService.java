@@ -25,6 +25,8 @@ public interface ItemService {
 
 	String lomSelect(Long itemNo);
 
+	List<ItemVO> selectRecentList();
+
 	
 	
 

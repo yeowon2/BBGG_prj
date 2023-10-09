@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.ac.kopo.file.FileDao;
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
 import kr.ac.kopo.file.FileVO;
+import kr.ac.kopo.item.web.ItemController;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.user.web.UserVO;
@@ -31,6 +33,8 @@ public class PartnerController {
 	private final String path = "partner/";
 	
 	private final String fileStorePath = "D:/upload";
+	
+	private static final Logger logger = LoggerFactory.getLogger(PartnerController.class);
 	
 	@Autowired
 	PartnerService service;
@@ -125,28 +129,18 @@ public class PartnerController {
 	
 	
 	@PostMapping("/update/{partnerNo}")
-	public String update(@PathVariable Long partnerNo, @RequestParam("file") MultipartFile file) throws Exception {
+	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO, MultipartFile file) throws Exception {
 
+		if(file.isEmpty()) {
+			service.update(partnerVO, null);
+		}
 		//중개사무소 소개 사진  업로드 처리
 	    FileVO newFileVO = null;
 
 	    if (!file.isEmpty()) {
 	    	newFileVO = fileUtil.parseFileInfo(file, "PARTNER", fileStorePath);
 	    }
-	    //중개사무소 정보 조회
-	    PartnerVO partnerVO = service.select(partnerNo);
-	    FileVO currentFileVO = partnerVO.getFileVO();
-	    
-	    if(newFileVO != null) { 
-	    	//이미 업로드된 사진이 없다면 새로 추가
-	    	if(currentFileVO != null) {
-	    		newFileVO.setPartnerNo(partnerNo);
-	    		  service.update(partnerVO, newFileVO);
-	    	}
-	    	//있다면 새로운 사진으로 update하기
-	    		newFileVO.setPartnerNo(partnerNo);
-	    		service.update(partnerVO, currentFileVO);
-	    }
+	    service.update(partnerVO, newFileVO);
 	    
 		return "redirect:/partner/myPage";
 	}

@@ -88,5 +88,17 @@ public class ItemServiceImpl implements ItemService {
 		return dao.lomSelect(itemNo);
 	}
 
+	@Override
+	public List<ItemVO> selectRecentList() {
+		List<ItemVO> selectRecentList = dao.selectRecentList();
+		for (ItemVO itemVO : selectRecentList) {
+			Long itemNo = itemVO.getItemNo();
+			FileVO fileVO = fileDao.selectItemFile(itemNo);
+
+			itemVO.setFileVO(fileVO);
+		}
+		return selectRecentList;
+	}
+
 	
 }

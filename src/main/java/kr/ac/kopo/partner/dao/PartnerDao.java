@@ -3,6 +3,7 @@ package kr.ac.kopo.partner.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.partner.web.RespVO;
@@ -30,5 +31,7 @@ public interface PartnerDao {
 	int getItemWaitCount(Long partnerNo);
 	
 	int getItemCompCount(Long partnerNo);
+
+	FileVO selectFile(Long partnerNo);
 
 }

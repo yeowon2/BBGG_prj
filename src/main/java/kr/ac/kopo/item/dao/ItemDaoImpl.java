@@ -113,5 +113,10 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.selectList("item.selectFile", itemNo);
 	}
 
+	@Override
+	public List<ItemVO> selectRecentList() {
+		return sql.selectList("item.selectRecentList");
+	}
+
 	
 }

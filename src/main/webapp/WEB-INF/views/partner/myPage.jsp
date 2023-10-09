@@ -35,36 +35,36 @@
     <section class="user-page section-padding">
 	    <div class="container">
 	      <div class="row">
-          <div class="col-lg-4 col-md-5 col-xs-12">
-             <div class="widget mt3">
-                <div class="agent-inner row">
-                    <div class="agent-photo col-lg-12">
-                    	<c:if test="${partnerVO.fileNo != null}">
-	                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="">
-	                      <div class="">
-	                      	<button class="btn btn-outline-warning btn-sm">변경</button>
-	                      	<button class="btn btn-outline-danger btn-sm">삭제</button>
-	                      </div>
-                      </c:if>
-                      <c:if test="${partnerVO.fileNo == null}">
-                      	  <img id="defaultImage" src="/resources/assets/img/productinfo/agent.jpg" alt="">
-	                      <img id="imagePreview" src="#" alt="미리보기 이미지" style="max-width: 100%; height: auto; display: none;">	
-	                      <input type="file" id="fileInput" name="file" style="display: none;">
-	                      <div class="">
-	                      	<button id="uploadButton" class="btn btn-outline-info btn-sm">업로드</button>
-	                      </div>
-                      </c:if>
-                    </div>
-                    
-                </div>
-              </div>
-          </div>
-          <div class="col-lg-8 col-md-7 col-xs-12">
+          
+          <div class="col-lg-12 col-md-7 col-xs-12">
             <div class="my-address">
               <h3 class="heading">중개사무소 정보</h3>
-              <form method="post" action="/partner/update/${partnerVO.partnerNo}">
+              <form method="post" action="/partner/update/${partnerVO.partnerNo}" enctype="multipart/form-data">
                 <div class="row">
-                  <div class="col-lg-12 ">
+                  <div class="col-lg-4 col-md-5 col-xs-12 mb-10">
+		             <div class="widget mt3">
+		                    <div class="agent-photo col-lg-12">
+		                    	<label>대표이미지</label>
+		                    	<c:if test="${partnerVO.fileVO != null}">
+			                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="">
+			                       <input type="file" id="fileInput" name="file" style="display:none;">
+			                      <div class="">
+			                      	<button id="changeBtn" class="btn btn-outline-warning btn-sm" type="button">변경</button>
+			                      	<button id="deleteBtn" class="btn btn-outline-danger btn-sm" type="button">삭제</button>
+			                      </div>
+		                      </c:if>
+		                      <c:if test="${partnerVO.fileVO == null}">
+		                      	  <img id="defaultImage" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+			                      <img id="imagePreview" src="#" alt="미리보기 이미지" style="max-width: 100%; height: auto; display: none;">	
+			                      <input type="file" id="fileInput" name="file" style="display:none;">
+			                      <div class="">
+			                      	<button id="uploadBtn" class="btn btn-outline-info btn-sm">업로드</button>
+			                      </div>
+		                      </c:if>
+		                    </div>
+		              </div>
+		          </div>
+                  <div class="col-lg-12 mt-10">
                     <div class="form-group">
                       <label>상호명</label>
                       <input type="text" name="compName" class="form-control" value="${partnerVO.compName}">
@@ -115,25 +115,28 @@
     <!-- Ueser Section End -->
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
-  document.getElementById("uploadButton").addEventListener("click", function () {
-    document.getElementById("fileInput").click();
-  });
+<!-- 이미지 미리보기 스크립트를 JSTL 코드 밖으로 이동 -->
+  window.onload = function () {
+    document.getElementById("uploadBtn").addEventListener("click", function () {
+      document.getElementById("fileInput").click();
+    });
 
-  document.getElementById("fileInput").addEventListener("change", function () {
-    // 선택한 파일 이름 표시
-    var selectedFile = this.files[0];
+    document.getElementById("fileInput").addEventListener("change", function () {
+      
+    	var selectedFile = this.files[0];
 
-    // 선택한 이미지 파일의 미리보기 표시
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var imagePreview = document.getElementById("imagePreview");
-      imagePreview.src = e.target.result;
-      imagePreview.style.display = "block";
-      var defaultImage = document.getElementById("defaultImage");
-      defaultImage.style.display = "none";
-    };
-    reader.readAsDataURL(selectedFile);
-  });
+      // 선택한 이미지 파일의 미리보기 표시
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var imagePreview = document.getElementById("imagePreview");
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = "block";
+        var defaultImage = document.getElementById("defaultImage");
+        defaultImage.style.display = "none";
+      };
+      reader.readAsDataURL(selectedFile);
+    });
+  };
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

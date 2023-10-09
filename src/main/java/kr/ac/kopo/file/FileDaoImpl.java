@@ -27,4 +27,21 @@ public class FileDaoImpl implements FileDao {
 		sql.insert("file.insertFile", fileVO);
 	}
 
+	@Override
+	public void insertPartnerFile(FileVO fileVO) {
+		sql.insert("file.insertPartnerFile", fileVO);
+		
+	}
+
+	@Override
+	public void updatePartnerFile(FileVO fileVO) {
+		sql.update("file.updatePartnerFile", fileVO);
+	}
+
+	@Override
+	public FileVO selectItemFile(Long itemNo) {
+		return sql.selectOne("file.selectItemFile", itemNo);
+	}
+
+
 }

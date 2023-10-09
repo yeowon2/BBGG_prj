@@ -57,6 +57,8 @@ public class ItemVO {
 	private Long file_size;			//첨부파일 고유번호
 	
 	private List<FileVO> fileVOList;
+	
+	private FileVO fileVO;
 
 	public Long getItemNo() {
 		return itemNo;
@@ -368,5 +370,13 @@ public class ItemVO {
 
 	public void setFile_size(Long file_size) {
 		this.file_size = file_size;
+	}
+
+	public FileVO getFileVO() {
+		return fileVO;
+	}
+
+	public void setFileVO(FileVO fileVO) {
+		this.fileVO = fileVO;
 	}
 }

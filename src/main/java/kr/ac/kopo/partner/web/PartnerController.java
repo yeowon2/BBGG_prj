@@ -167,12 +167,16 @@ public class PartnerController {
 	
 	@GetMapping("/info/{partnerNo}")
 	public String partnerInfo(@PathVariable Long partnerNo, Model model) {
+		
 		//중개사무소 정보
 		PartnerVO partnerVO = service.select(partnerNo);
 		model.addAttribute(partnerVO);
 		
 		//중개사무소의 모든 방
 		List<ItemVO> itemList = service.selectItemList(partnerNo);
+		for (ItemVO itemVO : itemList) {
+			logger.info("price = {}", itemVO.getPrice());
+		}
 		model.addAttribute("itemList", itemList);
 		
 		return path + "partnerInfo";

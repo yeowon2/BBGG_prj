@@ -90,8 +90,6 @@ public class PartnerServiceImpl implements PartnerService {
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		int itemWaitCount = dao.getItemWaitCount(partnerNo);
 		int itemCompCount = dao.getItemCompCount(partnerNo);
-		logger.info("잔여매물 ={}", itemWaitCount);
-		logger.info("거래완료 ={}", itemCompCount);
 		result.put("itemWaitCount", itemWaitCount);
 		result.put("itemCompCount", itemCompCount);
 

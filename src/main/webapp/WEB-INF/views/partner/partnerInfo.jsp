@@ -141,10 +141,10 @@
 	                        <div class="property-price">
 	                          	<c:choose>
 	                          		<c:when test="${item.depositFee == null}">
-		                     		   <span>전세 ${item.leasePrice}</span>
+		                     		   <span>전세 ${item.price}</span>
                         			</c:when>
                      				<c:otherwise>
-		                     		   <span>월세 ${item.depositFee} / ${item.monthPrice}</span>
+		                     		   <span>월세 ${item.depositFee} / ${item.price}</span>
                         			</c:otherwise>
 	                          	</c:choose>
 	                          </div>

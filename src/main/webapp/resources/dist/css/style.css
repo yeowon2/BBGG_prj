@@ -159,11 +159,11 @@ a {
   transition: color 0.2s ease; }
   a:hover {
     text-decoration: none;
-    color: #f83f37; }
+    color: #216928; }
   a:focus {
     text-decoration: none;
     outline: none;
-    color: #f83f37; }
+    color: #216928; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #273238;
@@ -15256,7 +15256,7 @@ Project:	scrooge
   height: calc(2.25rem + 4px); }
   .form-control:focus, .dd-handle:focus {
     box-shadow: none;
-    border-color: #f83f37; }
+    border-color: #216928; }
   .form-control.square-input, .square-input.dd-handle {
     border-radius: 0; }
   .form-control:disabled, .dd-handle:disabled {

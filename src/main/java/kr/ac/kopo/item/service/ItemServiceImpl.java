@@ -39,7 +39,6 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void itemAdd(ItemVO itemVO, List<FileVO> fileVOList) {
 		
-		
 		 if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
 			 itemVO.setLeaseOrMonth("lease"); 
 		 } else if(itemVO.getLeasePrice() == null){ 

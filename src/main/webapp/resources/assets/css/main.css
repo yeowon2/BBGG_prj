@@ -700,9 +700,12 @@ a.back-to-top:hover, a.back-to-top:focus {
 .navbar-expand-lg .navbar-nav .nav-link {
   color: #000;
   padding: 0 17px;
+  font-size: 17px;
   font-weight: 700;
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   line-height: 40px;
   text-transform: uppercase;
   background: transparent;
@@ -1414,7 +1417,7 @@ select.classic {
 
 .grid-layout .property-main {
   display: inline-block;
-  width: 47%;
+  width: 30%;
   float: left;
   margin-left: 1.5%;
   margin-right: 1.5%;

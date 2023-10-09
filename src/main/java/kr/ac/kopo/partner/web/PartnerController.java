@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
 import kr.ac.kopo.file.FileVO;
-import kr.ac.kopo.item.web.ItemController;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.user.web.UserVO;
@@ -165,5 +164,19 @@ public class PartnerController {
 		
 		return path + "myPage";
 	}
+	
+	@GetMapping("/info/{partnerNo}")
+	public String partnerInfo(@PathVariable Long partnerNo, Model model) {
+		//중개사무소 정보
+		PartnerVO partnerVO = service.select(partnerNo);
+		model.addAttribute(partnerVO);
+		
+		//중개사무소의 모든 방
+		List<ItemVO> itemList = service.selectItemList(partnerNo);
+		model.addAttribute("itemList", itemList);
+		
+		return path + "partnerInfo";
+	}
+	
 	
 }

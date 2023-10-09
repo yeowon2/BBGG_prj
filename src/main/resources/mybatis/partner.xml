@@ -57,10 +57,12 @@
 			partner_no
 			, comp_name
 			, comp_address
+			, comp_num
 			, partner_name
 			, regist_num
 			, phone
 			, memo
+			, regist_date
 		FROM  tbl_partner
 		WHERE partner_no = #{partnerNo}
 	</select>
@@ -166,6 +168,30 @@
 			, partner_no
 		FROM tbl_partner_file
 		WHERE partner_no = #{partnerNo}
+	</select>
+	
+	<select id="selectItemList" resultType="ItemVO">
+		SELECT 
+		    ti.item_no,
+		    ti.lease_or_month,
+		    ti.address2,
+		    ti.address,
+		    ti.item_size,
+		    ti.item_count,
+		    ti.bath_at,
+		    CASE 
+		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
+		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
+		        ELSE NULL
+		    END AS price,
+		    tm.deposit_fee
+		FROM tbl_item ti
+		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		WHERE ti.use_at = 'Y' 
+		AND ti.partner_no = #{partnerNo}
+		ORDER BY ti.regist_date DESC
+		LIMIT 6
 	</select>
 
 </mapper>

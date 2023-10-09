@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.file.FileVO;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.partner.web.RespVO;
@@ -78,6 +79,11 @@ public class PartnerDaoImpl implements PartnerDao {
 	@Override
 	public FileVO selectFile(Long partnerNo) {
 		return sql.selectOne("partner.selectFile", partnerNo);
+	}
+
+	@Override
+	public List<ItemVO> selectItemList(Long partnerNo) {
+		return sql.selectList("partner.selectItemList", partnerNo);
 	}
 	
 	

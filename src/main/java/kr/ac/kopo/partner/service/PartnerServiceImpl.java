@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.ac.kopo.file.FileDao;
 import kr.ac.kopo.file.FileDaoImpl;
 import kr.ac.kopo.file.FileVO;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.dao.PartnerDao;
 import kr.ac.kopo.partner.web.PartnerVO;
@@ -96,5 +97,10 @@ public class PartnerServiceImpl implements PartnerService {
 
 		return result;
 
+	}
+
+	@Override
+	public List<ItemVO> selectItemList(Long partnerNo) {
+		return dao.selectItemList(partnerNo);
 	}
 }

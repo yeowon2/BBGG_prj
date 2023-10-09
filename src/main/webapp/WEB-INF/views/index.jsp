@@ -351,7 +351,7 @@
 	                    <div class="property-item">
 	                      <div class="item-thumb">
 	                        <a class="hover-effect" href="/itemDetail/${item.itemNo}">
-	                          <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+	                          <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt=""  style="height:200px;">
 	                        </a>
 	                      </div>
 	                      <div class="item-body">

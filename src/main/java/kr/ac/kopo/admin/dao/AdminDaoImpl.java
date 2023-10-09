@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
@@ -39,22 +40,42 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public int countUser(UserVO userVO) {
-		return sql.selectOne("admin.countUser", userVO);
+	public int countUser() {
+		return sql.selectOne("admin.countUser");
 	}
 	
 	@Override
-	public int countPartner(PartnerVO partnerVO) {
-		return sql.selectOne("admin.countPartner", partnerVO);
+	public int countUserYestd() {
+		return sql.selectOne("admin.countUserYestd");
 	}
 	
 	@Override
-	public int countItem(ItemVO itemVO) {
-		return sql.selectOne("admin.countItem", itemVO);
+	public int countPartner() {
+		return sql.selectOne("admin.countPartner");
 	}
 	
 	@Override
-	public int countFake(FakeVO fakeVO) {
-		return sql.selectOne("admin.countFake", fakeVO);
+	public int countPartnerYestd() {
+		return sql.selectOne("admin.countPartnerYestd");
+	}
+	
+	@Override
+	public int countItem() {
+		return sql.selectOne("admin.countItem");
+	}
+	
+	@Override
+	public int countItemYestd() {
+		return sql.selectOne("admin.countItemYestd");
+	}
+	
+	@Override
+	public int countFake() {
+		return sql.selectOne("admin.countFake");
+	}
+	
+	@Override
+	public int countFakeYestd() {
+		return sql.selectOne("admin.countFakeYestd");
 	}
 }

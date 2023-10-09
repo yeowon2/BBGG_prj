@@ -33,6 +33,8 @@ public interface ItemDao {
 
 	List<FileVO> selectFile(Long itemNo);
 
+	List<ItemVO> selectRecentList();
+
 	
 
 }

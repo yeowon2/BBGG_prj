@@ -2,6 +2,7 @@ package kr.ac.kopo.partner.web;
 
 import java.util.Date;
 
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.pager.Pager;
 
 public class PartnerVO extends Pager{
@@ -21,6 +22,7 @@ public class PartnerVO extends Pager{
 	private String useAt;
 	private String memo;
 	private Long fileNo;
+	private FileVO fileVO;
 	
 	public long getPartnerNo() {
 		return partnerNo;
@@ -111,5 +113,11 @@ public class PartnerVO extends Pager{
 	}
 	public void setFileNo(Long fileNo) {
 		this.fileNo = fileNo;
+	}
+	public FileVO getFileVO() {
+		return fileVO;
+	}
+	public void setFileVO(FileVO fileVO) {
+		this.fileVO = fileVO;
 	}
 }

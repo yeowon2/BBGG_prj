@@ -8,8 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import kr.ac.kopo.file.FileDao;
 import kr.ac.kopo.file.FileDaoImpl;
+import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.dao.PartnerDao;
 import kr.ac.kopo.partner.web.PartnerVO;
@@ -17,16 +20,19 @@ import kr.ac.kopo.partner.web.RespVO;
 
 @Service
 public class PartnerServiceImpl implements PartnerService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(PartnerServiceImpl.class);
 
 	@Autowired
 	PartnerDao dao;
-	
+
+	@Autowired
+	FileDao fileDao;
+
 	@Override
 	public List<PartnerVO> list(Pager pager) {
 		int total = dao.total(pager);
-		
+
 		return dao.list(pager);
 	}
 
@@ -37,12 +43,25 @@ public class PartnerServiceImpl implements PartnerService {
 
 	@Override
 	public PartnerVO select(Long partnerNo) {
-		return dao.select(partnerNo);
+		FileVO fileVO = dao.selectFile(partnerNo);
+		PartnerVO partnerVO = dao.select(partnerNo);
+		partnerVO.setFileVO(fileVO);
+		return partnerVO;
 	}
 
 	@Override
-	public void update(PartnerVO partnerVO) {
-		dao.update(partnerVO);
+	@Transactional
+	public void update(PartnerVO partnerVO, FileVO fileVO) {
+		if (fileVO == null) {
+			dao.update(partnerVO);
+			
+		} else if(fileVO != null) {
+			
+			dao.update(partnerVO);
+			long partnerNo = partnerVO.getPartnerNo();
+			fileVO.setPartnerNo(partnerNo);
+			fileDao.insertPartnerFile(fileVO);
+		}
 	}
 
 	@Override
@@ -72,11 +91,10 @@ public class PartnerServiceImpl implements PartnerService {
 		int itemCompCount = dao.getItemCompCount(partnerNo);
 		logger.info("잔여매물 ={}", itemWaitCount);
 		logger.info("거래완료 ={}", itemCompCount);
-		result.put("itemWaitCount" ,itemWaitCount);
-		result.put("itemCompCount" ,itemCompCount);
-		
+		result.put("itemWaitCount", itemWaitCount);
+		result.put("itemCompCount", itemCompCount);
+
 		return result;
-		
-		
+
 	}
 }

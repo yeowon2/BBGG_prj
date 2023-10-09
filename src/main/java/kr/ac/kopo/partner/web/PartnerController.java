@@ -1,13 +1,12 @@
 package kr.ac.kopo.partner.web;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,8 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import kr.ac.kopo.file.FileMngUtil;
+import kr.ac.kopo.file.FileService;
+import kr.ac.kopo.file.FileVO;
+import kr.ac.kopo.item.web.ItemController;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.user.web.UserVO;
@@ -27,8 +32,19 @@ public class PartnerController {
 
 	private final String path = "partner/";
 	
+	private final String fileStorePath = "D:/upload";
+	
+	private static final Logger logger = LoggerFactory.getLogger(PartnerController.class);
+	
 	@Autowired
 	PartnerService service;
+	
+	//파일 첨부에 필요한 Component
+	@Autowired
+    FileService fileService;
+    
+    @Autowired
+    FileMngUtil fileUtil;
 	
 	 @GetMapping("/getRespCount")
 	 @ResponseBody
@@ -112,12 +128,21 @@ public class PartnerController {
 	}
 	
 	
-	@GetMapping("/update/{partnerNo}")
-	public String update(@PathVariable Long partnerNo, Model model) {
-		PartnerVO partnerVO = service.select(partnerNo);
-		model.addAttribute("partnerVO", partnerVO);
-		
-		return path + "update";
+	@PostMapping("/update/{partnerNo}")
+	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO, MultipartFile file) throws Exception {
+
+		if(file.isEmpty()) {
+			service.update(partnerVO, null);
+		}
+		//중개사무소 소개 사진  업로드 처리
+	    FileVO newFileVO = null;
+
+	    if (!file.isEmpty()) {
+	    	newFileVO = fileUtil.parseFileInfo(file, "PARTNER", fileStorePath);
+	    }
+	    service.update(partnerVO, newFileVO);
+	    
+		return "redirect:/partner/myPage";
 	}
 	
 	
@@ -139,14 +164,6 @@ public class PartnerController {
 		model.addAttribute("partnerVO", partnerVO);
 		
 		return path + "myPage";
-	}
-	
-	@PostMapping("/update/{partnerNo}")
-	public String update(@PathVariable Long partnerNo, PartnerVO partnerVO) {
-		partnerVO.setPartnerNo(partnerNo);
-		service.update(partnerVO);
-		
-		return "redirect:/partner/myPage";
 	}
 	
 }

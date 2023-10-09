@@ -25,6 +25,9 @@ public class FileVO {
 	// 파일 생성일자
 	private Date registDate;
 
+	// 파일 수정일자
+	private Date updateDate;
+	
 	// 매물 고유번호
 	private Long itemNo;
 	
@@ -101,6 +104,14 @@ public class FileVO {
 
 	public void setPartnerNo(Long partnerNo) {
 		this.partnerNo = partnerNo;
+	}
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

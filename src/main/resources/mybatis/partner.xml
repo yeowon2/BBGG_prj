@@ -154,5 +154,18 @@
 		AND partner_no = #{partnerNo}
 	</select>
 
+	<select id="selectFile" resultType="FileVO">
+		SELECT 
+			file_no
+			, saved_name
+			, original_name
+			, file_path
+			, file_ext
+			, regist_date
+			, file_size
+			, partner_no
+		FROM tbl_partner_file
+		WHERE partner_no = #{partnerNo}
+	</select>
 
 </mapper>

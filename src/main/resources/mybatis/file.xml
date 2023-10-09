@@ -30,4 +30,47 @@
     	FROM tbl_item_file
     	ORDER BY regist_date DESC
     </select>
+    
+     <insert id="insertPartnerFile">
+        INSERT INTO tbl_partner_file
+        (
+            saved_name
+            , original_name
+            , file_path
+            , file_ext
+            , file_size
+            , regist_date
+            , partner_no
+        )
+        VALUES
+       (
+       	#{savedName}
+       	, #{originalName}
+       	, #{filePath}
+       	, #{fileExt}
+       	, #{fileSize}
+       	, NOW()
+       	, #{partnerNo}
+       )
+    </insert>
+    
+    <update id="updatePartnerFile">
+    	UPDATE tbl_partner_file
+    	SET 
+    		saved_name = #{savedName}
+    		, original_name = #{originalName}
+    		, file_path = #{filePath}
+    		, file_ext = #{fileExt}
+    		, file_size = #{fileSize}
+    		, update_date = NOW()
+    		
+   		WHERE partner_no = #{partnerNo}
+    </update>
+    
+    <select id="selectItemFile" resultType="FileVO">
+    	SELECT *
+			FROM tbl_item_file tif 
+			WHERE tif.item_no = #{itemNo}
+			LIMIT 1
+    </select>
 </mapper>

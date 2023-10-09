@@ -2,32 +2,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
-	<sql id="where">
+	<sql id="whereToday">
 		WHERE DATE_FORMAT(regist_date, '%Y-%m-%d') = CURDATE()
+	</sql>
+	
+	<sql id="whereYesterday">
+		WHERE DATE_FORMAT(regist_date, '%Y-%m-%d') = CURDATE() - INTERVAL 1 DAY
 	</sql>
 	
 	<select id="countUser" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_user
-		<include refid="where"></include>
+		<include refid="whereToday"></include>
+	</select>
+	
+	<select id="countUserYestd" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_user
+		<include refid="whereYesterday"></include>
 	</select>
 	
 	<select id="countPartner" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_partner
-		<include refid="where"></include>
+		<include refid="whereToday"></include>
 	</select>
 	
 	<select id="countItem" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_item
-		<include refid="where"></include>
+		<include refid="whereToday"></include>
 	</select>
 	
 	<select id="countFake" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_fake  
-		<include refid="where"></include>
+		<include refid="whereToday"></include>
 	</select>
 
 	<select id="selectUserList" resultType="UserVO">

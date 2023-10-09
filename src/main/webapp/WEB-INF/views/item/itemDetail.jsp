@@ -66,7 +66,15 @@
 				  <li class="col-lg-8">
 				  	<c:choose>
                        	<c:when test="${itemVO.depositFee == null}">
-	                        <h4>전세 ${itemVO.leasePrice}</h4>
+                       		<c:if test="${itemVO.leasePrice >= 10000 && LTM != 0 && LB != 0}">
+                       			<h4>전세 ${LB}억 ${LTM}</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.leasePrice >= 10000 && LB != 0 && LTM == 0}">
+                       			<h4>전세 ${LB}억</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.leasePrice < 10000 }">
+                       			<h4>전세 ${itemVO.leasePrice}</h4>
+                       		</c:if>
                        	</c:when>
                        	<c:otherwise>
 	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>

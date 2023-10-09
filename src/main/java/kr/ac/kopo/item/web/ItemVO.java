@@ -49,11 +49,11 @@ public class ItemVO {
 	private String search;			//검색
 	
 	private Long fileNo;			//첨부파일 고유번호
-	private String saved_name;			//첨부파일 고유번호
-	private String original_name;			//첨부파일 고유번호
-	private String file_path;			//첨부파일 고유번호
-	private String file_ext;			//첨부파일 고유번호
-	private Date regist_date;			//첨부파일 고유번호
+	private String saved_name;		//첨부파일 고유번호
+	private String original_name;	//첨부파일 고유번호
+	private String file_path;		//첨부파일 고유번호
+	private String file_ext;		//첨부파일 고유번호
+	private Date regist_date;		//첨부파일 고유번호
 	private Long file_size;			//첨부파일 고유번호
 	
 	private List<FileVO> fileVOList;

@@ -60,7 +60,32 @@ public class ItemController {
 		model.addAttribute("list", list);
 		return path + "item_list";
 	}
-		
+	
+	//매물 상세페이지
+	@GetMapping("/itemDetail/{itemNo}")
+	public String itemDetail(@PathVariable Long itemNo, Model model) {
+		ItemVO itemVO = service.itemDetail(itemNo);
+		if(itemVO.getLeasePrice() >= 10000) {
+			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
+			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
+			model.addAttribute("LB",leaseBillion);
+			model.addAttribute("LTM",leaseTenMillion);
+		}
+		PartnerVO partnerVO = partnerService.detail(itemNo);
+		long partnerNo = partnerVO.getPartnerNo();
+		List<ItemVO> partItemList = service.partItemList(partnerNo);
+		logger.info("=============lat = {}",itemVO.getLat());
+		logger.info("lng = {}",itemVO.getLng() );
+		    
+		model.addAllAttributes(Map.of(
+			"itemVO", itemVO,
+			"partnerVO", partnerVO,
+			"partItemList", partItemList
+		));
+
+		return path + "itemDetail";
+	}
+	
 	//매물 상세페이지
 	@GetMapping("/itemSelect/{itemNo}")
 	public String itemSelect(ItemVO itemVO, Model model, @PathVariable Long itemNo, 
@@ -71,6 +96,8 @@ public class ItemController {
 			
 			ItemVO result = service.itemSelect(itemVO);
 			model.addAttribute("result", result);
+			
+			
 			
 			/*
 			 * // 매물의 상세 정보 또는 어떠한 정보와 함께 쿠키 설정 // 상세페이지를 다시 들어가게 되면 쿠키 값이 자동으로 업데이트 되지 않음
@@ -161,22 +188,4 @@ public class ItemController {
 	        }
 	}
 	
-	//매물 상세페이지
-	@GetMapping("/itemDetail/{itemNo}")
-	public String itemDetail(@PathVariable Long itemNo, Model model) {
-	    ItemVO itemVO = service.itemDetail(itemNo);
-	    PartnerVO partnerVO = partnerService.detail(itemNo);
-	    long partnerNo = partnerVO.getPartnerNo();
-	    List<ItemVO> partItemList = service.partItemList(partnerNo);
-	    logger.info("=============lat = {}",itemVO.getLat());
-	    logger.info("lng = {}",itemVO.getLng() );
-	    
-	    model.addAllAttributes(Map.of(
-	        "itemVO", itemVO,
-	        "partnerVO", partnerVO,
-	        "partItemList", partItemList
-	    ));
-
-	    return path + "itemDetail";
-	}
 }

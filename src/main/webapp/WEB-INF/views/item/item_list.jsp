@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -176,12 +178,22 @@
 			                        <div>
 			                            <div class="email-head font-weight-700 font-lg-15"><h5>${item.address}　<i class="lni-map-marker"></i></h5></div>
 			                            <div class="email-head font-weight-700 font-lg-15"><h6>(${item.address2})</h6></div>
-			                            <c:if test="${item.leaseOrMonth == 'lease' }">
-			                                <div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
-			                            </c:if>
-			                            <c:if test="${item.leaseOrMonth == 'month' }">
-			                                <div class="email-subject"><h5>월세 ${item.depositFee} / ${item.monthPrice}</h5></div>
-			                            </c:if>
+			                            <c:choose>
+			                            	<c:when test="${item.leaseOrMonth == 'lease' }">
+			                            		<c:if test="${item.leasePrice < 10000 }">
+			                            			<div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
+			                            		</c:if>
+			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0 }">
+			                            			<div class="email-subject"><h5>전세 <fmt:formatNumber value="${item.leasePrice / 10000 }" pattern="#,##0"/>억</h5></div>
+			                            		</c:if>
+			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0 }">
+			                            			<div class="email-subject"><h5><fmt:formatNumber value="<%-- ${fn:floor(item.leasePrice / 10000)} --%>" pattern="#,##0"/>억 ${item.leasePrice % 10000 }</h5></div>
+			                            		</c:if>
+			                            	</c:when>
+			                            	<c:when test="${item.leaseOrMonth == 'month' }">
+			                            		<div class="email-subject"><h5>월세 ${item.depositFee} / ${item.monthPrice}</h5></div>
+			                            	</c:when>
+			                            </c:choose>
 			                            <c:choose>
 			                            	<c:when test="${item.itemType == 'O' }">
 			                            		<div class="email-subject">원룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>

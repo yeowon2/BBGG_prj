@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.kopo.fake.web.FakeVO;
+import kr.ac.kopo.fake.web.UploadVO;
 import kr.ac.kopo.pager.Pager;
 
 @Repository
@@ -24,14 +25,15 @@ public class FakeDaoImpl implements FakeDao {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile) {
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("fakeVO", fakeVO);
+		paramMap.put("uploadVO", uploadVO);
 		paramMap.put("saveFile", saveFile);
 		System.out.println(saveFile);
 		sql.insert("fake.insert", paramMap);
-		
+		sql.insert("fake.insertFile", paramMap);
 	}
 
 	@Override

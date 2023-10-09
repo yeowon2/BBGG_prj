@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.dao.FakeDao;
 import kr.ac.kopo.fake.web.FakeVO;
+import kr.ac.kopo.fake.web.UploadVO;
 import kr.ac.kopo.pager.Pager;
 
 @Service
@@ -27,8 +28,8 @@ public class FakeServiceImpl implements FakeService {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile) {
-		dao.fakeAdd(itemNo, fakeVO, saveFile);
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile) {
+		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile);
 		
 	}
 

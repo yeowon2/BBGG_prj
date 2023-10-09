@@ -3,24 +3,55 @@ package kr.ac.kopo.fake.web;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UploadVO {
-	private String name;
-	private MultipartFile file;
+	private String originalFileName;
+	private String fileExtension;
+	private String uniqueFileName;
+	private String savedFileName;
+	private Long fileSize;
+	private String useAt;
+	private MultipartFile saveFile;
 	
-	public String getName() {
-		return name;
+	public String getOriginalFileName() {
+		return originalFileName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
 	}
-	public MultipartFile getFile() {
-		return file;
+	public String getFileExtension() {
+		return fileExtension;
 	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+	public String getUniqueFileName() {
+		return uniqueFileName;
+	}
+	public void setUniqueFileName(String uniqueFileName) {
+		this.uniqueFileName = uniqueFileName;
+	}
+	public String getSavedFileName() {
+		return savedFileName;
+	}
+	public void setSavedFileName(String savedFileName) {
+		this.savedFileName = savedFileName;
+	}
+	public Long getFileSize() {
+		return fileSize;
+	}
+	public void setFileSize(Long fileSize) {
+		this.fileSize = fileSize;
+	}
+	public String getUseAt() {
+		return useAt;
+	}
+	public void setUseAt(String useAt) {
+		this.useAt = useAt;
+	}
+	public MultipartFile getSaveFile() {
+		return saveFile;
+	}
+	public void setSaveFile(MultipartFile saveFile) {
+		this.saveFile = saveFile;
 	}
 	
-	@Override
-	public String toString() {
-		return "UploadVO [name=" + name + ", file=" + file + "]";
-	}
 }

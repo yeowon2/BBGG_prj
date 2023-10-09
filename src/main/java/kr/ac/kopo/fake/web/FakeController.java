@@ -54,10 +54,10 @@ public class FakeController {
 	}
 	
 	@PostMapping("/{itemNo}")
-	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, @RequestParam("file") MultipartFile file) throws Exception {
+	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, UploadVO uploadVO, @RequestParam("file") MultipartFile file) throws Exception {
 		model.addAttribute("itemNo", itemNo);
 		
-		UserVO loginVO =  (UserVO) session.getAttribute("loginVO");
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
 
 		if(loginVO != null) {String userId = loginVO.getUserId();}
 		
@@ -67,11 +67,11 @@ public class FakeController {
 			
 			String uploadFolder = "C:\\Temp\\folder";
 
-			String fileRealName = file.getOriginalFilename();
+			String originalFileName = file.getOriginalFilename();
 			long size = file.getSize();
-			String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length());
+			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."), originalFileName.length());
 			
-			System.out.println("파일명 : "  + fileRealName);
+			System.out.println("파일명 : "  + originalFileName);
 			System.out.println("용량크기(byte) : " + size);
 			System.out.println("확장자 : " + fileExtension);
 
@@ -79,10 +79,10 @@ public class FakeController {
 			System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			
-			String uniqueName = uuids[0];
-			System.out.println("생성된 고유문자열 : " + uniqueName); 
+			String uniqueFileName = uuids[0];
+			System.out.println("생성된 고유문자열 : " + uniqueFileName); 
 			
-			File saveFile = new File(uploadFolder + "\\" + uniqueName + fileExtension); 
+			File saveFile = new File(uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension); 
 			System.out.println("DB에 저장될 파일명 : " + saveFile); 
 			
 			try {
@@ -92,7 +92,7 @@ public class FakeController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}  
-			//service.fakeAdd(itemNo, fakeVO, saveFile);
+			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemList"); 

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.web.FakeVO;
+import kr.ac.kopo.fake.web.UploadVO;
 import kr.ac.kopo.pager.Pager;
 
 public interface FakeService {
@@ -14,6 +15,6 @@ public interface FakeService {
 	List<FakeVO> fakeList(Model model, FakeVO fakeVO, Pager pager);
 	
 	// 허위 매물 등록 정보
-	void fakeAdd(Long itemNo, FakeVO fakeVO, File saveFile);
+	void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile);
 
 }

@@ -99,6 +99,25 @@ public class PartnerServiceImpl implements PartnerService {
 
 	@Override
 	public List<ItemVO> selectItemList(Long partnerNo) {
-		return dao.selectItemList(partnerNo);
+		List<ItemVO> selectItemList = dao.selectItemList(partnerNo);
+		for (ItemVO itemVO : selectItemList) {
+			Long itemNo = itemVO.getItemNo();
+			FileVO fileVO = fileDao.selectItemFile(itemNo);
+			
+			itemVO.setFileVO(fileVO);
+		}
+		return selectItemList;
+	}
+
+	@Override
+	public List<PartnerVO> selectRespList() {
+		List<PartnerVO> selectRespList = dao.selectRespList();
+		for (PartnerVO partnerVO : selectRespList) {
+			Long partnerNo = partnerVO.getPartnerNo();
+			FileVO fileVO = fileDao.selectPartnerFile(partnerNo);
+
+			partnerVO.setFileVO(fileVO);
+		}
+		return selectRespList;
 	}
 }

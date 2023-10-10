@@ -1,9 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" session="false" %>
 
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  	<style>
+  		.team-img img {
+  			height:225px;
+  		} 
+  	</style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
   <body>
@@ -230,19 +236,25 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-3">
-            <!-- Team Item Starts -->
-	            <div class="team-item text-center">
-	              <div class="team-img">
-	                <a><img class="img-fluid" src="/resources/assets/img/team/team-01.jpg" alt=""></a>	
-	              </div>
-	              <div class="info-text">
-	                <h3><a href="#">David Givens</a></h3>
-	                <p>Real Estate Agent</p>
-	              </div>
-	            </div>
-            <!-- Team Item Ends -->
-          </div>
+          <c:forEach var="partnerVO" items="${respList}">
+	          <div class="col-sm-6 col-md-6 col-lg-3">
+	            <!-- Team Item Starts -->
+	              	<div class="team-item text-center">
+		              <div class="team-img">
+		              		<a href="/partner/info/${partnerVO.partnerNo}">
+				              	<c:if test="${partnerVO.fileVO == null}">
+		        	      			<img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+				              	</c:if>
+			                	<img class="img-fluid" src="/upload/${partnerVO.fileVO.savedName}" alt="" >
+	              			</a>
+		              </div>
+		              <div class="info-text">
+		                <h3><a href="/partner/info/${partnerVO.partnerNo}">${partnerVO.compName}</a></h3>
+		              </div>
+		            </div>
+	            <!-- Team Item Ends -->
+	          </div>
+           </c:forEach>
         </div>
       </div>
     </section>
@@ -277,10 +289,18 @@
 	                        <h3 class="property-title"><a href="/itemDetail/${item.itemNo}">${item.address2}</a></h3>
 	                        <div class="address"><i class="lni-map-marker"></i>${item.address}</div>
 	                        <div class="pricin-list">
-	                          <div class="property-price">
+	                         <div class="property-price">
 	                          	<c:choose>
-	                          		<c:when test="${item.depositFee == null}">
-		                     		   <span>전세 ${item.leasePrice}</span>
+	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          			<c:if test="${item.leasePrice < 10000}">
+		                     		   		<span>전세 ${item.leasePrice}</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억 ${item.leaseTenMillion}</span>
+	                          			</c:if>
                         			</c:when>
                      				<c:otherwise>
 		                     		   <span>월세 ${item.depositFee} / ${item.monthPrice}</span>

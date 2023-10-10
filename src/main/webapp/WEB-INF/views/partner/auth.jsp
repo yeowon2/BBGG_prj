@@ -83,21 +83,26 @@ $('#searchBtn').click(function() {
     // 중개사무소명 입력값 가져오기
     var medOfficeName = $('#search').val();
 
-    var url = 'http://api.data.go.kr/openapi/tn_pubr_public_med_office_api'; /*URL*/
-    var queryParams = new URLSearchParams();
-    queryParams.append('serviceKey', 'MxaUXwUlSXW2YGaS6AXQZDkmHv86ZlGeE1Xx1%2FXEdDTng2iZGmm1%2BpY%2BJyop800Rbsa95sl0Kq2KXtIuFc2wpQ%3D%3D'); /*Service Key*/
-    queryParams.append('MED_OFFICE_NM', medOfficeName);
+    var url = 'http://api.data.go.kr/openapi/tn_pubr_public_med_office_api'; /* URL */
+    var queryParams = {
+        'serviceKey': 'MxaUXwUlSXW2YGaS6AXQZDkmHv86ZlGeE1Xx1%2FXEdDTng2iZGmm1%2BpY%2BJyop800Rbsa95sl0Kq2KXtIuFc2wpQ%3D%3D', /* Service Key */
+        'type': 'json', // JSON 형식으로 요청
+        'MED_OFFICE_NM': medOfficeName,
+    };
 
-    fetch(url + '?' + queryParams.toString())
-        .then(function(response) {
-            return response.text();
-        })
-        .then(function(data) {
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json', // JSON 형식으로 응답 받음
+        data: queryParams,
+        success: function(data) {
+            // JSON 형식의 API 응답 데이터를 사용하는 코드를 작성합니다.
             console.log(data);
-        })
-        .catch(function(error) {
-            console.error('Error:', error);
-        });
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            console.error('There was a problem with the request:', errorThrown);
+        }
+    });
 
 });
 

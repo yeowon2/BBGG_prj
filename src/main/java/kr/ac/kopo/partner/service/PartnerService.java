@@ -28,4 +28,6 @@ public interface PartnerService {
 
 	List<ItemVO> selectItemList(Long partnerNo);
 
+	List<PartnerVO> selectRespList();
+
 }

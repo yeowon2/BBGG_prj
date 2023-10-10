@@ -18,11 +18,23 @@
   	margin: 0 auto;
   	}
   	.dashborad-box h4 {
-  	 float:right;
+ 	 text-align: center;
+	}
+
+  	.dashborad-box img {
+  	 border-radius:100px;
+  	 height:
   	}
+  	
+  	
   	.item span {
 		margin:20px;
+		font-size:20px;
   	}
+  	.item-thumb img {
+  		height:230px;
+  	}
+  	
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
   </head>
@@ -49,12 +61,10 @@
           	 <div class="dashborad-box">
               <div class="section-body">
                 <div class="row">
- 				  <div class="col-lg-12">		
- 		         	 <h4>공인중개사명</h4>
-                  </div>
                   <div class="col-lg-4">
-                    <div class="item mt-20">
-                      <img alt="소개이미지" src="/resources/assets/img/productinfo/default-profile.png">
+                  	<h4>공인중개사명</h4>
+                    <div class="item mt-20" id="partner-profile">
+                      <img class="" alt="소개이미지" src="/resources/assets/img/productinfo/default-profile.png">
                     </div>
                   </div>
                   <div class="col-lg-8">
@@ -131,7 +141,10 @@
 	                  <div class="property-item">
 	                    <div class="item-thumb">
 	                      <a class="hover-effect" href="property.html">
-	                        <img class="img-fluid" src="/resources/assets/img/property/house-1.jpg" alt="">
+	                      	<c:if test="${item.fileVO == null}">
+		                        <img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+	                      	</c:if>
+	                        <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
 	                      </a>
 	                    </div>
 	                    <div class="item-body">
@@ -140,8 +153,17 @@
 	                      <div class="pricin-list">
 	                        <div class="property-price">
 	                          	<c:choose>
-	                          		<c:when test="${item.depositFee == null}">
-		                     		   <span>전세 ${item.price}</span>
+	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          			<span>전세</span>
+		                          			<c:if test="${item.price >= 10000}">
+		                          				<fmt:formatNumber value="${item.price / 10000}" pattern="#,##0"/>억
+		                          				<c:if test="${item.price % 10000 > 0}">
+										          <fmt:formatNumber value="${item.price % 10000}" pattern="#,##0"/>
+										        </c:if>
+		                          			</c:if>
+		                          			<c:if test="${item.price < 10000}">
+		                          				<span>${item.price}</span>
+		                          			</c:if>
                         			</c:when>
                      				<c:otherwise>
 		                     		   <span>월세 ${item.depositFee} / ${item.price}</span>

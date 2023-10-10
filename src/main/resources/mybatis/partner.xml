@@ -194,4 +194,20 @@
 		LIMIT 6
 	</select>
 
+	<select id="selectRespList" resultType="PartnerVO">
+		SELECT
+		  p.partner_no,
+		  p.comp_name,
+		  p.partner_name,
+		  COUNT(CASE WHEN n.use_at = 'C' THEN 1 END) AS completed_note_count,
+		  COUNT(*) AS total_note_count
+		FROM
+		  tbl_partner p
+		LEFT JOIN
+		  tbl_note n ON p.partner_no = n.partner_no
+		GROUP BY
+		  p.partner_no, p.comp_name, p.partner_name
+		ORDER BY completed_note_count DESC
+		LIMIT 4			
+	</select>
 </mapper>

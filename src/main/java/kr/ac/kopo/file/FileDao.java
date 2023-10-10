@@ -13,5 +13,7 @@ public interface FileDao {
 	void updatePartnerFile(FileVO fileVO);
 	
 	FileVO selectItemFile(Long itemNo);
+	
+	FileVO selectPartnerFile(Long partnerNo);
 
 }

@@ -85,9 +85,9 @@ public class PartnerDaoImpl implements PartnerDao {
 	public List<ItemVO> selectItemList(Long partnerNo) {
 		return sql.selectList("partner.selectItemList", partnerNo);
 	}
-	
-	
-	
-	
 
+	@Override
+	public List<PartnerVO> selectRespList() {
+		return sql.selectList("partner.selectRespList");
+	}
 }

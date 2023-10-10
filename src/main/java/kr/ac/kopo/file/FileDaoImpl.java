@@ -43,5 +43,10 @@ public class FileDaoImpl implements FileDao {
 		return sql.selectOne("file.selectItemFile", itemNo);
 	}
 
+	@Override
+	public FileVO selectPartnerFile(Long partnerNo) {
+		return sql.selectOne("file.selectPartnerFile", partnerNo);
+	}
+
 
 }

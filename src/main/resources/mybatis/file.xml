@@ -69,8 +69,14 @@
     
     <select id="selectItemFile" resultType="FileVO">
     	SELECT *
-			FROM tbl_item_file tif 
-			WHERE tif.item_no = #{itemNo}
-			LIMIT 1
+		FROM tbl_item_file tif 
+		WHERE tif.item_no = #{itemNo}
+		LIMIT 1
+    </select>
+    
+    <select id="selectPartnerFile" resultType="FileVO">
+    	SELECT *
+		FROM tbl_partner_file tip 
+		WHERE tip.partner_no = #{partnerNo}
     </select>
 </mapper>

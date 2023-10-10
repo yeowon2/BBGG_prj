@@ -71,7 +71,7 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value = "/kakaoLogin")
+	@RequestMapping(value = "/kakaoLogin") //https://gimmesome.tistory.com/182
 	public String kakaoMember(@ModelAttribute UserVO userVO, HttpServletRequest request, Model model, HttpSession session) {
 		// userVO에 값이 있는지 확인
 	    if (userVO != null && userVO.getUserId() != null && !userVO.getUserId().isEmpty()) {

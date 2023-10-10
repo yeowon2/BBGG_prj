@@ -21,18 +21,17 @@ public class FakeServiceImpl implements FakeService {
 	@Override
 	public List<FakeVO> fakeList(Model model, FakeVO fakeVO, Pager pager) {
 		int total = dao.total(pager);
-		
 		pager.setTotal(total);
-		
 		return dao.list(pager);
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile) {
-		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile);
-		
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId) {
+		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);	
 	}
 
-	
-
+	@Override
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, String userId) {
+		dao.fakeAdd(itemNo, fakeVO, userId);	
+	}
 }

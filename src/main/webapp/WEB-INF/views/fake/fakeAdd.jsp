@@ -101,9 +101,9 @@
 												
 												<form method="post" enctype="multipart/form-data">
 													<input type="hidden" id="roomNo" value="${result.roomNo}">
-													<input type="checkbox" id="fakeCheck1" name="fakeCheck"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-													<input type="checkbox" id="fakeCheck2" name="fakeCheck"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-													<input type="checkbox" id="fakeCheck3" name="fakeCheck"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
+													<input type="checkbox" id="fakeCheck1" name="fakeCheck" value="${fakeVO.fakeCheck1}"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+													<input type="checkbox" id="fakeCheck2" name="fakeCheck" value="${fakeVO.fakeCheck2}"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+													<input type="checkbox" id="fakeCheck3" name="fakeCheck" value="${fakeVO.fakeCheck3}"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
 													<textarea id="fakeDetail" name="fakeDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
 														<div class="row">
 															<div class="col-xl-12">
@@ -205,14 +205,26 @@
 	<script src="../../resources/dist/js/feather.min.js"></script>
     
     <script>
-    const submitBtn = document.querySelector("#submitBtn");
-    if(document.getElementById("fakeCheck").checked) {
-    	document.getElementById("")
-    }
-    
+    function is_checked() {
 
-    submitBtn.addEventListener('click', function () {
-    	form.submit();
+  	  	const ckBtn1 = document.getElementById('#fakeCheck1');
+  	  	const ckBtn2 = document.getElementById('#fakeCheck2');
+  	  	const ckBtn3 = document.getElementById('#fakeCheck3');
+  	  
+  		($(ckBtn1).is(":checked"))==="checked" ? ckBtn1.value==="T" : ckBtn1.value==="F";
+  		($(ckBtn2).is(":checked"))==="checked" ? ckBtn2.value==="T" : ckBtn2.value==="F";
+  		($(ckBtn3).is(":checked"))==="checked" ? ckBtn3.value==="T" : ckBtn3.value==="F";
+  	}
+    
+    const submitBtn = document.querySelector("#submitBtn");
+    
+    submitBtn.addEventListener('click', () => {
+	    if(document.getElementById("agreeAt").checked) {
+	    	form.submit();
+	    } else {
+	    	event.preventDefault();
+	    	alert("동의 여부를 확인해주세요.");
+	    }
     }); 
     </script>
     <script>

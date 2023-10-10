@@ -59,7 +59,10 @@
 							agree_at,
 							regist_date)
 		VALUES (#{itemNo}, 
-				#{userVO.userNo}, 
+				(SELECT user_no 
+				FROM tbl_user
+				WHERE user_id = #{userId}
+        		), 
 				#{fakeVO.fakeCheck1}, 
 				#{fakeVO.fakeCheck2}, 
 				#{fakeVO.fakeCheck3}, 

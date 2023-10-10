@@ -54,36 +54,42 @@ public class FakeController {
 	}
 	
 	@PostMapping("/{itemNo}")
-	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, UploadVO uploadVO, @RequestParam("file") MultipartFile file) throws Exception {
+	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, UploadVO uploadVO, @RequestParam(required = false) MultipartFile file) throws Exception {
 		model.addAttribute("itemNo", itemNo);
+
+		String userId = null;
 		
 		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		
+		if(loginVO != null) {userId = loginVO.getUserId();}
+		
+		if(loginVO != null && userId != null && !userId.equals("") && file != null) {
 
-		if(loginVO != null) {String userId = loginVO.getUserId();}
-		
-		if(loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file != null) {
-		
-			// 파일첨부를 했을 때와 안했을 때 구분 필요
-			
 			String uploadFolder = "C:\\Temp\\folder";
 
 			String originalFileName = file.getOriginalFilename();
-			long size = file.getSize();
+			long fileSize = file.getSize();
 			String fileExtension = originalFileName.substring(originalFileName.lastIndexOf("."), originalFileName.length());
 			
-			System.out.println("파일명 : "  + originalFileName);
-			System.out.println("용량크기(byte) : " + size);
-			System.out.println("확장자 : " + fileExtension);
+			//System.out.println("파일명 : "  + originalFileName);
+			//System.out.println("용량크기(byte) : " + fileSize);
+			//System.out.println("확장자 : " + fileExtension);
 
 			UUID uuid = UUID.randomUUID();
 			System.out.println(uuid.toString());
 			String[] uuids = uuid.toString().split("-");
 			
 			String uniqueFileName = uuids[0];
-			System.out.println("생성된 고유문자열 : " + uniqueFileName); 
+			//System.out.println("생성된 고유문자열 : " + uniqueFileName); 
 			
 			File saveFile = new File(uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension); 
-			System.out.println("DB에 저장될 파일명 : " + saveFile); 
+			//System.out.println("DB에 저장될 파일명 : " + saveFile); 
+			
+			uploadVO.setOriginalFileName(originalFileName);
+			uploadVO.setUniqueFileName(uniqueFileName);
+			uploadVO.setFileExtension(fileExtension);
+			uploadVO.setSavedFileName(uniqueFileName);
+			uploadVO.setFileSize(fileSize);
 			
 			try {
 				file.transferTo(saveFile); // 여기까지는 OK
@@ -92,7 +98,7 @@ public class FakeController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}  
-			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile);
+			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemList"); 
@@ -100,7 +106,7 @@ public class FakeController {
 			
 		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file == null) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
 			
-			//service.fakeAdd(itemNo, fakeVO);
+			service.fakeAdd(itemNo, fakeVO, userId);
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemSelect/3"); // @@@@@ test용
 			return "/alert";  

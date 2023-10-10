@@ -279,8 +279,16 @@
 	                        <div class="pricin-list">
 	                          <div class="property-price">
 	                          	<c:choose>
-	                          		<c:when test="${item.depositFee == null}">
-		                     		   <span>전세 ${item.leasePrice}</span>
+	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          			<c:if test="${item.leasePrice < 10000}">
+		                     		   		<span>전세 ${item.leasePrice}</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억 ${item.leaseTenMillion}</span>
+	                          			</c:if>
                         			</c:when>
                      				<c:otherwise>
 		                     		   <span>월세 ${item.depositFee} / ${item.monthPrice}</span>

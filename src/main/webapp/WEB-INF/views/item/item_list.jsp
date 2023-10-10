@@ -184,10 +184,10 @@
 			                            			<div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
 			                            		</c:if>
 			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0 }">
-			                            			<div class="email-subject"><h5>전세 <fmt:formatNumber value="${item.leasePrice / 10000 }" pattern="#,##0"/>억</h5></div>
+			                            			<div class="email-subject"><h5>전세 ${item.leaseBillion}억</h5></div>
 			                            		</c:if>
 			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0 }">
-			                            			<div class="email-subject"><h5><fmt:formatNumber value="<%-- ${fn:floor(item.leasePrice / 10000)} --%>" pattern="#,##0"/>억 ${item.leasePrice % 10000 }</h5></div>
+			                            			<div class="email-subject"><h5>전세 ${item.leaseBillion}억 ${item.leaseTenMillion}</h5></div>
 			                            		</c:if>
 			                            	</c:when>
 			                            	<c:when test="${item.leaseOrMonth == 'month' }">

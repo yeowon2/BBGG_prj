@@ -271,6 +271,14 @@ public class ItemVO {
 	public Long getLeasePrice() {
 		return leasePrice;
 	}
+	
+	/* 전세 단위 바꾸기 */
+	public int getLeaseBillion() {
+		return leasePrice.intValue() / 10000;
+	}
+	public int getLeaseTenMillion() {
+		return leasePrice.intValue() % 10000;
+	}
 
 	public void setLeasePrice(Long leasePrice) {
 		this.leasePrice = leasePrice;

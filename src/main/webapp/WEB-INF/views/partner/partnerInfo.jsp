@@ -234,7 +234,7 @@
                         			</c:otherwise>
 	                          	</c:choose>
 	                          </div>
-	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${itemVO.itemSize}㎡</span></p>
+	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${item.itemSize}㎡</span></p>
 	                      </div>
 	                    </div>               
 	                  </div>              

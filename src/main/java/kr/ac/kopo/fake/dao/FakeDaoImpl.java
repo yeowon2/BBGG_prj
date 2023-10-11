@@ -35,6 +35,8 @@ public class FakeDaoImpl implements FakeDao {
 		paramMap.put("userId", userId);
 		System.out.println(saveFile);
 		sql.insert("fake.insert", paramMap);
+		//paramMap.put("fakeVO", paramMap.get(fakeVO.getFakeNo()));
+		//Long fakeNo = paramMap.g
 		sql.insert("fake.insertFile", paramMap);
 	}
 

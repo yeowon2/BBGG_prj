@@ -14,6 +14,9 @@
   	.property-details, .listing-content {
   	background-color:#FFFFFF;
   	}
+  	.info-row {
+  	margin:10px;
+  	}
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
   </head>
@@ -23,8 +26,8 @@
     <div id="page-banner-area" class="page-banner">
       <div class="page-banner-title">
         <div class="text-center">
-          <h2>매물 보기</h2>
-          <a href="/"><i class="lni-home"></i> Home</a>
+          <h2>상세 페이지</h2>
+          <a href="/"><i class="lni-home"></i> 매물 보기</a>
           <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
           <span class="current">상세 페이지</span>
         </div>
@@ -56,7 +59,7 @@
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5>${itemVO.itemSize}㎡</h5>
+                  <h5>${itemVO.itemSize}㎡ / </h5>
                 </div>
               </div>
             </div>
@@ -244,19 +247,13 @@
                     </div>
                   </div>
                     <div class="row">
-					  <div class="col-lg-12">
+					  <div class="col-lg-12 info-row">
 					    <span>대표명: ${partnerVO.partnerName}</span>
 					  </div>
-					</div>
-					
-					<div class="row">
-					  <div class="col-lg-12">
+					   <div class="col-lg-12 info-row">
 					    <span><i class="lni-map-marker"></i>주소: ${partnerVO.compAddress}</span>
 					  </div>
-					</div>
-					
-					<div class="row">
-					  <div class="col-lg-12">
+					  <div class="col-lg-12 info-row">
 					    <span>중개등록번호: ${partnerVO.registNum}</span>
 					  </div>
 					</div>

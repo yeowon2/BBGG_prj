@@ -302,4 +302,10 @@
 		LIMIT 6
 	</select>
 	
+	<update id="viewCount">
+	    UPDATE tbl_item
+	    SET view_count = view_count + 1
+	    WHERE item_no = #{itemNo}
+	</update>
+	
 </mapper>

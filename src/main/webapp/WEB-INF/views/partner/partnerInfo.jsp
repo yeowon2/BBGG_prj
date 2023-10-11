@@ -25,15 +25,25 @@
   	 border-radius:100px;
   	 height:
   	}
-  	
+  	.info-row {
+  		margin:20px;
+  	}
+  	.info-row div {
+  		padding:0px;
+  	}
   	
   	.item span {
 		margin:20px;
-		font-size:20px;
+		font-size:16px;
+		padding:0px;
   	}
   	.item-thumb img {
   		height:230px;
   	}
+  	.bold {
+  		font-weight:bold;
+  	}
+
   	
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
@@ -44,10 +54,10 @@
     <div id="page-banner-area" class="page-banner">
       <div class="page-banner-title">
         <div class="text-center">
-          <h2>Grid Listing</h2>
-          <a href="#"><i class="lni-home"></i> Home</a>
+          <h2>중개사무소 소개</h2>
+          <a href="#"><i class="lni-home"></i> 매물보기</a>
           <span class="crumbs-spacer"><i class="lni-chevron-right"></i></span>
-          <span class="current">Grid Listing</span>
+          <span class="current">중개사무소 소개</span>
         </div>
       </div>
     </div>
@@ -61,49 +71,103 @@
           	 <div class="dashborad-box">
               <div class="section-body">
                 <div class="row">
-                  <div class="col-lg-4">
-                  	<h4>공인중개사명</h4>
+                  <div class="col-lg-4 mt-20">
+                  	<h4>${partnerVO.compName}</h4>
                     <div class="item mt-20" id="partner-profile">
-                      <img class="" alt="소개이미지" src="/resources/assets/img/productinfo/default-profile.png">
+                     <c:if test="${partnerVO.fileVO == null}">
+                       <img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+                   	</c:if>
+                      <img class="img-fluid" src="/upload/${partnerVO.fileVO.savedName}" alt="">
                     </div>
                   </div>
                   <div class="col-lg-8">
                     <div class="item mt-20">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-12 info-row">
 								<div class="row">
 									<div class="col-lg-6">
-										<span>대표자명 | ${partnerVO.partnerName}</span>
+										<div class="row">
+											<div class="col-lg-5">
+												<span class="bold">대표자명</span>
+											</div>
+											<div class="col-lg-7">
+												<span>| ${partnerVO.partnerName}</span>
+											</div>
+										</div>
 									</div>
 									<div class="col-lg-6">
-										<span>대표번호 | ${partnerVO.phone}</span>
+										<div class="row">
+											<div class="col-lg-5">
+													<span class="bold">대표번호</span>
+											</div>
+											<div class="col-lg-7">
+												<span> | ${partnerVO.phone}</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12 info-row">
 								<div class="row">
 									<div class="col-lg-6">
-										<span>사업자등록번호 | ${partnerVO.compNum}</span>
+										<div class="row">
+											<div class="col-lg-5">
+												<span class="bold">사업자등록번호</span>
+											</div>
+											<div class="col-lg-7">
+												<span> | ${partnerVO.compNum}</span>
+											</div>
+										</div>
 									</div>
 									<div class="col-lg-6">
-										<span>중개등록번호 | ${partnerVO.registNum}</span>
+										<div class="row">
+											<div class="col-lg-5">
+												<span class="bold">중개등록번호</span>
+											</div>
+											<div class="col-lg-7">
+												<span> | ${partnerVO.registNum}</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-12 info-row">
 								<div class="row">
-									<div class="col-lg-6">
-										<span>거래완료된 방 | 개</span>
+									<div class="col-lg-6 ">
+										<div class="row">
+											<div class="col-lg-5">
+												<span class="bold">거래완료된 방</span>
+											</div>
+											<div class="col-lg-7">
+												<span> | 개</span>
+											</div>
+										</div>
 									</div>
 									<div class="col-lg-6">
-										<span>최초가입일 | 
-											<fmt:formatDate value="${partnerVO.registDate}" pattern="yyyy-MM-dd"/>
-										</span>
+										<div class="row">
+											<div class="col-lg-5">
+												<span class="bold">최초가입일</span>
+											</div>
+											<div class="col-lg-7">
+												<span> | 
+													<fmt:formatDate value="${partnerVO.registDate}" pattern="yyyy-MM-dd"/>
+												</span>
+											</div>
+										</div>
+										
 									</div>
 								</div>							
 							</div>
-							<div class="col-lg-12">
-								<span>주소 | ${partnerVO.compAddress}</span>
+							<div class="col-lg-12 info-row">
+								<div class="row">
+									<div class="col-lg-2">
+										<span class="bold" style="margin-right:10px;">주소</span>
+									</div>
+									<div class="col-lg-10">
+										<span> | ${partnerVO.compAddress}</span>
+										<span id="partner-no" style="display:none">${partnerVO.partnerNo}</span>
+									</div>
+								</div>
 							</div>
 						</div>
                     </div>
@@ -117,19 +181,19 @@
             <div class="product-filter">
               <!-- Sort by -->
               <div class="sort-by">
-                <span>Sort by:</span>
+                <span>정렬 방식:</span>
                 <div class="sort-by-select">
-                  <select class="classic">
-                    <option>Default Order</option>  
-                    <option>Price Low to High</option>
-                    <option>Price High to Low</option>
-                    <option>Newest Properties</option>
-                    <option>Oldest Properties</option>
+                <c:set var="sortBy" value="${param.sortBy}" />
+                  <select id="sort-options" class="classic" onchange="selectOption(this)">
+                     <option value="default" <c:if test="${sortBy == null || sortBy != 'latest'}">selected</c:if>>정렬 방식</option>
+			          <option value="latest" <c:if test="${sortBy == 'latest'}">selected</c:if>>최신 매물</option>  
+			          <option value="popular" <c:if test="${sortBy == 'popular'}">selected</c:if>>인기 매물</option>
+			          <option value="views" <c:if test="${sortBy == 'views'}">selected</c:if>>조회수</option>
                   </select>
                 </div>
               </div>
               <!-- Layout Switcher -->
-              <p class="text-left">42 homes found</p>
+              <p class="text-left"><span id="item-count"><strong>10</strong></span>개의 방</p>
             </div>
             <!-- Product Filter End -->
 
@@ -140,7 +204,7 @@
 	                <div class="property-wrap">
 	                  <div class="property-item">
 	                    <div class="item-thumb">
-	                      <a class="hover-effect" href="property.html">
+	                      <a class="hover-effect" href="/itemDetail/${item.itemNo}">
 	                      	<c:if test="${item.fileVO == null}">
 		                        <img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
 	                      	</c:if>
@@ -177,24 +241,93 @@
 	                </div>
 	              </div>
 				</c:forEach>
+				<div class="pagination-container col-lg-12">
+	              <nav>
+	                <ul class="pagination justify-content-center">
+	                  <li class="page-item"><a class="btn btn-common" href="?page=1"><i class="lni-chevron-left"></i> Previous </a></li>
+	               		<c:forEach var="page" items="${pager.list}">
+							<li class="page-item"><a href="?page=${page}" class="page-link ${page == pager.page ? 'active' : ''}">${page}</a></li>
+						</c:forEach>
+	                  <li class="page-item"><a class="btn btn-common" href="page=${pager.next}">Next <i class="lni-chevron-right"></i></a></li>
+	                </ul>
+	              </nav>
+	            </div>
             </div>
             <!-- Listings End -->
-            <div class="pagination-container">
-              <nav>
-                <ul class="pagination">
-                  <li class="page-item"><a class="btn btn-common" href="#"><i class="lni-chevron-left"></i> Previous </a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="btn btn-common" href="#">Next <i class="lni-chevron-right"></i></a></li>
-                </ul>
-              </nav>
-            </div>
+            
           </div>
         </div>
       </div>
     </div>
     <!-- Main container End -->
+<!-- 이전 코드 ... -->
+
+<!-- Main container End -->
+<script>
+// 페이지 로드 시 스크롤 위치 복원
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    const scrollPosition = localStorage.getItem('scrollPosition');
+    if (scrollPosition !== null) {
+      window.scrollTo(0, parseInt(scrollPosition));
+    }
+  }, 0);
+  
+  
+  //매물 count AJAX
+  const partnerNoElement = document.querySelector('#partner-no');
+  const partnerNo = parseInt(partnerNoElement.textContent);
+  const strong = document.querySelector('#item-count').querySelector('strong');
+
+  // GET 요청 보내기
+  fetch(`/partner/itemCount/${partnerNo}`, {
+    method: 'GET'
+  })
+    .then(response => response.text()
+    ).then(
+    	result => {
+    		console.log(result);	
+    		strong.textContent = result;
+    		
+    	})
+    .catch(function(error) {
+      // 오류 처리
+      console.error('오류 발생:', error);
+    });
+  
+});
+
+// 페이지 이동 시 스크롤 위치 저장
+window.addEventListener('beforeunload', function() {
+  const currentScrollPosition = window.scrollY;
+  localStorage.setItem('scrollPosition', currentScrollPosition);
+});
+
+function selectOption(selectElement) {
+  const selectedValue = selectElement.value;
+    
+  const partnerNoElement = document.querySelector('#partner-no').textContent;
+  const partnerNo = parseInt(partnerNoElement);
+
+  if (selectedValue === 'latest') {
+    const newUrl = `/partner/info/${partnerNo}?sortBy=latest`;
+    window.location.href = newUrl;
+    
+  } else if (selectedValue === 'popular') {
+    // 인기 매물에 대한 처리
+  } else if (selectedValue === 'views') {
+	    const newUrl = `/partner/info/${partnerNo}?sortBy=views`;
+	    window.location.href = newUrl;
+  } else {
+	  const newUrl = `/partner/info/${partnerNo}`;
+	    window.location.href = newUrl;
+  }
+}
+</script>
+<jsp:include page="../js.jsp"></jsp:include>
+</body>
+</html>
+
 <jsp:include page="../js.jsp"></jsp:include>
   </body>
 </html>

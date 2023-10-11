@@ -35,7 +35,7 @@ public interface PartnerDao {
 
 	FileVO selectFile(Long partnerNo);
 
-	List<ItemVO> selectItemList(Long partnerNo);
+	List<ItemVO> selectItemList(Long partnerNo, String sortBy);
 
 	List<PartnerVO> selectRespList();
 

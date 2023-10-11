@@ -1,6 +1,8 @@
 package kr.ac.kopo.partner.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,12 +84,18 @@ public class PartnerDaoImpl implements PartnerDao {
 	}
 
 	@Override
-	public List<ItemVO> selectItemList(Long partnerNo) {
-		return sql.selectList("partner.selectItemList", partnerNo);
+	public List<ItemVO> selectItemList(Long partnerNo, String sortBy) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("partnerNo", partnerNo);
+		paramMap.put("sortBy", sortBy);
+		
+		return sql.selectList("partner.selectItemList", paramMap);
 	}
 
 	@Override
 	public List<PartnerVO> selectRespList() {
 		return sql.selectList("partner.selectRespList");
 	}
+
+
 }

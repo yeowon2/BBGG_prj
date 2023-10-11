@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
 import kr.ac.kopo.file.FileVO;
-import kr.ac.kopo.item.dao.ItemDaoImpl;
 import kr.ac.kopo.item.service.ItemService;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.partner.web.PartnerVO;

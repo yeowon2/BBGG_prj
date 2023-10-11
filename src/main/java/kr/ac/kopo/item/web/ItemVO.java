@@ -59,6 +59,8 @@ public class ItemVO {
 	private List<FileVO> fileVOList;
 	
 	private FileVO fileVO;
+	
+	private int viewCount;  		//조회수
 
 	public Long getItemNo() {
 		return itemNo;
@@ -387,4 +389,15 @@ public class ItemVO {
 	public void setFileVO(FileVO fileVO) {
 		this.fileVO = fileVO;
 	}
+
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+	
+
 }

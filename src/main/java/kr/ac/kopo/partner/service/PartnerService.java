@@ -26,8 +26,10 @@ public interface PartnerService {
 	
 	Map<String, Integer> getItemCount(Long partnerNo);
 
-	List<ItemVO> selectItemList(Long partnerNo);
+	List<ItemVO> selectItemList(Long partnerNo, String sortBy);
 
 	List<PartnerVO> selectRespList();
+
+	
 
 }

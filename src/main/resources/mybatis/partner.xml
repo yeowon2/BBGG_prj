@@ -170,7 +170,7 @@
 		WHERE partner_no = #{partnerNo}
 	</select>
 	
-	<select id="selectItemList" resultType="ItemVO">
+	<select id="selectItemList" resultType="ItemVO" parameterType="java.util.Map">
 		SELECT 
 		    ti.item_no,
 		    ti.lease_or_month,
@@ -190,7 +190,14 @@
 		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
 		WHERE ti.use_at = 'Y' 
 		AND ti.partner_no = #{partnerNo}
-		ORDER BY ti.regist_date DESC
+		 <choose>
+        <when test="sortBy == 'views'">
+            ORDER BY ti.view_count DESC
+        </when>
+        <otherwise>
+            ORDER BY ti.regist_date DESC
+        </otherwise>
+    </choose>
 		LIMIT 6
 	</select>
 

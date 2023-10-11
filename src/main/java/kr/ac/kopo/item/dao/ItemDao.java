@@ -35,6 +35,9 @@ public interface ItemDao {
 
 	List<ItemVO> selectRecentList();
 
+	int viewCount(Long itemNo);
+
+
 	
 
 }

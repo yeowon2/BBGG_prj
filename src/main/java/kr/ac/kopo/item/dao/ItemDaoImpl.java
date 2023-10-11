@@ -118,5 +118,10 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.selectList("item.selectRecentList");
 	}
 
+	@Override
+	public int viewCount(Long itemNo) {
+		return sql.update("item.viewCount", itemNo);
+	}
+
 	
 }

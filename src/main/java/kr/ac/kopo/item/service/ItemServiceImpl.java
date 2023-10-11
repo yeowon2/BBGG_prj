@@ -74,11 +74,23 @@ public class ItemServiceImpl implements ItemService {
 		dao.deleteItem(itemNo);
 	}
 
+	//매물 상세페이지
 	@Override
+	@Transactional
 	public ItemVO itemDetail(Long itemNo) {
+		//해당 매물의 모든 사진 리스트를 반환
 		List<FileVO> fileVOList = dao.selectFile(itemNo);
+		
+		//아이템 정보 select
 		ItemVO itemVO = dao.itemDetail(itemNo);
+		
+		//조회수 update
+		int viewCount = dao.viewCount(itemNo);
+		
+		//itemVO에 조회수와 file리스트를 setting
+		itemVO.setViewCount(viewCount);
 		itemVO.setFileVOList(fileVOList);
+		
 		return itemVO;
 	}
 

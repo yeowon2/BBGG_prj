@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <script>
+	$(document).ready(function() {
+	    $('.nav-item').click(function() {
+	        $('.nav-item').removeClass('active');
+	        $(this).addClass('active');
+	    });
+	});
+	</script>
     <!-- Header Area wrapper Starts -->
     <header id="header-wrap">
       <!-- Start Top Bar -->
@@ -54,8 +62,8 @@
 
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
-              <li class="nav-item mx-3 active">
-                <a class="nav-link m1-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <li class="nav-item mx-3">
+                <a href="/" class="nav-link m1-3"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Home 
                 </a>
                 

@@ -98,8 +98,8 @@ public class PartnerServiceImpl implements PartnerService {
 	}
 
 	@Override
-	public List<ItemVO> selectItemList(Long partnerNo) {
-		List<ItemVO> selectItemList = dao.selectItemList(partnerNo);
+	public List<ItemVO> selectItemList(Long partnerNo, String sortBy) {
+		List<ItemVO> selectItemList = dao.selectItemList(partnerNo, sortBy);
 		for (ItemVO itemVO : selectItemList) {
 			Long itemNo = itemVO.getItemNo();
 			FileVO fileVO = fileDao.selectItemFile(itemNo);
@@ -120,4 +120,6 @@ public class PartnerServiceImpl implements PartnerService {
 		}
 		return selectRespList;
 	}
+
+	
 }

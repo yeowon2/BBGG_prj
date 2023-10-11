@@ -10,8 +10,7 @@
 	
 	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.4.0/kakao.min.js" integrity="sha384-mXVrIX2T/Kszp6Z0aEWaA8Nm7J6/ZeWXbL8UpGRjKwWe56Srd/iyNmWMBhcItAjH" crossorigin="anonymous"></script>
 	<script>
-		Kakao.init('63c0f4f3e00e8d6c49088160aa0fdd64'); // 사용하려는 앱의 JavaScript 키 입력
-	</script>
+	  Kakao.init('63c0f4f3e00e8d6c49088160aa0fdd64'); /* 사용하려는 앱의 JavaScript 키 입력 */</script>
 	
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper">
@@ -38,6 +37,7 @@
               <h3>
                 로그인
               </h3>
+              <!-- 일반 로그인 -->
               <form class="login-form" method="post" action="/actionLogin">
 				    <div class="form-group">
 				        <div class="form-group">
@@ -65,11 +65,11 @@
 				        var checkbox = document.querySelector('input[name="userType"]');
 				        var kakaoLoginButton = document.getElementById('kakao-login-btn');
 				
-				        // 체크박스가 체크되었을 때 카카오 로그인 버튼 활성화
+				        // 체크박스가 체크되었을 때 카카오 로그인 버튼 비활성화
 				        if (checkbox.checked) {
 				        	kakaoLoginButton.style.display = 'none';
 				        } else {
-				            // 체크박스가 해제되었을 때 카카오 로그인 버튼 비활성화
+				            // 체크박스가 해제되었을 때 카카오 로그인 버튼 활성화
 				            kakaoLoginButton.style.display = 'inline-block';
 				        }
 				    }
@@ -78,19 +78,77 @@
 				<!-- 카카오 로그인 -->
 				<div class="btn-cont" style="text-align: center;">
 				    <!-- 카카오 로그인 버튼을 비활성화 상태로 시작 -->
-				    <a class="btn-kakao" id="kakao-login-btn" href="javascript:loginWithKakao()" data-type="login" style="display: inline-block;">
+				    <a class="btn-kakao" id="kakao-login-btn" href="#" data-type="login" style="display: inline-block;">
 				        <img src="../resources/comm/kakao_login_medium_wide.png" alt="카카오 로그인 버튼" style="margin: 0 auto;" />
 				    </a>
-				    <p id="token-result"></p>
-				    <button class="api-btn" onclick="requestUserInfo()" style="visibility:hidden">사용자 정보 가져오기</button>
 				</div>
+				<!-- 카카오 로그인/회원가입 폼 -->
+				<form action="/kakaoLogin" id="joinFrm" name="joinFrm" method="post">
+					<input type="hidden" name="userId" />
+					<input type="hidden" name="userName" />
+					<!-- <input type="hidden" name="loginType" value=""/> -->
+					<!-- <input type="hidden" name="userId" /> -->
+					<!-- <input type="hidden" name="userNm" /> -->
+					<!-- <input type="hidden" name="emailAdres" /> -->
+				</form>
+		    	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 				<script>
+					$(document).ready(function() {
+						// 카카오 로그인 버튼
+						$(".btn-kakao").click(function() {
+						const type = $(this).data("type");
+						kakaoLogin(type);
+						return false;
+						});
+					});
+					
+					// 카카오 키 정보 입력 (본인 JAVASCRIPT키)
+					Kakao.init('63c0f4f3e00e8d6c49088160aa0fdd64');
+					
+					// 카카오SDK 초기화 
+					Kakao.isInitialized();
+					
+					// 카카오 로그인
+					function kakaoLogin(type) {
+						Kakao.Auth.login({
+							success: function (response) {
+								Kakao.API.request({
+									url: '/v2/user/me',
+									success: function (response) {
+										console.log(response)
+										$("#joinFrm input[name=userId]").val(response.id);
+										$("#joinFrm input[name=userName]").val(response.properties.nickname);
+										/* $("input[name=loginType]").val("KAKAO"); */
+										/* $("input[name=userId]").val(response.id); */
+										/* $("input[name=userNm]").val(response.properties.nickname); */
+										/* $("input[name=emailAdres]").val(response.kakao_account.email); */
+										$("#joinFrm").submit();
+									},
+									fail: function (error) {
+										console.log(error)
+									},
+								})
+							}, fail: function (error) {
+								console.log(error)
+							},
+						})
+					}
+					<c:if test="${not empty message}">
+						alert("${message}");
+					</c:if>
+					<c:if test="${not empty loginMessage}">
+						alert("${loginMessage}");
+					</c:if>
+				</script>
+		    	
+				<!-- <script>
 					function loginWithKakao() {
 					    Kakao.Auth.authorize({
 					      redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
 					      state: 'userme',
 					    });
 					  }
+					Kakao.init('63c0f4f3e00e8d6c49088160aa0fdd64'); // 사용하려는 앱의 JavaScript 키 입력
 	
 					function requestUserInfo() {
 						  Kakao.API.request({
@@ -134,12 +192,12 @@
 					    var parts = document.cookie.split(name + '=');
 					    if (parts.length === 2) { return parts[1].split(';')[0]; }
 					  }
-				</script>
+				</script> -->
 			
               	<br>
-              
+              <hr>
               <ul class="form-links">
-                <li class="text-center"><a href="/user/add">회원 가입 하시겠습니까?</a></li>
+                <li class="text-center"> 아직 회원이 아니신가요?&nbsp;&nbsp; <a href="/user/add"> 회원 가입하기 </a></li>
               </ul>
             </div>
           </div>

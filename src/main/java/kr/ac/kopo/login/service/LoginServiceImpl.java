@@ -26,7 +26,8 @@ public class LoginServiceImpl implements LoginService {
 		if(loginVO != null && !loginVO.getUserId().equals("") && !loginVO.getUserPw().equals(""))
 		{
 			return loginVO;
-		} else {
+		}
+		else {
 			loginVO = new UserVO();
 		}
 		

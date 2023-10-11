@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.login.service.LoginService;
 import kr.ac.kopo.partner.web.PartnerVO;
+import kr.ac.kopo.user.service.UserService;
 import kr.ac.kopo.user.web.UserVO;
 
 @Controller
@@ -26,6 +27,9 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserService userService;
 
 
 	//로그인 화면 
@@ -41,7 +45,7 @@ public class LoginController {
 			Model model, HttpSession session, HttpServletResponse response, 
 			@RequestParam("userType") boolean userType
 			) {
-	   
+		
 		if (userType) { // 중개사 회원 로그인
 	        // 중개사 회원 로그인 로직을 구현
 	        PartnerVO loginPartnerVO = loginService.actionLoginPartner(partnerVO);
@@ -71,13 +75,15 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value = "/kakaoLogin") //https://gimmesome.tistory.com/182
-	public String kakaoMember(@ModelAttribute UserVO userVO, HttpServletRequest request, Model model, HttpSession session) {
+	/* 카카오 로그인/회원가입 */
+	@PostMapping("/kakaoLogin")
+	public String kakaoMember(@ModelAttribute UserVO userVO, HttpServletRequest request, Model model, HttpSession session, HttpServletResponse response) {
 		// userVO에 값이 있는지 확인
-	    if (userVO != null && userVO.getUserId() != null && !userVO.getUserId().isEmpty()) {
+		userVO.setUserPw(userVO.getUserId());
+		UserVO loginVO = loginService.actionLogin(userVO);
+	    if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
 	        // 값이 있다면 로그인을 수행
-	        UserVO loginVO = loginService.actionLogin(userVO);
-	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().isEmpty()) {
+	        if (loginVO.getUserId() != null && loginVO.getUserName() != null) {
 	            session.setAttribute("loginVO", loginVO);
 	            return "redirect:/";
 	        } else {
@@ -87,15 +93,16 @@ public class LoginController {
 	    } 
 	    else {
 	        // 값이 없다면 회원가입을 수행
-	        UserVO kakaovo = loginService.actionLogin(userVO);
-	        if (kakaovo.getUserId() == null || kakaovo.getUserId().isEmpty()) {
-	        	kakaovo.setUserId(kakaovo.getUserId());
-				kakaovo.setUserPw("");
-				kakaovo.setUserName("kakao가입자" + kakaovo.getUserNo());
-				kakaovo.setPhone("kakao가입자" + kakaovo.getUserNo());
-				return "redirect:/";
-	        }
-	        session.setAttribute("kakaovo", kakaovo);
+	        UserVO kakaovo = userVO;
+	        
+	        kakaovo.setUserId(userVO.getUserId());
+			kakaovo.setUserPw(kakaovo.getUserId());
+			kakaovo.setUserName(userVO.getUserName());
+			kakaovo.setPhone("kakao가입자");
+			userService.add(kakaovo);
+			
+	        session.setAttribute("loginVO", kakaovo);
+	        
 	        return "redirect:/";
 	    }
 	}

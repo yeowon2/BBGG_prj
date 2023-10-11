@@ -15,8 +15,7 @@
    
     <style>
     	body {
-		    background-image: url('../resources/comm/backlogo.png'); /* 이미지 파일의 경로를 지정 */
-		    background-repeat: repeat; /* 이미지를 반복해서 사용하도록 설정 */
+		    background-color: #DCDCDC; /* 이미지 파일의 경로를 지정 */
 		}
     
     	#header-wrap {
@@ -196,16 +195,16 @@
 			                            </c:choose>
 			                            <c:choose>
 			                            	<c:when test="${item.itemType == 'O' }">
-			                            		<div class="email-subject">원룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            		<div class="email-subject">원룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
 			                            	</c:when>
 			                            	<c:when test="${item.itemType == 'T' }">
-			                            		<div class="email-subject">투룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            		<div class="email-subject">투룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
 			                            	</c:when>
 			                            	<c:when test="${item.itemType == 'H' }">
-			                            		<div class="email-subject">쓰리룸, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            		<div class="email-subject">쓰리룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
 			                            	</c:when>
 			                            	<c:when test="${item.itemType == 'F' }">
-			                            		<div class="email-subject">오피스텔, ${item.itemSize}평, ${item.itemFloor}층/${item.buildingFloor}층</div>
+			                            		<div class="email-subject">오피스텔 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
 			                            	</c:when>
 			                            </c:choose>
 			                            <div class="email-subject">${item.memoShort} </div>

@@ -14,9 +14,10 @@
 			user_no
 			,user_id
 			, user_pw
+			, user_name
 		FROM tbl_user
 		WHERE user_id = #{userId}
-		AND user_pw = #{userPw}
+			AND user_pw = #{userPw}
 	</select>
 	
 	

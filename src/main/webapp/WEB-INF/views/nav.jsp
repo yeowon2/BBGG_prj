@@ -16,13 +16,6 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-7 col-md-8 col-xs-12">
-              <!-- Start Contact Info -->
-              <ul class="links clearfix">
-                <li><i class="lni-phone-handset"></i>000-111-222</li>
-                <li><i class="lni-envelope"></i> bbgg@gmail.com</li>
-                <!-- <li><a href="#"><i class="lni-map-marker"></i> York Blvd, Los Angeles, US</a></li> -->
-              </ul>
-              <!-- End Contact Info -->
             </div>
             <div class="col-lg-5 col-md-4 col-xs-12">
               <div class="roof-social float-right">
@@ -39,7 +32,8 @@
               </c:if>
               <c:if test="${loginVO != null}">
 	              <div class="header-top-right float-right">
-	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a> |
+	                <a href="#" class="header-top-button"><i class="lni-user"></i><strong>${loginVO.userName}</strong>님</a> |
+	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a>
 	              </div>
               </c:if>
             </div>
@@ -63,7 +57,7 @@
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
               <li class="nav-item mx-3">
-                <a href="/" class="nav-link m1-3"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="/" class="nav-link m1-3" aria-haspopup="true" aria-expanded="false">
                   Home 
                 </a>
                 
@@ -102,7 +96,7 @@
               <c:if test="${loginVO != null}">
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  마이페이지 <i class="fa fa-angle-down"></i>
+                  마이페이지 
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>

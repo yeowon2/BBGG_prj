@@ -63,7 +63,7 @@ public class LoginController {
 	    } 
 		else { // 일반 사용자 로그인
 	        UserVO loginVO = loginService.actionLogin(userVO);
-	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
+	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && !loginVO.getPhone().equals("kakao가입자")) {
 	            session.setAttribute("loginVO", loginVO);
 	            
 	            return "redirect:/";

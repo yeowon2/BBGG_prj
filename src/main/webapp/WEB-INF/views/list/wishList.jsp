@@ -20,141 +20,130 @@
 		<input type="submit" class="btn btn-dark" value="검색">
 	</form>
 	<hr><br>
-	<div class="row">
+	<div>
         <div class="col-sm">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
+	<div>
         <div class="col-sm">
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col">
                     <div class="card mb-20">
                         <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Image top</h5>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        	<a href="delete" class="btn btn-danger btn-xs"><i class="icon-trash"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card mb-20">
-                        <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Image top</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card mb-20">
-                        <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Image top</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card mb-20">
-                        <img class="card-img-top" src="dist/img/cropper.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Image top</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div>
+		<ul class="pagination justify-content-center mt-3">
+			<li class="page-item"><a class="page-link" href="?page=1&${pager.query}">처음</a></li>
+			<li class="page-item"><a class="page-link" href="?page=${pager.prev}&${pager.query}">이전</a></li>
+			<c:forEach var="page" items="${pager.list}">
+				<li class="page-item"><a class="page-link ${page == pager.page ? 'active' : ''}" href="?page=${page}&${pager.query}">${page}</a></li>
+			</c:forEach>
+			<li class="page-item"><a class="page-link" href="?page=${pager.next}&${pager.query}">다음</a></li>
+			<li class="page-item"><a class="page-link" href="?page=${pager.last}&${pager.query}">마지막</a></li>
+		</ul>
+	</div>
+
 </section>
 </body>
 </html>

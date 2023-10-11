@@ -18,6 +18,19 @@ public class UserWishListServiceImpl implements UserWishListService {
 	public List<UserWishListVO> recentView(List<String> roomNumbers) {
 		return dao.recentView(roomNumbers);
 	}
+	
+	// 관심 매물 리스트 불러오기 
+	@Override
+	public List<UserWishListVO> wishList() {
+		return dao.wishList();
+	}
+	
+	// 관심 매물 리스트에서 제외
+	@Override
+	public void delete(Long wishNo) {
+		dao.delete(wishNo);
+	}
+
 
 	
 	

@@ -71,6 +71,9 @@
 				#{fakeVO.agreeAt},
 				NOW()
 				)
+				<selectKey keyProperty="fakeNo" resultType="Long" order="AFTER">
+					SELECT LAST_INSERT_ID()
+				</selectKey>
 	</insert>
 	
 	<insert id="insertFile">

@@ -31,29 +31,29 @@
 							
 								<div class="card card-sm">
 									<div class="card-body">
-											<div class="d-flex justify-content-between mb-5">										
-												<div>
-													<span class="d-block font-15 text-dark font-weight-500">일반회원</span>
-												</div>
-												<div>
-													<span class="text-danger font-14 font-weight-500">
-														<c:choose>
-															<c:when test="${userCount-userYestdCount > 0}">
-																+${userCount-userYestdCount}
-															</c:when>
-															<c:when test="${userCount-userYestdCount < 0}">
-																-${userCount-userYestdCount}
-															</c:when>
-															<c:otherwise>0</c:otherwise>
-														</c:choose>
-													</span>
-												</div>
+										<div class="d-flex justify-content-between mb-5">										
+											<div>
+												<span class="d-block font-15 text-dark font-weight-500">일반회원</span>
 											</div>
 											<div>
-												<span class="d-block display-4 text-dark mb-5">${userCount}</span>
-												<small class="d-block">당일 신규 가입 회원(명)</small>
+												<span class="text-danger font-14 font-weight-500">
+													<c:choose>
+														<c:when test="${userCount-userYestdCount > 0}">
+															+${userCount-userYestdCount}
+														</c:when>
+														<c:when test="${userCount-userYestdCount <= 0}">
+															${userCount-userYestdCount}
+														</c:when>
+														<c:otherwise>0</c:otherwise>
+													</c:choose>
+													</span>
 											</div>
 										</div>
+										<div>
+											<span class="d-block display-4 text-dark mb-5">${userCount}</span>
+											<small class="d-block">당일 신규 가입 회원(명)</small>
+										</div>
+									</div>
 								</div>
 							
 								<div class="card card-sm">
@@ -68,8 +68,8 @@
 														<c:when test="${partnerCount-partnerYestdCount > 0}">
 															+${partnerCount-partnerYestdCount}
 														</c:when>
-														<c:when test="${partnerCount-partnerYestdCount < 0}">
-															-${partnerCount-partnerYestdCount}
+														<c:when test="${partnerCount-partnerYestdCount <= 0}">
+															${partnerCount-partnerYestdCount}
 														</c:when>
 														<c:otherwise>0</c:otherwise>
 													</c:choose>													
@@ -95,8 +95,8 @@
 														<c:when test="${itemCount-itemYestdCount > 0}">
 															+${itemCount-itemYestdCount}
 														</c:when>
-														<c:when test="${itemCount-itemYestdCount < 0}">
-															-${itemCount-itemYestdCount}
+														<c:when test="${itemCount-itemYestdCount <= 0}">
+															${itemCount-itemYestdCount}
 														</c:when>
 														<c:otherwise>0</c:otherwise>
 													</c:choose>	
@@ -122,8 +122,8 @@
 														<c:when test="${fakeCount-fakeYestdCount > 0}">
 															+${fakeCount-fakeYestdCount}
 														</c:when>
-														<c:when test="${fakeCount-fakeYestdCount < 0}">
-															-${fakeCount-fakeYestdCount}
+														<c:when test="${fakeCount-fakeYestdCount <= 0}">
+															${fakeCount-fakeYestdCount}
 														</c:when>
 														<c:otherwise>0</c:otherwise>
 													</c:choose>													
@@ -204,7 +204,7 @@
 														<th>회원번호</th>
 														<th>아이디</th>
 														<th>부동산명</th>
-														<th>가입날짜</th>
+														<th>가입일</th>
 														<th>연락처</th>
 													</tr>
 												</thead>

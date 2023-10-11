@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,16 +56,18 @@ public class FakeController {
 	}
 	
 	@PostMapping("/{itemNo}")
-	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, FakeVO fakeVO, UploadVO uploadVO, @RequestParam(required = false) MultipartFile file) throws Exception {
+	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, 
+						FakeVO fakeVO, UploadVO uploadVO, @RequestParam(required = false) MultipartFile file,
+						HttpServletRequest request) throws Exception {
 		model.addAttribute("itemNo", itemNo);
-
+		
 		String userId = null;
 		
 		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
 		
 		if(loginVO != null) {userId = loginVO.getUserId();}
 		
-		if(loginVO != null && userId != null && !userId.equals("") && file != null) {
+		if(loginVO != null && userId != null && !userId.equals("") && !file.isEmpty()) {
 
 			String uploadFolder = "C:\\Temp\\folder";
 
@@ -82,14 +86,22 @@ public class FakeController {
 			String uniqueFileName = uuids[0];
 			//System.out.println("생성된 고유문자열 : " + uniqueFileName); 
 			
+			String savedFileName = uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension;
 			File saveFile = new File(uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension); 
 			//System.out.println("DB에 저장될 파일명 : " + saveFile); 
 			
 			uploadVO.setOriginalFileName(originalFileName);
 			uploadVO.setUniqueFileName(uniqueFileName);
 			uploadVO.setFileExtension(fileExtension);
-			uploadVO.setSavedFileName(uniqueFileName);
+			uploadVO.setSavedFileName(savedFileName);
 			uploadVO.setFileSize(fileSize);
+			
+			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
+			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1"));
+			System.out.println(request.getParameter("fakeCheck1"));
+			fakeVO.setFakeCheck2(request.getParameter("fakeCheck2"));
+			fakeVO.setFakeCheck3(request.getParameter("fakeCheck3"));
+			fakeVO.setFakeContent(request.getParameter("fakeContent"));
 			
 			try {
 				file.transferTo(saveFile); // 여기까지는 OK
@@ -104,11 +116,17 @@ public class FakeController {
 			model.addAttribute("fakeFinishUrl", "/itemList"); 
 			return "/alert";			
 			
-		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file == null) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
+		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file.isEmpty()) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
+			
+			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
+			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1")); 
+			fakeVO.setFakeCheck2(request.getParameter("fakeCheck2")); 
+			fakeVO.setFakeCheck3(request.getParameter("fakeCheck3")); 
+			fakeVO.setFakeContent(request.getParameter("fakeContent")); 
 			
 			service.fakeAdd(itemNo, fakeVO, userId);
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
-			model.addAttribute("fakeFinishUrl", "/itemSelect/3"); // @@@@@ test용
+			model.addAttribute("fakeFinishUrl", "/itemList"); 
 			return "/alert";  
 		} else {
 			model.addAttribute("loginMsg", "로그인 후 이용가능합니다.");
@@ -116,6 +134,5 @@ public class FakeController {
 			//return "redirect:/roomSelect/{roomNo}";
 			return "/alert";
 		}
-//		return "";
 	}
 }

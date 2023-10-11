@@ -28,13 +28,31 @@
 		<include refid="whereToday"></include>
 	</select>
 	
+	<select id="countPartnerYestd" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_partner
+		<include refid="whereYesterday"></include>
+	</select>
+	
 	<select id="countItem" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_item
 		<include refid="whereToday"></include>
 	</select>
 	
+	<select id="countItemYestd" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_item
+		<include refid="whereYesterday"></include>
+	</select>
+	
 	<select id="countFake" resultType="Integer">
+		SELECT COUNT(*)
+		FROM tbl_fake  
+		<include refid="whereToday"></include>
+	</select>
+	
+	<select id="countFakeYestd" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_fake  
 		<include refid="whereToday"></include>

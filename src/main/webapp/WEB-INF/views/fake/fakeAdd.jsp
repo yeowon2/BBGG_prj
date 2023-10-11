@@ -47,8 +47,9 @@
 	        <div class="row">
                 <div class="col-xl-12">
 					<section class="hk-sec-wrapper">
-						<h5 class="hk-sec-title">허위 매물 신고에 대한 안내</h5>
-							<p class="mb-25">
+						<h5 class="hk-sec-title" align="center">허위 매물 신고에 대한 안내</h5>
+							<pre class="mb-25">
+							
 					· 개인정보 수집 및 이용 목적(개인정보보호법 제15조)<br>
 					▫ 부동산매물클린관리센터는 관계 법령에 따라 소관 업무를 수행하기 위하여 개인정보를 수집 및 이용 합니다.<br>
 					  수집된 개인정보는 정해진 목적 이외의 용도로는 이용되지 않으며 수집 목적이 변경될 경우 사전에 알리고 동의를 받을 예정입니다.<br><br>
@@ -67,13 +68,15 @@
 					· 동의 거부 권리 및 거부에 따른 불이익<br>
 					▫ 신고 처리를 위하여 수집하는 최소한의 정보 이외에 개인정보 수집에 동의를 거부할 권리가 있으나 <br>
 					  최소한의 개인정보 수집동의 거부 시에는 부동산매물클린관리센터 서비스를 제공 받을 수 없습니다.<br>
-							<input type="checkbox" id="agreeAt" name="agreeAt"><label>허위 매물 신고에 대한 안내에 동의합니다.</label><br>
-							</p>
+					  
+					<input type="checkbox" id="agree" name="agree"><label><bold> 허위 매물 신고에 대한 안내에 동의합니다.</bold></label>
+					* 미동의시 신고 기능에 제한이 있을 수 있습니다. <br>
+							</pre>
 						<div class="row">
 						    <div class="col-sm">
 						    
 						        <!-- Button trigger modal -->
-						        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="float: right;">
+						        <button type="button" class="btn btn-success" id="modalBtn" data-toggle="modal" data-target="#exampleModal" style="float: right;">
 						            허위 매물 신고하기
 						        </button>
 		
@@ -101,10 +104,11 @@
 												
 												<form method="post" enctype="multipart/form-data">
 													<input type="hidden" id="roomNo" value="${result.roomNo}">
-													<input type="checkbox" id="fakeCheck1" name="fakeCheck" value="${fakeVO.fakeCheck1}"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
-													<input type="checkbox" id="fakeCheck2" name="fakeCheck" value="${fakeVO.fakeCheck2}"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
-													<input type="checkbox" id="fakeCheck3" name="fakeCheck" value="${fakeVO.fakeCheck3}"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
-													<textarea id="fakeDetail" name="fakeDetail" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
+													<input type="hidden" id="agreeAt" name="agreeAt">
+													<input type="checkbox" id="fakeCheck1" name="fakeCheck1"><label>실제 매물이 해당 내용과 불일치 (위치, 정보 등)</label><br> 
+													<input type="checkbox" id="fakeCheck2" name="fakeCheck2"><label>실제 소유자가 사이트의 내용과 불일치</label><br>
+													<input type="checkbox" id="fakeCheck3" name="fakeCheck3"><label>기타 (체크 후 아래에 기입해주세요)</label><br>
+													<textarea id="fakeDetail" name="fakeContent" rows="10" cols="60" placeholder="신고할 내용을 입력해주세요(200자)" maxlength="200" ></textarea><br>
 														<div class="row">
 															<div class="col-xl-12">
 																<section class="hk-sec-wrapper">
@@ -205,21 +209,26 @@
 	<script src="../../resources/dist/js/feather.min.js"></script>
     
     <script>
-    function is_checked() {
-
-  	  	const ckBtn1 = document.getElementById('#fakeCheck1');
-  	  	const ckBtn2 = document.getElementById('#fakeCheck2');
-  	  	const ckBtn3 = document.getElementById('#fakeCheck3');
-  	  
-  		($(ckBtn1).is(":checked"))==="checked" ? ckBtn1.value==="T" : ckBtn1.value==="F";
-  		($(ckBtn2).is(":checked"))==="checked" ? ckBtn2.value==="T" : ckBtn2.value==="F";
-  		($(ckBtn3).is(":checked"))==="checked" ? ckBtn3.value==="T" : ckBtn3.value==="F";
-  	}
-    
+    const fakeCheck1 = document.getElementById('fakeCheck1');
+	const fakeCheck2 = document.getElementById('fakeCheck2');
+	const fakeCheck3 = document.getElementById('fakeCheck3');
+	
     const submitBtn = document.querySelector("#submitBtn");
     
-    submitBtn.addEventListener('click', () => {
-	    if(document.getElementById("agreeAt").checked) {
+    const agreeAt = document.getElementById("agreeAt");
+    const agree = document.getElementById("agree");
+
+    function is_checked() {
+  		fakeCheck1.value = "on" ? "Y" : "N";
+  		fakeCheck2.value = "on" ? "Y" : "N";
+  		fakeCheck3.value = "on" ? "Y" : "N";
+  	};
+  	
+  	submitBtn.addEventListener('click', () => {
+  		
+	    if(agree.checked) {
+	    	agreeAt.value = "Y";
+	    	is_checked();
 	    	form.submit();
 	    } else {
 	    	event.preventDefault();

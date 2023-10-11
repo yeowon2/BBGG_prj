@@ -47,7 +47,7 @@
               <span class="navbar-toggler-icon"></span>
               <span class="lin-menu"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/resources/assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="/resources/comm/logo(B).png" alt=""></a>
           </div>
 
           <div class="collapse navbar-collapse" id="main-navbar">

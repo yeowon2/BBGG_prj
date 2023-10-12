@@ -104,11 +104,12 @@
 		}
 		
 		#reset-btn {
-			width: 20px; 
-			height: 20px; 
+			width: 15px; 
+			height: 15px; 
 			justify-content: center; 
 			align-items: center; 
 			border: none;
+			margin-top: 5px; 
 		}
 		
 	    /* 지도 스타일 설정 */
@@ -147,7 +148,7 @@
 		        <div>
 		            <!-- 방종류 -->
 		            <select id="itemType" name="itemType">
-		                <option value="">원룸,투룸,쓰리룸,오피스텔</option>
+		                <option value="">방 타입 선택하기</option>
 		                <option value="O">원룸</option>
 		                <option value="T">투룸</option>
 		                <option value="H">쓰리룸</option>
@@ -157,18 +158,18 @@
 		        <div>
 		            <!-- 월-전세 -->
 		            <select id="leaseOrMonth" name="leaseOrMonth">
-		                <option value="">월세,전세</option>
+		                <option value="">계약 조건 선택하기</option>
 		                <option value="month">월세</option>
 		                <option value="lease">전세</option>
 		            </select>
 		        </div>
+		        <br>
 		        <div class="input-group">
-		            <div class="input-group-prepend">
-		                <span class="feather-icon"><i data-feather="search"></i></span>
-		            </div>
-		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="">
+		            
+		            <img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
+		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
 		        	<!-- 초기화 버튼 추가 -->
-        			<button type="button" id="resetSearch"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
+        			<button type="button" id="resetSearch" style="border: none;"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
 		        </div>
 		    </form>
 		    <script>
@@ -183,18 +184,37 @@
 			 	// 검색 폼 엘리먼트 가져오기
 			    var searchForm = document.getElementById('search-container');
 	
-			    // 검색 폼이 제출되면 세션 스토리지에 검색어 저장
+			    // 검색 폼이 제출되면 세션 스토리지에 검색어 및 셀렉트 태그 값 저장
 			    searchForm.addEventListener('submit', function() {
 			        var searchInput = document.getElementById('search');
 			        var searchValue = searchInput.value;
+			        var itemTypeSelect = document.getElementById('itemType');
+			        var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+			        var itemTypeValue = itemTypeSelect.value;
+			        var leaseOrMonthValue = leaseOrMonthSelect.value;
+			        
 			        sessionStorage.setItem('search', searchValue);
+			        sessionStorage.setItem('itemType', itemTypeValue);
+			        sessionStorage.setItem('leaseOrMonth', leaseOrMonthValue);
 			    });
 	
-			    // 검색어가 세션 스토리지에 저장된 경우 자동으로 설정
+			    // 검색어 및 셀렉트 태그 값이 세션 스토리지에 저장된 경우 자동으로 설정
 			    var searchInput = document.getElementById('search');
+			    var itemTypeSelect = document.getElementById('itemType');
+			    var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+			    
 			    var storedSearch = sessionStorage.getItem('search');
+			    var storedItemType = sessionStorage.getItem('itemType');
+			    var storedLeaseOrMonth = sessionStorage.getItem('leaseOrMonth');
+			    
 			    if (storedSearch) {
 			        searchInput.value = storedSearch;
+			    }
+			    if (storedItemType) {
+			        itemTypeSelect.value = storedItemType;
+			    }
+			    if (storedLeaseOrMonth) {
+			        leaseOrMonthSelect.value = storedLeaseOrMonth;
 			    }
 			 	// 5분(300000 밀리초) 후에 세션 스토리지 초기화
 			    setTimeout(function() {

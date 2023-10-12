@@ -24,18 +24,37 @@
               <h2 class="intro-title">어떤 방을 찾고 있나요?</h2>
               <div class="content">
                 <div class="row justify-content-center align-items-center">
-                  	<div class="search-add col-lg-12 col-md-12 col-xs-12">
-		              <form method="post" action="/itemList" >
-		                <div class="form-group">
+                  	<div class="search-add col-lg-12 col-md-12 col-xs-12" style="align-items: center; justify-content: center;">
+		              <form id="index-search" method="post" action="/itemList" style="align-items: center; justify-content: center;" >
+		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
 		                	<!-- <div class="row"> -->
-			                	<div class="input-group-prepend">
-				                	<span class="feather-icon"><i class="lni-search"></i></span>
-				                </div>
-		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" >
-		                    	<button type="submit" class="btn btn-common"><i class="lni-search"></i></button>
+				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; ">
+		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" style="border: none; align-items: center; justify-content: center;">
 		                	<!-- </div> -->
 		                </div>
 		              </form>
+		              <script>
+		           		// 검색 폼 엘리먼트 가져오기
+					    var searchForm = document.getElementById('index-search');
+			
+					    // 검색 폼이 제출되면 세션 스토리지에 검색어 저장
+					    searchForm.addEventListener('submit', function() {
+					        var searchInput = document.getElementById('search');
+					        var searchValue = searchInput.value;
+					        sessionStorage.setItem('search', searchValue);
+					    });
+			
+					    // 검색어가 세션 스토리지에 저장된 경우 자동으로 설정
+					    var searchInput = document.getElementById('search');
+					    var storedSearch = sessionStorage.getItem('search');
+					    if (storedSearch) {
+					        searchInput.value = storedSearch;
+					    }
+					 	// 6초(600 밀리초) 후에 세션 스토리지 초기화
+					    setTimeout(function() {
+					        sessionStorage.clear(); // 세션 스토리지 초기화
+					    }, 600);
+				    </script>
 		         	</div>
                 </div>
               </div>

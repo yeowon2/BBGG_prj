@@ -71,8 +71,11 @@ public class PartnerServiceImpl implements PartnerService {
 	}
 
 	@Override
-	public PartnerVO detail(Long partnerNo) {
-		return dao.detail(partnerNo);
+	public PartnerVO detail(Long itemNo) {
+		PartnerVO partnerVO = dao.detail(itemNo);
+		FileVO fileVO = fileDao.selectPartnerFile(partnerVO.getPartnerNo());
+		partnerVO.setFileVO(fileVO);
+		return partnerVO;
 	}
 
 	@Override

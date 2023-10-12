@@ -56,7 +56,13 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public List<ItemVO> partItemList(Long partnerNo) {
-		return dao.partItemList(partnerNo);
+		
+		 List<ItemVO> partItemList = dao.partItemList(partnerNo);
+		 for (ItemVO itemVO : partItemList) {
+			FileVO fileVO = fileDao.selectItemFile(itemVO.getItemNo());
+			itemVO.setFileVO(fileVO);
+		}
+		 return partItemList;
 	}
 
 	@Override

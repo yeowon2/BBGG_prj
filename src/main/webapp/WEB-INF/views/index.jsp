@@ -52,7 +52,7 @@
         <div class="row">
           <div class="col-12">
             <div class="section-title-header text-center">
-              <h2 class="section-title">Popular Listings</h2>
+              <h2 class="section-title">인기 매물</h2>
               <p>Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
             </div>
           </div>

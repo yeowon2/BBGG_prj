@@ -67,7 +67,7 @@
 												<option value="1" ${pager.search == 1 ? "selected" : ""}>매물번호</option>
 												<option value="2" ${pager.search == 2 ? "selected" : ""}>부동산명</option>
 												<option value="3" ${pager.search == 3 ? "selected" : ""}>회원명</option>
-												<option value="3" ${pager.search == 4 ? "selected" : ""}>상태</option>
+												<option value="4" ${pager.search == 4 ? "selected" : ""}>상태</option>
 											</select>
 										</div>
 										<div class="col">
@@ -133,17 +133,17 @@
 			                                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			                                                        </ol>
 			                                                        <div class="carousel-inner">
-			                                                        	<c:forEach var="item" items="${fakeList}">
+			                                                        	<%-- <c:forEach var="item" items="${fakeVO}"> --%>
 				                                                            <div class="carousel-item active">
-				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="첫번째 첨부파일">
+				                                                                <img class="d-block w-100" src="/resources/dist/img/img-thumb.jpg" alt="첫번째 첨부파일">
 				                                                            </div>
 				                                                            <div class="carousel-item">
-				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="두번째 첨부파일">
+				                                                                <img class="d-block w-100" src="/resources/dist/img/img-thumb.jpg" alt="두번째 첨부파일">
 				                                                            </div>
 				                                                            <div class="carousel-item">
-				                                                                <img class="d-block w-100" src="dist/img/slide1.jpg" alt="세번째 첨부파일">
+				                                                                <img class="d-block w-100" src="/resources/dist/img/img-thumb.jpg" alt="세번째 첨부파일">
 				                                                            </div>
-			                                                            </c:forEach>
+			                                                            <%-- </c:forEach> --%>
 			                                                        </div>
 			                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 			                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>

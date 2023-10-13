@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="admin">
+	<sql id="search">
+		SELECT tbl_fake.* FROM tbl_fake 
+		
+		<where>
+			<if test="search == 1">
+				tbl_fake.item_no = #{keyword}
+			</if>
+			
+			<if test="search == 2">
+				tbl_partner.comp_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 3">
+				tbl_fake.user_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 4">
+				tbl_fake.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+		
+		ORDER BY tbl_fake.fake_no
+	</sql>
+
 	<sql id="whereToday">
 		WHERE DATE_FORMAT(regist_date, '%Y-%m-%d') = CURDATE()
 	</sql>
@@ -71,6 +95,21 @@
 				user_no <= 10
 			]]>
 	</select>
+
+	<select id="selectUserListAll" resultType="UserVO">
+		SELECT subquery.*
+		FROM (
+			SELECT 
+				user_no
+				, user_id
+				, user_name
+				, phone
+				, regist_date
+				, ROW_NUMBER() OVER (ORDER BY regist_date DESC) AS rownum
+			FROM  tbl_user
+		) AS subquery
+		LIMIT ${perPage} OFFSET 0
+	</select>
 	
 	<select id="selectPartnerList" resultType="PartnerVO">
 		SELECT 
@@ -117,4 +156,7 @@
 			]]>
 	</select>
 
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
+	</select>
 </mapper>

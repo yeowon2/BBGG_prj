@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
+import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.user.web.UserVO;
 
@@ -22,6 +23,11 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<UserVO> userList(UserVO userVO) {
 		return sql.selectList("admin.selectUserList", userVO);
+	}
+	
+	@Override
+	public List<UserVO> list(Pager pager) {
+		return sql.selectList("admin.selectUserListAll", pager);
 	}
 
 	@Override
@@ -77,5 +83,10 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int countFakeYestd() {
 		return sql.selectOne("admin.countFakeYestd");
+	}
+
+	@Override
+	public int total(Pager pager) {
+		return sql.selectOne("admin.total", pager);
 	}
 }

@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!-- Header Area wrapper Starts -->
+    <script>
+	$(document).ready(function() {
+	    $('.nav-item').click(function() {
+	        $('.nav-item').removeClass('active');
+	        $(this).addClass('active');
+	    });
+	});
+	</script>
     <header id="header-wrap">
       <!-- Start Top Bar -->
       <div class="top-bar">
@@ -47,7 +55,7 @@
               <span class="navbar-toggler-icon"></span>
               <span class="lin-menu"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/resources/comm/logo(B).png" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="/resources/comm/logo(B)s.png" alt=""></a>
           </div>
 
           <div class="collapse navbar-collapse" id="main-navbar">
@@ -68,8 +76,8 @@
                   회원관리 
                 </a>
                  <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/admin/user">일반 회원</a>
-                  <a class="dropdown-item" href="/admin/pro">단체 회원</a>
+                  <a class="dropdown-item" href="/admin/userList">일반 회원</a>
+                  <a class="dropdown-item" href="/admin/partnerList">단체 회원</a>
                 </div>
               </li>
               <li class="nav-item dropdown mx-3">

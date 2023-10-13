@@ -55,6 +55,12 @@ public class ItemController {
 		model.addAttribute("list", list);
 		return path + "item_list";
 	}
+	@GetMapping("/itemListAll")
+	@ResponseBody
+	public List<ItemVO> itemListAll(ItemVO itemVO) {
+		List<ItemVO> item = service.itemList(itemVO);
+		return item;
+	}
 	@PostMapping("/itemList")
 	public String itemList(Model model, ItemVO itemVO) {
 		List<ItemVO> list = service.itemList(itemVO);

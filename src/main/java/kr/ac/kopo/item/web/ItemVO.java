@@ -276,10 +276,18 @@ public class ItemVO {
 	
 	/* 전세 단위 바꾸기 */
 	public int getLeaseBillion() {
-		return leasePrice.intValue() / 10000;
+		if (leasePrice != null) {
+	        return leasePrice.intValue() / 10000;
+	    } else {
+	        return 0; // 또는 다른 기본값
+	    }
 	}
 	public int getLeaseTenMillion() {
-		return leasePrice.intValue() % 10000;
+		if (leasePrice != null) {
+	        return leasePrice.intValue() % 10000;
+	    } else {
+	        return 0; // 또는 다른 기본값
+	    }
 	}
 
 	public void setLeasePrice(Long leasePrice) {

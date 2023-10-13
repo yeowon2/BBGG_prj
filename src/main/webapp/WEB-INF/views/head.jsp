@@ -15,7 +15,7 @@
 	<link rel="apple-touch-icon" sizes="152x152" href="/resources/comm/favicon/apple-icon-152x152.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/resources/comm/favicon/apple-icon-180x180.png">
 	<link rel="icon" type="image/png" sizes="192x192"  href="/resources/comm/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="//resources/comm/faviconfavicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/resources/comm/favicon/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/resources/comm/favicon/favicon-96x96.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="/resources/comm/favicon/favicon-16x16.png">
 	<link rel="manifest" href="/resources/comm/favicon/manifest.json">

@@ -10,7 +10,9 @@
  	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
     <!-- 제이쿼리 -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
     
     <jsp:include page="../head.jsp"></jsp:include>
     <jsp:include page="../nav.jsp"></jsp:include>
@@ -141,7 +143,7 @@
             var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소
             var mapOption = {
                 center: new kakao.maps.LatLng(36.3300693111, 127.4596995134), // 지도 중심 좌표
-                level: 5 // 지도 확대 레벨
+                level: 12 // 지도 확대 레벨
             };
 
             var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -150,7 +152,7 @@
             var clusterer = new kakao.maps.MarkerClusterer({
                 map: map, // 마커 클러스터러가 표시될 지도 객체
                 averageCenter: true, // 클러스터의 중심을 평균값으로 설정
-                minLevel: 3 // 클러스터링을 시작할 최소 레벨
+                minLevel: 6 // 클러스터링을 시작할 최소 레벨
             });
 
             // 서버에서 데이터를 가져오는 Ajax 요청 예제
@@ -172,7 +174,7 @@
 	    <!-- <script>
 		    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 		        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-		        level : 8 // 지도의 확대 레벨
+		        level : 12 // 지도의 확대 레벨
 		    });
 				
 		    // 마커 클러스터러를 생성합니다
@@ -183,7 +185,7 @@
 		    var clusterer = new kakao.maps.MarkerClusterer({
 		        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
 		        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-		        minLevel: 8, // 클러스터 할 최소 지도 레벨
+		        minLevel: 6, // 클러스터 할 최소 지도 레벨
 		        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
 		    });
 	
@@ -353,8 +355,8 @@
 		    </div>
 		</div>
 		
-		<%-- <!-- 카테고리에 따른 마커 생성 -->
-		<c:forEach var="item" items="${list}">
+		<!-- 카테고리에 따른 마커 생성 -->
+		<!-- <c:forEach var="item" items="${list}">
 			<c:if test="${item.useAt == 'Y' }">
 			    <script>
 			        var positions = [
@@ -401,7 +403,7 @@
 			        }
 			    </script>
 			</c:if>
-		</c:forEach> --%>
+		</c:forEach> -->
 		
 		<script>
 		    // 이미지 위에 번호를 나타내는 함수

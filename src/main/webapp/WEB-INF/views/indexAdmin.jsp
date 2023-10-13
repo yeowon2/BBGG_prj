@@ -148,7 +148,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="admin/user" class="inline-block full-screen">
+										<a href="/admin/userList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -190,7 +190,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="admin/partner" class="inline-block full-screen">
+										<a href="admin/partnerList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -201,7 +201,7 @@
 											<table class="table table-striped table-sm table-hover mb-0">
 												<thead class="">
 													<tr>
-														<th>회원번호</th>
+														<th>회원no</th>
 														<th>아이디</th>
 														<th>부동산명</th>
 														<th>가입일</th>
@@ -243,8 +243,8 @@
 											<table class="table table-striped table-sm table-hover mb-0">
 												<thead class="">
 													<tr>
-														<th>매물번호</th>
-														<th>부동산번호</th>
+														<th>매물no</th>
+														<th>부동산no</th>
 														<th>매물주소</th>
 														<th>매물등록날짜</th>
 														<th>설명</th>
@@ -257,7 +257,7 @@
 															<td>${item.partnerNo}</td>
 															<td>${item.address}</td>
 															<td><fmt:formatDate value="${item.registDate}" type="both" dateStyle="short" timeStyle="short"/></td>
-															<td><a href="#">${item.memoShort}</a></td>
+															<td><a href="itemDetail/${item.itemNo}">${item.memoShort}</a></td>
 														</tr>
 													</c:forEach>													
 												</tbody>
@@ -274,7 +274,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="/admin/fake" class="inline-block full-screen">
+										<a href="/admin/fakeList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -285,8 +285,8 @@
 											<table class="table table-striped table-sm table-hover mb-0">
 												<thead class="">
 													<tr>
-														<th>순번</th>
-														<th>매물번호</th>
+														<th>신고no</th>
+														<th>매물no</th>
 														<th>내용</th>
 														<th>부동산명</th>
 														<th>상태</th>
@@ -299,7 +299,7 @@
 															<td>${item.itemNo}</td>
 															<td>${item.fakeContent}</td>
 															<td>${item.compName}</td>
-															<td><a href="itemDetail">${item.useAt}</a></td>
+															<td><a href="itemSelect/${item.itemNo}">${item.useAt}</a></td>
 														</tr>
 													</c:forEach>													
 												</tbody>

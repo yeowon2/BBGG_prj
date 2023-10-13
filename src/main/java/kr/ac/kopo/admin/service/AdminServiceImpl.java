@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import kr.ac.kopo.admin.dao.AdminDao;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
+import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
 import kr.ac.kopo.user.web.UserVO;
 
@@ -21,6 +21,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<UserVO> userList(UserVO userVO) {
 		return adminDao.userList(userVO);
+	}
+	
+	@Override
+	public List<UserVO> userListAll(Pager pager) {
+		int total = adminDao.total(pager);
+		pager.setTotal(total);
+		return adminDao.userListAll(pager);
 	}
 	
 	@Override

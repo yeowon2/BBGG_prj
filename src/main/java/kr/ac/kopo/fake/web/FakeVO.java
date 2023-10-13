@@ -2,10 +2,12 @@ package kr.ac.kopo.fake.web;
 
 import java.util.Date;
 
-public class FakeVO {
-	private long fakeNo;
-	private long itemNo;
-	private long userNo;
+import kr.ac.kopo.item.web.ItemVO;
+
+public class FakeVO extends ItemVO{
+	private Long fakeNo;
+	private Long itemNo;
+	private Long userNo;
 	private String fakeCheck1;
 	private String fakeCheck2;
 	private String fakeCheck3;
@@ -16,27 +18,27 @@ public class FakeVO {
 	
 	private String compName; // 부동산 이름
 
-	public long getFakeNo() {
+	public Long getFakeNo() {
 		return fakeNo;
 	}
 
-	public void setFakeNo(long fakeNo) {
+	public void setFakeNo(Long fakeNo) {
 		this.fakeNo = fakeNo;
 	}
 
-	public long getItemNo() {
+	public Long getItemNo() {
 		return itemNo;
 	}
 
-	public void setItemNo(long itemNo) {
+	public void setItemNo(Long itemNo) {
 		this.itemNo = itemNo;
 	}
 
-	public long getUserNo() {
+	public Long getUserNo() {
 		return userNo;
 	}
 
-	public void setUserNo(long userNo) {
+	public void setUserNo(Long userNo) {
 		this.userNo = userNo;
 	}
 

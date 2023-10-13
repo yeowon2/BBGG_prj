@@ -3,9 +3,6 @@ package kr.ac.kopo.item.web;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +51,12 @@ public class ItemController {
 		List<ItemVO> list = service.itemList(itemVO);
 		model.addAttribute("list", list);
 		return path + "item_list";
+	}
+	@GetMapping("/itemListAll")
+	@ResponseBody
+	public List<ItemVO> itemListAll(ItemVO itemVO) {
+		List<ItemVO> item = service.itemList(itemVO);
+		return item;
 	}
 	@PostMapping("/itemList")
 	public String itemList(Model model, ItemVO itemVO) {

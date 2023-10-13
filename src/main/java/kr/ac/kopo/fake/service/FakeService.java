@@ -12,7 +12,7 @@ import kr.ac.kopo.pager.Pager;
 public interface FakeService {
 	
 	// 허위매물 리스트 보기
-	List<FakeVO> fakeList(Model model, FakeVO fakeVO, Pager pager);
+	List<FakeVO> fakeList(Pager pager);
 	
 	// 허위 매물 등록 정보
 	void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId);

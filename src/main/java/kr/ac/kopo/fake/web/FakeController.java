@@ -36,8 +36,8 @@ public class FakeController {
 	final String path = "/fake";
 	
 	@GetMapping("/list")
-	public String fakeList(Model model, FakeVO fakeVO, Pager pager) {
-		List<FakeVO> fakeList = service.fakeList(model, fakeVO, pager);
+	public String fakeList(Model model, Pager pager) {
+		List<FakeVO> fakeList = service.fakeList(pager);
 		model.addAttribute("fakeList", fakeList);
 		return path + "/fakeList";
 	}

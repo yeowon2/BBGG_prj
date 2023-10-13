@@ -57,9 +57,6 @@
 				</tfoot>
 			</table>
 		</div>
-		<div class="mb-5">
-			<a href="Proadd" class="btn btn-primary btn-sm">등록</a>		
-		</div>
 	</div>
 
 

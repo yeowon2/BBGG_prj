@@ -49,7 +49,7 @@ public class AdminController {
 	
 	@GetMapping("/admin/userList")
 	public String userList(Model model, Pager pager) {
-		List<UserVO> list = adminService.list(pager);
+		List<UserVO> list = adminService.userListAll(pager);
 		model.addAttribute("list", list);
 		return "/admin/userList";
 	}

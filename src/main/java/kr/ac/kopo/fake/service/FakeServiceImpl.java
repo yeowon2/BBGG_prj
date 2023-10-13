@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.dao.FakeDao;
 import kr.ac.kopo.fake.web.FakeVO;
@@ -19,7 +18,7 @@ public class FakeServiceImpl implements FakeService {
 	FakeDao dao;
 	
 	@Override
-	public List<FakeVO> fakeList(Model model, FakeVO fakeVO, Pager pager) {
+	public List<FakeVO> fakeList(Pager pager) {
 		int total = dao.total(pager);
 		pager.setTotal(total);
 		return dao.list(pager);

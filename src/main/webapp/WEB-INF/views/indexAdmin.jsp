@@ -148,7 +148,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="/admin/user" class="inline-block full-screen">
+										<a href="/admin/userList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -190,7 +190,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="admin/partner" class="inline-block full-screen">
+										<a href="admin/partnerList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -274,7 +274,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="/fake/list" class="inline-block full-screen">
+										<a href="/admin/fakeList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>

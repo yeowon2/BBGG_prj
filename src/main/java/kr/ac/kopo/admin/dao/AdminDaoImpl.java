@@ -26,7 +26,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public List<UserVO> list(Pager pager) {
+	public List<UserVO> userListAll(Pager pager) {
 		return sql.selectList("admin.selectUserListAll", pager);
 	}
 

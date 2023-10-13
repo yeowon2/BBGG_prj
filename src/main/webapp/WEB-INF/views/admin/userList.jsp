@@ -20,7 +20,7 @@
 						<th>아이디</th>
 						<th>이름</th>
 						<th>폰번호</th>
-						<th>관리</th>
+						<th>가입</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,7 +30,7 @@
 						<td>${item.userId}</td>
 						<td>${item.userName}</td>
 						<td>${item.phone}</td>
-						<td><a href="delete/${item.userNo}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a> <a href="update/${item.userNo}" class="btn btn-warning btn-sm"><i class="bi bi-wrench"></i></a></td>
+						<td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 					</tr>
 					</c:forEach>
 					

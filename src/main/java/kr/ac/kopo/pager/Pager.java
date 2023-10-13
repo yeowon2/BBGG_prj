@@ -12,6 +12,11 @@ public class Pager {
 	private int search;
 	private String keyword;
 	
+	public int getOffset() {
+		//return (((page - 1) / perGroup) + 0) * perGroup + 0;
+		return (page - 1)*perPage;
+	}
+	
 	public String getQuery() {
 		String queryString = "";
 		

@@ -21,6 +21,7 @@
   			height:40px;
   		}
   		
+  		
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
@@ -452,6 +453,14 @@
     <!-- Blog Section End -->
 
 <jsp:include page="footer.jsp"></jsp:include>
+<script>
+	var teamItems = document.querySelectorAll('.team-item')
+	for(i=0 ; i < teamItems.length ; i++) {
+		teamItems[0].querySelector('.medal-icon').src = '/resources/assets/img/property/gold.png';
+		teamItems[1].querySelector('.medal-icon').src = '/resources/assets/img/property/silver.png';
+		teamItems[2].querySelector('.medal-icon').src = '/resources/assets/img/property/bronze.png';
+	}
+	</script>
 <jsp:include page="js.jsp"></jsp:include>
   </body>
 </html>

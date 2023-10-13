@@ -23,7 +23,8 @@
   	padding: 30px;
   	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   	}
-  	.listing-img-container img {
+  	
+  	.widget .listing-img-container img {
   		height:195px;
   	}
   	.additional-details li {
@@ -33,7 +34,13 @@
   		height:50px;
   		width:50px;
   	}
-  	
+	.property-slider .owl-carousel img {
+		max-height:410px;
+	}
+	.lni-heart {
+		font-size:x-large;
+		color:#216928;
+	}
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
   </head>
@@ -101,7 +108,7 @@
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>
-				  <li class="col-lg-2"><button type="button" class="btn btn-outline-success list"><i class="lni-thumbs-up"></i></button></li>
+				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><i class="lni-heart"></i></button></li>
 				</ul>
               </div>
             </div>
@@ -367,7 +374,7 @@
                 	<c:forEach var="item" items="${partItemList}">
 	                  <div class="item">
 	                    <div class="listing-item">
-	                      <a href="#" class="listing-img-container">
+	                      <a href="/itemDetail/${item.itemNo}" class="listing-img-container">
 	                      	<c:if test="${item.fileVO == null}">
 		                      <img src="/resources/assets/img/property/house-6.jpg" alt="">
                     		</c:if>
@@ -575,9 +582,26 @@
 </script>
 
 <script>
-var noteBtn = document.querySelector('#noteBtn');
-noteBtn.onclick = function() {
-	
+var wishBtn = document.querySelector('#wishBtn');
+var itemNo = document.querySelector('#item-no').textContent;
+
+wishBtn.onclick = function() {
+    var serverUrl = `/wish/add/${itemNo}`;
+
+    // POST 요청을 보냅니다.
+    fetch(serverUrl)
+        .then(function(response) {
+            if (response.ok) {
+                // 성공적인 응답 처리
+                // 여기서 응답을 처리하거나 확인할 수 있습니다.
+            } else {
+                // 오류 응답 처리
+                console.error('서버 요청 오류:', response.status, response.statusText);
+            }
+        })
+        .catch(function(error) {
+            console.error('네트워크 오류:', error);
+        });
 };
 
 </script>

@@ -2826,7 +2826,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 /* Team Item */
 .team-item {
-  background: #fff;
+  background: #F5F5F5;
   border-radius: 4px;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
@@ -2923,7 +2923,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 
 .team-item .info-text {
   padding: 20px 20px;
-  background: #f7f7f7;
+  background: #fAfAfA;
 }
 
 .team-item .info-text h3 {

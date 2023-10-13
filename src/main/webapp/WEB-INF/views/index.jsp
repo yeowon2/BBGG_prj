@@ -28,7 +28,7 @@
 		              <form id="index-search" method="post" action="/itemList" style="align-items: center; justify-content: center;" >
 		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
 		                	<!-- <div class="row"> -->
-				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; ">
+				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; margin-bottom: -4px; ">
 		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" style="border: none; align-items: center; justify-content: center;">
 		                	<!-- </div> -->
 		                </div>

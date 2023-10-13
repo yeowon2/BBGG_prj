@@ -2841,6 +2841,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   overflow: hidden;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  background-color:#F5F5F5;
 }
 
 .team-item .team-overlay {

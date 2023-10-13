@@ -8,7 +8,16 @@
   	<style>
   		.team-img img {
   			height:225px;
+  			border-radius:100%;
   		} 
+  		.team-img {
+  			background-color:transparent;
+  			border-radius:100%;
+  		}
+  		.latest-property {
+  			background-color:#FAFAFA;
+  		}
+  		
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
@@ -28,7 +37,7 @@
 		              <form id="index-search" method="post" action="/itemList" style="align-items: center; justify-content: center;" >
 		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
 		                	<!-- <div class="row"> -->
-				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; ">
+				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; margin-bottom: -4px; ">
 		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" style="border: none; align-items: center; justify-content: center;">
 		                	<!-- </div> -->
 		                </div>
@@ -256,7 +265,7 @@
         </div>
         <div class="row">
           <c:forEach var="partnerVO" items="${respList}">
-	          <div class="col-sm-6 col-md-6 col-lg-3">
+	          <div class="col-sm-6 col-md-6 col-lg-4">
 	            <!-- Team Item Starts -->
 	              	<div class="team-item text-center">
 		              <div class="team-img">
@@ -269,6 +278,7 @@
 		              </div>
 		              <div class="info-text">
 		                <h3><a href="/partner/info/${partnerVO.partnerNo}">${partnerVO.compName}</a></h3>
+		                <p><i class="lni-map-marker"></i>${partnerVO.compAddress}</p>
 		              </div>
 		            </div>
 	            <!-- Team Item Ends -->

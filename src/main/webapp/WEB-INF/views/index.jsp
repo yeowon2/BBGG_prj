@@ -17,6 +17,9 @@
   		.latest-property {
   			background-color:#FAFAFA;
   		}
+  		.team-item .medal-icon {
+  			height:40px;
+  		}
   		
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
@@ -268,6 +271,7 @@
 	          <div class="col-sm-6 col-md-6 col-lg-4">
 	            <!-- Team Item Starts -->
 	              	<div class="team-item text-center">
+		              <img class="medal-icon" alt="" src="/resources/assets/img/property/gold.png">
 		              <div class="team-img">
 		              		<a href="/partner/info/${partnerVO.partnerNo}">
 				              	<c:if test="${partnerVO.fileVO == null}">

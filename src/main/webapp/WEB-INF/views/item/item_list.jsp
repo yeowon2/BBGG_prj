@@ -143,7 +143,7 @@
 	        var map = new kakao.maps.Map(mapContainer, mapOption); 
 	    </script>
 	    
-	    <div class="container" id="search-list-container" >
+	    <div class="container mt-5" id="search-list-container" >
 		    <form role="search" class="email-search" method="post" id="search-container">
 		        <div>
 		            <!-- 방종류 -->
@@ -228,7 +228,7 @@
 			            <c:if test="${item.useAt == 'Y' }">
 			                <a href="/itemDetail/${item.itemNo}" target="_blank" onclick="handleClick('${item.itemNo}')" class="property-item" id="property-${item.itemNo}" style="display: flex;">
 			                    <div class="media-img-wrap" style="position: relative;">
-			                    	<img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"  onmouseover="showNumber('${item.itemNo}')" onmouseout="hideNumber('${item.itemNo}')">
+			                    	<img alt="my-properties-3" src="/upload/${item.fileVO.savedName}" class="img-fluid"  onmouseover="showNumber('${item.itemNo}')" onmouseout="hideNumber('${item.itemNo}')">
 			                    	<div class="image-number" id="number-${item.itemNo}">매물<br/>${item.itemNo}</div>
 			                    </div>
 			                    <div class="media-body">

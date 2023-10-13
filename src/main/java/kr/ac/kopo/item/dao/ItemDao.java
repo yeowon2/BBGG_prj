@@ -37,6 +37,8 @@ public interface ItemDao {
 
 	int viewCount(Long itemNo);
 
+	FileVO selectItemFile(Long itemNo);
+
 
 	
 

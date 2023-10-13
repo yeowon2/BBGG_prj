@@ -64,6 +64,7 @@
 				</if>
 			</if>
 		</where>
+		ORDER BY i.regist_date DESC
 	</select>
 	
 	<!-- <select id="itemSelect" resultType="itemVO">
@@ -307,5 +308,12 @@
 	    SET view_count = view_count + 1
 	    WHERE item_no = #{itemNo}
 	</update>
+	
+	<select id="selectItemFile" resultType="FileVO">
+    	SELECT *
+		FROM tbl_item_file tif 
+		WHERE tif.item_no = #{itemNo}
+		LIMIT 1
+    </select>
 	
 </mapper>

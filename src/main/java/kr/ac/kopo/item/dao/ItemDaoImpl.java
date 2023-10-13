@@ -123,5 +123,10 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.update("item.viewCount", itemNo);
 	}
 
+	@Override
+	public FileVO selectItemFile(Long itemNo) {
+		return sql.selectOne("item.selectItemFile", itemNo);
+	}
+
 	
 }

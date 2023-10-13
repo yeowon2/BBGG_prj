@@ -12,7 +12,9 @@ public class Pager {
 	private int search;
 	private String keyword;
 	
-	public int getOffset() {
+	public int startPage;
+	
+	public int getStartPage() {
 		//return (((page - 1) / perGroup) + 0) * perGroup + 0;
 		return (page - 1)*perPage;
 	}
@@ -51,7 +53,8 @@ public class Pager {
 		this.perGroup = perGroup;
 	}
 	public int getLast() {	//마지막 페이지
-		return (int)Math.ceil(total / perPage);
+		
+		return (int) Math.ceil(total / perPage);
 	}
 	// 이전 누르면 이전페이지그룹의 첫번째 페이지
 	public int getPrev() {
@@ -66,20 +69,20 @@ public class Pager {
 	}
 	// 페이지 리스트
 	public List<Integer> getList() {
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> psgeList = new ArrayList<Integer>();
 		
-		int startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
+		startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
 		
 		for(int i = startPage; i < (startPage + perGroup) && i <= getLast(); i++) {
-			list.add(i);
+			psgeList.add(i);
 		}
 		
 		// 페이지(게시물)가 없다면 포문이 작동하지 않기에 1값을 넣어준다
-		if(list.isEmpty()) {
-			list.add(1);
+		if(psgeList.isEmpty()) {
+			psgeList.add(1);
 		}
 		
-		return list;
+		return psgeList;
 	}
 	
 	public int getSearch() {

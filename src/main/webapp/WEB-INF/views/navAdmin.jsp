@@ -10,6 +10,10 @@
 	    });
 	});
 	</script>
+	
+	<!-- Main Style -->
+	<link rel="stylesheet" type="text/css" href="/resources/assets/css/colors/black.css">
+	
     <header id="header-wrap">
       <!-- Start Top Bar -->
       <div class="top-bar">

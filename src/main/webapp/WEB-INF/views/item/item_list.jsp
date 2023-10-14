@@ -152,7 +152,7 @@
             var clusterer = new kakao.maps.MarkerClusterer({
                 map: map, // 마커 클러스터러가 표시될 지도 객체
                 averageCenter: true, // 클러스터의 중심을 평균값으로 설정
-                minLevel: 6 // 클러스터링을 시작할 최소 레벨
+                minLevel: 2 // 클러스터링을 시작할 최소 레벨
             });
 
             // 서버에서 데이터를 가져오는 Ajax 요청 예제

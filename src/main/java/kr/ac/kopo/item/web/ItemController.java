@@ -58,12 +58,11 @@ public class ItemController {
 		List<ItemVO> item = service.itemList(itemVO);
 		return item;
 	}
-	@PostMapping("/itemList")
-	public String itemList(Model model, ItemVO itemVO) {
-		List<ItemVO> list = service.itemList(itemVO);
-		model.addAttribute("list", list);
-		return path + "item_list";
-	}
+	/*
+	 * @PostMapping("/itemList") public String itemList(Model model, ItemVO itemVO)
+	 * { List<ItemVO> list = service.itemList(itemVO); model.addAttribute("list",
+	 * list); return path + "item_list"; }
+	 */
 	
 	//매물 상세페이지
 	@GetMapping("/itemDetail/{itemNo}")

@@ -51,7 +51,7 @@ public class LoginController {
 	        PartnerVO loginPartnerVO = loginService.actionLoginPartner(partnerVO);
 	       Long partnerNo = loginPartnerVO.getPartnerNo();
 			
-	        if (loginPartnerVO != null && loginPartnerVO.getUserId() != null && !loginPartnerVO.getUserId().equals("")) {
+	        if (loginPartnerVO != null && loginPartnerVO.getUserId() != null && !loginPartnerVO.getUserId().equals("") && !loginPartnerVO.getPhone().equals("kakao가입자")) {
 	        	
 	        	session.setAttribute("loginPartnerVO", loginPartnerVO);
 	        	
@@ -81,7 +81,7 @@ public class LoginController {
 		// userVO에 값이 있는지 확인
 		userVO.setUserPw(userVO.getUserId());
 		UserVO loginVO = loginService.actionLogin(userVO);
-	    if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("")) {
+	    if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && loginVO.getPhone().equals("kakao가입자")) {
 	        // 값이 있다면 로그인을 수행
 	        if (loginVO.getUserId() != null && loginVO.getUserName() != null) {
 	            session.setAttribute("loginVO", loginVO);

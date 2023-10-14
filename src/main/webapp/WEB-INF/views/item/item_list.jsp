@@ -10,16 +10,14 @@
  	<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
     <!-- 제이쿼리 -->
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     
     <jsp:include page="../head.jsp"></jsp:include>
     <jsp:include page="../nav.jsp"></jsp:include>
    
     <style>
     	body {
-		    background-color: #DCDCDC; 
+		    background-color: #DCDCDC;
 		}
     
     	#header-wrap {
@@ -124,8 +122,29 @@
 	        width: calc(100% - 30%); /* 검색창과 리스트 창의 너비를 제외한 나머지 공간을 지도가 차지하도록 조정 */
 	        /* height: 84%; */
 	        height: calc(100vh - 16%); /* 화면 높이에서 헤더의 높이를 빼서 최대 높이로 설정 */
-	        z-index: 0; /* 지도를 가장 뒤로 배치 
+	        z-index: 0; /* 지도를 가장 뒤로 배치 */
 	    }
+	    
+	    #map button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 50;
+         	border: none;
+         	padding: 0;
+         	max-height: 30px;
+         	max-width: 30px;
+            display: flex;
+		    align-items: center;
+		    justify-content: center;
+        }
+        
+        #map button img{
+        	margin: 1px;
+		    width: 100%; /* 이미지의 너비를 100%로 설정하여 버튼에 가득 차게 합니다 */
+		    height: 100%; /* 이미지의 높이를 100%로 설정하여 버튼에 가득 차게 합니다 */
+		    object-fit: contain; /* 이미지 비율 유지 */
+        }
 	    
 	    /* 클릭한 링크에 대한 스타일 */
 		.property-item.clicked {
@@ -136,89 +155,54 @@
 </head>
 	
 	<body>
-	    <div id="map"></div>
+	    <div id="map">
+	    	<button><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
+	    </div>
 	    <script>
-        // Kakao 지도 API 초기화
-        kakao.maps.load(function() {
-            var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소
-            var mapOption = {
-                center: new kakao.maps.LatLng(36.3300693111, 127.4596995134), // 지도 중심 좌표
-                level: 12 // 지도 확대 레벨
-            };
-
-            var map = new kakao.maps.Map(mapContainer, mapOption);
-
-            // 마커 클러스터러 초기화
-            var clusterer = new kakao.maps.MarkerClusterer({
-                map: map, // 마커 클러스터러가 표시될 지도 객체
-                averageCenter: true, // 클러스터의 중심을 평균값으로 설정
-                minLevel: 6 // 클러스터링을 시작할 최소 레벨
-            });
-
-            // 서버에서 데이터를 가져오는 Ajax 요청 예제
-            $.get("/itemListAll", function(data) {
-			    var markers = data.map(function(item) {
-			        var lat = item.lat; // lat 속성 가져오기
-			        var lng = item.lng; // lng 속성 가져오기
-			
-			        return new kakao.maps.Marker({
-			            position: new kakao.maps.LatLng(lat, lng)
-			        });
-			    });
-
-                // 클러스터러에 마커 배열을 추가
-                clusterer.addMarkers(markers);
-            });
-        });
-    </script>
-	    <!-- <script>
-		    var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-		        center : new kakao.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
-		        level : 12 // 지도의 확대 레벨
-		    });
-				
-		    // 마커 클러스터러를 생성합니다
-		    // 마커 클러스터러를 생성할 때 disableClickZoom 값을 true로 지정하지 않은 경우
-		    // 클러스터 마커를 클릭했을 때 클러스터 객체가 포함하는 마커들이 모두 잘 보이도록 지도의 레벨과 영역을 변경합니다
-		    // 이 예제에서는 disableClickZoom 값을 true로 설정하여 기본 클릭 동작을 막고
-		    // 클러스터 마커를 클릭했을 때 클릭된 클러스터 마커의 위치를 기준으로 지도를 1레벨씩 확대합니다
-		    var clusterer = new kakao.maps.MarkerClusterer({
-		        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-		        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-		        minLevel: 6, // 클러스터 할 최소 지도 레벨
-		        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
-		    });
+	        // Kakao 지도 API 초기화
+	        kakao.maps.load(function() {
+	            var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소
+	            var mapOption = {
+	                center: new kakao.maps.LatLng(36.3300693111, 127.4596995134), // 지도 중심 좌표
+	                level: 12, // 지도 확대 레벨
+	                maxLevel: 12 // 지도 최대 확대 레벨
+	            };
 	
-		    // 데이터를 가져오기 위해 jQuery를 사용합니다
-		    // 데이터를 가져와 마커를 생성하고 클러스터러 객체에 넘겨줍니다
-		    $.get("/itemListAll", function(data) {
-		    	console.log(data);
-			    var markers = data.map(function(item) {
-			        return new kakao.maps.Marker({
-			            position: new kakao.maps.LatLng(item.lat, item.lng)
-			        });
-			    });
-			
-			    // 클러스터러에 마커 배열을 추가합니다
-			    clusterer.addMarkers(markers);
-			});
-		    console.log(data);
+	            var map = new kakao.maps.Map(mapContainer, mapOption);
 	
-		    // 마커 클러스터러에 클릭이벤트를 등록합니다
-		    // 마커 클러스터러를 생성할 때 disableClickZoom을 true로 설정하지 않은 경우
-		    // 이벤트 헨들러로 cluster 객체가 넘어오지 않을 수도 있습니다
-		    kakao.maps.event.addListener(clusterer, 'clusterclick', function(cluster) {
+	            // 마커 클러스터러 초기화
+	            var clusterer = new kakao.maps.MarkerClusterer({
+	                map: map, // 마커 클러스터러가 표시될 지도 객체
+	                averageCenter: true, // 클러스터의 중심을 평균값으로 설정
+	                minLevel: 2 // 클러스터링을 시작할 최소 레벨
+	            });
 	
-		        // 현재 지도 레벨에서 1레벨 확대한 레벨
-		        var level = map.getLevel()-1;
-	
-		        // 지도를 클릭된 클러스터의 마커의 위치를 기준으로 확대합니다
-		        map.setLevel(level, {anchor: cluster.getCenter()});
-		    });
-	    </script> -->
+	            // 서버에서 데이터를 가져오는 Ajax 요청 예제
+	            $.get("/itemListAll", function(data) {
+	            	// 데이터 필터링: useAt가 'Y'인 항목만 선택
+	            	var filteredData = data.filter(function(item) {
+	                    return item.useAt === 'Y';
+	                });
+
+	                var markers = filteredData.map(function(item) {
+	                    var lat = item.lat; // lat 속성 가져오기
+	                    var lng = item.lng; // lng 속성 가져오기
+	                    
+	                    var imageSize = new kakao.maps.Size(28, 35); // 원하는 이미지 크기로 설정
+
+	                    return new kakao.maps.Marker({
+		                    position: new kakao.maps.LatLng(lat, lng),
+		                    image: new kakao.maps.MarkerImage("../resources/comm/marker.png", imageSize), // 이미지 크기 설정
+	                    });
+	                });
+	                // 클러스터러에 마커 배열을 추가
+	                clusterer.addMarkers(markers);
+	            });
+	        });
+	    </script>
 	    
 	    <div class="container mt-5" id="search-list-container" >
-		    <form role="search" class="email-search" method="post" id="search-container">
+		    <form role="search" class="email-search" id="search-container">
 		        <div>
 		            <!-- 방종류 -->
 		            <select id="itemType" name="itemType">
@@ -243,7 +227,7 @@
 		            <img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
 		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
 		        	<!-- 초기화 버튼 추가 -->
-        			<button type="button" id="resetSearch" style="border: none;"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
+        			<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
 		        </div>
 		    </form>
 		    <script>
@@ -354,56 +338,6 @@
 		        </div>
 		    </div>
 		</div>
-		
-		<!-- 카테고리에 따른 마커 생성 -->
-		<!-- <c:forEach var="item" items="${list}">
-			<c:if test="${item.useAt == 'Y' }">
-			    <script>
-			        var positions = [
-			            {
-			                title: "${item.itemNo}",
-			                latlng: new kakao.maps.LatLng(${item.lat}, ${item.lng})
-			            }
-			        ]
-			
-			        // 마커 이미지의 이미지 주소입니다
-			        var imageSrc = "../resources/comm/marker.png";
-			
-			        for (var i = 0; i < positions.length; i++) {
-			
-			            // 마커 이미지의 이미지 크기 입니다
-			            var imageSize = new kakao.maps.Size(28, 35);
-			
-			            // 마커 이미지를 생성합니다    
-			            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-			
-			            // 마커를 생성합니다
-			            var marker = new kakao.maps.Marker({
-			                map: map, // 마커를 표시할 지도
-			                position: positions[i].latlng, // 마커를 표시할 위치
-			                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			                image : markerImage // 마커 이미지 
-			            });
-			            
-			            // 마커에 클릭 이벤트를 등록합니다
-			            kakao.maps.event.addListener(marker, 'click', function() {
-			                // 클릭한 마커의 위치로 지도 중심 이동
-			                map.setCenter(marker.getPosition());
-			                
-			             	// 클릭한 마커의 번호에 해당하는 페이지로 새 창으로 이동
-			                var itemNo = this.getTitle(); // 클릭한 마커의 title 속성에 itemNo가 저장되어 있음
-			                var url = "/itemDetail/" + itemNo; // 이동할 페이지의 URL을 생성
-			                window.open(url, "_blank"); // 페이지를 새 창으로 열기
-			            });
-			        }
-			        
-			        // 검색 결과가 있을 때, 첫 번째 마커를 기준으로 지도 중심을 설정합니다
-			        if (positions.length > 0) {
-			            map.setCenter(positions[0].latlng);
-			        }
-			    </script>
-			</c:if>
-		</c:forEach> -->
 		
 		<script>
 		    // 이미지 위에 번호를 나타내는 함수

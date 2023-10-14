@@ -324,7 +324,7 @@
 	                <div id="container-map">
 	                	<!-- Map -->
 		                <div class="mapouter mb-4">
-		                    <div id="staticMap" style="width:100%;height:400px;"></div> 
+		                    <div id="map" style="width:100%;height:380px;"></div> 
 		                </div> 
 	                </div>
 	              </div>
@@ -555,7 +555,6 @@
         });
     });
     
-    
  	// 위도와 경도 가져오기
     var lat = parseFloat(document.querySelector('#lat').textContent);
     var lng = parseFloat(document.querySelector('#lng').textContent);
@@ -563,21 +562,50 @@
 	// 이미지 지도에서 마커가 표시될 위치입니다 
 	var markerPosition  = new kakao.maps.LatLng(lat, lng); 
 	
-	// 이미지 지도에 표시할 마커입니다
-	// 이미지 지도에 표시할 마커는 Object 형태입니다
-	var marker = {
-	    position: markerPosition
-	};
-	
-	var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
-	    staticMapOption = { 
-	        center: markerPosition, // 이미지 지도의 중심좌표
-	        level: 3, // 이미지 지도의 확대 레벨
-	        marker: marker // 이미지 지도에 표시할 마커 
-	    };    
-	
-	// 이미지 지도를 생성합니다
-	var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+	// 마커 이미지의 이미지 주소입니다
+    var imageSrc = "../resources/comm/homemarker.png";
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(35, 35);
+
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+    
+    // 지도를 표시할 div 요소를 선택합니다
+    var mapContainer = document.getElementById('map');
+
+    // 지도 옵션을 설정합니다
+    var mapOption = {
+        center: markerPosition, // 지도의 중심좌표
+        level: 2, // 지도의 확대 레벨
+        maxLevel: 8 // 지도 최대 확대 레벨
+    };
+
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커를 생성하고 지도에 표시합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition,
+        image: markerImage, // 마커 이미지 설정
+    });
+    marker.setMap(map);
+
+    // 이미지 지도를 생성합니다
+    var staticMapContainer = document.getElementById('staticMap');
+
+    // 이미지 지도 옵션을 설정합니다
+    var staticMapOption = {
+        center: markerPosition, // 이미지 지도의 중심좌표
+        level: 3, // 이미지 지도의 확대 레벨
+        marker: marker, // 이미지 지도에 표시할 마커
+        maxLevel: 8 // 지도 최대 확대 레벨
+    };
+
+    var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+
+    // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
+    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 	
 </script>
 
@@ -588,22 +616,29 @@ var itemNo = document.querySelector('#item-no').textContent;
 wishBtn.onclick = function() {
     var serverUrl = `/wish/add/${itemNo}`;
 
-    // POST 요청을 보냅니다.
-    fetch(serverUrl)
-        .then(function(response) {
-            if (response.ok) {
-                // 성공적인 응답 처리
-                // 여기서 응답을 처리하거나 확인할 수 있습니다.
-            } else {
-                // 오류 응답 처리
-                console.error('서버 요청 오류:', response.status, response.statusText);
-            }
-        })
-        .catch(function(error) {
-            console.error('네트워크 오류:', error);
-        });
+    fetch(serverUrl, {
+    	  method: 'GET', // 요청 메서드 (GET, POST 등)
+    	  headers: {
+    	    'Accept': 'text/plain; charset=utf-8', // 받을 데이터 타입 설정
+    	    'Content-Type': 'text/plain; charset=utf-8', // 요청 데이터의 타입과 인코딩 설정
+    	  },
+    	})
+    .then(response => {
+      return response.text(); // 또는 .json() 등, 응답 형식에 따라 다를 수 있음
+    })
+    .then(data => {
+    	console.log(data);
+    	if(data === "로그인이 필요합니다.") {
+    		alert(data);
+    		location.href = '/login;'
+    	} else {
+    		alert(data);
+    	}
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
 };
-
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

@@ -128,5 +128,10 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.selectOne("item.selectItemFile", itemNo);
 	}
 
+	@Override
+	public List<ItemVO> selectPopularList() {
+		return sql.selectList("item.selectPopularList");
+	}
+
 	
 }

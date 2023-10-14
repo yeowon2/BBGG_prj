@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
@@ -35,13 +36,11 @@ public class ItemController {
 	@Autowired
 	PartnerService partnerService;
 	
-
     @Autowired
     FileService fileService;
     
     @Autowired
     FileMngUtil fileUtil;
-    
 	
 	private String path = "item/";
 	
@@ -55,15 +54,25 @@ public class ItemController {
 	@GetMapping("/itemListAll")
 	@ResponseBody
 	public List<ItemVO> itemListAll(ItemVO itemVO) {
-		List<ItemVO> item = service.itemList(itemVO);
-		return item;
-	}
-	@PostMapping("/itemList")
-	public String itemList(Model model, ItemVO itemVO) {
 		List<ItemVO> list = service.itemList(itemVO);
-		model.addAttribute("list", list);
-		return path + "item_list";
+		return list;
 	}
+	/*
+	// 매물 리스트 및 JSON 데이터 반환
+	@GetMapping("/itemList")
+	public ModelAndView itemList(ModelAndView modelAndView, ItemVO itemVO) {
+	    List<ItemVO> list = service.itemList(itemVO);
+	    modelAndView.addObject("list", list);
+	    modelAndView.setViewName(path + "item_list"); // JSP 페이지의 경로 및 이름을 설정
+	    return modelAndView;
+	}
+	
+	@PostMapping("/itemList") 
+	public String itemList(Model model, ItemVO itemVO) { 
+		List<ItemVO> list = service.itemList(itemVO); 
+		model.addAttribute("list", list); 
+		return path + "item_list"; }
+	*/
 	
 	//매물 상세페이지
 	@GetMapping("/itemDetail/{itemNo}")

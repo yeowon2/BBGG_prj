@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+    <!-- [폰트] Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    
     <!-- 파비콘 -->
     <link rel="apple-touch-icon" sizes="57x57" href="/resources/comm/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="/resources/comm/favicon/apple-icon-60x60.png">
@@ -61,7 +66,8 @@
 	type="text/css">
 
 <!-- Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
@@ -75,9 +81,7 @@
     <!-- Flatpickr 스타일 및 스크립트 파일 로드 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
-     <!-- Custom CSS -->
-		<link rel="stylesheet" href="/resources/dist/css/style.css"/>
+
    
 	
 	

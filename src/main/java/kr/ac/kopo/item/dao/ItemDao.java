@@ -39,6 +39,8 @@ public interface ItemDao {
 
 	FileVO selectItemFile(Long itemNo);
 
+	List<ItemVO> selectPopularList();
+
 
 	
 

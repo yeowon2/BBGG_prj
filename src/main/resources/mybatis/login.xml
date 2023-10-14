@@ -15,6 +15,7 @@
 			,user_id
 			, user_pw
 			, user_name
+			, phone
 		FROM tbl_user
 		WHERE user_id = #{userId}
 			AND user_pw = #{userPw}
@@ -29,6 +30,7 @@
 	        , user_id
 	        , user_pw
 	        , auth_at
+	        , phone
         FROM tbl_partner
         WHERE user_id = #{userId} 
         AND user_pw = #{userPw}

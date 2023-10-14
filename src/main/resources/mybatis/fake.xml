@@ -27,23 +27,12 @@
 	</sql>
 
 	<select id="selectList" resultType="fakeVO">
-		SELECT sup.*
-		FROM (SELECT sub.*, ROW_NUMBER() OVER() as rnum 
-			  FROM (SELECT tf.*, tp.comp_name
-					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
-					WHERE tf.item_no = ti.item_no 
-						AND ti.partner_no = tp.partner_no 
-					ORDER BY tf.regist_date DESC) AS sub
-			  ORDER BY rnum DESC) AS sup
-		
-			  
-		<if test="perPage != 0">
-			<![CDATA[
-			  WHERE rnum > ((#{page}-1)*#{perPage}) AND rnum <= (#{page}*#{perPage}) 
-			]]>
-		</if>
-		
-		LIMIT 0, 12345
+		SELECT subquery.*
+		FROM (SELECT tf.*, tp.comp_name, ROW_NUMBER() OVER (ORDER BY regist_date DESC) AS rownum
+			FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
+			WHERE tf.item_no = ti.item_no 
+				AND ti.partner_no = tp.partner_no) AS subquery
+		LIMIT ${perPage} OFFSET ${startPage}
 	</select>
 	
 	<select id="total" resultType="Integer">

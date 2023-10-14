@@ -9,13 +9,13 @@
           	<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
               <h3 class="footer-titel">BBGG. <span>site</span></h3>
               <hr>
-              <a href="/" ><img alt="BBGG" src="../resources/comm/logo(W)s.png"></a>
+              <a href="/" ><img alt="BBGG" src="/resources/comm/logo(W)s.png"></a>
             </div>
           	
             <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
               <h3 class="footer-titel">Address<span>&nbsp;주소</span></h3>
               <hr>
-              <ul class="footer-link">
+              <ul class="footer-link no-hover">
               	<li>
                 	<a style="text-decoration: none;" href="https://www.kopo.ac.kr/daejeon/content.do?menu=8074"><i class="lni-map-marker"></i> 대전광역시, 동구 우암로 352-21<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 한국폴리텍대학(하이테크)</a>
                 </li>

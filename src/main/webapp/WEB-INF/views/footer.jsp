@@ -9,7 +9,7 @@
           	<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
               <h3 class="footer-titel">BBGG. <span>site</span></h3>
               <hr>
-              <a href="/" ><img alt="BBGG" src="../resources/comm/logo(W)s.png"></a>
+              <a href="/" ><img alt="BBGG" src="/resources/comm/logo(W)s.png"></a>
             </div>
           	
             <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">

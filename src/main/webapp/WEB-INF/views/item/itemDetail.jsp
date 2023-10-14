@@ -588,22 +588,29 @@ var itemNo = document.querySelector('#item-no').textContent;
 wishBtn.onclick = function() {
     var serverUrl = `/wish/add/${itemNo}`;
 
-    // POST 요청을 보냅니다.
-    fetch(serverUrl)
-        .then(function(response) {
-            if (response.ok) {
-                // 성공적인 응답 처리
-                // 여기서 응답을 처리하거나 확인할 수 있습니다.
-            } else {
-                // 오류 응답 처리
-                console.error('서버 요청 오류:', response.status, response.statusText);
-            }
-        })
-        .catch(function(error) {
-            console.error('네트워크 오류:', error);
-        });
+    fetch(serverUrl, {
+    	  method: 'GET', // 요청 메서드 (GET, POST 등)
+    	  headers: {
+    	    'Accept': 'text/plain; charset=utf-8', // 받을 데이터 타입 설정
+    	    'Content-Type': 'text/plain; charset=utf-8', // 요청 데이터의 타입과 인코딩 설정
+    	  },
+    	})
+    .then(response => {
+      return response.text(); // 또는 .json() 등, 응답 형식에 따라 다를 수 있음
+    })
+    .then(data => {
+    	console.log(data);
+    	if(data === "로그인이 필요합니다.") {
+    		alert(data);
+    		location.href = '/login;'
+    	} else {
+    		alert(data);
+    	}
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
 };
-
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

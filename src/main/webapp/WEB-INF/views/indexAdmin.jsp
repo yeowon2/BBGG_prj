@@ -7,8 +7,6 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 
-<!-- Main Style -->
-<link rel="stylesheet" type="text/css" href="/resources/assets/css/colors/black.css">
 <!-- vector map CSS -->
 <link href="vendors/vectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" type="text/css" />
 <!-- Morris Charts CSS -->
@@ -274,7 +272,7 @@
 										<a href="#" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="/admin/fakeList" class="inline-block full-screen">
+										<a href="/fake/list" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>

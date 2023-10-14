@@ -20,6 +20,7 @@
  		<typeAlias type="kr.ac.kopo.fake.web.FakeVO" alias="FakeVO"/> 
  		<typeAlias type="kr.ac.kopo.file.FileVO" alias="FileVO"/> 
  		<typeAlias type="kr.ac.kopo.partner.web.RespVO" alias="RespVO"/> 
+ 		<typeAlias type="kr.ac.kopo.wish.web.WishVO" alias="WishVO"/> 
   	</typeAliases>
   
   	<mappers>
@@ -33,5 +34,6 @@
   		<mapper resource="mybatis/fake.xml"/>
   		<mapper resource="mybatis/file.xml"/>
   		<mapper resource="mybatis/admin.xml"/>
+  		<mapper resource="mybatis/wish.xml"/>
   	</mappers>
   </configuration>

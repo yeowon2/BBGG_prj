@@ -17,5 +17,17 @@
 			, 'Y'
 			, NOW()
 			)
+			<selectKey keyProperty="wishNo" resultType="Long" order="AFTER">
+       		SELECT LAST_INSERT_ID()
+       </selectKey>
 	</insert>
+	
+	<select id="select" resultType="WishVO">
+		SELECT *
+		FROM tbl_wish
+		WHERE use_at = 'Y' 
+		AND item_no = #{itemNo}
+		AND user_no = #{userNo}
+	</select>
+	
 </mapper>

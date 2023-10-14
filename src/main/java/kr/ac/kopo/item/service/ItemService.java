@@ -27,6 +27,8 @@ public interface ItemService {
 
 	List<ItemVO> selectRecentList();
 
+	List<ItemVO> selectPopularList();
+
 	
 	
 

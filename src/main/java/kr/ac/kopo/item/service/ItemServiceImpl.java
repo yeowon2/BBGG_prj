@@ -122,5 +122,17 @@ public class ItemServiceImpl implements ItemService {
 		return selectRecentList;
 	}
 
+	@Override
+	public List<ItemVO> selectPopularList() {
+		List<ItemVO> selectPopularList = dao.selectPopularList();
+		for (ItemVO itemVO : selectPopularList) {
+			Long itemNo = itemVO.getItemNo();
+			FileVO fileVO = fileDao.selectItemFile(itemNo);
+
+			itemVO.setFileVO(fileVO);
+		}
+		return selectPopularList;
+	}
+
 	
 }

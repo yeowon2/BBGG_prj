@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  	<link rel="stylesheet" href="/resources/assets/css/blog.css">
   	<style>
   		.team-img img {
   			height:225px;
@@ -20,8 +21,16 @@
   		.team-item .medal-icon {
   			height:40px;
   		}
+  		.popular-item img {
+  			height:230px;
+  		}
+  		.icons {
+  			text-align:right;
+  		}
   		
-  		
+  		.icons i {
+  			padding:0 10px;	
+  		}
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
@@ -85,167 +94,59 @@
           <div class="col-12">
             <div class="section-title-header text-center">
               <h2 class="section-title">인기 매물</h2>
-              <p>Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+              <p>사용자들이 가장 관심을 가지는 매물 순위</p>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-1.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-red">For Sale</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Amazing oceanfront apartment</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Drive Street, Los Angeles, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,500</span>
-                      </div>
-                     <p><span>4 bds</span> . <span>4 ba</span> . <span>2500 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-2.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label">For Rent</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Family Condo</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Louis, Missouri, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$27,00</span>
-                      </div>
-                     <p><span>6 bds</span> . <span>8 ba</span> . <span>2600 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-3.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-yellow">New</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Guaranteed modern home</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Avenue C, New York, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,750</span>
-                      </div>
-                     <p><span>8 bds</span> . <span>8 ba</span> . <span>3000 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-4.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label">For Rent</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Family home for sale</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> Sacramento, Chicago, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,400</span>
-                      </div>
-                     <p><span>2 bds</span> . <span>2 ba</span> . <span>2200 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-5.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-yellow">New</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Amazing oceanfront apartment</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> 53 W 88th St, Dallas, US</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,750</span>
-                      </div>
-                     <p><span>6 bds</span> . <span>6 ba</span> . <span>2700 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="property-main">
-              <div class="property-wrap">
-                <div class="property-item">
-                  <div class="item-thumb">
-                    <a class="hover-effect" href="property.html">
-                      <img class="img-fluid" src="/resources/assets/img/property/house-6.jpg" alt="">
-                    </a>
-                    <div class="label-inner">
-                      <span class="label-status label bg-red">For Sale</span>
-                    </div>
-                  </div>
-                  <div class="item-body">
-                    <h3 class="property-title"><a href="property.html">Luxury home for sale</a></h3>
-                    <div class="adderess"><i class="lni-map-marker"></i> 365 Webber Street, Washington</div>
-                    <div class="pricin-list">
-                      <div class="property-price">
-                        <span>$1,800</span>
-                      </div>
-                     <p><span>5 bds</span> . <span>7 ba</span> . <span>2800 Sqft</span></p>
-                    </div>
-                  </div>               
-                </div>              
-              </div>
-            </div>
-          </div>
+        	<c:forEach var="item" items="${popularItemList}">
+        		<div class="col-lg-4 col-md-6 col-xs-12">
+		            <div class="property-main popular-item">
+		              <div class="property-wrap">
+		                <div class="property-item">
+		                  <div class="item-thumb">
+		                    <a class="hover-effect" href="property.html">
+		                      <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+		                    </a>
+		                  </div>
+		                  <div class="item-body">
+		                  	<div class="row">
+		                  		<div class="col-lg-6">
+				                    <h3 class="property-title"><a href="property.html">${item.address2}</a></h3>
+		                  		</div>
+		                  		<div class="col-lg-6 icons">
+									<span class=""><i class="lni-eye"></i>${item.viewCount}</span>
+		                			<span class=""><i class="lni-heart"></i>${item.wishCount}</span>	                  		
+		                  		</div>
+		                  	</div>
+		                    <div class="adderess"><i class="lni-map-marker"></i>${item.address}</div>
+		                    <div class="pricin-list">
+		                      <div class="property-price">
+	                          	<c:choose>
+	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          			<c:if test="${item.leasePrice < 10000}">
+		                     		   		<span>전세 ${item.leasePrice}</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억</span>
+	                          			</c:if>
+	                          			<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0}">
+		                     		   		<span>전세 ${item.leaseBillion}억 ${item.leaseTenMillion}</span>
+	                          			</c:if>
+                        			</c:when>
+                     				<c:otherwise>
+		                     		   <span>월세 ${item.depositFee} / ${item.monthPrice}</span>
+                        			</c:otherwise>
+	                          	</c:choose>
+	                          </div>
+	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${item.itemSize * 3.3}㎡</span></p>
+		                    </div>
+		                  </div>               
+		                </div>              
+		              </div>
+		            </div>
+		          </div>
+        	</c:forEach>
           <div class="col-12">
             <div class="text-center">
               <a href="listing.html" class="btn btn-common">Browse All</a>
@@ -366,60 +267,101 @@
               <p>Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="blog-item text-center">
-              <div class="blog-image">
-                <a href="#">
-                  <img class="img-fluid" src="/resources/assets/img/blog/img1.jpg" alt="">
-                </a>
-              </div>
-              <div class="date">12 April, 2018</div>
-              <div class="descr">
-                <h3 class="title">
-                  <a href="single-blog.html">
-                    Visual Design Concept
-                  </a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias laudantium fugiat, eius sint.</p>
-              </div>
-              <div class="blog-footer hide-on-list">
-                <div class="float-left">
-                  <p class="prop-user"><a href="#"><i class="lni-user"></i> Admin</a></p>
-                </div>
-                <div class="float-right">
-                  <span><i class="lni-heart"></i> 350</span>
-                  <span><i class="lni-comments"></i> 30</span>
-                </div>
-              </div>
-            </div>
+          <div class="col-lg-8 col-md-6 col-xs-12">
+        	 <div id="content">
+	            <div class="list_post_article">
+	                <div class="item multi_pic">
+	                    <div class="info_post">
+	                        <div class="partner_author">
+	                            <div class="partner_pic">
+	                                <img src="images/main_img1.jpg" alt="">
+	                            </div>
+	                            <div class="info_author">
+	                                <em class="name_author">지원공인중개사무소</em>
+	                                <span class="time">7시간전</span>
+	                            </div>
+	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+	                                <span class="like">
+	                                    추천
+	                                    <em>20</em>
+	                                </span>
+	                                <span class="bookmark">
+	                                    북마크
+	                                    <em>10</em>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="desc">
+	                        <div class="desc_inner">
+	                            <strong class="title_post">글 제목</strong>
+	                        </div>
+	                        <p class="text">글 내용 글 내용 글 내
+	                    </div>
+	                </div>
+	                <div class="item multi_pic">
+	                    <div class="info_post">
+	                        <div class="partner_author">
+	                            <div class="partner_pic">
+	                                <img src="images/main_img1.jpg" alt="">
+	                            </div>
+	                            <div class="info_author">
+	                                <em class="name_author">지원공인중개사무소</em>
+	                                <span class="time">7시간전</span>
+	                            </div>
+	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+	                                <span class="like">
+	                                    추천
+	                                    <em>20</em>
+	                                </span>
+	                                <span class="bookmark">
+	                                    북마크
+	                                    <em>10</em>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="desc">
+	                        <div class="desc_inner">
+	                            <strong class="title_post">글 제목</strong>
+	                        </div>
+	                        <p class="text">글 내용 글 내용 글 내
+	                    </div>
+	                </div>
+	                <div class="item multi_pic">
+	                    <div class="info_post">
+	                        <div class="partner_author">
+	                            <div class="partner_pic">
+	                                <img src="images/main_img1.jpg" alt="">
+	                            </div>
+	                            <div class="info_author">
+	                                <em class="name_author">지원공인중개사무소</em>
+	                                <span class="time">7시간전</span>
+	                            </div>
+	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+	                                <span class="like">
+	                                    추천
+	                                    <em>20</em>
+	                                </span>
+	                                <span class="bookmark">
+	                                    북마크
+	                                    <em>10</em>
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="desc">
+	                        <div class="desc_inner">
+	                            <strong class="title_post">글 제목</strong>
+	                        </div>
+	                        <p class="text">글 내용 글 내용 글 내
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        
           </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="blog-item text-center">
-              <div class="blog-image">
-                <a href="#">
-                  <img class="img-fluid" src="/resources/assets/img/blog/img2.jpg" alt="">
-                </a>
-              </div>
-              <div class="date">12 April, 2018</div>
-              <div class="descr">
-                <h3 class="title">
-                  <a href="single-blog.html">
-                    Real Estate Feswtival - 2018
-                  </a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias laudantium fugiat, eius sint.</p>
-              </div>
-              <div class="blog-footer hide-on-list">
-                <div class="float-left">
-                  <p class="prop-user"><a href="#"><i class="lni-user"></i> Admin</a></p>
-                </div>
-                <div class="float-right">
-                  <span><i class="lni-heart"></i> 350</span>
-                  <span><i class="lni-comments"></i> 30</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          
           <div class="col-lg-4 col-md-6 col-xs-12">
             <div class="blog-item text-center">
               <div class="blog-image">

@@ -83,12 +83,11 @@
 			, user_id
 			, user_name
 			, phone
-			, Regist_date
+			, regist_date
+			, ROW_NUMBER() OVER (ORDER BY regist_date DESC)
 		FROM  tbl_user
 		WHERE use_at = 'Y'
-			AND <![CDATA[			
-				user_no <= 10
-			]]>
+		LIMIT 10
 	</select>
 
 	<select id="selectUserListAll" resultType="UserVO">
@@ -114,9 +113,10 @@
 			, comp_name
 			, phone
 			, regist_date
+			, ROW_NUMBER() OVER (ORDER BY regist_date DESC)
 		FROM  tbl_partner
 		WHERE use_at = 'Y'
-			AND <![CDATA[partner_no <= 10]]>
+		LIMIT 10
 	</select>
 	
 	<select id="selectItemList" resultType="ItemVO">
@@ -138,17 +138,12 @@
 	</select>
 	
 	<select id="selectFakeList" resultType="FakeVO">
-		SELECT sup.*
-		FROM (SELECT sub.*, ROW_NUMBER() OVER() as rnum 
-			  FROM (SELECT tf.*, tp.comp_name 
-					FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
-					WHERE tf.item_no = ti.item_no 
-						AND ti.partner_no = tp.partner_no 
-					ORDER BY tf.fake_no DESC) AS sub) AS sup
-		WHERE <![CDATA[
-				sup.use_at = 'I'
-				AND sup.fake_no <= 10
-			]]>
+		SELECT subquery.*
+		FROM (SELECT tf.*, tp.comp_name, ROW_NUMBER() OVER (ORDER BY regist_date DESC) AS rownum
+			FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
+			WHERE tf.item_no = ti.item_no 
+				AND ti.partner_no = tp.partner_no) AS subquery
+		LIMIT 10
 	</select>
 
 	<select id="total" resultType="Integer">

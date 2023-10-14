@@ -31,14 +31,6 @@
 
 	<!-- Main Content -->
 	<div class="hk-pg-wrapper">
-	    <!-- Breadcrumb -->
-	    <nav class="hk-breadcrumb" aria-label="breadcrumb">
-	        <ol class="breadcrumb breadcrumb-light bg-transparent">
-	            <li class="breadcrumb-item"><a href="#">Components</a></li>
-	            <li class="breadcrumb-item active" aria-current="page">Modal</li>
-	        </ol>
-	    </nav>
-	    <!-- /Breadcrumb -->
 	
 	    <!-- Container -->
 	    <div class="container">

@@ -10,30 +10,30 @@
 <jsp:include page="../head.jsp"></jsp:include>
 <title>허위 매물 신고 목록(원본)</title>
 
-<!-- Favicon -->
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">   
-<!-- Bootstrap table CSS -->
-<link href="/resources/vendors/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
-<!-- Toggles CSS -->
-<link href="/resources/vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
-<link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
-<!-- Custom CSS -->
-<link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">   
+	<!-- Bootstrap table CSS -->
+	<link href="/resources/vendors/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
+	<!-- Toggles CSS -->
+	<link href="/resources/vendors/jquery-toggles/css/toggles.css" rel="stylesheet" type="text/css">
+	<link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
+	<!-- Custom CSS -->
+	<link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
 
-<style>
-	table {
-		table-layout: fixed;
-	}
-	td, th {
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-</style>
+	<style>
+		table {
+			table-layout: fixed;
+		}
+		td, th {
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+	</style>
 
 </head>
 <body>
@@ -106,13 +106,13 @@
 		                                                    <td colspan="2">${item.itemNo}</td>
 		                                                    <td colspan="7">
 		                                                    	<!-- Button trigger modal -->
-							        							<a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+							        							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        								${item.fakeContent}
-		                                                    	</a>
+		                                                    	</button>
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
-		                                                    	<a href="update/${item.useAt}" class="btn btn-warning btn-sm"><i class="bi bi-brush"></i></a>		                                                    	
+		                                                    	<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm"><i class="bi bi-brush">${item.useAt}</i></a>		                                                    	
 		                                                    </td>
 		                                                </tr>
 		                                            </c:forEach>
@@ -165,7 +165,7 @@
 	                                            
 	                                            <tfoot>
 													<tr>
-														<td colspan=20">
+														<td colspan="20">
 															<ul class="pagination justify-content-center mt-3">
 																<li class="page-item"><a class="page-link" href="?page=1&${pager.query}">처음</a></li>
 																<li class="page-item"><a class="page-link" href="?page=${pager.prev}${pager.query}">이전</a></li>

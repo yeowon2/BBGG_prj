@@ -143,7 +143,7 @@
 								<div class="card-header card-header-action">
 									<h6>신규 개인 회원</h6>
 									<div class="d-flex align-items-center card-action-wrap">
-										<a href="#" class="inline-block refresh mr-15">
+										<a href="/admin/userList" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
 										<a href="/admin/userList" class="inline-block full-screen">
@@ -185,10 +185,10 @@
 								<div class="card-header card-header-action">
 									<h6>신규 단체 회원</h6>
 									<div class="d-flex align-items-center card-action-wrap">
-										<a href="#" class="inline-block refresh mr-15">
+										<a href="/admin/partnerList" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
-										<a href="admin/partnerList" class="inline-block full-screen">
+										<a href="/admin/partnerList" class="inline-block full-screen">
 											<i class="ion ion-md-expand"> <small>더보기</small></i>
 										</a>
 									</div>
@@ -227,7 +227,7 @@
 								<div class="card-header card-header-action">
 									<h6>최근 등록 매물</h6>
 									<div class="d-flex align-items-center card-action-wrap">
-										<a href="#" class="inline-block refresh mr-15">
+										<a href="/itemList" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
 										<a href="/itemList" class="inline-block full-screen">
@@ -269,7 +269,7 @@
 								<div class="card-header card-header-action">
 									<h6>최근 신고</h6>
 									<div class="d-flex align-items-center card-action-wrap">
-										<a href="#" class="inline-block refresh mr-15">
+										<a href="/fake/list" class="inline-block refresh mr-15">
 											<i class="ion ion-md-arrow-down"></i>
 										</a>
 										<a href="/fake/list" class="inline-block full-screen">
@@ -285,8 +285,8 @@
 													<tr>
 														<th>신고no</th>
 														<th>매물no</th>
-														<th>내용</th>
 														<th>부동산명</th>
+														<th>내용</th>
 														<th>상태</th>
 													</tr>
 												</thead>
@@ -295,8 +295,8 @@
 														<tr>
 															<td>${item.fakeNo}</td>
 															<td>${item.itemNo}</td>
-															<td>${item.fakeContent}</td>
 															<td>${item.compName}</td>
+															<td>${item.fakeContent}</td>
 															<td><a href="itemSelect/${item.itemNo}">${item.useAt}</a></td>
 														</tr>
 													</c:forEach>													

@@ -6,7 +6,7 @@
 <html>
 <head>
 <jsp:include page="../head.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>회원목록</title>
 </head>
 <body>
 	<jsp:include page="../navAdmin.jsp"></jsp:include>
@@ -20,7 +20,7 @@
 						<th>아이디</th>
 						<th>이름</th>
 						<th>폰번호</th>
-						<th>가입</th>
+						<th>가입날짜</th>
 					</tr>
 				</thead>
 				<tbody>

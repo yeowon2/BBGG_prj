@@ -61,7 +61,8 @@ public class ItemVO {
 	private FileVO fileVO;
 	
 	private int viewCount;  		//조회수
-
+	private int wishCount;  		//관심목록에 담긴 횟수
+	
 	public Long getItemNo() {
 		return itemNo;
 	}
@@ -404,6 +405,14 @@ public class ItemVO {
 
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
+	}
+
+	public int getWishCount() {
+		return wishCount;
+	}
+
+	public void setWishCount(int wishCount) {
+		this.wishCount = wishCount;
 	}
 
 	

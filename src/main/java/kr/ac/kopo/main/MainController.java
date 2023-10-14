@@ -35,6 +35,11 @@ public class MainController {
 		respList = partnerService.selectRespList();
 		model.addAttribute("respList", respList);
 		
+		//인기 매물 순위 방 목록
+		List<ItemVO> popularItemList = new ArrayList<ItemVO>();
+		popularItemList = itemService.selectPopularList();
+		model.addAttribute("popularItemList", popularItemList);
+		
 		return "index";
 	}
 	

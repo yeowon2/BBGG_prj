@@ -33,7 +33,7 @@ var echartsConfig = function() {
             if ($('#e_chart_5').length > 0) {
                 var eChart_5 = echarts.init(document.getElementById('e_chart_5'));
                 var option4 = {
-                    color: ['#90d7a3', '#3fb95f'],
+                    color: ['#c3a098', '#9b6c61'],
                     tooltip: {
                         show: true,
                         trigger: 'axis',

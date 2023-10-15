@@ -58,7 +58,7 @@
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
               <li class="nav-item mx-3">
                 <a href="/" class="nav-link m1-3" aria-haspopup="true" aria-expanded="false">
-                  Home 
+                  홈 
                 </a>
                 
               </li>

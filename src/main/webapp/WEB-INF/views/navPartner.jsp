@@ -10,6 +10,11 @@
 	    });
 	});
 	</script>
+	<style>
+		.top-bar {
+			background-color:#79543e;
+		}
+	</style>
     <header id="header-wrap">
       <!-- Start Top Bar -->
       <div class="top-bar" >
@@ -57,14 +62,14 @@
               <span class="navbar-toggler-icon"></span>
               <span class="lin-menu"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/resources/assets/img/logo.png" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="/resources/comm/logo(81401b)s.png" alt=""></a>
           </div>
 
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
               <li class="nav-item mx-3">
                 <a class="nav-link" href="/partner/${loginPartnerVO.partnerNo}"  aria-haspopup="true" aria-expanded="false">
-                  HOME
+                  홈
                 </a>
               </li>
               <li class="nav-item mx-3">

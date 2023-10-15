@@ -5,7 +5,7 @@
 <head>
   <style>
   	body, #content {
-  		background-color: #F5F5F5;
+  		background-color: #fff;
   	}
   </style>
 <jsp:include page="../head.jsp"></jsp:include>

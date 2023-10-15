@@ -137,13 +137,13 @@ body {
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
-  font-family: "poppins", sans-serif;
+ font-family:'Noto Sans KR', 'Lato', sans-serif;
   line-height: 1.5;
   background: #F5F5F5;
   overflow-x: hidden; }
 
 .main-font, .jq-toast-wrap .jq-toast-single, .jq-toast-wrap .jq-toast-single .jq-toast-heading {
-  font-family: "poppins", sans-serif; }
+ font-family:'Noto Sans KR', 'Lato', sans-serif; }
 
 a:hover, a:active {
   outline: 0; }

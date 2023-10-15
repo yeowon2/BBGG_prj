@@ -53,5 +53,20 @@ public class AdminController {
 		model.addAttribute("list", list);
 		return "/admin/userList";
 	}
+	
+	@GetMapping("/admin/itemList")
+	public String itemList() {
+		return "/admin/itemList";
+	}
+	
+	@GetMapping("/admin/notice")
+	public String notice() {
+		return "/admin/notice";
+	}
+	
+	@GetMapping("/admin/noticeAdd")
+	public String noticeAdd() {
+		return "/admin/noticeAdd";
+	}
 
 }

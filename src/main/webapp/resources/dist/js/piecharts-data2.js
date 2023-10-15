@@ -38,7 +38,7 @@
                             name: '',
                             type: 'pie',
                             radius: '55%',
-                            color: ['#90d7a3', '#3fb95f'],
+                            color: ['#c3a098', '#9b6c61'],
                             data: [
                                 { name: '잔여매물', value: itemWaitCount },
                                 { name: '거래완료', value: itemCompCount },

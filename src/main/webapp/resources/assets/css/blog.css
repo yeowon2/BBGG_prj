@@ -1,3 +1,7 @@
+section#blog {
+	background-color:#FFFFFF
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -13,7 +17,7 @@ a {
     overflow: hidden;
     width: 100%;
     padding: 25px 0 23px; 
-    border-bottom: 1px solid #eeeeef;
+    border-bottom: 1px solid #cacaca;
     box-sizing: border-box;
 }
 .list-post_article .info_post {
@@ -109,6 +113,7 @@ strong.title_post {
 .list-post_article .comments .like {
     margin-right: 9px;
     box-sizing: border-box;
+    
 }
 .list-post_article .comments .bookmark {
     margin-right: 9px;

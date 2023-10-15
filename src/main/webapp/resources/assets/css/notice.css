@@ -1,0 +1,119 @@
+
+.area_notice {
+    overflow: hidden;
+    padding: 30px;
+    margin-top:30px;
+    border: solid #dddddf;
+    border-width: 0 1px 1px;
+    box-sizing: border-box;
+    display: block;
+    margin-botton:30px;
+    max-width:370px;
+    background-color:#fff;
+    box-shadow: 0px 0px 7x 0px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease-out 0s;
+	color:#333333;
+}
+.area_notice a {
+	color:#333333;
+}
+.area_notice .notice_list {
+	padding:15px 0;
+}
+.area_notice .notice_heading {
+    margin-top: 24px;
+    box-sizing: border-box;
+    display: block;
+
+}
+.area_notice .notice_title {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+.aria_notice a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    color:#000000;
+}
+.area_notice .notice_title .lni-arrow {
+    background-position: -888px -508px;
+    width: 8px;
+    height: 13px;
+    float: right;
+    margin-top: 2px;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 100px;
+    box-sizing: border-box;
+    font-style: normal;
+}
+
+.area_notice .notice_list {
+    padding-top: 13px;
+    box-sizing: border-box;
+    display: block;
+}
+.area_notice .notice_list .notice_item {
+    box-sizing: border-box;
+    display: block;
+}
+.area_notice .notice_list .notice_link {
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    display: block;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: 14px;
+    line-height: 23px;
+    box-sizing: border-box;
+    padding:7px;
+}
+
+.button_guide {
+    position: relative;
+    border: solid #dddddf;
+    border-width: 0px 1px 1px;
+    box-sizing: border-box;
+    display: block;
+}
+#notice_button {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+}
+.button_guide .button_title {
+    display: block;
+    padding: 19px 80px 16px 21px;
+    height: 85px;
+    font-weight: 100;
+    font-size: 17px;
+    line-height: 25px;
+    letter-spacing: -0.5px;
+    color: #222;
+}
+.button_guide .button_title .button_point {
+    font-size: 18px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+.button_guide .button_title .lni-market {
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    background-position: -770px -362px;
+    width: 88px;
+    height: 65px;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    font-size: 1px;
+    line-height: 100px;
+    box-sizing: border-box;
+    font-style: normal;
+}

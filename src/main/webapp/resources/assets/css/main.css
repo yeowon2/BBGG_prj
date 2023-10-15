@@ -28,7 +28,7 @@ Domain Path:      /languages/
 /* ____Single Blog */
 /* ____Search */
 /* ____Testimonial */
-@import url("https://fonts.googleapis.com/css?family=Lato|Poppins:500,700");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 html {
   overflow-x: hidden;
 }

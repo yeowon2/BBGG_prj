@@ -31,6 +31,12 @@
   		.icons i {
   			padding:0 10px;	
   		}
+  		section#blog {
+  			background-color:#FFFFFF
+  		}
+  		section#blog #content {
+  			padding:40px;
+  		}
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
   </head>
@@ -263,8 +269,8 @@
         <div class="row">
           <div class="col-12">
             <div class="section-title-header text-center">
-              <h2 class="section-title">The Blog</h2>
-              <p>Duis aute irure dolor in reprehed in volupted velit esse dolore</p>
+              <h2 class="section-title">커뮤니티</h2>
+              <p>방방곡곡 내의 모든 소식을 확인하세요</p>
             </div>
           </div>
           <div class="col-lg-8 col-md-6 col-xs-12">
@@ -274,7 +280,7 @@
 	                    <div class="info_post">
 	                        <div class="partner_author">
 	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="">
+	                                <img src="images/main_img1.jpg" alt="프로필 사진">
 	                            </div>
 	                            <div class="info_author">
 	                                <em class="name_author">지원공인중개사무소</em>
@@ -282,11 +288,11 @@
 	                            </div>
 	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 	                                <span class="like">
-	                                    추천
+	                                    <i class="lni-thumbs-up"></i>
 	                                    <em>20</em>
 	                                </span>
 	                                <span class="bookmark">
-	                                    북마크
+	                                    <i class="lni-bookmark"></i>
 	                                    <em>10</em>
 	                                </span>
 	                            </div>
@@ -303,7 +309,7 @@
 	                    <div class="info_post">
 	                        <div class="partner_author">
 	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="">
+	                                <img src="images/main_img1.jpg" alt="프로필 사진">
 	                            </div>
 	                            <div class="info_author">
 	                                <em class="name_author">지원공인중개사무소</em>
@@ -311,11 +317,11 @@
 	                            </div>
 	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 	                                <span class="like">
-	                                    추천
+	                                     <i class="lni-thumbs-up"></i>
 	                                    <em>20</em>
 	                                </span>
 	                                <span class="bookmark">
-	                                    북마크
+	                                    <i class="lni-bookmark"></i>
 	                                    <em>10</em>
 	                                </span>
 	                            </div>
@@ -332,7 +338,7 @@
 	                    <div class="info_post">
 	                        <div class="partner_author">
 	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="">
+	                                <img src="images/main_img1.jpg" alt="프로필 사진">
 	                            </div>
 	                            <div class="info_author">
 	                                <em class="name_author">지원공인중개사무소</em>
@@ -340,11 +346,11 @@
 	                            </div>
 	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 	                                <span class="like">
-	                                    추천
+	                                     <i class="lni-thumbs-up"></i>
 	                                    <em>20</em>
 	                                </span>
 	                                <span class="bookmark">
-	                                    북마크
+	                                    <i class="lni-bookmark"></i>
 	                                    <em>10</em>
 	                                </span>
 	                            </div>

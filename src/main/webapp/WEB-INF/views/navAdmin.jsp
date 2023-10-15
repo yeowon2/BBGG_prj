@@ -86,10 +86,10 @@
               </li>
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  TIPS 
+                  커뮤니티 
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="portfolio-2.html">부동산 가이드</a>
+                  <a class="dropdown-item" href="/admin/notice">공지사항</a>
                 </div>
               </li>
               <c:if test="${loginVO != null}">

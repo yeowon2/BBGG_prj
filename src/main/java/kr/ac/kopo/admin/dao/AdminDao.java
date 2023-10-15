@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -28,4 +29,6 @@ public interface AdminDao {
 	int countFakeYestd();
 	
 	int total(Pager pager);
+	
+	void addNotice(NoticeVO noticeVO);
 }

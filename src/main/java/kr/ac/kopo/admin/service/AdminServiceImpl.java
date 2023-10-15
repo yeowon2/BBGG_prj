@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.admin.dao.AdminDao;
+import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -91,5 +92,10 @@ public class AdminServiceImpl implements AdminService {
 	public Integer fakeYestdCount() {
 		int fakeUserYestd = adminDao.countFakeYestd();
 		return adminDao.countFakeYestd();
+	}
+
+	@Override
+	public void addNotice(NoticeVO noticeVO) {
+		adminDao.addNotice(noticeVO);
 	}
 }

@@ -3,10 +3,15 @@ package kr.ac.kopo.admin.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import kr.ac.kopo.admin.service.AdminService;
 import kr.ac.kopo.fake.web.FakeVO;
@@ -65,8 +70,22 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/noticeAdd")
-	public String noticeAdd() {
-		return "/admin/noticeAdd";
+	public String noticeAdd(HttpSession session) {
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		
+		if(loginVO != null && loginVO.getUserId() != null && loginVO.getUserId().contains("admin")) { 
+			return "/admin/noticeAdd";
+		} else {
+			// 관리자로 로그인하셔야합니다. @@@@@@@@@@
+			return "redirect:/login"; 
+		}	
+	}
+	
+	@PostMapping("/admin/noticeAdd")
+	public String noticeAdd(NoticeVO noticeVO) {
+		adminService.addNotice(noticeVO);
+		// 글 작성 완료 @@@@@@@@@@
+		return "redirect:/admin/notice";
 	}
 
 }

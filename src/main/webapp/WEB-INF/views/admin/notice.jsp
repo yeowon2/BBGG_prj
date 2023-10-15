@@ -28,7 +28,7 @@
                     <div class="col-xl-12">
                         <section class="hk-sec-wrapper">
                             <h5 class="hk-sec-title">공지사항</h5>
-                            <p class="mb-40">언제나 건강한 매물들을 위해 노력하는 BBGG입니다 !</p>
+                            <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
                             <button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>
                             <div class="row">
                                 <div class="col-sm">
@@ -38,26 +38,23 @@
                                                 <thead>
                                                     <tr>
                                                         <th>번호</th>
-                                                        <th>대상</th>
-                                                        <th>제목</th>
+                                                        <!-- <th>제목</th> -->
                                                         <th>등록일</th>
-                                                        <th>변경</th>
+                                                        <th>수정일</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                	<c:forEach var="item" items="${list}">
+                                                	<c:forEach var="item" items="${noticeVO}">
                                                     <tr>
-                                                        <td>Car</td>
-                                                        <td>100</td>
-                                                        <td>200</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
+                                                        <td>${item.noticeNo}</td>
+                                                        <%-- <td>${item.noticeTitle}</td> --%>
+                                                        <td>${item.registDate}</td>
+                                                        <td>${item.updateDate}</td>
                                                     </tr>
                                                     </c:forEach>
                                                     <tr>
                                                         <th><strong>TOTAL</strong></th>
-                                                        <th></th>
-                                                        <th></th>
+                                                        <!-- <th></th> -->
                                                         <th></th>
                                                         <th></th>
                                                     </tr>

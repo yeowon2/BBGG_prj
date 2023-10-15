@@ -21,6 +21,7 @@
  		<typeAlias type="kr.ac.kopo.file.FileVO" alias="FileVO"/> 
  		<typeAlias type="kr.ac.kopo.partner.web.RespVO" alias="RespVO"/> 
  		<typeAlias type="kr.ac.kopo.wish.web.WishVO" alias="WishVO"/> 
+ 		<typeAlias type="kr.ac.kopo.admin.web.NoticeVO" alias="NoticeVO"/> 
   	</typeAliases>
   
   	<mappers>
@@ -35,5 +36,6 @@
   		<mapper resource="mybatis/file.xml"/>
   		<mapper resource="mybatis/admin.xml"/>
   		<mapper resource="mybatis/wish.xml"/>
+  		<mapper resource="mybatis/notice.xml"/>
   	</mappers>
   </configuration>

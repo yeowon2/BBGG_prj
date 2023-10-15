@@ -21,6 +21,7 @@
 						<th>이름</th>
 						<th>폰번호</th>
 						<th>가입날짜</th>
+						<th>상태</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,6 +32,7 @@
 						<td>${item.userName}</td>
 						<td>${item.phone}</td>
 						<td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
+						<td>${item.useAt}</td>
 					</tr>
 					</c:forEach>
 					

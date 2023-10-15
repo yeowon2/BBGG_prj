@@ -60,7 +60,7 @@
               <h2 class="intro-title">어떤 방을 찾고 있나요?</h2>
               <div class="content">
                 <div class="row justify-content-center align-items-center">
-                  	<div class="search-add col-lg-12 col-md-12 col-xs-12" style="align-items: center; justify-content: center;">
+                  	<div class="search-add col-lg-8 col-md-8 col-xs-8" style="align-items: center; justify-content: center;">
 		              <form id="index-search" method="get" action="/itemList" style="align-items: center; justify-content: center;" >
 		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
 		                	<!-- <div class="row"> -->

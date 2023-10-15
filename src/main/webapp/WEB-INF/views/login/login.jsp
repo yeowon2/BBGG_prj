@@ -208,7 +208,9 @@
     </div>
 	<!-- /HK Wrapper -->
 	<%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
-	
+	<script>
+		
+	</script>
 	<jsp:include page="../js.jsp"></jsp:include>
 
 	

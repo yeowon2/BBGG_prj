@@ -6,6 +6,7 @@
 <html lang="ko">
   <head>
   	<link rel="stylesheet" href="/resources/assets/css/blog.css">
+  	<link rel="stylesheet" href="/resources/assets/css/notice.css">
   	<style>
   		.team-img img {
   			height:225px;
@@ -35,7 +36,14 @@
   			background-color:#FFFFFF
   		}
   		section#blog #content {
-  			padding:40px;
+  			margin-top:30px;
+  			padding:20px 40px 40px;
+			background-color:#fff;
+    		box-shadow: 0px 0px 7x 0px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-out 0s;
+			color:#333333;
+  			
+  			
   		}
   	</style>
 	<jsp:include page="head.jsp"></jsp:include>
@@ -53,7 +61,7 @@
               <div class="content">
                 <div class="row justify-content-center align-items-center">
                   	<div class="search-add col-lg-12 col-md-12 col-xs-12" style="align-items: center; justify-content: center;">
-		              <form id="index-search" method="post" action="/itemList" style="align-items: center; justify-content: center;" >
+		              <form id="index-search" method="get" action="/itemList" style="align-items: center; justify-content: center;" >
 		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
 		                	<!-- <div class="row"> -->
 				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; margin-bottom: -4px; ">
@@ -111,7 +119,7 @@
 		              <div class="property-wrap">
 		                <div class="property-item">
 		                  <div class="item-thumb">
-		                    <a class="hover-effect" href="property.html">
+		                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
 		                      <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
 		                    </a>
 		                  </div>
@@ -155,7 +163,7 @@
         	</c:forEach>
           <div class="col-12">
             <div class="text-center">
-              <a href="listing.html" class="btn btn-common">Browse All</a>
+              <a href="/itemList" class="btn btn-common">모든 매물 보기</a>
             </div> 
           </div>  
         </div>
@@ -274,125 +282,161 @@
             </div>
           </div>
           <div class="col-lg-8 col-md-6 col-xs-12">
-        	 <div id="content">
-	            <div class="list_post_article">
-	                <div class="item multi_pic">
-	                    <div class="info_post">
-	                        <div class="partner_author">
-	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="프로필 사진">
-	                            </div>
-	                            <div class="info_author">
-	                                <em class="name_author">지원공인중개사무소</em>
-	                                <span class="time">7시간전</span>
-	                            </div>
-	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
-	                                <span class="like">
-	                                    <i class="lni-thumbs-up"></i>
-	                                    <em>20</em>
-	                                </span>
-	                                <span class="bookmark">
-	                                    <i class="lni-bookmark"></i>
-	                                    <em>10</em>
-	                                </span>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="desc">
-	                        <div class="desc_inner">
-	                            <strong class="title_post">글 제목</strong>
-	                        </div>
-	                        <p class="text">글 내용 글 내용 글 내
-	                    </div>
-	                </div>
-	                <div class="item multi_pic">
-	                    <div class="info_post">
-	                        <div class="partner_author">
-	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="프로필 사진">
-	                            </div>
-	                            <div class="info_author">
-	                                <em class="name_author">지원공인중개사무소</em>
-	                                <span class="time">7시간전</span>
-	                            </div>
-	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
-	                                <span class="like">
-	                                     <i class="lni-thumbs-up"></i>
-	                                    <em>20</em>
-	                                </span>
-	                                <span class="bookmark">
-	                                    <i class="lni-bookmark"></i>
-	                                    <em>10</em>
-	                                </span>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="desc">
-	                        <div class="desc_inner">
-	                            <strong class="title_post">글 제목</strong>
-	                        </div>
-	                        <p class="text">글 내용 글 내용 글 내
-	                    </div>
-	                </div>
-	                <div class="item multi_pic">
-	                    <div class="info_post">
-	                        <div class="partner_author">
-	                            <div class="partner_pic">
-	                                <img src="images/main_img1.jpg" alt="프로필 사진">
-	                            </div>
-	                            <div class="info_author">
-	                                <em class="name_author">지원공인중개사무소</em>
-	                                <span class="time">7시간전</span>
-	                            </div>
-	                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
-	                                <span class="like">
-	                                     <i class="lni-thumbs-up"></i>
-	                                    <em>20</em>
-	                                </span>
-	                                <span class="bookmark">
-	                                    <i class="lni-bookmark"></i>
-	                                    <em>10</em>
-	                                </span>
-	                            </div>
-	                        </div>
-	                    </div>
-	                    <div class="desc">
-	                        <div class="desc_inner">
-	                            <strong class="title_post">글 제목</strong>
-	                        </div>
-	                        <p class="text">글 내용 글 내용 글 내
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-        
+        	  <div class="blog-item" style="max-width:730px">
+	        	 <div id="content">
+		            <div class="list_post_article">
+		                <div class="item multi_pic">
+		                    <div class="info_post">
+		                        <div class="partner_author">
+		                            <div class="partner_pic">
+		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                            </div>
+		                            <div class="info_author">
+		                                <em class="name_author">지원공인중개사무소</em>
+		                                <span class="time">7시간전</span>
+		                            </div>
+		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+		                                <span class="like">
+		                                    <i class="lni-thumbs-up"></i>
+		                                    <em>20</em>
+		                                </span>
+		                                <span class="bookmark">
+		                                    <i class="lni-bookmark"></i>
+		                                    <em>10</em>
+		                                </span>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="desc">
+		                        <div class="desc_inner">
+		                            <strong class="title_post">글 제목</strong>
+		                        </div>
+		                        <p class="text">글 내용 글 내용 글 내
+		                    </div>
+		                </div>
+		                <div class="item multi_pic">
+		                    <div class="info_post">
+		                        <div class="partner_author">
+		                            <div class="partner_pic">
+		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                            </div>
+		                            <div class="info_author">
+		                                <em class="name_author">지원공인중개사무소</em>
+		                                <span class="time">7시간전</span>
+		                            </div>
+		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+		                                <span class="like">
+		                                     <i class="lni-thumbs-up"></i>
+		                                    <em>20</em>
+		                                </span>
+		                                <span class="bookmark">
+		                                    <i class="lni-bookmark"></i>
+		                                    <em>10</em>
+		                                </span>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="desc">
+		                        <div class="desc_inner">
+		                            <strong class="title_post">글 제목</strong>
+		                        </div>
+		                        <p class="text">글 내용 글 내용 글 내
+		                    </div>
+		                </div>
+		                <div class="item multi_pic">
+		                    <div class="info_post">
+		                        <div class="partner_author">
+		                            <div class="partner_pic">
+		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                            </div>
+		                            <div class="info_author">
+		                                <em class="name_author">지원공인중개사무소</em>
+		                                <span class="time">7시간전</span>
+		                            </div>
+		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
+		                                <span class="like">
+		                                     <i class="lni-thumbs-up"></i>
+		                                    <em>20</em>
+		                                </span>
+		                                <span class="bookmark">
+		                                    <i class="lni-bookmark"></i>
+		                                    <em>10</em>
+		                                </span>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="desc">
+		                        <div class="desc_inner">
+		                            <strong class="title_post">글 제목</strong>
+		                        </div>
+		                        <p class="text">글 내용 글 내용 글 내
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+        	</div>
           </div>
           
           <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="blog-item text-center">
-              <div class="blog-image">
-                <a href="#">
-                  <img class="img-fluid" src="/resources/assets/img/blog/img3.jpg" alt="">
-                </a>
-              </div>
-              <div class="date">12 April, 2018</div>
-              <div class="descr">
-                <h3 class="title">
-                  <a href="single-blog.html">
-                    Latest Architectural Design
-                  </a>
-                </h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias laudantium fugiat, eius sint.</p>
-              </div>
-              <div class="blog-footer hide-on-list">
-                <div class="float-left">
-                  <p class="prop-user"><a href="#"><i class="lni-user"></i> Admin</a></p>
-                </div>
-                <div class="float-right">
-                  <span><i class="lni-heart"></i> 350</span>
-                  <span><i class="lni-comments"></i> 30</span>
-                </div>
-              </div>
+            <div class="blog-item">
+     			<div class="area_notice">
+			        <div class="notice_heading">
+			            <a href="#" class="notice_title">
+			                공지사항
+			                <i class="lni-arrow"></i>
+			            </a>
+			        </div>
+			        <div class="notice_list">
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			            <div class="notice_item">
+			                <a href="#" class="notice_link">
+			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                </a>
+			            </div>
+			        </div>
+		        	<div class="partner_button">
+				        <div class="button_guide" id="notice_button">
+				            <a href="" class="button_title">
+				                <span class="button_point">공지사항 바로가기</span>
+				                <i class="lni-market"></i>
+				            </a>
+				        </div>
+			        </div>
+			    </div>
             </div>
           </div>
         </div>

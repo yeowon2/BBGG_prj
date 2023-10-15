@@ -127,8 +127,8 @@
 	    
 	    #map button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 50px;
+            right: 20px;
             z-index: 50;
          	border: none;
          	padding: 0;
@@ -153,56 +153,15 @@
 	    
 	</style>
 </head>
-	
 	<body>
+		<!-- 지도 -->
 	    <div id="map">
-	    	<button><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
+	    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
 	    </div>
-	    <script>
-	        // Kakao 지도 API 초기화
-	        kakao.maps.load(function() {
-	            var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소
-	            var mapOption = {
-	                center: new kakao.maps.LatLng(36.3300693111, 127.4596995134), // 지도 중심 좌표
-	                level: 12, // 지도 확대 레벨
-	                maxLevel: 12 // 지도 최대 확대 레벨
-	            };
-	
-	            var map = new kakao.maps.Map(mapContainer, mapOption);
-	
-	            // 마커 클러스터러 초기화
-	            var clusterer = new kakao.maps.MarkerClusterer({
-	                map: map, // 마커 클러스터러가 표시될 지도 객체
-	                averageCenter: true, // 클러스터의 중심을 평균값으로 설정
-	                minLevel: 2 // 클러스터링을 시작할 최소 레벨
-	            });
-	
-	            // 서버에서 데이터를 가져오는 Ajax 요청 예제
-	            $.get("/itemListAll", function(data) {
-	            	// 데이터 필터링: useAt가 'Y'인 항목만 선택
-	            	var filteredData = data.filter(function(item) {
-	                    return item.useAt === 'Y';
-	                });
-
-	                var markers = filteredData.map(function(item) {
-	                    var lat = item.lat; // lat 속성 가져오기
-	                    var lng = item.lng; // lng 속성 가져오기
-	                    
-	                    var imageSize = new kakao.maps.Size(28, 35); // 원하는 이미지 크기로 설정
-
-	                    return new kakao.maps.Marker({
-		                    position: new kakao.maps.LatLng(lat, lng),
-		                    image: new kakao.maps.MarkerImage("../resources/comm/marker.png", imageSize), // 이미지 크기 설정
-	                    });
-	                });
-	                // 클러스터러에 마커 배열을 추가
-	                clusterer.addMarkers(markers);
-	            });
-	        });
-	    </script>
-	    
-	    <div class="container mt-5" id="search-list-container" >
-		    <form role="search" class="email-search" id="search-container">
+	   	
+	   	<!-- 검색, 리스트 div -->
+	   	<div class="container mt-5" id="search-list-container" >
+		    <div class="email-search" id="search-container">
 		        <div>
 		            <!-- 방종류 -->
 		            <select id="itemType" name="itemType">
@@ -225,137 +184,286 @@
 		        <div class="input-group">
 		            
 		            <img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
+		            
+		           	<!-- 매물 검색 -->
 		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
+		        	
 		        	<!-- 초기화 버튼 추가 -->
         			<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
 		        </div>
-		    </form>
-		    <script>
-			 	// 초기화 버튼 클릭 시 검색어 필드 초기화
-			    document.getElementById('resetSearch').addEventListener('click', function () {
-			        document.getElementById('search').value = ''; // 검색어 필드를 빈 문자열로 설정
-			        document.getElementById('itemType').value = ''; // 방종류 select 요소 초기화
-			        document.getElementById('leaseOrMonth').value = ''; // 월-전세 select 요소 초기화
-			    });
-		    </script>
-		    <script>
-			 	// 검색 폼 엘리먼트 가져오기
-			    var searchForm = document.getElementById('search-container');
-	
-			    // 검색 폼이 제출되면 세션 스토리지에 검색어 및 셀렉트 태그 값 저장
-			    searchForm.addEventListener('submit', function() {
-			        var searchInput = document.getElementById('search');
-			        var searchValue = searchInput.value;
-			        var itemTypeSelect = document.getElementById('itemType');
-			        var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
-			        var itemTypeValue = itemTypeSelect.value;
-			        var leaseOrMonthValue = leaseOrMonthSelect.value;
-			        
-			        sessionStorage.setItem('search', searchValue);
-			        sessionStorage.setItem('itemType', itemTypeValue);
-			        sessionStorage.setItem('leaseOrMonth', leaseOrMonthValue);
-			    });
-	
-			    // 검색어 및 셀렉트 태그 값이 세션 스토리지에 저장된 경우 자동으로 설정
-			    var searchInput = document.getElementById('search');
-			    var itemTypeSelect = document.getElementById('itemType');
-			    var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
-			    
-			    var storedSearch = sessionStorage.getItem('search');
-			    var storedItemType = sessionStorage.getItem('itemType');
-			    var storedLeaseOrMonth = sessionStorage.getItem('leaseOrMonth');
-			    
-			    if (storedSearch) {
-			        searchInput.value = storedSearch;
-			    }
-			    if (storedItemType) {
-			        itemTypeSelect.value = storedItemType;
-			    }
-			    if (storedLeaseOrMonth) {
-			        leaseOrMonthSelect.value = storedLeaseOrMonth;
-			    }
-			 	// 5분(300000 밀리초) 후에 세션 스토리지 초기화
-			    setTimeout(function() {
-			        sessionStorage.clear(); // 세션 스토리지 초기화
-			    }, 6000);
-		    </script>
-		
-		    <div class="emailapp-emails-list" id="list-container">
-		        <div class="nicescroll-bar">
-		            <c:forEach var="item" items="${list}">
-			            <c:if test="${item.useAt == 'Y' }">
-			                <a href="/itemDetail/${item.itemNo}" target="_blank" onclick="handleClick('${item.itemNo}')" class="property-item" id="property-${item.itemNo}" style="display: flex;">
-			                    <div class="media-img-wrap" style="position: relative;">
-			                    	<img alt="my-properties-3" src="/upload/${item.fileVO.savedName}" class="img-fluid"  onmouseover="showNumber('${item.itemNo}')" onmouseout="hideNumber('${item.itemNo}')">
-			                    	<div class="image-number" id="number-${item.itemNo}">매물<br/>${item.itemNo}</div>
-			                    </div>
-			                    <div class="media-body">
-			                        <div>
-			                            <div class="email-head font-weight-700 font-lg-15"><h5>${item.address}　<i class="lni-map-marker"></i></h5></div>
-			                            <div class="email-head font-weight-700 font-lg-15"><h6>(${item.address2})</h6></div>
-			                            <c:choose>
-			                            	<c:when test="${item.leaseOrMonth == 'lease' }">
-			                            		<c:if test="${item.leasePrice < 10000 }">
-			                            			<div class="email-subject"><h5>전세 ${item.leasePrice }</h5></div>
-			                            		</c:if>
-			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 == 0 }">
-			                            			<div class="email-subject"><h5>전세 ${item.leaseBillion}억</h5></div>
-			                            		</c:if>
-			                            		<c:if test="${item.leasePrice >= 10000 && item.leasePrice % 10000 != 0 }">
-			                            			<div class="email-subject"><h5>전세 ${item.leaseBillion}억 ${item.leaseTenMillion}</h5></div>
-			                            		</c:if>
-			                            	</c:when>
-			                            	<c:when test="${item.leaseOrMonth == 'month' }">
-			                            		<div class="email-subject"><h5>월세 ${item.depositFee} / ${item.monthPrice}</h5></div>
-			                            	</c:when>
-			                            </c:choose>
-			                            <c:choose>
-			                            	<c:when test="${item.itemType == 'O' }">
-			                            		<div class="email-subject">원룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
-			                            	</c:when>
-			                            	<c:when test="${item.itemType == 'T' }">
-			                            		<div class="email-subject">투룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
-			                            	</c:when>
-			                            	<c:when test="${item.itemType == 'H' }">
-			                            		<div class="email-subject">쓰리룸 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
-			                            	</c:when>
-			                            	<c:when test="${item.itemType == 'F' }">
-			                            		<div class="email-subject">오피스텔 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
-			                            	</c:when>
-			                            </c:choose>
-			                            <div class="email-subject">${item.memoShort} </div>
-			                            <div class="email-text">
-			                                <p>${item.memoDetail}</p>
-			                            </div>
-			                        </div>
-			                    </div>
-			                </a>
-			                <div class="email-hr-wrap">
-			                    <hr>
-			                </div>
-			            </c:if>
-		            </c:forEach>
-		        </div>
 		    </div>
+		    
+		    <!-- 매물 리스트 -->
+			<div class="emailapp-emails-list" id="list-container">
+			    <div class="nicescroll-bar" id="property-list">
+			    </div>
+			</div>
 		</div>
+		<script>
+		    var map; // 지도 객체를 저장할 변수
+		    var clusterer; // 마커 클러스터러 객체
+		    var filteredData; // 필터링된 데이터를 저장할 배열
+		    var propertyList; // 매물 리스트 컨테이너
+		    var marker; // 현재 매물에 대한 마커
+		
+		    // Kakao 지도 API 초기화 및 기타 설정
+		    kakao.maps.load(function () {
+		        var mapContainer = document.getElementById('map');
+		        var mapOption = {
+		            center: new kakao.maps.LatLng(36.3300693111, 127.4596995134),
+		            level: 12,
+		            maxLevel: 12
+		        };
+		
+		        map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		        // 마커 클러스터러 초기화
+		        clusterer = new kakao.maps.MarkerClusterer({
+		            map: map,
+		            averageCenter: true,
+		            minLevel: 2
+		        });
+		
+		        // 서버에서 데이터를 가져오는 Ajax 요청
+		        $.get("/itemListAll", function (data) {
+		            filteredData = data.filter(function (item) {
+		                return item.useAt === 'Y';
+		            });
+		
+		            var markers = filteredData.map(function (item) {
+		                var lat = item.lat;
+		                var lng = item.lng;
+		                var imageSize = new kakao.maps.Size(28, 35);
+		
+		                return new kakao.maps.Marker({
+		                    position: new kakao.maps.LatLng(lat, lng),
+		                    image: new kakao.maps.MarkerImage("../resources/comm/marker.png", imageSize)
+		                });
+		            });
+		
+		            // 클러스터러에 마커 배열을 추가
+		            clusterer.addMarkers(markers);
+		            // 매물 리스트 컨테이너
+		            propertyList = $("#property-list");
+		            // 초기 매물 리스트 업데이트
+		            updatePropertyList();
+		        });
+		
+		        // 이벤트 리스너 등록 (지도 이동 및 확대 축소 이벤트)
+		        kakao.maps.event.addListener(map, 'dragend', updatePropertyList);
+		        kakao.maps.event.addListener(map, 'zoom_changed', updatePropertyList);
+		        
+		     	// 현재 위치로 이동 버튼 클릭 이벤트
+		        var currentLocationButton = document.getElementById('currentLocationButton');
+		        currentLocationButton.addEventListener('click', function () {
+		            // 위치 액세스 권한 동의 여부 확인
+		            if ('geolocation' in navigator) {
+		                navigator.geolocation.getCurrentPosition(function (position) {
+		                    // 위치 정보를 얻은 후의 동작을 정의
+		                    var latitude = position.coords.latitude;
+		                    var longitude = position.coords.longitude;
+
+		                    // 지도를 확대 및 중앙 위치로 이동
+		                    var mapCenter = new kakao.maps.LatLng(latitude, longitude);
+		                    map.setLevel(4); // 원하는 확대 레벨로 설정
+		                    map.panTo(mapCenter); // 중앙으로 이동
+		                    
+		                 	// 위치를 가져온 후 매물 리스트를 업데이트
+		                    updatePropertyList();
+
+		                }, function (error) {
+		                    // 위치 액세스 권한을 거부하거나 오류가 발생한 경우의 동작을 정의
+		                    if (error.code === 1) {
+		                        if (confirm('위치 액세스 권한을 허용하지 않았습니다. 위치 정보를 사용하려면 권한을 허용해야 합니다. 권한 설정을 확인하시겠습니까?')) {
+		                            // 권한 설정 페이지로 이동
+		                            window.location.href = 'app-settings'; // 적절한 설정 페이지 URL로 변경
+		                        }
+		                    } else {
+		                        alert('위치 정보를 가져오는 동안 오류가 발생했습니다: ' + error.message);
+		                    }
+		                });
+		            } else {
+		                alert('브라우저에서 위치 정보 액세스를 지원하지 않습니다.');
+		            }
+		        });
+		    });
+		
+		    // 지도 상태에 따라 매물 리스트 업데이트
+		    function updatePropertyList() {
+		        var bounds = map.getBounds();
+		        var visibleItems = filteredData.filter(function (item) {
+		            var latLng = new kakao.maps.LatLng(item.lat, item.lng);
+		            return bounds.contain(latLng);
+		        });
+		
+		        // 매물 리스트 초기화
+		        propertyList.empty();
+		
+		        var imageSize = new kakao.maps.Size(28, 35);
+		
+		        // 보이는 매물 리스트 업데이트
+		        visibleItems.forEach(function (item) {
+		            var propertyItem = $("<a href='/itemDetail/" + item.itemNo + "' target='_blank' class='property-item' style='display: flex;'></a>");
+		            var mediaImgWrap = $("<div class='media-img-wrap' style='position: relative;'>");
+		            var propertyImage = $("<img alt='my-properties-3' class='img-fluid'>");
+		            if (item.fileVO && item.fileVO.savedName) {
+		                propertyImage.attr('src', '/upload/' + item.fileVO.savedName);
+		            } else {
+		                // 이미지가 없는 경우 처리
+		                propertyImage.attr('src', '/path/to/placeholder-image.png'); // 대체 이미지 경로 또는 빈 이미지
+		            }
+		            var imageNumber = $("<div class='image-number'>매물<br/>" + item.itemNo + "</div>");
+		
+		            mediaImgWrap.append(propertyImage);
+		            mediaImgWrap.append(imageNumber);
+		
+		            var mediaBody = $("<div class='media-body'>");
+		            var emailHead1 = $("<div class='email-head font-weight-700 font-lg-15'><h6>" + item.address + " <i class='lni-map-marker'></i></h5></div>");
+		            var emailHead2 = $("<div class='email-head font-weight-700 font-lg-15'><h6>(" + item.address2 + ")</h6></div>");
+		            var emailSubject1 = $("<div class='email-subject'><h5></h5></div>");
+		            var emailSubject2 = $("<div class='email-subject'><h5></h5></div>");
+		            var emailSubject3 = $("<div class='email-subject'><p></p></div>");
+		            var emailSubject = $("<div class='email-subject'>" + item.memoShort + "</div>");
+		            var emailText = $("<div class='email-text' style='-webkit-line-clamp: 1;'><p>" + item.memoDetail + "</p></div>");
+		            var hr = $("<hr>");
+		
+		            mediaBody.append(emailHead1);
+		            mediaBody.append(emailHead2);
+		
+		            if (item.leaseOrMonth == 'lease') {
+		                if (item.leasePrice < 10000) {
+		                    emailSubject1.find('h5').text("전세 " + item.leasePrice);
+		                } else if (item.leasePrice >= 10000 && item.leasePrice % 10000 == 0) {
+		                    emailSubject1.find('h5').text("전세 " + item.leaseBillion + "억");
+		                } else {
+		                    emailSubject1.find('h5').text("전세 " + item.leaseBillion + "억 " + item.leaseTenMillion);
+		                }
+		            } else if (item.leaseOrMonth == 'month') {
+		                emailSubject2.find('h5').text("월세 " + item.depositFee + " / " + item.monthPrice);
+		            }
+		
+		            if (item.itemType == 'O') {
+		                emailSubject3.find('p').text("원룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		            } else if (item.itemType == 'T') {
+		                emailSubject3.find('p').text("투룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		            } else if (item.itemType == 'H') {
+		                emailSubject3.find('p').text("쓰리룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		            } else if (item.itemType == 'F') {
+		                emailSubject3.find('p').text("오피스텔   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		            }
+		
+		            mediaBody.append(emailSubject1);
+		            mediaBody.append(emailSubject2);
+		            mediaBody.append(emailSubject3);
+		            mediaBody.append(emailSubject);
+		            mediaBody.append(emailText);
+		
+		            propertyItem.append(mediaImgWrap);
+		            propertyItem.append(mediaBody);
+		
+		            // 매물 리스트 항목에 마우스 오버 이벤트 리스너 등록
+		            propertyItem.mouseover(function () {
+		                // 새로운 마커 생성
+		                var latLng = new kakao.maps.LatLng(item.lat, item.lng);
+		                marker = new kakao.maps.Marker({
+		                    position: latLng,
+		                    image: new kakao.maps.MarkerImage("../resources/comm/marker2.png", imageSize)
+		                });
+		
+		                // 생성된 마커를 지도에 추가
+		                marker.setMap(map);
+		            });
+		
+		            // 매물 리스트 항목에 마우스 아웃 이벤트 리스너 등록
+		            propertyItem.mouseout(function () {
+		                // 마우스 아웃 시 마커 숨기기
+		                if (marker) {
+		                    marker.setMap(null); // 마커 제거
+		                }
+		            });
+		
+		            propertyList.append(propertyItem);
+		            propertyList.append(hr);
+		        });
+		    }
+		
+		 	// 검색
+		    $(document).ready(function () {
+		        // 초기화 버튼 클릭 이벤트
+		        $("#resetSearch").click(function () {
+		            $("#itemType").val(""); // 선택된 방 종류 초기화
+		            $("#leaseOrMonth").val(""); // 선택된 계약 조건 초기화
+		            $("#search").val(""); // 검색어 필드 초기화
+		            updatePropertyList(); // 전체 매물 보여주기
+		            updateMapZoom(); // 초기 확대 레벨로 설정
+		        });
+
+		        // 검색 버튼 클릭 이벤트
+		        $("#search").on("input", function () {
+		            updatePropertyList(); // 검색어가 변경될 때 매물 리스트 업데이트
+		            updateMapZoom(); // 검색 조건에 따라 지도 확대
+		        });
+
+		        // 방 종류 또는 계약 조건이 변경될 때
+		        $("#itemType, #leaseOrMonth").change(function () {
+		            updatePropertyList(); // 선택된 조건에 따라 매물 리스트 업데이트
+		            updateMapZoom(); // 검색 조건에 따라 지도 확대
+		        });
+		    });
+		</script>
+
+	    
+		<script>
+			// 초기화 버튼 클릭 시 검색어 필드 초기화
+		    document.getElementById('resetSearch').addEventListener('click', function () {
+		        document.getElementById('search').value = ''; // 검색어 필드를 빈 문자열로 설정
+		        document.getElementById('itemType').value = ''; // 방종류 select 요소 초기화
+		        document.getElementById('leaseOrMonth').value = ''; // 월-전세 select 요소 초기화
+		    });
+		</script>
 		
 		<script>
-		    // 이미지 위에 번호를 나타내는 함수
-		    function showNumber(itemNo) {
-		        var numberElement = document.getElementById('number-' + itemNo);
-		        if (numberElement) {
-		            numberElement.style.display = 'block';
-		        }
+			// 검색 폼 엘리먼트 가져오기
+		    var searchForm = document.getElementById('search-container');
+	
+		    // 검색 폼이 제출되면 세션 스토리지에 검색어 및 셀렉트 태그 값 저장
+		    searchForm.addEventListener('submit', function() {
+		        var searchInput = document.getElementById('search');
+		        var searchValue = searchInput.value;
+		        var itemTypeSelect = document.getElementById('itemType');
+		        var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+		        var itemTypeValue = itemTypeSelect.value;
+		        var leaseOrMonthValue = leaseOrMonthSelect.value;
+		        
+		        sessionStorage.setItem('search', searchValue);
+		        sessionStorage.setItem('itemType', itemTypeValue);
+		        sessionStorage.setItem('leaseOrMonth', leaseOrMonthValue);
+		    });
+	
+		    // 검색어 및 셀렉트 태그 값이 세션 스토리지에 저장된 경우 자동으로 설정
+		    var searchInput = document.getElementById('search');
+		    var itemTypeSelect = document.getElementById('itemType');
+		    var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+		    
+		    var storedSearch = sessionStorage.getItem('search');
+		    var storedItemType = sessionStorage.getItem('itemType');
+		    var storedLeaseOrMonth = sessionStorage.getItem('leaseOrMonth');
+		    
+		    if (storedSearch) {
+		        searchInput.value = storedSearch;
 		    }
-		    // 이미지 위에 번호를 숨기는 함수
-		    function hideNumber(itemNo) {
-		        var numberElement = document.getElementById('number-' + itemNo);
-		        if (numberElement) {
-		            numberElement.style.display = 'none';
-		        }
+		    if (storedItemType) {
+		        itemTypeSelect.value = storedItemType;
 		    }
+		    if (storedLeaseOrMonth) {
+		        leaseOrMonthSelect.value = storedLeaseOrMonth;
+		    }
+		 	// 5분(300000 밀리초) 후에 세션 스토리지 초기화
+		    setTimeout(function() {
+		        sessionStorage.clear(); // 세션 스토리지 초기화
+		    }, 6000);
 		</script>
-	    
+		
 	    <!-- 매물 봤다면 봤다는 표시 -->
 	    <script>
 		 	// JavaScript 코드

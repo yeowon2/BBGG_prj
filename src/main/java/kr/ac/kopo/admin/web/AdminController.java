@@ -73,7 +73,9 @@ public class AdminController {
 	@GetMapping("/admin/noticeAdd")
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
 		UserVO loginVO;
-		String adminId;
+		String userId = (String) session.getAttribute("userId");
+		
+		System.out.println(userId);
 		
 		if(session.getAttribute("loginVO") != null) {
 			loginVO = (UserVO) session.getAttribute("loginVO");			
@@ -82,8 +84,8 @@ public class AdminController {
 		}
 		
 		if(loginVO.getUserId().contains("admin")) {
-			adminId = loginVO.getUserId();
-			noticeVO.setAdminId(adminId);
+			userId = loginVO.getUserId();
+			noticeVO.setAdminId(userId);
 		} 
 		
 		if(loginVO != null && loginVO.getUserId() != null && loginVO.getUserId().contains("admin")) { 
@@ -98,8 +100,8 @@ public class AdminController {
 	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request) {
 		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
 		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
-		noticeVO.setNoticeContent(request.getParameter("adminId"));
-		System.out.println(request.getParameter("noticeTitle"));
+
+		System.out.println(noticeVO.getAdminId());
 		adminService.addNotice(noticeVO);
 		// 글 작성 완료 알럿 @@@@@@@@@@
 		return "redirect:/admin/notice";

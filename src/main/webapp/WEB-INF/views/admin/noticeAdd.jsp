@@ -29,9 +29,8 @@
 	                    <div class="row">
 	                        <div class="col-sm">
 	                            <div class="tinymce-wrap">
-	                            	<form method="post" style="display: flex; flex-direction: column;">
-	                            		<input type="hidden" name="adminId" <%=session.getAttribute("loginVO")%>">
-	                            		<input type="text" name="noticeTitle" style="flex: 1; border-color: #F3F3F3;">
+	                            	<form method="post" style="display: flex; flex-direction: column">
+	                            		<input type="text" name="noticeTitle" style="flex: 1; border-color: #F3F3F3">
 	                                	<textarea class="tinymce" name="noticeContent" style="width: 100%"></textarea>
 	                                	<button type="submit" style="align-self: flex-end;">등록하기</button>
 	                                </form>

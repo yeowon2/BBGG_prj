@@ -290,7 +290,7 @@
 		                    <div class="info_post">
 		                        <div class="partner_author">
 		                            <div class="partner_pic">
-		                                <img src="/resources/assets/img/property/g1_logo.png" alt="프로필 사진">
+		                                <img src="/resources/assets/img/property/g1-logos.jpeg" alt="프로필 사진">
 		                            </div>
 		                            <div class="info_author">
 		                                <em class="name_author">지원공인중개사무소</em>

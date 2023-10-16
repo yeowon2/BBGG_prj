@@ -76,9 +76,9 @@
                   <a class="dropdown-item" href="single-property.html">최근에 본 방</a>
                 </div>
               </li>
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  TIPS 
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
+                  단기 임대
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">부동산 가이드</a>

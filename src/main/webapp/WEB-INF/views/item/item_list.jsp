@@ -266,7 +266,7 @@
 		                    if (error.code === 1) {
 		                        if (confirm('위치 액세스 권한을 허용하지 않았습니다. 위치 정보를 사용하려면 권한을 허용해야 합니다. 권한 설정을 확인하시겠습니까?')) {
 		                            // 권한 설정 페이지로 이동
-		                            window.location.href = 'app-settings'; // 적절한 설정 페이지 URL로 변경
+		                            window.location.href = '/'; // 적절한 설정 페이지 URL로 변경
 		                        }
 		                    } else {
 		                        alert('위치 정보를 가져오는 동안 오류가 발생했습니다: ' + error.message);
@@ -374,7 +374,7 @@
 		            propertyList.append(hr);
 		        });
 		    }
-		
+		    
 		 	// 검색
 		    $(document).ready(function () {
 		        // 초기화 버튼 클릭 이벤트

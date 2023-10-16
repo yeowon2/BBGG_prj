@@ -25,8 +25,8 @@
               </div>
               <c:if test="${loginVO == null}">
 	              <div class="header-top-right float-right">
-	                <a href="/login" class="header-top-button"><i class="lni-lock"></i> 로그인</a> |
-	                <a href="/user/add" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a> |
+	                <a href="/login" class="header-top-button"><i class="lni-lock"></i> 로그인 / 회원가입</a> |
+	                <!-- <a href="/user/add" class="header-top-button"><i class="lni-pencil"></i> 회원가입</a> | -->
 	                <a href="/partner/add" class="header-top-button"><i class="lni-pencil"></i> 중개사 가입</a>
 	              </div>
               </c:if>
@@ -76,9 +76,9 @@
                   <a class="dropdown-item" href="single-property.html">최근에 본 방</a>
                 </div>
               </li>
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  TIPS 
+              <li class="nav-item mx-3">
+                <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
+                  단기 임대
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">부동산 가이드</a>

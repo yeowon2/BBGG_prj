@@ -2,8 +2,7 @@ package kr.ac.kopo.admin.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
+import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -27,4 +26,6 @@ public interface AdminService {
 	Integer fakeCount();
 	Integer fakeYestdCount();
 
+	List<NoticeVO> noticeListAll(Pager pager);
+	void addNotice(NoticeVO noticeVO);
 }

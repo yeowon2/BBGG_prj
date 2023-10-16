@@ -3,10 +3,16 @@ package kr.ac.kopo.admin.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.admin.service.AdminService;
 import kr.ac.kopo.fake.web.FakeVO;
@@ -60,13 +66,41 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/notice")
-	public String notice() {
+	public String noticeList(NoticeVO noticeVO, Pager pager) {
+		List<NoticeVO> noticeList = adminService.noticeListAll(pager);
 		return "/admin/notice";
 	}
 	
 	@GetMapping("/admin/noticeAdd")
-	public String noticeAdd() {
-		return "/admin/noticeAdd";
+	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
+	
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		String userId = (String) loginVO.getUserId();
+		System.out.println(userId); // 확인완료
+		
+		if(loginVO != null && userId.contains("admin") && userId != null) {
+			userId = (String) loginVO.getUserId();
+			noticeVO.setAdminId(userId);
+			return "/admin/noticeAdd";
+		} else {
+			// 관리자로 로그인하셔야합니다. 알럿 @@@@@@@@@@
+			return "redirect:/login";
+		}
+	}
+	
+	@PostMapping("/admin/noticeAdd")
+	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request, HttpSession session) {
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		String userId = (String) loginVO.getUserId();
+		noticeVO.setAdminId(userId);
+		
+		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
+		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
+
+		System.out.println(noticeVO.getAdminId());
+		adminService.addNotice(noticeVO);
+		// 글 작성 완료 알럿 @@@@@@@@@@
+		return "redirect:/admin/notice";
 	}
 
 }

@@ -1,6 +1,7 @@
 package kr.ac.kopo.item.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.web.ItemVO;
@@ -14,6 +15,8 @@ public interface ItemService {
 	void itemAdd(ItemVO itemVO, List<FileVO> fileVOList);
 
 	List<ItemVO> partItemList(Long partnerNo);
+	
+	List<ItemVO> partOtherItemList(Long partnerNo, Long itemNo);
 
 	void updateStatus(Long itemNo);
 

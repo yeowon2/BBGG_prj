@@ -1,6 +1,8 @@
 package kr.ac.kopo.item.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,14 +62,25 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<ItemVO> partItemList(Long partnerNo) {
-		
-		 List<ItemVO> partItemList = dao.partItemList(partnerNo);
+	public List<ItemVO> partOtherItemList(Long partnerNo, Long itemNo) {
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+		paramMap.put("itemNo", itemNo);
+		paramMap.put("partnerNo", partnerNo);
+		 List<ItemVO> partItemList = dao.partOtherItemList(paramMap);
 		 for (ItemVO itemVO : partItemList) {
 			FileVO fileVO = fileDao.selectItemFile(itemVO.getItemNo());
 			itemVO.setFileVO(fileVO);
 		}
 		 return partItemList;
+	}
+	@Override
+	public List<ItemVO> partItemList(Long partnerNo) {
+		List<ItemVO> partItemList = dao.partItemList(partnerNo);
+		for (ItemVO itemVO : partItemList) {
+			FileVO fileVO = fileDao.selectItemFile(itemVO.getItemNo());
+			itemVO.setFileVO(fileVO);
+		}
+		return partItemList;
 	}
 
 	@Override

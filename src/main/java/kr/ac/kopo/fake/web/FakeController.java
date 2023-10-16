@@ -98,7 +98,7 @@ public class FakeController {
 			
 			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
 			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1"));
-			System.out.println(request.getParameter("fakeCheck1"));
+			//System.out.println(request.getParameter("fakeCheck1"));
 			fakeVO.setFakeCheck2(request.getParameter("fakeCheck2"));
 			fakeVO.setFakeCheck3(request.getParameter("fakeCheck3"));
 			fakeVO.setFakeContent(request.getParameter("fakeContent"));

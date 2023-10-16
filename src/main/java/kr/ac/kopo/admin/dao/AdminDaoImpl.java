@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
+import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -89,4 +90,15 @@ public class AdminDaoImpl implements AdminDao {
 	public int total(Pager pager) {
 		return sql.selectOne("admin.total", pager);
 	}
+	
+	@Override
+	public List<NoticeVO> noticeListAll(Pager pager) {
+		return sql.selectList("notice.selectNotice", pager);
+	}
+
+	@Override
+	public void addNotice(NoticeVO noticeVO) {
+		sql.insert("notice.insertNotice");
+	}
+
 }

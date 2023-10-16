@@ -44,24 +44,11 @@
                   <div class="col-lg-4 col-md-5 col-xs-12 mb-10">
 		             <div class="widget mt3">
 		                    <div class="agent-photo col-lg-12">
-		                    	<label>대표이미지</label>
-		                    	<c:if test="${partnerVO.fileVO != null}">
-			                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="">
-			                       <input type="file" id="fileInput" name="file" style="display:none;">
-			                      <div class="">
-			                      	<button id="changeBtn" class="btn btn-outline-warning btn-sm" type="button">변경</button>
-			                      	<button id="deleteBtn" class="btn btn-outline-danger btn-sm" type="button">삭제</button>
-			                      </div>
-		                      </c:if>
-		                      <c:if test="${partnerVO.fileVO == null}">
-		                      	  <img id="defaultImage" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+		                    	<label for="fileInput">대표이미지</label>
 			                      <img id="imagePreview" src="#" alt="미리보기 이미지" style="max-width: 100%; height: auto; display: none;">	
-			                      <input type="file" id="fileInput" name="file" style="display:none;">
-			                      <div class="">
+			                       <input type="file" id="fileInput" name="file" >
 			                      	<button id="uploadBtn" class="btn btn-outline-info btn-sm">업로드</button>
-			                      </div>
-		                      </c:if>
-		                    </div>
+		                      </div>
 		              </div>
 		          </div>
                   <div class="col-lg-12 mt-10">
@@ -116,7 +103,7 @@
 <jsp:include page="../footer.jsp"></jsp:include>
 <script>
 <!-- 이미지 미리보기 스크립트를 JSTL 코드 밖으로 이동 -->
-  window.onload = function () {
+/*   window.onload = function () {
     document.getElementById("uploadBtn").addEventListener("click", function () {
       document.getElementById("fileInput").click();
     });
@@ -136,7 +123,7 @@
       };
       reader.readAsDataURL(selectedFile);
     });
-  };
+  }; */
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

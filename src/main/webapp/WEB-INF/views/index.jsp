@@ -24,6 +24,7 @@
   		}
   		.popular-item img {
   			height:230px;
+  			min-width:348px;
   		}
   		.icons {
   			text-align:right;
@@ -33,7 +34,7 @@
   			padding:0 10px;	
   		}
   		section#blog {
-  			background-color:#FFFFFF
+  			background-color:#fcfcfc;
   		}
   		section#blog #content {
   			margin-top:30px;
@@ -153,7 +154,7 @@
                         			</c:otherwise>
 	                          	</c:choose>
 	                          </div>
-	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${item.itemSize * 3.3}㎡</span></p>
+	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span><fmt:formatNumber value="${item.itemSize * 3.3}" pattern="#,##0" />㎡ / ${item.itemSize}평</span></p>
 		                    </div>
 		                  </div>               
 		                </div>              
@@ -256,7 +257,7 @@
                         			</c:otherwise>
 	                          	</c:choose>
 	                          </div>
-	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${item.itemSize * 3.3}㎡</span></p>
+	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span><fmt:formatNumber value="${item.itemSize * 3.3}" pattern="#,##0" />㎡ / ${item.itemSize}평</span></p>
 	                        </div>
 	                      </div>               
 	                    </div>              
@@ -289,40 +290,40 @@
 		                    <div class="info_post">
 		                        <div class="partner_author">
 		                            <div class="partner_pic">
-		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                                <img src="/resources/assets/img/property/g1-logos.jpeg" alt="프로필 사진">
 		                            </div>
 		                            <div class="info_author">
 		                                <em class="name_author">지원공인중개사무소</em>
-		                                <span class="time">7시간전</span>
+		                                <span class="time">1시간전</span>
 		                            </div>
 		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 		                                <span class="like">
 		                                    <i class="lni-thumbs-up"></i>
-		                                    <em>20</em>
+		                                    <em>13</em>
 		                                </span>
 		                                <span class="bookmark">
 		                                    <i class="lni-bookmark"></i>
-		                                    <em>10</em>
+		                                    <em>0</em>
 		                                </span>
 		                            </div>
 		                        </div>
 		                    </div>
 		                    <div class="desc">
 		                        <div class="desc_inner">
-		                            <strong class="title_post">글 제목</strong>
+		                            <strong class="title_post">전세 사기 방지를 위한 10가지 유용한 팁</strong>
 		                        </div>
-		                        <p class="text">글 내용 글 내용 글 내
+		                        <p class="text">요즘 전세 사기가 늘고 있는 추세입니다. 이에 대비하여 전세 사기 방지를 위한 유용한 팁을 소개합니다</p>
 		                    </div>
 		                </div>
 		                <div class="item multi_pic">
 		                    <div class="info_post">
 		                        <div class="partner_author">
 		                            <div class="partner_pic">
-		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                                <img src="/resources/assets/img/property/han_logo.png" alt="프로필 사진">
 		                            </div>
 		                            <div class="info_author">
-		                                <em class="name_author">지원공인중개사무소</em>
-		                                <span class="time">7시간전</span>
+		                                <em class="name_author">한마음공인중개사무소</em>
+		                                <span class="time">8시간전</span>
 		                            </div>
 		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 		                                <span class="like">
@@ -338,25 +339,25 @@
 		                    </div>
 		                    <div class="desc">
 		                        <div class="desc_inner">
-		                            <strong class="title_post">글 제목</strong>
+		                            <strong class="title_post">매물 검색의 달인이 되는 방법: 효과적인 검색 기술</strong>
 		                        </div>
-		                        <p class="text">글 내용 글 내용 글 내
+		                        <p class="text">부동산 매물 검색을 더 효과적으로 하려면 어떤 방법을 사용해야 할까요? </p>
 		                    </div>
 		                </div>
 		                <div class="item multi_pic">
 		                    <div class="info_post">
 		                        <div class="partner_author">
 		                            <div class="partner_pic">
-		                                <img src="images/main_img1.jpg" alt="프로필 사진">
+		                                <img src="/resources/assets/img/productinfo/default-profile.png" alt="프로필 사진">
 		                            </div>
 		                            <div class="info_author">
-		                                <em class="name_author">지원공인중개사무소</em>
-		                                <span class="time">7시간전</span>
+		                                <em class="name_author">푸른공인중개사무소</em>
+		                                <span class="time">23/10/15</span>
 		                            </div>
 		                            <div class="comments" style="display: inline-block; float: right; margin-right: 30px;">
 		                                <span class="like">
 		                                     <i class="lni-thumbs-up"></i>
-		                                    <em>20</em>
+		                                    <em>25</em>
 		                                </span>
 		                                <span class="bookmark">
 		                                    <i class="lni-bookmark"></i>
@@ -367,9 +368,9 @@
 		                    </div>
 		                    <div class="desc">
 		                        <div class="desc_inner">
-		                            <strong class="title_post">글 제목</strong>
+		                            <strong class="title_post">계약서 작성 시 알아두어야 할 사항</strong>
 		                        </div>
-		                        <p class="text">글 내용 글 내용 글 내
+		                        <p class="text">계약서 작성 시 놓치기 쉬운 중요한 사항들을 알려드립니다. </p>
 		                    </div>
 		                </div>
 		            </div>
@@ -394,37 +395,38 @@
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [안내] 단기 임대 메뉴 확대
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [고객 지원] 고객 문의 관리 페이지 기능 변경 안내 
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [안내] 허위매물 검증 관련 안내
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [안내] 찜 목록 오류 수정
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [가이드] 매물 업로드 가이드
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [안내] 개인정보 처리 방침 개정 안내
 			                </a>
 			            </div>
 			            <div class="notice_item">
 			                <a href="#" class="notice_link">
-			                    [안내] 매물 사진 일부 미노출 현상 오류 해결
+			                    [안내] 위치기반서비스 이용약관 개정 안내
+
 			                </a>
 			            </div>
 			        </div>

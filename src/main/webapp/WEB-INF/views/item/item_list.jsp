@@ -82,20 +82,10 @@
 		    vertical-align: middle;
 		}
 		
-		/* 이미지 위에 번호를 겹치시키기 위한 스타일 */
-		.image-number {
-		    position: absolute;
-		    top: 50%;
-		    left: 50%;
-		    transform: translate(-50%, -50%);
-		    background-color: rgba(0, 0, 0, 0.7);
-		    color: #fff;
-		    padding: 5px 5px;
-		    border-radius: 5px;
-		    z-index: 1;
-		    display: none; /* 초기에는 숨겨둠 */
-		    text-align: center;
+		#items {
+			height: 135px;
 		}
+		
 		
 		.email-text {
 		    overflow: hidden;
@@ -276,7 +266,7 @@
 		                    if (error.code === 1) {
 		                        if (confirm('위치 액세스 권한을 허용하지 않았습니다. 위치 정보를 사용하려면 권한을 허용해야 합니다. 권한 설정을 확인하시겠습니까?')) {
 		                            // 권한 설정 페이지로 이동
-		                            window.location.href = 'app-settings'; // 적절한 설정 페이지 URL로 변경
+		                            window.location.href = '/'; // 적절한 설정 페이지 URL로 변경
 		                        }
 		                    } else {
 		                        alert('위치 정보를 가져오는 동안 오류가 발생했습니다: ' + error.message);
@@ -303,19 +293,17 @@
 		
 		        // 보이는 매물 리스트 업데이트
 		        visibleItems.forEach(function (item) {
-		            var propertyItem = $("<a href='/itemDetail/" + item.itemNo + "' target='_blank' class='property-item' style='display: flex;'></a>");
+		            var propertyItem = $("<a href='/itemDetail/" + item.itemNo + "' target='_blank' class='property-item' id='items' style='display: flex;'></a>");
 		            var mediaImgWrap = $("<div class='media-img-wrap' style='position: relative;'>");
 		            var propertyImage = $("<img alt='my-properties-3' class='img-fluid'>");
 		            if (item.fileVO && item.fileVO.savedName) {
 		                propertyImage.attr('src', '/upload/' + item.fileVO.savedName);
 		            } else {
 		                // 이미지가 없는 경우 처리
-		                propertyImage.attr('src', '/path/to/placeholder-image.png'); // 대체 이미지 경로 또는 빈 이미지
+		                propertyImage.attr('src', '/resources/comm/itemimg/nonimg2.png'); // 대체 이미지 경로 또는 빈 이미지
 		            }
-		            var imageNumber = $("<div class='image-number'>매물<br/>" + item.itemNo + "</div>");
 		
 		            mediaImgWrap.append(propertyImage);
-		            mediaImgWrap.append(imageNumber);
 		
 		            var mediaBody = $("<div class='media-body'>");
 		            var emailHead1 = $("<div class='email-head font-weight-700 font-lg-15'><h6>" + item.address + " <i class='lni-map-marker'></i></h5></div>");
@@ -386,7 +374,7 @@
 		            propertyList.append(hr);
 		        });
 		    }
-		
+		    
 		 	// 검색
 		    $(document).ready(function () {
 		        // 초기화 버튼 클릭 이벤트
@@ -412,16 +400,6 @@
 		    });
 		</script>
 
-	    
-		<script>
-			// 초기화 버튼 클릭 시 검색어 필드 초기화
-		    document.getElementById('resetSearch').addEventListener('click', function () {
-		        document.getElementById('search').value = ''; // 검색어 필드를 빈 문자열로 설정
-		        document.getElementById('itemType').value = ''; // 방종류 select 요소 초기화
-		        document.getElementById('leaseOrMonth').value = ''; // 월-전세 select 요소 초기화
-		    });
-		</script>
-		
 		<script>
 			// 검색 폼 엘리먼트 가져오기
 		    var searchForm = document.getElementById('search-container');

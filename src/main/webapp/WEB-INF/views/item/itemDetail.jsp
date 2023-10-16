@@ -30,10 +30,23 @@
   	.additional-details li {
   		margin-bottom:20px;
   	}
-  	.property-features img {
-  		height:50px;
-  		width:50px;
+  	.option_list {
+  		box-sizing:border-box;
+  		padding:10px 20px 0px;
+  		text-align:center;
+  		display:table;
   	}
+  	.option_list .option_item {
+		display:inline-block;
+  		box-sizing:border-box;
+  		min-width:100px;
+  		margin: 0 auto;
+  	}
+  	.option_list .option_img {
+  		height:30px;
+  		width:30px;
+  	}
+	
 	.property-slider .owl-carousel img {
 		max-height:410px;
 	}
@@ -41,6 +54,31 @@
 		font-size:x-large;
 		color:#216928;
 	}
+	.item_info h4{
+		padding:10px 0px;
+	}
+	.button_guide {
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+}
+.button_guide .button_title {
+    display: block;
+    padding: 10px;
+    height: 85px;
+    font-weight: 100;
+    font-size: 14px;
+    line-height: 25px;
+    letter-spacing: -0.5px;
+    color: #222;
+    box-sizing:border-box;
+}
+.button_guide .button_title .button_point {
+    font-size: 18px;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+	
   </style>
 	<jsp:include page="../head.jsp"></jsp:include>
   </head>
@@ -65,10 +103,10 @@
         <div class="property-details">
           <div class="row">
             <div class="col-lg-4 col-md-12 col-xs-12">
-              <div class="info">
+              <div class="item_info">
+                <span style="display:inline-block">매물 번호: </span><p id="item-no" style="display:inline-block">${itemVO.itemNo}</p>
                 <h4>${itemVO.address2}</h4>
-                <span>매물 번호: </span><p id="item-no">${itemVO.itemNo}</p>
-                <p class="address"><i class="lni-map-marker"></i> ${itemVO.address} ${itemVO.dong} ${itemVO.ho} </p>
+                <p class="address"><i class="lni-map-marker"></i> ${itemVO.address}</p>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
@@ -83,7 +121,7 @@
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5>${itemVO.itemSize}㎡ / </h5>
+                  <h5><fmt:formatNumber value="${itemVO.itemSize * 3.3}" pattern="#,##0" />㎡ / ${itemVO.itemSize}평 </h5>
                 </div>
               </div>
             </div>
@@ -173,7 +211,7 @@
 	                    	<strong>전용면적</strong>
 	                    </div>
 	                    <div class="col-lg-8">
-	                    	<span>${itemVO.itemSize}㎡(㎡)</span>
+	                    	<span>${itemVO.itemSize * 3.3}㎡ / ${itemVO.itemSize}평</span>
 	                  	</div>
 	                  </li>
 	                  <li class="row">
@@ -238,82 +276,54 @@
             <div class="property-details">
 			  <div class="inner-box featured">  
 			    <h2 class="desc-title">옵션</h2>
-			    <div class="row">
-			      <div class="col-md-6">
-			        <ul class="property-features checkboxes">
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/air.png">
-			              <p>에어컨</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/bed.png">
-			              <p>침대</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/closet.png">
-			              <p>옷장</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/cooking.png">
-			              <p>가스레인지</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/induction-stove.png">
-			              <p>인덕션</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/sneakers.png">
-			              <p>신발장</p>
-			            </div>
-			          </li>
-			        </ul>
-			      </div>
-			      <div class="col-md-6">
-			        <ul class="property-features checkboxes">
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/microwave.png">
-			              <p>전자레인지</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/refrigerator.png">
-			              <p>냉장고</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/sofa.png">
-			              <p>소파</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/tumble-dryer.png">
-			              <p>건조기</p>
-			            </div>
-			          </li>
-			          <li>
-			            <div>
-			              <img src="/resources/assets/img/property/washing-machine.png">
-			              <p>세탁기</p>
-			            </div>
-			          </li>
-			        </ul>
-			      </div>
-			    </div>
+			    	<ul class="option_list">
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/air.png">
+			    			<p class="option_name">에어컨</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/bed.png">
+			    			<p class="option_name">침대</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/closet.png">
+			    			<p class="option_name">옷장</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/cooking.png">
+			    			<p class="option_name">가스레인지</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/induction-stove.png">
+			    			<p class="option_name">인덕션</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/sneakers.png">
+			    			<p class="option_name">신발장</p>
+			    		</li>
+			    	</ul>
+			    	<ul class="option_list">
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/microwave.png">
+			    			<p class="option_name">전자레인지</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/refrigerator.png">
+			    			<p class="option_name">냉장고</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/sofa.png">
+			    			<p class="option_name">소파</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/tumble-dryer.png">
+			    			<p class="option_name">건조기</p>
+			    		</li>
+			    		<li class="option_item">
+			    			<img class="option_img" alt="" src="/resources/assets/img/property/washing-machine.png">
+			    			<p class="option_name">세탁기</p>
+			    		</li>
+			    	</ul>
 			  </div>
 			</div>
 
@@ -336,17 +346,17 @@
               <!-- Widget -->
               <!-- Property Agent Widget -->
               <div class="widget mt3">
-                <div class="agent-inner">
+                <div class="agent-inner" style="padding: 32px 25px 20px 32px;">
                   <div class="agent-title">
                     <div class="agent-photo">
                     	<c:if test="${partnerVO.fileVO == null}">
-		                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="">
+		                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="" style="border-radius:100%">
                     	</c:if>
-		                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="">
+		                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="" style="border-radius:100%">
                     </div>
                     <div class="agent-details">
                       <h3><a href="#">${partnerVO.compName}</a></h3>
-                      <span><i class="lni-phone-handset"></i>(123) 123-456</span>
+                      <span><i class="lni-phone-handset"></i>042-525-7890</span>
                     </div>
                   </div>
                     <div class="row">
@@ -360,10 +370,17 @@
 					    <span>중개등록번호: ${partnerVO.registNum}</span>
 					  </div>
 					</div>
-					<div class="text-center">
-						 <a href="javascript:void(0)" class="email-compose text-center" data-toggle="modal" data-target="#exampleModalEmail">
-	                  		<button class="btn btn-outline-success mt-4">쪽지 보내기</button>
-	                	</a>
+					<div>
+						<hr>
+						<div class="partner_button">
+							<div class="button_guide">
+					            <a href="javascript:void(0)" class="email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
+					                쉽고 빠른 거래를 위한 
+					                <br>
+					                <span class="button_point">문의하기</span>
+					            </a>
+					        </div>
+				        </div>
                 	</div>
                 </div>
               </div>

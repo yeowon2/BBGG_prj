@@ -83,11 +83,11 @@
 										<div id="partner-card" class="header clearfix" >
 											<div class="agent-inner" style="padding:10px;">
 							                  <div class="agent-title" style="margin-bottom:10px;">
-							                    <div class="agent-photo">
+							                    <div class="agent-photo" >
 							                    	<c:if test="${partnerVO.fileVO == null}">
-									                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="">
+									                      <img src="/resources/assets/img/productinfo/agent.jpg" alt="" style="border-radius:100%">
 							                    	</c:if>
-									                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="">
+									                      <img src="/upload/${partnerVO.fileVO.savedName}" alt="" style="border-radius:100%">
 							                    </div>
 							                    <div class="agent-details">
 							                      <h3 class="pb-1"><a href="#">${partnerVO.compName}</a></h3>

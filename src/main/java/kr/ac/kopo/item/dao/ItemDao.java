@@ -20,6 +20,8 @@ public interface ItemDao {
 	void monthAdd(HashMap<String, Long> map);
 
 	List<ItemVO> partItemList(Long partnerNo);
+	
+	List<ItemVO> partOtherItemList(Map<String, Long> paramMap);
 
 	void updateStatus(Long itemNo);
 

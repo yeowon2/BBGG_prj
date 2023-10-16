@@ -22,11 +22,11 @@
           <div class="row">
             <div class="col-lg-7 col-md-8 col-xs-12">
               <!-- Start Contact Info -->
-              <ul class="links clearfix">
+             <!--  <ul class="links clearfix">
                 <li><i class="lni-phone-handset"></i>000-111-222</li>
                 <li><i class="lni-envelope"></i> bbgg@gmail.com</li>
-                <!-- <li><a href="#"><i class="lni-map-marker"></i> York Blvd, Los Angeles, US</a></li> -->
-              </ul>
+                <li><a href="#"><i class="lni-map-marker"></i> York Blvd, Los Angeles, US</a></li>
+              </ul> -->
               <!-- End Contact Info -->
             </div>
             <div class="col-lg-5 col-md-4 col-xs-12">
@@ -44,6 +44,7 @@
               </c:if>
               <c:if test="${loginPartnerVO != null}">
 	              <div class="header-top-right float-right">
+	              	<a href="#" class="header-top-button"><i class="lni-user"></i><strong>${partnerVO.compName}</strong>님</a> |
 	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a> |
 	              </div>
               </c:if>

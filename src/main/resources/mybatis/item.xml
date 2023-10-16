@@ -135,6 +135,36 @@
 		ORDER BY ti.regist_date DESC
 	</select>
 	
+	<select id="partOtherItemList" resultMap="ItemMap" parameterType="map">
+		SELECT 
+		    ti.item_no,
+		    ti.item_type,
+		    ti.lease_or_month,
+		    ti.address2,
+		    ti.address,
+		    ti.regist_date,
+		    ti.use_at,
+		    ti.item_size,
+		    ti.item_count,
+		    ti.bath_at,
+		    CASE 
+		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
+		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
+		        ELSE NULL
+		    END AS price,
+		    tm.deposit_fee, 
+		    ti.item_floor,
+		    ti.manage_fee,
+		    ti.memo_short
+		FROM tbl_item ti
+		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
+		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		WHERE ti.use_at IN ('Y', 'C')
+			AND ti.partner_no = #{partnerNo}
+			AND ti.item_no != #{itemNo}
+		ORDER BY ti.regist_date DESC
+	</select>
+	
 	<update id="updateStatus">
 	    UPDATE tbl_item
 	    SET use_at = CASE

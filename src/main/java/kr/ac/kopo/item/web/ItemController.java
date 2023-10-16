@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.ac.kopo.file.FileMngUtil;
 import kr.ac.kopo.file.FileService;
@@ -86,9 +85,7 @@ public class ItemController {
 		}
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
-		List<ItemVO> partItemList = service.partItemList(partnerNo);
-		logger.info("=============lat = {}",itemVO.getLat());
-		logger.info("lng = {}",itemVO.getLng() );
+		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);
 		    
 		model.addAllAttributes(Map.of(
 			"itemVO", itemVO,

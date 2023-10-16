@@ -151,8 +151,8 @@
 		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
 	</select>
 	
-	<select id="selectNoticeList" resultType="NoticeVO">
+	<!-- <select id="selectNoticeList" resultType="NoticeVO">
 		SELECT tbl_notice.*
 		FROM tbl_notice
-	</select>
+	</select> -->
 </mapper>

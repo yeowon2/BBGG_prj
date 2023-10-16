@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.ac.kopo.admin.service.AdminService;
 import kr.ac.kopo.fake.web.FakeVO;
@@ -74,6 +75,7 @@ public class AdminController {
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
 		UserVO loginVO;
 		String userId = (String) session.getAttribute("userId");
+		noticeVO.setAdminId(userId);
 		
 		System.out.println(userId);
 		

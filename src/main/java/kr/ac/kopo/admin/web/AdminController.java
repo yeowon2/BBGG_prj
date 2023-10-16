@@ -65,26 +65,43 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/notice")
-	public String notice() {
+	public String noticeList(NoticeVO noticeVO, Pager pager) {
+		List<NoticeVO> noticeList = adminService.noticeListAll(pager);
 		return "/admin/notice";
 	}
 	
 	@GetMapping("/admin/noticeAdd")
-	public String noticeAdd(HttpSession session) {
-		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
+		UserVO loginVO;
+		String adminId;
+		
+		if(session.getAttribute("loginVO") != null) {
+			loginVO = (UserVO) session.getAttribute("loginVO");			
+		} else {
+			return "redirect:/login";
+		}
+		
+		if(loginVO.getUserId().contains("admin")) {
+			adminId = loginVO.getUserId();
+			noticeVO.setAdminId(adminId);
+		} 
 		
 		if(loginVO != null && loginVO.getUserId() != null && loginVO.getUserId().contains("admin")) { 
 			return "/admin/noticeAdd";
 		} else {
-			// 관리자로 로그인하셔야합니다. @@@@@@@@@@
+			// 관리자로 로그인하셔야합니다. 알럿 @@@@@@@@@@
 			return "redirect:/login"; 
 		}	
 	}
 	
 	@PostMapping("/admin/noticeAdd")
-	public String noticeAdd(NoticeVO noticeVO) {
+	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request) {
+		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
+		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
+		noticeVO.setNoticeContent(request.getParameter("adminId"));
+		System.out.println(request.getParameter("noticeTitle"));
 		adminService.addNotice(noticeVO);
-		// 글 작성 완료 @@@@@@@@@@
+		// 글 작성 완료 알럿 @@@@@@@@@@
 		return "redirect:/admin/notice";
 	}
 

@@ -19,7 +19,7 @@
 	<!-- Main Content -->
     <div class="hk-pg-wrapper">
 		<!-- Container -->
-		<div class="container mt-xl-50 mt-sm-30 mt-15">
+		<div class="container">
 			<!-- Row -->			
                <div class="row">
                    <div class="col-xl-12">

@@ -74,7 +74,7 @@
 	<select id="countFakeYestd" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_fake  
-		<include refid="whereToday"></include>
+		<include refid="whereYesterday"></include>
 	</select>
 
 	<select id="selectUserList" resultType="UserVO">
@@ -136,6 +136,7 @@
 				</if>
 			</if>
 		</where>
+		ORDER BY i.regist_date DESC
 	</select>
 	
 	<select id="selectFakeList" resultType="FakeVO">
@@ -151,7 +152,7 @@
 		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
 	</select>
 	
-	<!-- <select id="selectNoticeList" resultType="NoticeVO">
+<!-- 	<select id="selectNoticeList" resultType="NoticeVO">
 		SELECT tbl_notice.*
 		FROM tbl_notice
 	</select> -->

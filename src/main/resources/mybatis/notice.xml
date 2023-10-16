@@ -4,16 +4,20 @@
 <mapper namespace="notice">
 	<insert id="insertNotice">
 		INSERT INTO tbl_notice (
+								notice_title,
 								notice_content,
-								regist_date
+								regist_date,
+								admin_id
 								)
 		VALUES (
+				${noticeTitle},
 				${noticeContent},
-				NOW()
+				NOW(),
+				${adminId}
 				)
 	</insert>
 	
-	<select id="selectNotice">
+	<select id="selectNotice" resultType="NoticeVO">
 		SELECT *
 		FROM tbl_notice
 		ORDER BY regist_date DESC

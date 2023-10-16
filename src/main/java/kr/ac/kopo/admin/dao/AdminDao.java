@@ -30,5 +30,6 @@ public interface AdminDao {
 	
 	int total(Pager pager);
 	
+	List<NoticeVO> noticeListAll(Pager pager);
 	void addNotice(NoticeVO noticeVO);
 }

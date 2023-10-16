@@ -38,23 +38,23 @@
                                                 <thead>
                                                     <tr>
                                                         <th>번호</th>
-                                                        <!-- <th>제목</th> -->
+                                                        <th>제목</th>
                                                         <th>등록일</th>
                                                         <th>수정일</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                	<c:forEach var="item" items="${noticeVO}">
+                                                	<c:forEach var="item" items="${noticeList}">
                                                     <tr>
                                                         <td>${item.noticeNo}</td>
-                                                        <%-- <td>${item.noticeTitle}</td> --%>
+                                                        <td>${item.noticeTitle}</td>
                                                         <td>${item.registDate}</td>
                                                         <td>${item.updateDate}</td>
                                                     </tr>
                                                     </c:forEach>
                                                     <tr>
                                                         <th><strong>TOTAL</strong></th>
-                                                        <!-- <th></th> -->
+                                                        <th></th>
                                                         <th></th>
                                                         <th></th>
                                                     </tr>

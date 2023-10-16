@@ -8,6 +8,7 @@ public class NoticeVO {
 	private String noticeContent;
 	private Date registDate;
 	private Date updateDate;
+	private String adminId;
 	
 	public Long getNoticeNo() {
 		return noticeNo;
@@ -38,5 +39,11 @@ public class NoticeVO {
 	}
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+	public String getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(String adminId) {
+		this.adminId = adminId;
 	}
 }

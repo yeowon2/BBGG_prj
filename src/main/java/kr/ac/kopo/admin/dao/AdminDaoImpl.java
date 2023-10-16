@@ -90,11 +90,15 @@ public class AdminDaoImpl implements AdminDao {
 	public int total(Pager pager) {
 		return sql.selectOne("admin.total", pager);
 	}
+	
+	@Override
+	public List<NoticeVO> noticeListAll(Pager pager) {
+		return sql.selectList("notice.selectNotice", pager);
+	}
 
 	@Override
 	public void addNotice(NoticeVO noticeVO) {
 		sql.insert("notice.insertNotice");
 	}
-
 
 }

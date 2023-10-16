@@ -23,7 +23,7 @@
               <!-- Start Contact Info -->
               <ul class="links clearfix">
                 <li><i class="lni-phone-handset"></i>010-0000-0000</li>
-                <li><i class="lni-envelope"></i> adminBBGG@gmail.com</li>
+                <li><i class="lni-envelope"></i> BBGG.help@gmail.com</li>
                 <!-- <li><a href="#"><i class="lni-map-marker"></i> York Blvd, Los Angeles, US</a></li> -->
               </ul>
               <!-- End Contact Info -->
@@ -41,6 +41,7 @@
               </c:if>
               <c:if test="${loginVO != null}">
 	              <div class="header-top-right float-right">
+	              	<a href="#" class="header-top-button"><i class="lni-user"></i><strong>${loginVO.userName}</strong>님</a> |
 	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a>
 	              </div>
               </c:if>
@@ -59,19 +60,19 @@
               <span class="navbar-toggler-icon"></span>
               <span class="lin-menu"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/resources/comm/logo(B)s.png" alt=""></a>
+            <a class="navbar-brand" href="/admin"><img src="/resources/comm/logo(B)s.png" alt="logo_admin"></a>
           </div>
 
           <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-center">
               <li class="nav-item mx-3 active">
-                <a class="nav-link m1-3" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link m1-3" href="/admin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   홈
                 </a>
                 
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="/itemList">
+                <a class="nav-link" href="/admin/itemList">
                   매물 보기 
                 </a>
               </li>

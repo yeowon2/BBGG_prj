@@ -95,7 +95,19 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public List<NoticeVO> noticeListAll(Pager pager) {		
+		int total = adminDao.total(pager);
+		pager.setTotal(total);
+		return adminDao.noticeListAll(pager);
+	}
+	
+	@Override
 	public void addNotice(NoticeVO noticeVO) {
+		System.out.println(noticeVO.getAdminId());
+		System.out.println(noticeVO.getNoticeContent());
+		System.out.println(noticeVO.getNoticeTitle());
 		adminDao.addNotice(noticeVO);
 	}
+
+	
 }

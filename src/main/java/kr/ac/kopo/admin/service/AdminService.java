@@ -26,5 +26,6 @@ public interface AdminService {
 	Integer fakeCount();
 	Integer fakeYestdCount();
 
+	List<NoticeVO> noticeListAll(Pager pager);
 	void addNotice(NoticeVO noticeVO);
 }

@@ -73,33 +73,27 @@ public class AdminController {
 	
 	@GetMapping("/admin/noticeAdd")
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
-		UserVO loginVO;
-		String userId = (String) session.getAttribute("userId");
-		noticeVO.setAdminId(userId);
+	
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		String userId = (String) loginVO.getUserId();
+		System.out.println(userId); // 확인완료
 		
-		System.out.println(userId);
-		
-		if(session.getAttribute("loginVO") != null) {
-			loginVO = (UserVO) session.getAttribute("loginVO");			
-		} else {
-			return "redirect:/login";
-		}
-		
-		if(loginVO.getUserId().contains("admin")) {
-			userId = loginVO.getUserId();
+		if(loginVO != null && userId.contains("admin") && userId != null) {
+			userId = (String) loginVO.getUserId();
 			noticeVO.setAdminId(userId);
-		} 
-		
-		if(loginVO != null && loginVO.getUserId() != null && loginVO.getUserId().contains("admin")) { 
 			return "/admin/noticeAdd";
 		} else {
 			// 관리자로 로그인하셔야합니다. 알럿 @@@@@@@@@@
-			return "redirect:/login"; 
-		}	
+			return "redirect:/login";
+		}
 	}
 	
 	@PostMapping("/admin/noticeAdd")
-	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request) {
+	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request, HttpSession session) {
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		String userId = (String) loginVO.getUserId();
+		noticeVO.setAdminId(userId);
+		
 		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
 		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
 

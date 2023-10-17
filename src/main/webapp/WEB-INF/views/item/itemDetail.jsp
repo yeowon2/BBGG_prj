@@ -380,6 +380,11 @@
 					                <br>
 					                <span class="button_point">문의하기</span>
 					            </a>
+					            <a href="/note/add" class="email text-center button_title" >
+					                쉽고 빠른 거래를 위한 
+					                <br>
+					                <span class="button_point">문의하기</span>
+					            </a>
 					        </div>
 				        </div>
                 	</div>
@@ -449,7 +454,7 @@
       
       <!-- Compose email -->
         <div class="modal fade" id="exampleModalEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalEmail" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg" role="document" style="max-width:600px">
                 <div class="modal-content">
                     <div class="modal-header bg-green-light-1">
                         <h6 class="modal-title text-white" id="exampleModalPopoversLabel">New Email</h6>
@@ -534,7 +539,7 @@
 		                    </section>
 		                    <div class="form-group">
 		                        <h5 class="mb-10" >내용</h5>
-		                        <textarea class="form-control" rows="15" name="noteContent" ></textarea>
+		                        <textarea class="form-control" rows="15" name="noteContent" style="max-height:300px;"></textarea>
 		                    </div>
 		                    
 		                    <hr>
@@ -625,6 +630,9 @@
     // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
     map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 	
+    
+    
+    
 </script>
 
 <script>

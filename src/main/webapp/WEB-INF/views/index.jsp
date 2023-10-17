@@ -118,15 +118,16 @@
         		<div class="col-lg-4 col-md-6 col-xs-12">
 		            <div class="property-main popular-item">
 		              <div class="property-wrap">
-	                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
-		                <div class="property-item">
-		                  <div class="item-thumb">
-		                      <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
-		                  </div>
-		                  <div class="item-body">
+		              	<div class="property-item">
+			                  <div class="item-thumb">
+			                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
+			                       <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+			                    </a>
+			                  </div>
+			                  <div class="item-body">
 		                  	<div class="row">
 		                  		<div class="col-lg-6">
-				                    <h3 class="property-title">${item.address2}</h3>
+				                    <h5 class="property-title">${item.address2}</h5>
 		                  		</div>
 		                  		<div class="col-lg-6 icons">
 									<span class=""><i class="lni-eye"></i>${item.viewCount}</span>
@@ -155,9 +156,8 @@
 	                          </div>
 	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span><fmt:formatNumber value="${item.itemSize * 3.3}" pattern="#,##0" />㎡ / ${item.itemSize}평</span></p>
 		                    </div>
-		                  </div>               
-		                </div> 
-		                 </a>             
+		                  </div>                             
+		                </div>    	
 		              </div>
 		            </div>
 		          </div>

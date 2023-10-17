@@ -112,7 +112,16 @@
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
-		                                                    	<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm"><i class="bi bi-brush">${item.useAt}</i></a>		                                                    	
+		                                                    	<c:if test="${item.useAt eq 'N'}">
+		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm">
+		                                                    			<i class="bi bi-brush"></i>
+		                                                    		</a>
+		                                                    	</c:if>
+		                                                    	<c:if test="${item.useAt ne 'N'}">
+		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-light btn-sm">
+		                                                    			<i class="bi bi-brush"></i>
+		                                                    		</a>
+		                                                    	</c:if>		                                                    	
 		                                                    </td>
 		                                                </tr>
 		                                            </c:forEach>

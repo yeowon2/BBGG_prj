@@ -27,7 +27,7 @@ import kr.ac.kopo.partner.web.PartnerVO;
 public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	private final String fileStorePath = "D:/upload";
+	private final String fileStorePath = "/home/poly1/upload/";
 	
 	@Autowired
 	ItemService	service;

@@ -15,7 +15,7 @@ import java.util.Map;
 public class FileController {
 
     private final String path = "file/";
-    private final String fileStorePath = "E:/upload";
+    private final String fileStorePath = "/home/poly1/upload/";
 
     @Autowired
     FileService service;

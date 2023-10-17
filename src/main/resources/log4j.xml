@@ -31,6 +31,12 @@
 	<logger name="org.springframework.web">
 		<level value="info" />
 	</logger>
+	
+	<logger name="com.zaxxer.hikari.pool.HikariPool">
+		<level value="info" />
+	</logger>
+	
+	
 
 	<!-- Root Logger -->
 	<root>

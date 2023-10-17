@@ -71,10 +71,14 @@
                 </a>
                 
               </li>
-              <li class="nav-item mx-3">
-                <a class="nav-link" href="/admin/itemList">
-                  매물 보기 
+              <li class="nav-item dropdown mx-3">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  매물관리 
                 </a>
+                 <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/fake/list">신고 매물</a>
+                  <a class="dropdown-item" href="/admin/itemList">매물 조회</a>
+                </div>
               </li>
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,6 +95,7 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="/admin/notice">공지사항</a>
+                  <a class="dropdown-item" href="#">매물가이드</a>
                 </div>
               </li>
               <c:if test="${loginVO != null}">

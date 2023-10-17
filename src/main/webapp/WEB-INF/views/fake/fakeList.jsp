@@ -139,14 +139,16 @@
 				                                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				                                                        </ol>
 				                                                        <div class="carousel-inner">
-				                                                        	<%-- <c:forEach var="item" items="${UplodVO}"> --%>
 				                                                        		<div class="carousel-item active">
-					                                                                <img class="d-block w-100" src="/resources/dist/img/slide1.jpg" alt="1">
+					                                                                <div class="d-block w-100" src="/fake/list/{itemNo}" alt="신고내용">
+					                                                                	<pre>
+					                                                                		<c:out value="${fakeList}" default="값을 찾을 수 없습니다." />
+					                                                                	</pre>                                
+					                                                                </div>
 					                                                            </div>
-					                                                            <div class="carousel-item active">
-					                                                                <img class="d-block w-100" src="/resources/dist/img/slide1.jpg" alt="첫번째 첨부파일">
+					                                                            <div class="carousel-item">
+					                                                                <img class="d-block w-100" src="C:\Temp\folder\{UploadVO.savedFileName}" alt="첨부파일">
 					                                                            </div>
-				                                                        	<%-- </c:forEach> --%>
 				                                                        </div>
 				                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>

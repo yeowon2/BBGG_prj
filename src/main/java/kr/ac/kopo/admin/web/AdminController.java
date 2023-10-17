@@ -105,5 +105,10 @@ public class AdminController {
 		// 글 작성 완료 알럿 @@@@@@@@@@
 		return "redirect:/admin/notice";
 	}
+	
+	@GetMapping("/notice/{noticeNo}")
+	public String noticeSelect(NoticeVO noticeVO) {
+		return "/notice/{noticeNo}";
+	}
 
 }

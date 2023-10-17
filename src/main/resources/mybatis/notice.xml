@@ -32,5 +32,6 @@
 	<select id="countNotice" resultType="Integer">
 		SELECT COUNT(*)
 		FROM tbl_notice
+		WHERE 
 	</select>
 </mapper>

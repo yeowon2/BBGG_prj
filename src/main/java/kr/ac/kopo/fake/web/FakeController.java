@@ -42,6 +42,11 @@ public class FakeController {
 		return path + "/fakeList";
 	}
 	
+	@GetMapping("/list/{itemNo}")
+	public String fakeSelect() {
+		return "/fake/fakeContent";
+	}
+	
 	@GetMapping("/{itemNo}")
 	public String fake(@PathVariable Long itemNo, HttpSession session, Model model) {
 		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
@@ -88,7 +93,8 @@ public class FakeController {
 			
 			String savedFileName = uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension;
 			File saveFile = new File(uploadFolder + "\\" + "fake_" + uniqueFileName + fileExtension); 
-			//System.out.println("DB에 저장될 파일명 : " + saveFile); 
+			System.out.println("DB에 저장될 파일명? : " + savedFileName); 
+			System.out.println("DB에 저장될 파일명? : " + saveFile); 
 			
 			uploadVO.setOriginalFileName(originalFileName);
 			uploadVO.setUniqueFileName(uniqueFileName);
@@ -110,7 +116,7 @@ public class FakeController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}  
-			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);
+			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId, model);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemList"); 
@@ -135,4 +141,6 @@ public class FakeController {
 			return "/alert";
 		}
 	}
+	
+	
 }

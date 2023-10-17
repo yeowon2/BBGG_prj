@@ -216,8 +216,7 @@
 	       i.lng,
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee,
-	       w.item_no AS wish_item_no
+	       m.deposit_fee
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
@@ -226,7 +225,6 @@
 	</if>
 	WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
-		
 	</select>
 	
 	<insert id="addItem">

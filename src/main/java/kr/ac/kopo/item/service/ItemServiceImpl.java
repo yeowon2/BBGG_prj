@@ -152,6 +152,7 @@ public class ItemServiceImpl implements ItemService {
 		Map<String, Long> paramMap = new HashMap<String, Long>();
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("loginUserNo", loginUserNo);
+		System.out.println("loginUSerno" + loginUserNo);
 		return dao.itemDetail(paramMap);
 	}
 

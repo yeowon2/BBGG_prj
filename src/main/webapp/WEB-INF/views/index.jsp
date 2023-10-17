@@ -69,7 +69,7 @@
 		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" style="border: none; align-items: center; justify-content: center;">
 		                	<!-- </div> -->
 		                </div>
-		              </form>
+		              </form>`
 		              <script>
 		           		// 검색 폼 엘리먼트 가져오기
 					    var searchForm = document.getElementById('index-search');
@@ -118,16 +118,15 @@
         		<div class="col-lg-4 col-md-6 col-xs-12">
 		            <div class="property-main popular-item">
 		              <div class="property-wrap">
+	                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
 		                <div class="property-item">
 		                  <div class="item-thumb">
-		                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
 		                      <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
-		                    </a>
 		                  </div>
 		                  <div class="item-body">
 		                  	<div class="row">
 		                  		<div class="col-lg-6">
-				                    <h3 class="property-title"><a href="property.html">${item.address2}</a></h3>
+				                    <h3 class="property-title">${item.address2}</h3>
 		                  		</div>
 		                  		<div class="col-lg-6 icons">
 									<span class=""><i class="lni-eye"></i>${item.viewCount}</span>
@@ -157,7 +156,8 @@
 	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span><fmt:formatNumber value="${item.itemSize * 3.3}" pattern="#,##0" />㎡ / ${item.itemSize}평</span></p>
 		                    </div>
 		                  </div>               
-		                </div>              
+		                </div> 
+		                 </a>             
 		              </div>
 		            </div>
 		          </div>

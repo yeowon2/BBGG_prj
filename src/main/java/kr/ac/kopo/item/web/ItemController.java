@@ -83,6 +83,7 @@ public class ItemController {
 		ItemVO itemVO = new ItemVO();
 		if(loginVO != null) {
 			Long loginUserNo = loginVO.getUserNo();
+			System.out.println("-----------------------------------"+loginUserNo);
 			itemVO = service.itemDetail(itemNo, loginUserNo);
 		} else  {
 			itemVO = service.itemDetail(itemNo);

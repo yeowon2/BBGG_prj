@@ -69,10 +69,10 @@
 											<div class="col">
 												<select name="search" class="form-select form-select-sm">
 													<option value="0">검색 항목 선택</option>
-													<option value="1" ${pager.search == 1 ? "selected" : ""}>매물번호</option>
-													<option value="2" ${pager.search == 2 ? "selected" : ""}>부동산명</option>
-													<option value="3" ${pager.search == 3 ? "selected" : ""}>회원명</option>
-													<option value="4" ${pager.search == 4 ? "selected" : ""}>상태</option>
+													<option value="1" ${pager.search == 1 ? "selected" : ""}>부동산명</option>
+													<option value="2" ${pager.search == 2 ? "selected" : ""}>매물NO</option>
+													<option value="3" ${pager.search == 3 ? "selected" : ""}>내용</option>
+													<option value="4" ${pager.search == 4 ? "selected" : ""}>상태(Y/N)</option>
 												</select>
 											</div>
 											<div class="col">
@@ -90,8 +90,8 @@
 	                                        <table class="table mb-0">
 	                                            <thead>
 	                                                <tr>
-	                                                    <th colspan="4">부동산명</th>
 	                                                    <th colspan="2">신고NO</th>
+	                                                    <th colspan="4">부동산명</th>
 	                                                    <th colspan="2">매물NO</th>
 	                                                    <th colspan="7">내용</th>
 	                                                    <th colspan="3">신고날짜</th>
@@ -101,8 +101,8 @@
 	                                            <tbody>
 	                                            	<c:forEach var="item" items="${fakeList}">
 		                                                <tr>
-		                                                    <th scope="row" colspan="4">${item.compName}</th>
-		                                                    <td colspan="2">${item.fakeNo}</td>
+		                                                    <th scope="row" colspan="2">${item.fakeNo}</th>
+		                                                    <td colspan="4">${item.compName}</td>
 		                                                    <td colspan="2">${item.itemNo}</td>
 		                                                    <td colspan="7">
 		                                                    	<!-- Button trigger modal -->
@@ -127,7 +127,7 @@
 				                                        <div class="modal-dialog modal-lg" role="document">
 				                                            <div class="modal-content">
 				                                                <div class="modal-header">
-				                                                    <h5 class="modal-title">신고내용</h5>
+				                                                    <h5 class="modal-title"><c:out value="회원"/>님의 신고내용</h5>
 				                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                                        <span aria-hidden="true">×</span>
 				                                                    </button>

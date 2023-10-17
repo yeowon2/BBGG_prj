@@ -3,35 +3,57 @@
 
 <mapper namespace="fake">
 	<sql id="search">
-		SELECT tbl_fake.* FROM tbl_fake 
+		SELECT tf.*, tp.comp_name 
+		FROM tbl_fake tf 
+			LEFT JOIN tbl_item ti
+				ON tf.item_no = ti.item_no
+			LEFT JOIN tbl_partner tp
+			ON ti.partner_no = tp.partner_no
 		
 		<where>
 			<if test="search == 1">
-				tbl_fake.item_no = #{keyword}
+				tp.comp_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			
 			<if test="search == 2">
-				tbl_partner.comp_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+				tf.item_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			
 			<if test="search == 3">
-				tbl_fake.user_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+				tf.fake_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 			
 			<if test="search == 4">
-				tbl_fake.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+				tf.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 		</where>
 		
-		ORDER BY tbl_fake.fake_no
+		ORDER BY tf.fake_no DESC
 	</sql>
 
 	<select id="selectList" resultType="fakeVO">
 		SELECT subquery.*
-		FROM (SELECT tf.*, tp.comp_name, ROW_NUMBER() OVER (ORDER BY regist_date DESC) AS rownum
+		FROM (SELECT tf.*, tp.comp_name, ROW_NUMBER() OVER (ORDER BY fake_no DESC) AS rownum
 			FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
 			WHERE tf.item_no = ti.item_no 
 				AND ti.partner_no = tp.partner_no) AS subquery
+		<where>
+			<if test="search == 1">
+				subquery.comp_name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 2">
+				subquery.item_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 3">
+				subquery.fake_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+			
+			<if test="search == 4">
+				subquery.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
 		LIMIT ${perPage} OFFSET ${startPage}
 	</select>
 	

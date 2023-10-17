@@ -24,7 +24,7 @@ public class UserWishListController {
 	/*
 	 * HttpSession session;
 	 * 
-	 * UserWishListVO userNo = (UserWishListVO) session.getAttribute("userNo");
+	 * UserWishListVO loginUserNo = (UserWishListVO) session.getAttribute("loginVO");
 	 */
 
 	// 관심 매물 리스트로 이동
@@ -39,6 +39,9 @@ public class UserWishListController {
 	}
 	
 	// 관심 매물 상세페이지로 이동 -> jsp에다가 바로 링크를 붙여주면 되지 않을까?
+	
+	// 관심 매물 추가 
+	
 	
 	// 관심 매물 리스트에서 제외	
 	// 관심 매물로 지정할 때 파라미터 이름을 wishNo로 지정해서 이걸 그대로 list.xml로 넘기면 됨

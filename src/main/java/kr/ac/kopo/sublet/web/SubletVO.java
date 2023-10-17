@@ -4,11 +4,11 @@ public class SubletVO {
 	
 	private Long subletNo;
 	private String subletSubject;
-	private String sublet_content;
+	private String subletContent;
 	private String useAt;
 	private int ViewCount;
 	private Long registUserNo;
-	private String subletCategory;
+	private String category;
 	
 	public Long getSubletNo() {
 		return subletNo;
@@ -22,12 +22,7 @@ public class SubletVO {
 	public void setSubletSubject(String subletSubject) {
 		this.subletSubject = subletSubject;
 	}
-	public String getSublet_content() {
-		return sublet_content;
-	}
-	public void setSublet_content(String sublet_content) {
-		this.sublet_content = sublet_content;
-	}
+	
 	public String getUseAt() {
 		return useAt;
 	}
@@ -46,11 +41,17 @@ public class SubletVO {
 	public void setRegistUserNo(Long registUserNo) {
 		this.registUserNo = registUserNo;
 	}
-	public String getSubletCategory() {
-		return subletCategory;
+	public String getCategory() {
+		return category;
 	}
-	public void setSubletCategory(String subletCategory) {
-		this.subletCategory = subletCategory;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getSubletContent() {
+		return subletContent;
+	}
+	public void setSubletContent(String subletContent) {
+		this.subletContent = subletContent;
 	}
 
 	

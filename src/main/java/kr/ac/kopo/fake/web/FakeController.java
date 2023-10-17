@@ -38,7 +38,7 @@ public class FakeController {
 		return path + "/fakeList";
 	}
 	
-	@GetMapping("/list/{itemNo}")
+	@GetMapping("/list{fakeNo}")
 	public String fakeSelect() {
 		return "/fake/fakeContent";
 	}
@@ -106,7 +106,7 @@ public class FakeController {
 			fakeVO.setFakeContent(request.getParameter("fakeContent"));
 			
 			try {
-				file.transferTo(saveFile); // 여기까지는 OK
+				file.transferTo(saveFile); 
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -138,5 +138,9 @@ public class FakeController {
 		}
 	}
 	
+	@GetMapping("/update/{itemNo}")
+	String fakeUpdate() {
+		return "";
+	}
 	
 }

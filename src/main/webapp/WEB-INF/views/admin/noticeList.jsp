@@ -20,7 +20,7 @@
 
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="edit"></i></span></span>고객센터</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="edit"></i></span></span>커뮤니티</h4>
                 </div>
                 <!-- /Title -->
 
@@ -47,7 +47,7 @@
                                                 	<c:forEach var="item" items="${noticeList}">
                                                     <tr>
                                                         <td>${item.noticeNo}</td>
-                                                        <td><a href="/admin/notice/${item.noticeNo}">${item.noticeTitle}</a></td>
+                                                        <td><a href="/admin/notice${item.noticeNo}">${item.noticeTitle}</a></td>
                                                         <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
                                                         <td></td>
                                                     </tr>
@@ -80,12 +80,11 @@
 
                         </section>
                     </div>
-                </div>
-                <!-- /Container -->	
-	
-	
-        </div>
-        <!-- /Main Content -->	
+                </div>               
+        	</div>
+        	<!-- /Container -->	
+		</div>
+		<!-- /Main Content -->	
 	
 	<!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>

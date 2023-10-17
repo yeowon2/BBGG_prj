@@ -137,7 +137,7 @@
                <footer class="footer">
                    <div class="row">
                        <div class="col-md-6 col-sm-12">
-                           <p>Pampered by<a href="https://bangbanggoggog.com/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
+                           <p>Pampered by<a href="https://BBGG-a.site/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
                        </div>
                        <div class="col-md-6 col-sm-12">
                            <p class="d-inline-block">Follow us</p>
@@ -211,9 +211,9 @@
     const agree = document.getElementById("agree");
 
     function is_checked() {
-  		fakeCheck1.value = "on" ? "Y" : "N";
-  		fakeCheck2.value = "on" ? "Y" : "N";
-  		fakeCheck3.value = "on" ? "Y" : "N";
+  		fakeCheck1.value = "on" ? "Y" : "NULL";
+  		fakeCheck2.value = "on" ? "Y" : "NULL";
+  		fakeCheck3.value = "on" ? "Y" : "NULL";
   	};
   	
   	submitBtn.addEventListener('click', () => {

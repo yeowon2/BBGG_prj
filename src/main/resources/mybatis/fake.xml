@@ -113,6 +113,10 @@
 				)
 	</insert>
 	
-	<update id=""></update>
+	<update id="likeDeleteUpdate">
+		UPDATE tbl_fake
+	    SET use_at = 'Y'
+	    WHERE item_no = #{itemNo}
+	</update>
 
 </mapper>

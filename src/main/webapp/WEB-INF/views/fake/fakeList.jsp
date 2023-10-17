@@ -149,7 +149,7 @@
 				                                                        </ol>
 				                                                        <div class="carousel-inner">
 				                                                        		<div class="carousel-item active">
-					                                                                <div class="d-block w-100" src="/fake/list/{itemNo}" alt="신고내용">
+					                                                                <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
 					                                                                	<pre>
 					                                                                		<c:out value="${fakeList}" default="값을 찾을 수 없습니다." />
 					                                                                	</pre>                                

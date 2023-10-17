@@ -29,9 +29,9 @@
 		FROM tbl_notice
 	</select>
 	
-	<select id="countNotice" resultType="Integer">
-		SELECT COUNT(*)
-		FROM tbl_notice
-		WHERE 
+	<select id="viewCount" resultType="Integer">
+		update tbl_notice
+        set notice_view_count = notice_view_count + 1
+        where notice_no = #{noticeNo}
 	</select>
 </mapper>

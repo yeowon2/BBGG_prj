@@ -69,7 +69,7 @@ public class AdminController {
 	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
 		List<NoticeVO> noticeList = adminService.noticeListAll(pager);
 		model.addAttribute("noticeList", noticeList);
-		return "/admin/notice";
+		return "/admin/noticeList";
 	}
 	
 	@GetMapping("/admin/noticeAdd")
@@ -106,9 +106,9 @@ public class AdminController {
 		return "redirect:/admin/notice";
 	}
 	
-	@GetMapping("/notice/{noticeNo}")
+	@GetMapping("/admin/notice{noticeNo}")
 	public String noticeSelect(NoticeVO noticeVO) {
-		return "/notice/{noticeNo}";
+		return "/admin/noticeAdmin";
 	}
 
 }

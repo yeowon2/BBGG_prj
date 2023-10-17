@@ -25,6 +25,8 @@ public class UserWishListDaoImpl implements UserWishListDao {
 	public List<UserWishListVO> wishList() {
 		return sql.selectList("list.wishList");
 	}
+	
+	
 
 	// 관심 매물 리스트에서 제외
 	@Override

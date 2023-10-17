@@ -2,6 +2,8 @@ package kr.ac.kopo.list.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,11 @@ public class UserWishListController {
 
 	private final String path = "list/"; // return에 jsp 를 적어주는데 jsp 폴더명을 매번 적어줄 수 없으니까 이렇게 적어줌 
 
+	/*
+	 * HttpSession session;
+	 * 
+	 * UserWishListVO userNo = (UserWishListVO) session.getAttribute("userNo");
+	 */
 
 	// 관심 매물 리스트로 이동
 	@GetMapping("/wishList")

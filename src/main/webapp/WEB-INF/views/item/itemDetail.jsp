@@ -50,9 +50,10 @@
 	.property-slider .owl-carousel img {
 		max-height:410px;
 	}
-	.lni-heart {
-		font-size:x-large;
-		color:#216928;
+	.heart_img {
+		width:40px;
+		height:40px;
+		box-sizing:border-box;
 	}
 	.item_info h4{
 		padding:10px 0px;
@@ -146,7 +147,7 @@
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>
-				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><i class="lni-heart"></i></button></li>
+				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png"></button></li>
 				</ul>
               </div>
             </div>
@@ -634,18 +635,14 @@ wishBtn.on('click', function() {
     var serverUrl = `/wish/add/${itemNo}`;
     console.log(serverUrl);
     
-    $.ajax({
-        url: serverUrl,
-        method: 'GET',
-        dataType: 'json', // JSON 형식으로 요청
-        success: function(result) {
-            console.log(result);
-            // JSON 응답을 사용하여 처리
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('오류 발생:', errorThrown);
-        }
-    });
+   fetch(serverUrl, {
+	   method:'GET'
+   }).then(response => response.json())
+   .then(data => { 
+   		alert(data.message);
+   		
+   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
+   }).catch(error => console.log(error)) 
 });
 </script>
 <jsp:include page="../js.jsp"></jsp:include>

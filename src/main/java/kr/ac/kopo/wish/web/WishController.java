@@ -42,9 +42,6 @@ public class WishController {
 	            responseData.put("message", "추가되었습니다");
 	        }
 	    }
-	    // 응답 헤더 설정
-	    response.setContentType("application/json");
-	    response.setCharacterEncoding("UTF-8");
 	    
 	    return responseData;
 	}

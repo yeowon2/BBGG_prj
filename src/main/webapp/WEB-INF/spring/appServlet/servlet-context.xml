@@ -42,6 +42,7 @@
    		</interceptor>
    		<interceptor>
    			<mapping path="/partner/**"/>
+   			<exclude-mapping path="/partner/info"/>
    			<beans:bean class="kr.ac.kopo.interceptor.PartnerLoginInterceptor"></beans:bean>   			   			
    		</interceptor>
    </interceptors>

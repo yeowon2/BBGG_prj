@@ -24,13 +24,16 @@ public interface ItemService {
 
 	void deleteItem(Long itemNo);
 
-	ItemVO itemDetail(Long itemNo);
 
 	String lomSelect(Long itemNo);
 
 	List<ItemVO> selectRecentList();
 
 	List<ItemVO> selectPopularList();
+
+	ItemVO itemDetail(Long itemNo);
+
+	ItemVO itemDetail(Long itemNo, Long loginUserNo);
 
 	
 	

@@ -36,7 +36,7 @@ public class WishServiceImpl implements WishService {
 	public void add(Long userNo, Long itemNo) {
 		
 		WishVO wishVO = new WishVO();
-		wishVO.setUserNo(itemNo);
+		wishVO.setUserNo(userNo);
 		wishVO.setItemNo(itemNo);
 		dao.add(wishVO);
 	}
@@ -45,7 +45,7 @@ public class WishServiceImpl implements WishService {
 	public boolean isInWish(Long userNo, Long itemNo) {
 		
 		WishVO wishVO = new WishVO();
-		wishVO.setUserNo(itemNo);
+		wishVO.setUserNo(userNo);
 		wishVO.setItemNo(itemNo);
 		
 		WishVO selected = dao.select(wishVO);

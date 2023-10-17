@@ -69,9 +69,6 @@ public class PartnerController {
 	@GetMapping("/{partnerNo}")
 	public String partner(@PathVariable Long partnerNo, Model model, HttpSession session) {
 		PartnerVO loginPartnerVO = (PartnerVO) session.getAttribute("loginPartnerVO");
-		if(loginPartnerVO == null) {
-			return "redirect:/login";
-		}
 		partnerNo = loginPartnerVO.getPartnerNo();
 		
 		PartnerVO partnerVO = service.select(partnerNo);

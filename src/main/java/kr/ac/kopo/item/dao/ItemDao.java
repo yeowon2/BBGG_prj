@@ -43,6 +43,9 @@ public interface ItemDao {
 
 	List<ItemVO> selectPopularList();
 
+	ItemVO itemDetail(Map<String, Long> paramMap);
+
+
 
 	
 

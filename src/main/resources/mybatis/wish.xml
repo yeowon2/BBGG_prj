@@ -17,7 +17,7 @@
 			, 'Y'
 			, NOW()
 			)
-			<selectKey keyProperty="wishNo" resultType="Long" order="AFTER">
+	  <selectKey keyProperty="wishNo" resultType="Long" order="AFTER">
        		SELECT LAST_INSERT_ID()
        </selectKey>
 	</insert>

@@ -152,8 +152,10 @@
 		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
 	</select>
 	
-<!-- 	<select id="selectNoticeList" resultType="NoticeVO">
-		SELECT tbl_notice.*
-		FROM tbl_notice
+<!--  	<select id="selectNoticeList" resultType="NoticeVO">
+		SELECT subquery.*
+		FROM (SELECT tbl_notice.*, ROW_NUMBER() OVER(ORDER BY regist_date) AS rownum
+			FROM tbl_notice) AS subquery
+		LIMIT ${perPage} OFFSET ${startPage}
 	</select> -->
 </mapper>

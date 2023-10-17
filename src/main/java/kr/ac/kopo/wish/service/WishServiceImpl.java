@@ -1,8 +1,5 @@
 package kr.ac.kopo.wish.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +31,28 @@ public class WishServiceImpl implements WishService {
 			return false;
 		}
 	}
-	
 
+	@Override
+	public void add(Long userNo, Long itemNo) {
+		
+		WishVO wishVO = new WishVO();
+		wishVO.setUserNo(userNo);
+		wishVO.setItemNo(itemNo);
+		dao.add(wishVO);
+	}
+
+	@Override
+	public boolean isInWish(Long userNo, Long itemNo) {
+		
+		WishVO wishVO = new WishVO();
+		wishVO.setUserNo(userNo);
+		wishVO.setItemNo(itemNo);
+		
+		WishVO selected = dao.select(wishVO);
+		if(selected != null) {
+			return true;
+		}
+		return false;
+	}
+	
 }

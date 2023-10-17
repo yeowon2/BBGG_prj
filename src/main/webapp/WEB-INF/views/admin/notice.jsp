@@ -40,23 +40,21 @@
                                                         <th>번호</th>
                                                         <th>제목</th>
                                                         <th>등록일</th>
-                                                        <th>수정일</th>
+                                                        <th>조회수</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                 	<c:forEach var="item" items="${noticeList}">
                                                     <tr>
                                                         <td>${item.noticeNo}</td>
-                                                        <td>${item.noticeTitle}</td>
-                                                        <td>${item.registDate}</td>
-                                                        <td>${item.updateDate}</td>
+                                                        <td><a href="/admin/notice/${item.noticeNo}">${item.noticeTitle}</a></td>
+                                                        <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
+                                                        <td></td>
                                                     </tr>
                                                     </c:forEach>
                                                     <tr>
-                                                        <th><strong>TOTAL</strong></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
+                                                        <th colspan="4" style="text-align: center;"><strong>🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠</strong></th>
+
                                                     </tr>
                                                 </tbody>          
                                                 <tfoot>
@@ -85,7 +83,6 @@
                 </div>
                 <!-- /Container -->	
 	
-			<jsp:include page="../footer.jsp"></jsp:include>
 	
         </div>
         <!-- /Main Content -->	
@@ -118,6 +115,7 @@
     <!-- Init JavaScript -->
     <script src="dist/js/init.js"></script>	
 	
+	<jsp:include page="../footer.jsp"></jsp:include>
 	<jsp:include page="../js.jsp"></jsp:include>
 </body>
 </html>

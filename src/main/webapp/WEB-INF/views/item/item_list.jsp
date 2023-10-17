@@ -137,8 +137,9 @@
         }
 	    
 	    /* 클릭한 링크에 대한 스타일 */
-		.property-item.clicked {
-		    background-color: rgba(255, 255, 255, 0.5); /* 흰색 배경색을 반투명하게 설정합니다. */
+		.clicked {
+		    background-color: #ffcccb; /* 클릭 시 변경할 배경색 */
+		    color: #000; /* 클릭 시 변경할 텍스트 색상 */
 		}
 	    
 	</style>
@@ -213,31 +214,99 @@
 		            averageCenter: true,
 		            minLevel: 2
 		        });
+		        
+		     	// 처음 페이지가 열릴 때 모든 데이터를 가져오고 필터링
+		        fetchDataAndFilter();
 		
-		        // 서버에서 데이터를 가져오는 Ajax 요청
-		        $.get("/itemListAll", function (data) {
-		            filteredData = data.filter(function (item) {
-		                return item.useAt === 'Y';
-		            });
-		
-		            var markers = filteredData.map(function (item) {
-		                var lat = item.lat;
-		                var lng = item.lng;
-		                var imageSize = new kakao.maps.Size(28, 35);
-		
-		                return new kakao.maps.Marker({
-		                    position: new kakao.maps.LatLng(lat, lng),
-		                    image: new kakao.maps.MarkerImage("../resources/comm/marker.png", imageSize)
-		                });
-		            });
-		
-		            // 클러스터러에 마커 배열을 추가
-		            clusterer.addMarkers(markers);
-		            // 매물 리스트 컨테이너
-		            propertyList = $("#property-list");
-		            // 초기 매물 리스트 업데이트
-		            updatePropertyList();
+		     	// 검색어, 방 종류, 계약 조건이 변경될 때
+		        $("#itemType, #leaseOrMonth, #search").on("input", function () {
+		            fetchDataAndFilter();
 		        });
+
+		        // 초기화 버튼 클릭 이벤트
+		        $("#resetSearch").click(function () {
+		            $("#itemType").val(""); // 선택된 방 종류 초기화
+		            $("#leaseOrMonth").val(""); // 선택된 계약 조건 초기화
+		            $("#search").val(""); // 검색어 필드 초기화
+		            fetchDataAndFilter(); // 전체 매물 다시 불러와서 필터링
+		            updateMapZoom(); // 초기 확대 레벨로 설정
+		        });
+
+		        // 서버에서 데이터를 가져오고 필터링하는 함수
+		        function fetchDataAndFilter() {
+		            var selectedItemType = $("#itemType").val();
+		            var selectedLeaseOrMonth = $("#leaseOrMonth").val();
+		            var searchKeyword = $("#search").val();
+		            	
+		            
+		         // 아이템 타입 필터링 함수
+		            function itemsType(item) {
+		                if (selectedItemType !== "") {
+		                    return item.itemType === selectedItemType;
+		                } else {
+		                    return true; // 아무 조건이 없을 때는 항상 true
+		                }
+		            }
+		            
+		            // 계약 조건 필터링 함수
+		            function LeaseOrMonth(item) {
+		                if (selectedLeaseOrMonth !== "") {
+		                    return item.leaseOrMonth === selectedLeaseOrMonth;
+		                } else {
+		                    return true;
+		                }
+		            }
+		            
+		            // 키워드 필터링 함수
+		            function Keyword(item) {
+		                if (searchKeyword !== "") {
+		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
+		                } else {
+		                    return true;
+		                }
+		            }
+		            
+
+		            $.get("/itemListAll", function (data) {
+		                filteredData = data.filter(function (item) {
+		                    return item.useAt === 'Y' &&
+			                    itemsType(item) &&
+			                    LeaseOrMonth(item) &&
+			                    Keyword(item);
+		                    /*(selectedItemType === "" || item.itemType === selectedItemType) &&
+		                        (selectedLeaseOrMonth === "" || item.leaseOrMonth === selectedLeaseOrMonth) &&
+		                        (searchKeyword === "" || item.address.includes(searchKeyword) || item.address2.includes(searchKeyword)); */
+		                });
+
+		                // 클러스터러에 마커 배열을 추가
+		                clusterer.clear(); // 기존 마커 제거
+		                var markers = filteredData.map(function (item) {
+		                    var lat = item.lat;
+		                    var lng = item.lng;
+		                    var imageSize = new kakao.maps.Size(28, 35);
+
+		                    return new kakao.maps.Marker({
+		                        position: new kakao.maps.LatLng(lat, lng),
+		                        image: new kakao.maps.MarkerImage("../resources/comm/marker.png", imageSize)
+		                    });
+		                });
+
+		                clusterer.addMarkers(markers);
+		                // 매물 리스트 컨테이너
+		                propertyList = $("#property-list");
+		                // 초기 매물 리스트 업데이트
+		                updatePropertyList();
+		                
+		             	// 검색 결과가 있는 경우 지도를 해당 영역으로 이동
+		                /* if (filteredData.length > 0) {
+		                    var bounds = new kakao.maps.LatLngBounds();
+		                    filteredData.forEach(function (item) {
+		                        bounds.extend(new kakao.maps.LatLng(item.lat, item.lng));
+		                    });
+		                    map.setBounds(bounds);
+		                } */
+		            });
+		        }
 		
 		        // 이벤트 리스너 등록 (지도 이동 및 확대 축소 이벤트)
 		        kakao.maps.event.addListener(map, 'dragend', updatePropertyList);
@@ -374,30 +443,6 @@
 		            propertyList.append(hr);
 		        });
 		    }
-		    
-		 	// 검색
-		    $(document).ready(function () {
-		        // 초기화 버튼 클릭 이벤트
-		        $("#resetSearch").click(function () {
-		            $("#itemType").val(""); // 선택된 방 종류 초기화
-		            $("#leaseOrMonth").val(""); // 선택된 계약 조건 초기화
-		            $("#search").val(""); // 검색어 필드 초기화
-		            updatePropertyList(); // 전체 매물 보여주기
-		            updateMapZoom(); // 초기 확대 레벨로 설정
-		        });
-
-		        // 검색 버튼 클릭 이벤트
-		        $("#search").on("input", function () {
-		            updatePropertyList(); // 검색어가 변경될 때 매물 리스트 업데이트
-		            updateMapZoom(); // 검색 조건에 따라 지도 확대
-		        });
-
-		        // 방 종류 또는 계약 조건이 변경될 때
-		        $("#itemType, #leaseOrMonth").change(function () {
-		            updatePropertyList(); // 선택된 조건에 따라 매물 리스트 업데이트
-		            updateMapZoom(); // 검색 조건에 따라 지도 확대
-		        });
-		    });
 		</script>
 
 		<script>
@@ -446,17 +491,26 @@
 	    <script>
 		 	// JavaScript 코드
 		    document.addEventListener('DOMContentLoaded', function() {
-		        // 모든 링크 요소를 가져옵니다.
-		        var links = document.querySelectorAll('.property-item');
-	
-		        // 각 링크에 대한 클릭 이벤트를 처리합니다.
-		        links.forEach(function(link) {
-		            link.addEventListener('click', function() {
-		                // 클릭한 링크에 'clicked' 클래스를 추가합니다.
-		                link.classList.add('clicked');
-		            });
-		        });
-		    });
+			    // 모든 매물 항목을 가져옵니다.
+			    var propertyItems = document.querySelectorAll('.property-item');
+			
+			    // 클릭한 매물의 상태를 localStorage에서 가져와 배경색을 설정합니다.
+			    propertyItems.forEach(function(item) {
+			        var isClicked = localStorage.getItem('clicked_' + item.id);
+			        if (isClicked === 'true') {
+			            item.classList.add('clicked');
+			        }
+			
+			        // 클릭 이벤트를 처리합니다.
+			        item.addEventListener('click', function() {
+			            // 클릭한 매물 항목에 'clicked' 클래스를 추가합니다.
+			            item.classList.add('clicked');
+			
+			            // 클릭한 매물의 상태를 localStorage에 저장합니다.
+			            localStorage.setItem('clicked_' + item.id, 'true');
+			        });
+			    });
+			});
 		</script>
 	    
     </body>

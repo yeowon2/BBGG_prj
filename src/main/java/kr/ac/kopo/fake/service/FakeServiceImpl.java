@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.dao.FakeDao;
 import kr.ac.kopo.fake.web.FakeVO;
@@ -25,8 +26,8 @@ public class FakeServiceImpl implements FakeService {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId) {
-		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);	
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId, Model model) {
+		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId, model);	
 	}
 
 	@Override

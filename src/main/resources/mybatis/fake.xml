@@ -77,7 +77,11 @@
 								saved_file_name, 
 								file_size, 	
 								use_at)
-		VALUES (#{fakeVO.fakeNo}, 
+		VALUES (
+				(SELECT fake_no 
+				FROM tbl_fake
+				ORDER BY fake_no DESC
+				LIMIT 1), 
 				#{uploadVO.originalFileName}, 
 				#{uploadVO.fileExtension}, 
 				#{uploadVO.uniqueFileName}, 

@@ -113,10 +113,7 @@ public class ItemDaoImpl implements ItemDao {
 		sql.update("item.deleteItem", itemNo);
 	}
 
-	@Override
-	public ItemVO itemDetail(Long itemNo) {
-		return sql.selectOne("item.itemDetail", itemNo);
-	}
+	
 
 	@Override
 	public String lomSelect(Long itemNo) {
@@ -147,6 +144,18 @@ public class ItemDaoImpl implements ItemDao {
 	public List<ItemVO> selectPopularList() {
 		return sql.selectList("item.selectPopularList");
 	}
+
+	@Override
+	public ItemVO itemDetail(Long itemNo) {
+		return sql.selectOne("item.itemDetail", itemNo);
+	}
+	
+	@Override
+	public ItemVO itemDetail(Map<String, Long> paramMap) {
+		return sql.selectOne("item.itemDetail", paramMap);
+	}
+
+	
 
 	
 }

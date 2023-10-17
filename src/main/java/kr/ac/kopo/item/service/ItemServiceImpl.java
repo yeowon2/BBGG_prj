@@ -147,5 +147,13 @@ public class ItemServiceImpl implements ItemService {
 		return selectPopularList;
 	}
 
+	@Override
+	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+		paramMap.put("itemNo", itemNo);
+		paramMap.put("userNo", loginUserNo);
+		return dao.itemDetail(paramMap);
+	}
+
 	
 }

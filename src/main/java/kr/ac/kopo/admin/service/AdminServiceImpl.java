@@ -103,9 +103,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public void addNotice(NoticeVO noticeVO) {
-		System.out.println(noticeVO.getAdminId());
-		System.out.println(noticeVO.getNoticeTitle());
-		System.out.println(noticeVO.getNoticeContent());
+		//System.out.println(noticeVO.getAdminId());
+		//System.out.println(noticeVO.getNoticeTitle());
+		//System.out.println(noticeVO.getNoticeContent());
 		adminDao.addNotice(noticeVO);
 	}
 

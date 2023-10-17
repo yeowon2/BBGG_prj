@@ -26,7 +26,7 @@ public class FakeDaoImpl implements FakeDao {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId) {
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId, Model model) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("fakeVO", fakeVO);

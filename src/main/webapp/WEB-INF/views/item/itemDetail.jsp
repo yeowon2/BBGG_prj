@@ -50,9 +50,10 @@
 	.property-slider .owl-carousel img {
 		max-height:410px;
 	}
-	.lni-heart {
-		font-size:x-large;
-		color:#216928;
+	.heart_img {
+		width:40px;
+		height:40px;
+		box-sizing:border-box;
 	}
 	.item_info h4{
 		padding:10px 0px;
@@ -146,7 +147,7 @@
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>
-				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><i class="lni-heart"></i></button></li>
+				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png"></button></li>
 				</ul>
               </div>
             </div>
@@ -627,35 +628,22 @@
 </script>
 
 <script>
-var wishBtn = document.querySelector('#wishBtn');
-var itemNo = document.querySelector('#item-no').textContent;
+/* var wishBtn = $('#wishBtn');
+var itemNo = $('#item-no').text();
 
-wishBtn.onclick = function() {
+wishBtn.on('click', function() {
     var serverUrl = `/wish/add/${itemNo}`;
-
-    fetch(serverUrl, {
-    	  method: 'GET', // 요청 메서드 (GET, POST 등)
-    	  headers: {
-    	    'Accept': 'text/plain; charset=utf-8', // 받을 데이터 타입 설정
-    	    'Content-Type': 'text/plain; charset=utf-8', // 요청 데이터의 타입과 인코딩 설정
-    	  },
-    	})
-    .then(response => {
-      return response.text(); // 또는 .json() 등, 응답 형식에 따라 다를 수 있음
-    })
-    .then(data => {
-    	console.log(data);
-    	if(data === "로그인이 필요합니다.") {
-    		alert(data);
-    		location.href = '/login;'
-    	} else {
-    		alert(data);
-    	}
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-};
+    console.log(serverUrl);
+    
+   fetch(serverUrl, {
+	   method:'GET'
+   }).then(response => response.json())
+   .then(data => { 
+   		alert(data.message);
+   		
+   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
+   }).catch(error => console.log(error)) 
+}); */
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

@@ -3,6 +3,8 @@ package kr.ac.kopo.item.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -22,12 +25,13 @@ import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.service.ItemService;
 import kr.ac.kopo.partner.service.PartnerService;
 import kr.ac.kopo.partner.web.PartnerVO;
+import kr.ac.kopo.user.web.UserVO;
 
 @Controller
 public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	private final String fileStorePath = "D:/upload";
+	private final String fileStorePath = "/home/poly1/upload/";
 	
 	@Autowired
 	ItemService	service;
@@ -75,8 +79,14 @@ public class ItemController {
 	
 	//매물 상세페이지
 	@GetMapping("/itemDetail/{itemNo}")
-	public String itemDetail(@PathVariable Long itemNo, Model model) {
-		ItemVO itemVO = service.itemDetail(itemNo);
+	public String itemDetail(@PathVariable Long itemNo, Model model, @SessionAttribute(name="loginVO", required = false) UserVO loginVO) {
+		ItemVO itemVO = new ItemVO();
+		/*if(loginVO != null) {
+			Long loginUserNo = loginVO.getUserNo();
+			itemVO = service.itemDetail(itemNo, loginUserNo);
+		} else  {*/
+			itemVO = service.itemDetail(itemNo);
+//		}
 		if(itemVO.getLeasePrice() >= 10000) {
 			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
 			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);

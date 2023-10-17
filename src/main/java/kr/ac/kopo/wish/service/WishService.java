@@ -6,4 +6,8 @@ public interface WishService {
 
 	boolean add(WishVO wishVO);
 
+	void add(Long userNo, Long itemNo);
+
+	boolean isInWish(Long userNo, Long itemNo);
+
 }

@@ -2,6 +2,8 @@ package kr.ac.kopo.list.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,11 @@ public class UserWishListController {
 
 	private final String path = "list/"; // return에 jsp 를 적어주는데 jsp 폴더명을 매번 적어줄 수 없으니까 이렇게 적어줌 
 
+	/*
+	 * HttpSession session;
+	 * 
+	 * UserWishListVO loginUserNo = (UserWishListVO) session.getAttribute("loginVO");
+	 */
 
 	// 관심 매물 리스트로 이동
 	@GetMapping("/wishList")
@@ -32,6 +39,9 @@ public class UserWishListController {
 	}
 	
 	// 관심 매물 상세페이지로 이동 -> jsp에다가 바로 링크를 붙여주면 되지 않을까?
+	
+	// 관심 매물 추가 
+	
 	
 	// 관심 매물 리스트에서 제외	
 	// 관심 매물로 지정할 때 파라미터 이름을 wishNo로 지정해서 이걸 그대로 list.xml로 넘기면 됨

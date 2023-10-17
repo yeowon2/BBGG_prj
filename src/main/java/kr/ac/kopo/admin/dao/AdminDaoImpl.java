@@ -3,12 +3,15 @@ package kr.ac.kopo.admin.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
+import kr.ac.kopo.item.dao.ItemDaoImpl;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
 import kr.ac.kopo.partner.web.PartnerVO;
@@ -17,6 +20,7 @@ import kr.ac.kopo.user.web.UserVO;
 @Repository
 public class AdminDaoImpl implements AdminDao {
 	
+	private static final Logger logger = LoggerFactory.getLogger(AdminDaoImpl.class);
 	@Autowired
 	SqlSession sql;
 
@@ -98,7 +102,9 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public void addNotice(NoticeVO noticeVO) {
-		sql.insert("notice.insertNotice");
+		logger.info("제목 = {}", noticeVO.getNoticeTitle());
+		logger.info("내용 = {}", noticeVO.getNoticeContent());
+		sql.insert("notice.insertNotice", noticeVO);
 	}
 
 }

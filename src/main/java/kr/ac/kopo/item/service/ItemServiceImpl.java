@@ -151,8 +151,7 @@ public class ItemServiceImpl implements ItemService {
 	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
 		Map<String, Long> paramMap = new HashMap<String, Long>();
 		paramMap.put("itemNo", itemNo);
-		paramMap.put("loginUserNo", loginUserNo);
-		System.out.println("loginUSerno" + loginUserNo);
+		paramMap.put("userNo", loginUserNo);
 		return dao.itemDetail(paramMap);
 	}
 

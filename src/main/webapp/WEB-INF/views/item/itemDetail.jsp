@@ -628,7 +628,7 @@
 </script>
 
 <script>
-var wishBtn = $('#wishBtn');
+/* var wishBtn = $('#wishBtn');
 var itemNo = $('#item-no').text();
 
 wishBtn.on('click', function() {
@@ -643,7 +643,7 @@ wishBtn.on('click', function() {
    		
    		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    }).catch(error => console.log(error)) 
-});
+}); */
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

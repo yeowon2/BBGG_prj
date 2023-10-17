@@ -217,12 +217,16 @@
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
 	       m.deposit_fee
+	      <!--  <if test="userNo != null and userNo != 0">
+	       w.user_no,
+	       w.item_no
+			</if> -->
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
-	<if test="userNo != null and userNo != 0">
+	<!-- <if test="userNo != null and userNo != 0">
 		LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no = #{userNo}
-	</if>
+	</if> -->
 	WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
 	</select>

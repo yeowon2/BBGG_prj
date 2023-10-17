@@ -81,13 +81,12 @@ public class ItemController {
 	@GetMapping("/itemDetail/{itemNo}")
 	public String itemDetail(@PathVariable Long itemNo, Model model, @SessionAttribute(name="loginVO", required = false) UserVO loginVO) {
 		ItemVO itemVO = new ItemVO();
-		if(loginVO != null) {
+		/*if(loginVO != null) {
 			Long loginUserNo = loginVO.getUserNo();
-			System.out.println("-----------------------------------"+loginUserNo);
 			itemVO = service.itemDetail(itemNo, loginUserNo);
-		} else  {
+		} else  {*/
 			itemVO = service.itemDetail(itemNo);
-		}
+//		}
 		if(itemVO.getLeasePrice() >= 10000) {
 			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
 			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);

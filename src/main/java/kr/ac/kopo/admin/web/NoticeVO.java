@@ -9,6 +9,7 @@ public class NoticeVO {
 	private Date registDate;
 	private Date updateDate;
 	private String adminId;
+	private Integer noticeCount;
 	
 	public Long getNoticeNo() {
 		return noticeNo;
@@ -45,5 +46,11 @@ public class NoticeVO {
 	}
 	public void setAdminId(String adminId) {
 		this.adminId = adminId;
+	}
+	public Integer getNoticeCount() {
+		return noticeCount;
+	}
+	public void setNoticeCount(Integer noticeCount) {
+		this.noticeCount = noticeCount;
 	}
 }

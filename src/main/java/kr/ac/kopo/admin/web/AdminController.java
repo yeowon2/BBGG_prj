@@ -66,8 +66,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/notice")
-	public String noticeList(NoticeVO noticeVO, Pager pager) {
+	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
 		List<NoticeVO> noticeList = adminService.noticeListAll(pager);
+		model.addAttribute("noticeList", noticeList);
 		return "/admin/notice";
 	}
 	
@@ -75,8 +76,11 @@ public class AdminController {
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
 	
 		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+		if(loginVO == null) {
+			// @@@@@@@@@@ 관리자라면 로그인하세요.
+			return "redirect:/login";
+			}
 		String userId = (String) loginVO.getUserId();
-		System.out.println(userId); // 확인완료
 		
 		if(loginVO != null && userId.contains("admin") && userId != null) {
 			userId = (String) loginVO.getUserId();
@@ -97,7 +101,6 @@ public class AdminController {
 		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
 		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
 
-		System.out.println(noticeVO.getAdminId());
 		adminService.addNotice(noticeVO);
 		// 글 작성 완료 알럿 @@@@@@@@@@
 		return "redirect:/admin/notice";

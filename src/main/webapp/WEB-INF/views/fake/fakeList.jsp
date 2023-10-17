@@ -112,12 +112,12 @@
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
-		                                                    	<c:if test="${item.useAt eq 'N'}">
+		                                                    	<c:if test="${item.useAt eq null}">
 		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>
 		                                                    	</c:if>
-		                                                    	<c:if test="${item.useAt ne 'N'}">
+		                                                    	<c:if test="${item.useAt ne null}">
 		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-light btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>
@@ -156,7 +156,7 @@
 					                                                                </div>
 					                                                            </div>
 					                                                            <div class="carousel-item">
-					                                                                <img class="d-block w-100" src="C:\Temp\folder\{UploadVO.savedFileName}" alt="첨부파일">
+					                                                                <img class="d-block w-100" src="C:\Temp\folder\fake_3e1c06be.png" alt="첨부파일">
 					                                                            </div>
 				                                                        </div>
 				                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

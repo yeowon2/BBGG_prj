@@ -237,13 +237,45 @@
 		            var selectedItemType = $("#itemType").val();
 		            var selectedLeaseOrMonth = $("#leaseOrMonth").val();
 		            var searchKeyword = $("#search").val();
+		            	
+		            
+		         // 아이템 타입 필터링 함수
+		            function itemsType(item) {
+		                if (selectedItemType !== "") {
+		                    return item.itemType === selectedItemType;
+		                } else {
+		                    return true; // 아무 조건이 없을 때는 항상 true
+		                }
+		            }
+		            
+		            // 계약 조건 필터링 함수
+		            function LeaseOrMonth(item) {
+		                if (selectedLeaseOrMonth !== "") {
+		                    return item.leaseOrMonth === selectedLeaseOrMonth;
+		                } else {
+		                    return true;
+		                }
+		            }
+		            
+		            // 키워드 필터링 함수
+		            function Keyword(item) {
+		                if (searchKeyword !== "") {
+		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
+		                } else {
+		                    return true;
+		                }
+		            }
+		            
 
 		            $.get("/itemListAll", function (data) {
 		                filteredData = data.filter(function (item) {
 		                    return item.useAt === 'Y' &&
-		                        (selectedItemType === "" || item.itemType === selectedItemType) &&
+			                    itemsType(item) &&
+			                    LeaseOrMonth(item) &&
+			                    Keyword(item);
+		                    /*(selectedItemType === "" || item.itemType === selectedItemType) &&
 		                        (selectedLeaseOrMonth === "" || item.leaseOrMonth === selectedLeaseOrMonth) &&
-		                        (searchKeyword === "" || item.address.includes(searchKeyword) || item.address2.includes(searchKeyword) || item.memoShort.includes(searchKeyword) || item.memoDetail.includes(searchKeyword));
+		                        (searchKeyword === "" || item.address.includes(searchKeyword) || item.address2.includes(searchKeyword)); */
 		                });
 
 		                // 클러스터러에 마커 배열을 추가
@@ -264,6 +296,15 @@
 		                propertyList = $("#property-list");
 		                // 초기 매물 리스트 업데이트
 		                updatePropertyList();
+		                
+		             	// 검색 결과가 있는 경우 지도를 해당 영역으로 이동
+		                /* if (filteredData.length > 0) {
+		                    var bounds = new kakao.maps.LatLngBounds();
+		                    filteredData.forEach(function (item) {
+		                        bounds.extend(new kakao.maps.LatLng(item.lat, item.lng));
+		                    });
+		                    map.setBounds(bounds);
+		                } */
 		            });
 		        }
 		

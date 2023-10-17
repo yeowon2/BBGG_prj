@@ -627,35 +627,26 @@
 </script>
 
 <script>
-var wishBtn = document.querySelector('#wishBtn');
-var itemNo = document.querySelector('#item-no').textContent;
+var wishBtn = $('#wishBtn');
+var itemNo = $('#item-no').text();
 
-wishBtn.onclick = function() {
+wishBtn.on('click', function() {
     var serverUrl = `/wish/add/${itemNo}`;
-
-    fetch(serverUrl, {
-    	  method: 'GET', // 요청 메서드 (GET, POST 등)
-    	  headers: {
-    	    'Accept': 'text/plain; charset=utf-8', // 받을 데이터 타입 설정
-    	    'Content-Type': 'text/plain; charset=utf-8', // 요청 데이터의 타입과 인코딩 설정
-    	  },
-    	})
-    .then(response => {
-      return response.text(); // 또는 .json() 등, 응답 형식에 따라 다를 수 있음
-    })
-    .then(data => {
-    	console.log(data);
-    	if(data === "로그인이 필요합니다.") {
-    		alert(data);
-    		location.href = '/login;'
-    	} else {
-    		alert(data);
-    	}
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
+    console.log(serverUrl);
+    
+    $.ajax({
+        url: serverUrl,
+        method: 'GET',
+        dataType: 'json', // JSON 형식으로 요청
+        success: function(result) {
+            console.log(result);
+            // JSON 응답을 사용하여 처리
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('오류 발생:', errorThrown);
+        }
     });
-};
+});
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

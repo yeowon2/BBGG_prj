@@ -16,8 +16,9 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	<resources mapping="/upload/**" location="file:///home/poly1/upload/"/>
-
+	<!-- <resources mapping="/upload/**" location="file:///home/poly1/upload/"/> -->
+ 	<resources mapping="/upload/**" location="file:///d:/upload/"/> 
+	
 	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -31,6 +32,18 @@
 	<!-- 트랜잭션 -->
 	<tx:annotation-driven/>
 	
-	
+   <interceptors>
+   		<interceptor>
+   			<mapping path="/admin/**"/>
+   			<mapping path="/note/**"/>
+   			<mapping path="/wish/**"/>
+   			
+   			<beans:bean class="kr.ac.kopo.interceptor.LoginInterceptor"></beans:bean>   			   			
+   		</interceptor>
+   		<interceptor>
+   			<mapping path="/partner/**"/>
+   			<beans:bean class="kr.ac.kopo.interceptor.PartnerLoginInterceptor"></beans:bean>   			   			
+   		</interceptor>
+   </interceptors>
 	
 </beans:beans>

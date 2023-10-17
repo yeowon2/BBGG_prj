@@ -50,15 +50,5 @@
       <property name="maxUploadSize" value="10485760" />
       <property name="defaultEncoding" value="utf-8" />
    </bean>
-   
-   <mvc:interceptors>
-   		<mvc:interceptor>
-   			<mvc:mapping path="/admin/**"/>
-   			<mvc:mapping path="/note/**"/>
-   			<mvc:mapping path="/wish/**"/>
-   			<mvc:mapping path="/partner/**"/>
-   			<bean class="kr.ac.kopo.interceptor.LoginInterceptor"></bean>
-   		</mvc:interceptor>
-   </mvc:interceptors>
-   
+     
 </beans>

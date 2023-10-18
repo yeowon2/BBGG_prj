@@ -1,4 +1,4 @@
-package kr.ac.kopo.admin.web;
+package kr.ac.kopo.notice.web;
 
 import java.util.Date;
 

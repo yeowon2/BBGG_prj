@@ -2,9 +2,6 @@ package kr.ac.kopo.admin.dao;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
-import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -30,7 +27,4 @@ public interface AdminDao {
 	
 	int total(Pager pager);
 	
-	List<NoticeVO> noticeListAll(Pager pager);
-	void addNotice(NoticeVO noticeVO);
-	NoticeVO noticeListOne(Long noticeNo);
 }

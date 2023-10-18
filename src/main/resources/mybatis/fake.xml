@@ -54,7 +54,7 @@
 				subquery.use_at LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 			</if>
 		</where>
-		LIMIT ${perPage} OFFSET ${startPage}
+		LIMIT ${perPage} OFFSET ${offset}
 	</select>
 	
 	<select id="total" resultType="Integer">

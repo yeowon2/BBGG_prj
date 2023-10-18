@@ -2,7 +2,6 @@ package kr.ac.kopo.admin.service;
 
 import java.util.List;
 
-import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -13,7 +12,7 @@ public interface AdminService {
 	
 	List<UserVO> userList(UserVO userVO);
 	List<UserVO> userListAll(Pager pager);
-	List<PartnerVO> partnerList(PartnerVO partnerVO);	
+	List<PartnerVO> partnerList(PartnerVO partnerVO);
 	List<ItemVO> itemList(ItemVO itemVO);
 	List<FakeVO> fakeList(FakeVO fakeVO);
 
@@ -25,9 +24,4 @@ public interface AdminService {
 	Integer itemYestdCount();
 	Integer fakeCount();
 	Integer fakeYestdCount();
-
-	List<NoticeVO> noticeListAll(Pager pager);
-	void addNotice(NoticeVO noticeVO);
-	
-	NoticeVO noticeListOne(Long noticeNo);
 }

@@ -12,9 +12,9 @@ public class Pager {
 	private int search;
 	private String keyword;
 	
-	public int startPage;
+	public int offset;
 	
-	public int getStartPage() {
+	public int getOffset() {
 		//return (((page - 1) / perGroup) + 0) * perGroup + 0;
 		return (page - 1)*perPage;
 	}
@@ -71,7 +71,7 @@ public class Pager {
 	public List<Integer> getList() {
 		List<Integer> pageList = new ArrayList<Integer>();
 		
-		startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
+		int startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
 		
 		for(int i = startPage; i < (startPage + perGroup) && i <= getLast(); i++) {
 			pageList.add(i);

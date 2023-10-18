@@ -66,54 +66,5 @@ public class AdminController {
 		return "/admin/itemList";
 	}
 	
-	@GetMapping("/admin/notice")
-	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
-		List<NoticeVO> noticeList = adminService.noticeListAll(pager);
-		model.addAttribute("noticeList", noticeList);
-		return "/admin/noticeList";
-	}
 	
-	@GetMapping("/admin/noticeAdd")
-	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
-	
-		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
-		if(loginVO == null) {
-			// @@@@@@@@@@ 관리자라면 로그인하세요.
-			return "redirect:/login";
-			}
-		String userId = (String) loginVO.getUserId();
-		
-		if(loginVO != null && userId.contains("admin") && userId != null) {
-			userId = (String) loginVO.getUserId();
-			noticeVO.setAdminId(userId);
-			return "/admin/noticeAdd";
-		} else {
-			// 관리자로 로그인하셔야합니다. 알럿 @@@@@@@@@@
-			return "redirect:/login";
-		}
-	}
-	
-	@PostMapping("/admin/noticeAdd")
-	public String noticeAdd(NoticeVO noticeVO, HttpServletRequest request, HttpSession session) {
-		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
-		String userId = (String) loginVO.getUserId();
-		noticeVO.setAdminId(userId);
-		
-		noticeVO.setNoticeTitle(request.getParameter("noticeTitle"));
-		noticeVO.setNoticeContent(request.getParameter("noticeContent"));
-
-		adminService.addNotice(noticeVO);
-		// 글 작성 완료 알럿 @@@@@@@@@@
-		return "redirect:/admin/notice";
-	}
-	
-	@GetMapping("/admin/notice{noticeNo}")
-	public String noticeSelect(NoticeVO noticeVO, @PathVariable Long noticeNo, Model model) {
-		noticeVO = adminService.noticeListOne(noticeNo);
-		
-		model.addAttribute("noticeVO", noticeVO);
-//		model.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
-		return "/admin/noticeAdmin";
-	}
-
 }

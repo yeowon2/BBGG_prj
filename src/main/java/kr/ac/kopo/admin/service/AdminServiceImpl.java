@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.ac.kopo.admin.dao.AdminDao;
-import kr.ac.kopo.admin.web.NoticeVO;
 import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.pager.Pager;
@@ -94,25 +93,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.countFakeYestd();
 	}
 
-	@Override
-	public List<NoticeVO> noticeListAll(Pager pager) {		
-		int total = adminDao.total(pager);
-		pager.setTotal(total);
-		return adminDao.noticeListAll(pager);
-	}
 	
-	@Override
-	public void addNotice(NoticeVO noticeVO) {
-		//System.out.println(noticeVO.getAdminId());
-		//System.out.println(noticeVO.getNoticeTitle());
-		//System.out.println(noticeVO.getNoticeContent());
-		adminDao.addNotice(noticeVO);
-	}
-
-	@Override
-	public NoticeVO noticeListOne(Long noticeNo) {
-		return adminDao.noticeListOne(noticeNo);
-	}
 
 	
 }

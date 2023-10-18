@@ -192,7 +192,7 @@ thead tr:nth-child(3) th {
         <div class="row"">
           <div class="col-lg-10" style="margin:0 auto;">
             <div class="submit-form">
-              <form method="post">
+              <form method="post" enctype="multipart/form-data">
                 <h3 class="heading">위치 정보</h3>
                 <div class="row mb-3">
                   <div class="col-lg-10 col-md-6">
@@ -229,6 +229,18 @@ thead tr:nth-child(3) th {
                 </div>
                 <h3 class="heading">기본 정보</h3>
                 <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>방 타입</label>
+                      <select name="itemType" class="classic">
+                        <option>선택</option>
+                        <option value="O">원룸</option>
+                        <option value="T">투룸</option>
+                        <option value="H">쓰리룸</option>
+                        <option value="F">오피스텔</option>
+                      </select>
+                    </div>
+                  </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>거래 타입</label>
@@ -368,25 +380,25 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-4">
                     <div class="form-group message">
                       <label>태그2</label>
-                      <input class="form-control" name="tag1" placeholder="ex #번화가 앞" />
+                      <input class="form-control" name="tag2" placeholder="ex #번화가 앞" />
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group message">
                       <label>태그3</label>
-                      <input class="form-control" name="tag1" placeholder="ex #대학교 인근" />
+                      <input class="form-control" name="tag3" placeholder="ex #대학교 인근" />
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group message">
                       <label>상세 설명</label>
-                      <textarea class="form-control tinymce" name="message" placeholder="ex 대형마트와 쇼핑몰 앞에 위치한 방입니다"></textarea>
+                      <textarea class="form-control tinymce" name="memoDetail" placeholder="ex 대형마트와 쇼핑몰 앞에 위치한 방입니다"></textarea>
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group message">
                       <label>비공개 메모</label>
-                      <textarea class="form-control" name="message" placeholder="ex LH 임대 아파트 전세 계약 가능 + 협의 필요"></textarea>
+                      <textarea class="form-control" name="memoPrivate" placeholder="ex LH 임대 아파트 전세 계약 가능 + 협의 필요"></textarea>
                     </div>
                   </div>
                 </div>
@@ -488,14 +500,14 @@ thead tr:nth-child(3) th {
                     <label id="label2" for="file2" class="drop-file mb-5">
                       <input type="file" name="file2" id="file2" style="display:none;">
                       <img id="img2" class="drop-image mb-5" src="" alt="">
-                      <div class="drop-message"><span>Drop files here to upload</span></div>
+                      <div class="drop-message"><span>사진 올리기</span></div>
                      </label> 
                   </div>
                   <div class="col-lg-4 pic-item">
                     <label id="label3" for="file3" class="drop-file mb-5">
                       <input type="file" name="file3" id="file3" style="display:none;">
                       <img id="img3" class="drop-image mb-5" src="" alt="">
-                      <div class="drop-message"><span>Drop files here to upload</span></div>
+                      <div class="drop-message"><span>사진 올리기</span></div>
                      </label> 
                   </div>
                 </div>
@@ -521,7 +533,7 @@ thead tr:nth-child(3) th {
           });
         var label = $('<label>').attr('id', 'label' + newIndex).addClass('drop-file mb-5').attr('for', 'file' + newIndex);
         var dropImage = $('<img>').attr('id', 'img' + newIndex).addClass('drop-image mb-5').attr('src', '');
-        var dropMessage = $('<div>').addClass('drop-message').append($('<span>').text('Drop files here to upload'));
+        var dropMessage = $('<div>').addClass('drop-message').append($('<span>').text('사진 올리기'));
 
         label.append(input, dropImage, dropMessage);
         newDiv.append(label);
@@ -553,12 +565,12 @@ thead tr:nth-child(3) th {
         const noneField = document.getElementById('noneField');
 
         transactionTypeSelect.addEventListener('change', function () {
-            if (transactionTypeSelect.value === '월세') {
+            if (transactionTypeSelect.value === 'month') {
                 depositFeeField.style.display = 'block';
                 monthPriceField.style.display = 'block';
                 leasePriceField.style.display = 'none';
                 noneField.style.display = 'none';
-            } else if (transactionTypeSelect.value === '전세') {
+            } else if (transactionTypeSelect.value === 'lease') {
                 depositFeeField.style.display = 'none';
                 monthPriceField.style.display = 'none';
                 leasePriceField.style.display = 'block';
@@ -599,9 +611,9 @@ thead tr:nth-child(3) th {
       var moveInDateField = document.querySelector('#moveInDateField');
       
       if (this.value === 'Y') { // 'Y' 값과 비교
-        moveInDateField.style.display = 'block'; // 즉시 입주 가능할 때 입력란 표시
+        moveInDateField.style.display = 'none'; // 즉시 입주 가능할 때 입력란 표시
       } else {
-        moveInDateField.style.display = 'none'; // 즉시 입주가 불가능할 때 입력란 숨김
+        moveInDateField.style.display = 'block'; // 즉시 입주가 불가능할 때 입력란 숨김
       }
     });
 

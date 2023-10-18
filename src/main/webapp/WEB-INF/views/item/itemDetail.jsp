@@ -122,7 +122,7 @@
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5><fmt:formatNumber value="${itemVO.itemSize * 3.3}" pattern="#,##0" />㎡ / ${itemVO.itemSize}평 </h5>
+                  <h5>${itemVO.itemSize}평 / ${itemVO.itemSizeArea}㎡</h5>
                 </div>
               </div>
             </div>
@@ -220,7 +220,7 @@
 	                    	<strong>전용면적</strong>
 	                    </div>
 	                    <div class="col-lg-8">
-	                    	<span>${itemVO.itemSize * 3.3}㎡ / ${itemVO.itemSize}평</span>
+	                    	<span>${itemVO.itemSize}평 / ${itemVO.itemSizeArea}㎡</span>
 	                  	</div>
 	                  </li>
 	                  <li class="row">

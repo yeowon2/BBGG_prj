@@ -15,6 +15,7 @@
     <result property="moveInAt" column="move_in_at" />
     <result property="moveInDate" column="move_in_date" />
     <result property="itemSize" column="item_size" />
+    <result property="itemSizeArea" column="item_size_area" />
     <result property="buildingFloor" column="building_floor" />
     <result property="itemFloor" column="item_floor" />
     <result property="itemCount" column="item_count" />
@@ -25,6 +26,9 @@
     <result property="manageFee" column="manage_fee" />
     <result property="memoShort" column="memo_short" />
     <result property="memoDetail" column="memo_detail" />
+    <result property="tag1" column="tag1" />
+    <result property="tag2" column="tag2" />
+    <result property="tag3" column="tag3" />
     <result property="registDate" column="regist_date" />
     <result property="updateDate" column="update_date" />
     <result property="useAt" column="use_at" />
@@ -216,7 +220,8 @@
 	       i.lng,
 	       i.address2,
 	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee
+	       m.deposit_fee,
+	       i.item_size_area
 	      <!--  <if test="userNo != null and userNo != 0">
 	       w.user_no,
 	       w.item_no
@@ -257,7 +262,11 @@
 			lat, 
 			lng, 
 			address2, 
-			lease_or_month
+			lease_or_month,
+			item_size_area,
+			tag1,
+			tag2,
+			tag3
 			)
 			VALUES(
 			#{partnerNo}, 
@@ -290,7 +299,11 @@
 			#{lat}, 
 			#{lng}, 
 			#{address2}, 
-			#{leaseOrMonth}
+			#{leaseOrMonth},
+			#{itemSizeArea},
+			#{tag1},
+			#{tag2},
+			#{tag3}
 			)
 		<selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
        		SELECT LAST_INSERT_ID()

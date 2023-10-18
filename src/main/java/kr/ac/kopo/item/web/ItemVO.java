@@ -22,7 +22,8 @@ public class ItemVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date moveInDate;		//입주가능날짜
 	
-	private Long itemSize;			//전용면적
+	private Long itemSize;			//평수
+	private Long itemSizeArea;		//전용면적
 	private Long buildingFloor;		//건물 전체 층수
 	private Long itemFloor;			//해당 매물 층수
 	private Long itemCount;			//방 수
@@ -33,6 +34,9 @@ public class ItemVO {
 	private Long manageFee;			//공용 관리비
 	private String memoShort;		//매물 소개
 	private String memoDetail;		//매물 설명
+	private String tag1;			//태그1
+	private String tag2;			//태그2
+	private String tag3;			//태그3
 	private Date registDate;		//매물 등록일
 	private Date updateDate;		//매물 수정일
 	private String useAt;			//상태코드
@@ -450,6 +454,37 @@ public class ItemVO {
 		this.wishCount = wishCount;
 	}
 
-	
+	public Long getItemSizeArea() {
+		return itemSizeArea;
+	}
+
+	public void setItemSizeArea(Long itemSizeArea) {
+		this.itemSizeArea = itemSizeArea;
+	}
+
+	public String getTag1() {
+		return tag1;
+	}
+
+	public void setTag1(String tag1) {
+		this.tag1 = tag1;
+	}
+
+	public String getTag2() {
+		return tag2;
+	}
+
+	public void setTag2(String tag2) {
+		this.tag2 = tag2;
+	}
+
+	public String getTag3() {
+		return tag3;
+	}
+
+	public void setTag3(String tag3) {
+		this.tag3 = tag3;
+	}
+
 
 }

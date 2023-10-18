@@ -3,8 +3,6 @@ package kr.ac.kopo.item.web;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,7 @@ import kr.ac.kopo.user.web.UserVO;
 public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	private final String fileStorePath = "/home/poly1/upload/";
+	private final String fileStorePath = "D:/upload/";
 	
 	@Autowired
 	ItemService	service;
@@ -87,19 +85,19 @@ public class ItemController {
 		} else  {*/
 			itemVO = service.itemDetail(itemNo);
 //		}
-		if(itemVO.getLeasePrice() >= 10000) {
-			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
-			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
-			model.addAttribute("LB",leaseBillion);
-			model.addAttribute("LTM",leaseTenMillion);
-		}
-		
-		if(itemVO.getDepositFee() >= 10000) {
-			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
-			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
-			model.addAttribute("DFB",depositFeeBillion);
-			model.addAttribute("DFTM",depositFeeTenMillion);
-		}
+//		if(itemVO.getLeasePrice() >= 10000) {
+//			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
+//			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
+//			model.addAttribute("LB",leaseBillion);
+//			model.addAttribute("LTM",leaseTenMillion);
+//		}
+//		
+//		if(itemVO.getDepositFee() >= 10000) {
+//			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+//			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+//			model.addAttribute("DFB",depositFeeBillion);
+//			model.addAttribute("DFTM",depositFeeTenMillion);
+//		}
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
 		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);
@@ -116,7 +114,7 @@ public class ItemController {
 	//매물 등록폼 이동
 	@GetMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo) {
-ㄴ		return path + "itemAdd3";
+		return path + "itemAdd3";
 	}
 	
 	//매물 등록 
@@ -131,7 +129,7 @@ public class ItemController {
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
         }
-        
+    
 		service.itemAdd(itemVO, fileVOList);
 		
 		return "redirect:/partner/{partnerNo}/itemList";

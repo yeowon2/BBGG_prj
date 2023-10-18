@@ -290,68 +290,76 @@
 		            fetchDataAndFilter();
 		        });
 
-		        // 초기화 버튼 클릭 이벤트
+		     	// 초기화 버튼 클릭 이벤트
 		        $("#resetSearch").click(function () {
-		            $("#itemType").val(""); // 선택된 방 종류 초기화
-		            $("#leaseOrMonth").val(""); // 선택된 계약 조건 초기화
-		            $("#search").val(""); // 검색어 필드 초기화
-		            fetchDataAndFilter(); // 전체 매물 다시 불러와서 필터링
-		            updateMapZoom(); // 초기 확대 레벨로 설정
+		        	resetFilters();
+		            fetchDataAndFilter();
+		            //updateMapZoom();
 		        });
+
+		        // 필터 초기화 함수
+		        function resetFilters() {
+		            // 선택된 방 종류 초기화
+		            //$("#O, #T, #H, #F").prop("checked", true);
+		            // 선택된 계약 조건 초기화
+		            //$("#month, #lease").prop("checked", true);
+		            // 검색어 필드 초기화
+		            $("#search").val("");
+		        }
 
 		        // 서버에서 데이터를 가져오고 필터링하는 함수
 		        function fetchDataAndFilter() {
-		            var selectedItemType = $("#itemType").val();
-		            var selectedLeaseOrMonth = $("#leaseOrMonth").val();
+		            var selectedItemTypes = getSelectedItemTypes();
+		            var selectedLeaseOrMonth = getSelectedLeaseOrMonth();
 		            var searchKeyword = $("#search").val();
-		            	
 		            
-		         	// 아이템 타입 필터링 함수
-		            function itemsType(item) {
-		                if (selectedItemType !== "") {
-		                	switch (selectedItemType) {
-								case "O": return item.itemType === "O"; 
-								case "T": return item.itemType === "T"; 
-								case "H": return item.itemType === "H"; 
-								case "F": return item.itemType === "F"; 
-								
-							default:
-								return true
-							}
-		                    return item.itemType === selectedItemType;
-		                } else {
-		                    return true; // 아무 조건이 없을 때는 항상 true
+		         	// 매물 타입 체크한 값을 가져오는 함수
+		            function getSelectedItemTypes() {
+		                var selectedTypes = [];
+		                
+		                if ($("#O").prop("checked")) {
+		                    selectedTypes.push("O");
 		                }
+		                if ($("#T").prop("checked")) {
+		                    selectedTypes.push("T");
+		                }
+		                if ($("#H").prop("checked")) {
+		                    selectedTypes.push("H");
+		                }
+		                if ($("#F").prop("checked")) {
+		                    selectedTypes.push("F");
+		                }
+		                
+		                return selectedTypes;
 		            }
-		            
-		            // 계약 조건 필터링 함수
-		            function LeaseOrMonth(item) {
-		                if (selectedLeaseOrMonth !== "") {
-		                    return item.leaseOrMonth === selectedLeaseOrMonth;
-		                } else {
-		                    return true;
+		            	
+		            // 계약 조건 체크한 값을 가져오는 함수
+		            function getSelectedLeaseOrMonth() {
+		                var selectedLOM = [];
+		                if ($("#month").prop("checked")) {
+		                	selectedLOM.push("month");
 		                }
+		                if ($("#lease").prop("checked")) {
+		                	selectedLOM.push("lease");
+		                }
+		                return selectedLOM;
 		            }
 		            
 		            // 키워드 필터링 함수
 		            function Keyword(item) {
-		                if (searchKeyword !== "") {
+		                if (searchKeyword.length >= 2) {
 		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
 		                } else {
 		                    return true;
 		                }
 		            }
 		            
-
 		            $.get("/itemListAll", function (data) {
 		                filteredData = data.filter(function (item) {
 		                    return item.useAt === 'Y' &&
-			                    itemsType(item) &&
-			                    LeaseOrMonth(item) &&
+		                    	(selectedItemTypes.length === 0 || selectedItemTypes.includes(item.itemType)) &&
+		                    	(selectedLeaseOrMonth.length === 0 || selectedLeaseOrMonth.includes(item.leaseOrMonth)) &&
 			                    Keyword(item);
-		                    /*(selectedItemType === "" || item.itemType === selectedItemType) &&
-		                        (selectedLeaseOrMonth === "" || item.leaseOrMonth === selectedLeaseOrMonth) &&
-		                        (searchKeyword === "" || item.address.includes(searchKeyword) || item.address2.includes(searchKeyword)); */
 		                });
 
 		                // 클러스터러에 마커 배열을 추가
@@ -374,13 +382,13 @@
 		                updatePropertyList();
 		                
 		             	// 검색 결과가 있는 경우 지도를 해당 영역으로 이동
-		                /* if (filteredData.length > 0) {
+		                if (filteredData.length > 0 && searchKeyword.length >= 2) {
 		                    var bounds = new kakao.maps.LatLngBounds();
 		                    filteredData.forEach(function (item) {
 		                        bounds.extend(new kakao.maps.LatLng(item.lat, item.lng));
 		                    });
 		                    map.setBounds(bounds);
-		                } */
+		                }
 		            });
 		        }
 		
@@ -456,7 +464,7 @@
 		            var emailSubject1 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject2 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject3 = $("<div class='email-subject'><p></p></div>");
-		            var emailSubject = $("<div class='email-subject'>" + item.memoShort + "</div>");
+		            var emailSubject = $("<div class='email-subject'>#" + item.tag1 + " #" + item.tag2 + " #" + item.tag3 + "</div>");
 		            var emailText = $("<div class='email-text' style='-webkit-line-clamp: 1;'><p>" + item.memoDetail + "</p></div>");
 		            var hr = $("<hr>");
 		

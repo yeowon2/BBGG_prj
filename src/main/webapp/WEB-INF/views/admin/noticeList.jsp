@@ -27,9 +27,13 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <section class="hk-sec-wrapper">
-                            <h5 class="hk-sec-title">공지사항</h5>
-                            <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
-                            <button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>
+	                        <div style="display: flex; justify-content: space-between; align-items: center;">
+	                        	<div>
+	                            	<h5 class="hk-sec-title">공지사항</h5>
+	                            	<p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
+	                            </div>	                        
+                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>                            
+							</div>                            
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="table-wrap">
@@ -49,7 +53,7 @@
                                                         <td>${item.noticeNo}</td>
                                                         <td><a href="/admin/notice${item.noticeNo}">${item.noticeTitle}</a></td>
                                                         <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
-                                                        <td></td>
+                                                        <td>${item.noticeViewCount}</td>
                                                     </tr>
                                                     </c:forEach>
                                                     <tr>

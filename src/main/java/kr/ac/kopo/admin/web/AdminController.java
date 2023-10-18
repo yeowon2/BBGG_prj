@@ -108,8 +108,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/admin/notice{noticeNo}")
-	public String noticeSelect(NoticeVO noticeVO, @PathVariable Long noticeNo) {
+	public String noticeSelect(NoticeVO noticeVO, @PathVariable Long noticeNo, Model model) {
 		noticeVO = adminService.noticeListOne(noticeNo);
+		
+		model.addAttribute("noticeVO", noticeVO);
+//		model.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
 		return "/admin/noticeAdmin";
 	}
 

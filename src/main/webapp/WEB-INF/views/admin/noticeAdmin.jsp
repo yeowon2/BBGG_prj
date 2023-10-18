@@ -27,8 +27,16 @@
             <div class="row">
                 <div class="col-xl-12">
                     <section class="hk-sec-wrapper">
-                        <h5 class="hk-sec-title">공지사항</h5>
-                        <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+	                        <div>
+	                            <h5 class="hk-sec-title">공지사항</h5>
+	                            <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
+	                        </div>
+	                        <div>	                        
+                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">수정</button>                     
+                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
+							</div>
+						</div>   
                         <div class="row">
                             <div class="col-sm">
                                 <div class="table-wrap">
@@ -36,6 +44,8 @@
                                         <table id="edit_datable_1" class="table table-bordered table-striped mb-0">
                                             <thead>
                                                 <tr>
+                                                	<th>번호</th>
+                                                	<th>${noticeVO.noticeNo}</th>
                                                     <th>제목</th>
                                                     <th>${noticeVO.noticeTitle}</th>
                                                     <th>등록일</th>
@@ -45,7 +55,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td colspan="1">내용</td>
-                                                    <td colspan="3">${noticeVO.noticeContent}</td>
+                                                    <td colspan="6">${noticeVO.noticeContent}</td>
                                                 </tr>
                                             </tbody>                                                      
                                         </table>

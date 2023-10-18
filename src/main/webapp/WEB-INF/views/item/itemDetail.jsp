@@ -143,7 +143,15 @@
                        		</c:if>
                        	</c:when>
                        	<c:otherwise>
-	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>
+                       		<c:if test="${itemVO.depositFee >= 10000 && DFTM != 0 && DFB != 0}">
+                       			<h4>월세 ${DFB}억 ${DFTM} / ${itemVO.monthPrice}</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.depositFee >= 10000 && DFB != 0 && DFTM == 0}">
+                       			<h4>월세 ${DFB}억 / ${itemVO.monthPrice}</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.depositFee < 10000 }">
+                       			<h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>
+                       		</c:if>
                        	</c:otherwise>
                        </c:choose>
 		  		 	</li>

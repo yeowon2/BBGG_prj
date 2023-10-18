@@ -93,6 +93,13 @@ public class ItemController {
 			model.addAttribute("LB",leaseBillion);
 			model.addAttribute("LTM",leaseTenMillion);
 		}
+		
+		if(itemVO.getDepositFee() >= 10000) {
+			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+			model.addAttribute("DFB",depositFeeBillion);
+			model.addAttribute("DFTM",depositFeeTenMillion);
+		}
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
 		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);

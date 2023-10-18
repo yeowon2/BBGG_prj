@@ -35,7 +35,11 @@ public class LoginController {
 	//로그인 화면 
 	@GetMapping("/login")
 	public String login(@ModelAttribute UserVO userVO, Model model, HttpSession session, HttpServletRequest request) {
-
+		
+		// 이전 페이지의 URL을 세션에 저장
+	    String referrer = request.getHeader("Referer");
+	    request.getSession().setAttribute("prevPage", referrer);
+		
 		return "login/login";
 	};
 	
@@ -65,14 +69,23 @@ public class LoginController {
 	        UserVO loginVO = loginService.actionLogin(userVO);
 	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && !loginVO.getPhone().equals("kakao가입자")) {
 	            session.setAttribute("loginVO", loginVO);
-	            
-	            return "redirect:/";
+
+	            // 로그인 성공 후, 이전 페이지의 URL을 가져옴
+	            String prevPage = (String) session.getAttribute("prevPage");
+
+	            if (prevPage != null && !prevPage.isEmpty()) {
+	                // 이전 페이지가 있는 경우 해당 페이지로 리다이렉트
+	                session.removeAttribute("prevPage"); // 세션에서 이전 페이지 URL 제거
+	                return "redirect:" + prevPage;
+	            } else {
+	                // 이전 페이지가 없는 경우 기본 리다이렉트 URL 설정
+	                return "redirect:/";
+	            }
 	        } else {
 	            model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
 	            return "redirect:/login";
 	        }
 	    }
-		
 	}
 	
 	/* 카카오 로그인/회원가입 */
@@ -85,7 +98,18 @@ public class LoginController {
 	        // 값이 있다면 로그인을 수행
 	        if (loginVO.getUserId() != null && loginVO.getUserName() != null) {
 	            session.setAttribute("loginVO", loginVO);
-	            return "redirect:/";
+	           
+	            // 로그인 성공 후, 이전 페이지의 URL을 가져옴
+	            String prevPage = (String) session.getAttribute("prevPage");
+	            
+	            if (prevPage != null && !prevPage.isEmpty()) {
+	                // 이전 페이지가 있는 경우 해당 페이지로 리다이렉트
+	                session.removeAttribute("prevPage"); // 세션에서 이전 페이지 URL 제거
+	                return "redirect:" + prevPage;
+	            } else {
+	                // 이전 페이지가 없는 경우 기본 리다이렉트 URL 설정
+	                return "redirect:/";
+	            }
 	        } else {
 	            model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
 	            return "redirect:/login";
@@ -103,7 +127,17 @@ public class LoginController {
 			
 	        session.setAttribute("loginVO", kakaovo);
 	        
-	        return "redirect:/";
+	        // 로그인 성공 후, 이전 페이지의 URL을 가져옴
+            String prevPage = (String) session.getAttribute("prevPage");
+            
+            if (prevPage != null && !prevPage.isEmpty()) {
+                // 이전 페이지가 있는 경우 해당 페이지로 리다이렉트
+                session.removeAttribute("prevPage"); // 세션에서 이전 페이지 URL 제거
+                return "redirect:" + prevPage;
+            } else {
+                // 이전 페이지가 없는 경우 기본 리다이렉트 URL 설정
+                return "redirect:/";
+            }
 	    }
 	}
 

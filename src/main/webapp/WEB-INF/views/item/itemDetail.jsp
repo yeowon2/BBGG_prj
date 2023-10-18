@@ -383,16 +383,32 @@
 						<hr>
 						<div class="partner_button">
 							<div class="button_guide">
-					            <a href="javascript:void(0)" class="email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
-					                쉽고 빠른 거래를 위한 
-					                <br>
-					                <span class="button_point">문의하기</span>
-					            </a>
-					            <a href="/note/add" class="email text-center button_title" >
-					                쉽고 빠른 거래를 위한 
-					                <br>
-					                <span class="button_point">문의하기</span>
-					            </a>
+								<c:if test="${loginVO == null}">
+						            <a href="javascript:void(0)" class="email-compose text-center button_title" >
+						                쉽고 빠른 거래를 위한 
+						                <br>
+						                <span class="button_point">문의하기</span>
+						            </a>
+								</c:if>
+								<c:if test="${loginVO != null}">
+						            <a href="javascript:void(0)" class="login-checked email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
+						                쉽고 빠른 거래를 위한 
+						                <br>
+						                <span class="button_point">문의하기</span>
+						            </a>
+								</c:if>
+					             <script>
+							        var emailComposeLinks = document.querySelectorAll('.email-compose');
+							        emailComposeLinks.forEach(function(link) {
+							            link.onclick = function(e) {
+							                if (!link.classList.contains('login-checked')) {
+							                    e.preventDefault();
+							                    alert("로그인이 필요합니다");
+							                    window.location.href = '/login'; // 경로 수정 필요
+							                }
+							            };
+							        });
+							    </script>
 					        </div>
 				        </div>
                 	</div>

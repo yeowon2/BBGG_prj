@@ -29,13 +29,6 @@ public class NoticeController {
 		return "/notice/noticeList";
 	}
 	
-//	@GetMapping("/admin/notice")
-//	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
-//		List<NoticeVO> noticeList = noticeService.noticeListAll(pager);
-//		model.addAttribute("noticeList", noticeList);
-//		return "/notice/noticeList";
-//	}
-	
 	@GetMapping("/admin/noticeAdd")
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {
 	
@@ -67,7 +60,7 @@ public class NoticeController {
 
 		noticeService.addNotice(noticeVO);
 		// 글 작성 완료 알럿 @@@@@@@@@@
-		return "redirect:/admin/notice";
+		return "redirect:/notice";
 	}
 	
 	@GetMapping("/admin/notice{noticeNo}")

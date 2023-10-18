@@ -76,7 +76,7 @@ public class NoticeController {
 		
 		model.addAttribute("noticeVO", noticeVO);
 //		model.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
-		return "/notice/noticeAdmin";
+		return "/notice/notice";
 	}
 
 	

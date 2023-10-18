@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +11,14 @@
 <title>공지사항</title>
 </head>
 <body>
-<%-- 	<c:if test="session.getUserId.contains('admin')">	
-		<jsp:include page="../navAdmin.jsp"></jsp:include>
-	</c:if>
-	<c:otherwise> --%>
-		<jsp:include page="../nav.jsp"></jsp:include>
-<%-- 	</c:otherwise> --%>
-	
+	<c:choose>
+		<c:when test="${not empty loginVO and fn:contains(loginVO.userId, 'admin')}">
+			<jsp:include page="../navAdmin.jsp"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="../nav.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
 	
@@ -36,8 +38,16 @@
 	                        	<div>
 	                            	<h5 class="hk-sec-title">공지사항</h5>
 	                            	<p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
-	                            </div>	                        
-                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>                            
+	                            </div>
+	                            
+	                            <c:choose>
+									<c:when test="${not empty loginVO and fn:contains(loginVO.userId, 'admin')}">
+										<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>
+									</c:when>
+									<c:otherwise>										
+									</c:otherwise>
+								</c:choose>	                            	                        
+                            	                            
 							</div>                            
                             <div class="row">
                                 <div class="col-sm">

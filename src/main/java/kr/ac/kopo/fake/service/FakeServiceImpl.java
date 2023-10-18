@@ -26,8 +26,8 @@ public class FakeServiceImpl implements FakeService {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId, Model model) {
-		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId, model);	
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId) {
+		dao.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);	
 	}
 
 	@Override

@@ -19,7 +19,7 @@ import kr.ac.kopo.item.web.ItemVO;
 @Service
 public class ItemServiceImpl implements ItemService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(FileDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 	
 	@Autowired
 	ItemDao dao;
@@ -58,7 +58,6 @@ public class ItemServiceImpl implements ItemService {
 			fileVO.setItemNo(itemVO.getItemNo());
 			fileDao.insertFile(fileVO);
 		}
-		
 	}
 
 	@Override

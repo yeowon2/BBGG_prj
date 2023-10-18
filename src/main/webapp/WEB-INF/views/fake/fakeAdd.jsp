@@ -91,8 +91,6 @@
 												('시세에 부당한 영향을 줄 목적으로 중개사업무를 방해해서는 안된다')을 <br>
 												위배해 고소, 고발의 대상이 될 수 있으므로 주의부탁드립니다.</p>
 												<br>
-												<%-- <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-												 action="<%=request.getContextPath()%>/${roomNo}" --%>
 												
 												<form method="post" enctype="multipart/form-data">
 													<input type="hidden" id="roomNo" value="${result.roomNo}">
@@ -104,7 +102,7 @@
 														<div class="row">
 															<div class="col-xl-12">
 																<section class="hk-sec-wrapper">
-																	<p class="mb-40">파일을 <a href="http://jeremyfagis.github.io/dropify/" target="_blank">여기에 </a>가져다 놓으세요.</p>
+																	<p class="mb-40">사진을 <a href="http://jeremyfagis.github.io/dropify/" target="_blank">파일 선택 위로 </a>가져다 놓으세요.</p>
 																	<div  class="row">
 																		<div class="col-sm">
 																			<input type="file" id="input-file-now" class="dropify" name="file" />
@@ -137,7 +135,7 @@
                <footer class="footer">
                    <div class="row">
                        <div class="col-md-6 col-sm-12">
-                           <p>Pampered by<a href="https://bangbanggoggog.com/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
+                           <p>Pampered by<a href="https://BBGG-a.site/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
                        </div>
                        <div class="col-md-6 col-sm-12">
                            <p class="d-inline-block">Follow us</p>
@@ -157,48 +155,48 @@
     <!-- /HK Wrapper -->
 		
 	<!-- jQuery -->
-    <script src="../../resources/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/resources/vendors/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../../resources/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../../resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/resources/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Slimscroll JavaScript -->
-    <script src="../../resources/dist/js/jquery.slimscroll.js"></script>
+    <script src="/resources/dist/js/jquery.slimscroll.js"></script>
 
     <!-- Fancy Dropdown JS -->
-    <script src="../../resources/dist/js/dropdown-bootstrap-extended.js"></script>
+    <script src="/resources/dist/js/dropdown-bootstrap-extended.js"></script>
 
     <!-- Owl JavaScript -->
-    <script src="../../resources/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="/resources/vendors/owl.carousel/dist/owl.carousel.min.js"></script>
 
     <!-- FeatherIcons JavaScript -->
-    <script src="../../resources/dist/js/feather.min.js"></script>
+    <script src=".resources/dist/js/feather.min.js"></script>
 
     <!-- Tinymce JavaScript -->
-    <script src="../../resources/vendors/tinymce/tinymce.min.js"></script>
+    <script src=".resources/vendors/tinymce/tinymce.min.js"></script>
 
     <!-- Tinymce Wysuhtml5 Init JavaScript -->
-    <script src="../../resources/dist/js/tinymce-data.js"></script>
+    <script src="/resources/dist/js/tinymce-data.js"></script>
 
     <!-- Toggles JavaScript -->
-    <script src="../../resources/vendors/jquery-toggles/toggles.min.js"></script>
-    <script src="../../resources/dist/js/toggle-data.js"></script>
+    <script src="/resources/vendors/jquery-toggles/toggles.min.js"></script>
+    <script src="/resources/dist/js/toggle-data.js"></script>
 
     <!-- Init JavaScript -->
-    <script src="../../resources/dist/js/init.js"></script>		
+    <script src="/resources/dist/js/init.js"></script>		
     
     <!-- modal-data JavaScript -->
-    <script src="../../resources/dist/js/modal-data.js"></script>		
+    <script src="/resources/dist/js/modal-data.js"></script>		
     
     <!-- Dropify JavaScript -->
-	<script src="../../resources/vendors/dropify/dist/js/dropify.min.js"></script>
+	<script src="/resources/vendors/dropify/dist/js/dropify.min.js"></script>
 	
 	<!-- Form Flie Upload Data JavaScript -->
-	<script src="../../resources/dist/js/form-file-upload-data.js"></script>
+	<script src="/resources/dist/js/form-file-upload-data.js"></script>
 	
 	<!-- FeatherIcons JavaScript -->
-	<script src="../../resources/dist/js/feather.min.js"></script>
+	<script src=./resources/dist/js/feather.min.js"></script>
     
     <script>
     const fakeCheck1 = document.getElementById('fakeCheck1');
@@ -211,9 +209,9 @@
     const agree = document.getElementById("agree");
 
     function is_checked() {
-  		fakeCheck1.value = "on" ? "Y" : "N";
-  		fakeCheck2.value = "on" ? "Y" : "N";
-  		fakeCheck3.value = "on" ? "Y" : "N";
+  		fakeCheck1.value = "on" ? "Y" : "NULL";
+  		fakeCheck2.value = "on" ? "Y" : "NULL";
+  		fakeCheck3.value = "on" ? "Y" : "NULL";
   	};
   	
   	submitBtn.addEventListener('click', () => {

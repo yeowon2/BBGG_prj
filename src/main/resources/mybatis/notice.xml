@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="notice">
+	<sql id="search">
+		SELECT tbl_notice.* FROM tbl_notice	
+		<where>
+			<if test="search == 1">
+				tbl_notice.notice_no LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>		
+			<if test="search == 2">
+				tbl_notice.notice_title LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>			
+			<if test="search == 3">
+				tbl_notice.notice_content LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>			
+			<if test="search == 4">
+				tbl_notice.admin_id LIKE CONCAT(CONCAT('%', #{keyword}), '%')
+			</if>
+		</where>
+		ORDER BY tbl_notice.notice_no DESC
+	</sql>
+
 	<insert id="insertNotice">
 		INSERT INTO tbl_notice (
 								notice_title,
@@ -21,17 +40,22 @@
 		SELECT subquery.*
 		FROM (SELECT tbl_notice.*, ROW_NUMBER() OVER(ORDER BY regist_date DESC, notice_no DESC) AS rownum
 			FROM tbl_notice) AS subquery
-		LIMIT ${perPage} OFFSET ${startPage}
+		LIMIT ${perPage} OFFSET ${offset}
 	</select>
 	
-	<select id="selectNoticeOne" resultType="NoticeVO">
+	<select id="noticeSelectOne" resultType="NoticeVO">
 		SELECT *
 		FROM tbl_notice
+		WHERE notice_no = #{noticeNo}
 	</select>
 	
-	<select id="countNotice" resultType="Integer">
-		SELECT COUNT(*)
-		FROM tbl_notice
-		WHERE 
+	<select id="viewCount" resultType="Integer">
+		UPDATE tbl_notice
+        SET notice_view_count = notice_view_count + 1
+        WHERE notice_no = #{noticeNo}
+	</select>
+	
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*) FROM (<include refid="search"></include>) as sub
 	</select>
 </mapper>

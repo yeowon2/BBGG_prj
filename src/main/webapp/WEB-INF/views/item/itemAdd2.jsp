@@ -191,8 +191,8 @@ thead tr:nth-child(3) th {
 		                      <div class="col-lg-8 col-md-6 row">
 		                      	<input readonly type="text" name="address" id="sample5_address"  class="form-control col" placeholder="주소">
 		                      	<input type="button" class="btn btn-success col-lg-2 ml-10" onclick="sample5_execDaumPostcode()" value="주소 검색">
-		                      	<input type="text" id="latInput" name="lat" value="">
-		   						 <input type="text" id="lngInput" name="lng" value="">
+		                      	<input type="hidden" id="latInput" name="lat" value="">
+		   						 <input type="hidden" id="lngInput" name="lng" value="">
 		                      </div>	
 	                    </div>
 	                    <div class="form-group row">

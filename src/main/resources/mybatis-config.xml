@@ -21,7 +21,7 @@
  		<typeAlias type="kr.ac.kopo.file.FileVO" alias="FileVO"/> 
  		<typeAlias type="kr.ac.kopo.partner.web.RespVO" alias="RespVO"/> 
  		<typeAlias type="kr.ac.kopo.wish.web.WishVO" alias="WishVO"/> 
- 		<typeAlias type="kr.ac.kopo.admin.web.NoticeVO" alias="NoticeVO"/>
+ 		<typeAlias type="kr.ac.kopo.notice.web.NoticeVO" alias="NoticeVO"/>
  		<typeAlias type="kr.ac.kopo.sublet.web.SubletVO" alias="SubletVO"/>
   	</typeAliases>
   

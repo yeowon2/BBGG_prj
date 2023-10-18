@@ -24,6 +24,13 @@ private String path = "note/send/";
 	
 	@Autowired
 	NoteService service;
+	
+	@GetMapping("/add")
+	@ResponseBody
+	public String add() {
+		
+		return "OK";
+	}
 
 	@GetMapping("/{itemNo}/add")
 	public String add(@PathVariable Long itemNo) {

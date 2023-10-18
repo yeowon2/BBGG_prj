@@ -16,70 +16,93 @@
     <jsp:include page="../nav.jsp"></jsp:include>
    
     <style>
-    	* {
-    		margin: 0;
-    		padding: 0;
-    	}
     	body {
 		    background-color: #DCDCDC;
 		}
     
     	#header-wrap {
+	        position: fixed; /* 헤더를 화면 상단에 고정합니다 */
 	        width: 100%; /* 너비를 100%로 설정하여 화면 가로폭에 맞게 헤더가 나타나도록 합니다 */
 	        z-index: 1000; /* 다른 요소 위에 나타나도록 설정하세요 (필요에 따라 숫자 조정) */
 	    }
     
-	    /* 매물타입,계약조건 선택 */
+    	/* 스타일을 추가하여 검색창과 리스트를 원하는 위치에 배치합니다. */
+	    #search-list-container {
+	        position: absolute;
+	        top: 16%; /* 헤더 높이만큼 아래에 위치하도록 조정 */
+	        right: 0px; /* 오른쪽에 위치하도록 조정 */
+	        /* z-index: 1; */
+	        display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
+	        flex-direction: column; /* 컨테이너 내부의 요소를 세로로 배치하기 위해 flex-direction 사용 */
+	        /* max-height: 84%; */
+	        max-height: calc(100vh - 16%); /* 화면 높이에서 헤더의 높이를 빼서 최대 높이로 설정 */
+	        width: 30%;
+	    }
+    
+	    /* 스타일을 추가하여 검색창을 원하는 위치에 배치합니다. */
 	    #search-container {
-	    	transform: translateX(-50%);
-	    	left: 50%;
-	    	position: absolute;
-	    	display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-	    	height: 6%;
-	    	width: 80%;
-	        background-color: white;
-            margin-top: 5px;
-            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
-            align-items: center; /* 수직 가운데 정렬 */
-	    }
-	    #itemType{
-	    	width: auto;
-	    	height: 80%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
-	    }
-	    #leaseOrMonth{
-	    	width: auto%;
-	    	height: 80%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
-	    }
-		#search-container2 {
-			width: 25%;
-			height: 6%;
-	    	position: absolute;
+	    position: absolute;
 	        background-color: white;
 	        padding: 10px;
 	        border-radius: 5px;
+	        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+	        margin-bottom: 10px; /* 검색 폼과 리스트 사이의 간격을 설정 */
+	        position: relative; /* 부모 컨테이너 기준으로 배치 */
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
-            right: 0;
+	    }
+	
+	    /* 리스트 창 스타일 설정 */
+	    #list-container {
+	        background-color: white;
+	        padding: 10px;
+	        border-radius: 5px;
+	        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+	        overflow-y: auto;
+	    }
+	    
+	    .property-item .media-img-wrap {
+	    	margin: 5px;
+		    width: 25%;
+		    display: flex; 
+		    justify-content: center; 
+		    align-items: center;
+		    /* 아래의 margin-right 속성은 요소 사이의 간격을 설정합니다. */
 		}
-		#itemType {
-			border: solid;
-		}
-		#leaseOrMonth {
-			border: solid;
-		}
-		/* 매물타입선택창 */
-		.itemDiv {
+		.img-fluid{
+			margin: 2px;
 			width: 100%;
 			height: 100%;
-	      	display: none;
-	      	position: absolute;
-	      	background-color: #fff;
-	      	border: 1px solid #ccc;
-	      	padding: 10px;
-	      	z-index: 1;
+			
+		}
+		
+		.property-item .media-body {
+			margin: 5px;
+		    width: 75%;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+		
+		#items {
+			height: 135px;
+		}
+		
+		
+		.email-text {
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
+		    -webkit-box-orient: vertical;
+		}
+		
+		/* 매물타입선택창 */
+		.itemDiv {
+	      display: none;
+	      position: absolute;
+	      background-color: #fff;
+	      border: 1px solid #ccc;
+	      padding: 10px;
+	      z-index: 1;
 	    }
 	    .itemButton {
 	    	border: none;
@@ -87,7 +110,7 @@
 	    	width: 100%;
 	    	text-align: left;
 	    }
-	    /* 리셋버튼 */
+		
 		#reset-btn {
 			width: 15px; 
 			height: 15px; 
@@ -97,70 +120,20 @@
 			margin-top: 5px; 
 		}
 		
-		/* 맵, 리스트 div */
-		#mapNlist{
-			max-height: 100%;
-			display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-		}
-	    /* 리스트 창 스타일 설정 */
-	    #list-container {
-	    	height: 100%;
-	    	float: right;
-	    	margin-right: 5px;
-	    	width: 25%;
-	        background-color: white;
-	        padding: 10px;
-	        border-radius: 5px;
-	        overflow-y: auto;
-	        align-items: center; /* 세로 가운데 정렬 */
-	    }
-	    #property-list {
-	    	height: 750px;
-	    }
-	    .property-item .media-img-wrap {
-	    	margin: 5px;
-		    width: 25%;
-		    display: flex; 
-		    justify-content: center; 
-		    align-items: center;
-		    /* 아래의 margin-right 속성은 요소 사이의 간격을 설정합니다. */
-		}
-		/* 매물 이미지 */
-		.img-fluid{
-			margin: 2px;
-			width: 100%;
-			height: 100%;
-		}
-		/* 매물 이미지 크기 */
-		#items {
-			height: 135px;
-		}
-		/* 매물 설명 */
-		.property-item .media-body {
-			margin: 5px;
-		    width: 75%;
-		    display: inline-block;
-		    vertical-align: middle;
-		}
-		/* 매물 디테일 설명 */
-		.email-text {
-		    overflow: hidden;
-		    text-overflow: ellipsis;
-		    display: -webkit-box;
-		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
-		    -webkit-box-orient: vertical;
-		}
-		
 	    /* 지도 스타일 설정 */
 	    #map {
-	    	float: left;
-	    	width: 75%;
-	    	height: 775px;
+	        position: absolute;
+	        top: 16%; /* 헤더 높이만큼 아래에 위치하도록 조정 */
+	        left: 5px;
+	        width: calc(100% - 30%); /* 검색창과 리스트 창의 너비를 제외한 나머지 공간을 지도가 차지하도록 조정 */
+	        /* height: 84%; */
+	        height: calc(100vh - 16%); /* 화면 높이에서 헤더의 높이를 빼서 최대 높이로 설정 */
+	        z-index: 0; /* 지도를 가장 뒤로 배치 */
 	    }
-	    /* 현재위치버튼 */
-	    #map #currentLocationButton {
+	    
+	    #map button {
             position: absolute;
-            top: 2%;
+            top: 50px;
             right: 20px;
             z-index: 50;
          	border: none;
@@ -171,7 +144,8 @@
 		    align-items: center;
 		    justify-content: center;
         }
-        #map #currentLocationButton img{
+        
+        #map button img{
         	margin: 1px;
 		    width: 100%; /* 이미지의 너비를 100%로 설정하여 버튼에 가득 차게 합니다 */
 		    height: 100%; /* 이미지의 높이를 100%로 설정하여 버튼에 가득 차게 합니다 */
@@ -187,22 +161,28 @@
 	</style>
 </head>
 	<body>
-		<div id="mapNlist">
-			<!-- 지도 -->
-		    <div id="map">
-		    	<div class="email-search" id="search-container">
-			       	<!-- 방종류 -->
-			       	<div id="itemType" name="itemType">
-			       		<button id="showDivButton" class="itemButton"></button>
-			       		<div id="itemTypeDiv" class="itemDiv">
-			       			<p>방 종류를 선택 해주세요.</p>
-			       			<hr>
+		<!-- 지도 -->
+	    <div id="map">
+	    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
+	    </div>
+	   	
+	   	<!-- 검색, 리스트 div -->
+	   	<div class="container mt-5" id="search-list-container" >
+		    <div class="email-search" id="search-container">
+		        <div>
+		        	<!-- 방종류 -->
+		        	<div id="itemType" name="itemType">
+		        		<button id="showDivButton" class="itemButton"></button>
+		        		<div id="itemTypeDiv" class="itemDiv">
+		        			<p>방 종류를 선택 해주세요.</p>
+		        			<hr>
 						    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
 						    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
 						    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
 						    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
-			       		</div>
+		        		</div>
 			        </div>
+			        <br>
 			        <!-- 월-전세 -->
 				    <div id="leaseOrMonth" name="leaseOrMonth">
 			        	<button id="showDivButton2" class="itemButton"></button>
@@ -214,72 +194,69 @@
 			        	</div>
 				    </div>
 				</div>
-		    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
+				<script>
+				    function initializeDropdown(buttonId, divId) {
+						var showDivButton = document.getElementById(buttonId);
+				    	var itemTypeDiv = document.getElementById(divId);
+				
+						// 초기 버튼 텍스트 업데이트
+						updateButtonText();
+				
+						showDivButton.addEventListener("click", function(event) {
+				        event.stopPropagation();
+					        if (itemTypeDiv.style.display === "none" || itemTypeDiv.style.display === "") {
+					          itemTypeDiv.style.display = "block";
+					        } else {
+					          itemTypeDiv.style.display = "none";
+					        }
+						});
+						// 클릭 외의 영역을 클릭하면 드롭다운 닫기
+						window.addEventListener("click", function() {
+				        	itemTypeDiv.style.display = "none";
+				      	});
+				
+				      	// 체크박스 상태 변경 시 텍스트 업데이트
+				      	var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
+				      	checkboxes.forEach(function(checkbox) {
+				        	checkbox.addEventListener("change", function() {
+				          	updateButtonText();
+				        	});
+				      	});
+				
+				      	function updateButtonText() {
+					        var selectedItems = [];
+					        var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
+					        checkedCheckboxes.forEach(function(checkbox) {
+					          selectedItems.push(checkbox.parentElement.innerText);
+					        });
+					
+					        showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "선택한 항목이 없습니다.";
+				      	}
+				    }
+				    // 방 종류 초기화
+				    initializeDropdown("showDivButton", "itemTypeDiv");
+				    // 월-전세 초기화
+				    initializeDropdown("showDivButton2", "leaseOrMonthDiv");
+				</script>
+		        <br>
+		        <div class="input-group">
+		            
+		            <img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
+		            
+		           	<!-- 매물 검색 -->
+		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
+		        	
+		        	<!-- 초기화 버튼 추가 -->
+        			<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
+		        </div>
 		    </div>
+		    
 		    <!-- 매물 리스트 -->
 			<div class="emailapp-emails-list" id="list-container">
-				<div id="search-container2">
-				    <!-- 검색창 -->
-				    <div class="input-group" id="searchDIV">
-			           	<img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
-			          	<!-- 매물 검색 -->
-			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
-			       		<!-- 초기화 버튼 추가 -->
-	     				<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
-			       </div>
-				</div>
 			    <div class="nicescroll-bar" id="property-list">
 			    </div>
 			</div>
 		</div>
-		
-		<!-- 매물타입, 계약조건 diV 체크박스 -->
-		<script>
-		    function initializeDropdown(buttonId, divId) {
-				var showDivButton = document.getElementById(buttonId);
-		    	var itemTypeDiv = document.getElementById(divId);
-		
-				// 초기 버튼 텍스트 업데이트
-				updateButtonText();
-		
-				showDivButton.addEventListener("click", function(event) {
-		        event.stopPropagation();
-			        if (itemTypeDiv.style.display === "none" || itemTypeDiv.style.display === "") {
-			          itemTypeDiv.style.display = "block";
-			        } else {
-			          itemTypeDiv.style.display = "none";
-			        }
-				});
-				// 클릭 외의 영역을 클릭하면 드롭다운 닫기
-				window.addEventListener("click", function() {
-		        	itemTypeDiv.style.display = "none";
-		      	});
-		
-		      	// 체크박스 상태 변경 시 텍스트 업데이트
-		      	var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
-		      	checkboxes.forEach(function(checkbox) {
-		        	checkbox.addEventListener("change", function() {
-		          	updateButtonText();
-		        	});
-		      	});
-		
-		      	function updateButtonText() {
-			        var selectedItems = [];
-			        var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
-			        checkedCheckboxes.forEach(function(checkbox) {
-			          selectedItems.push(checkbox.parentElement.innerText);
-			        });
-			
-			        showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "선택한 항목이 없습니다.";
-		      	}
-		    }
-		    // 방 종류 초기화
-		    initializeDropdown("showDivButton", "itemTypeDiv");
-		    // 월-전세 초기화
-		    initializeDropdown("showDivButton2", "leaseOrMonthDiv");
-		</script>
-		
-		<!-- 지도 API 스크립트 -->
 		<script>
 		    var map; // 지도 객체를 저장할 변수
 		    var clusterer; // 마커 클러스터러 객체

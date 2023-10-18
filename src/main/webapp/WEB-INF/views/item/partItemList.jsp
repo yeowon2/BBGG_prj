@@ -44,7 +44,7 @@
                   <tr>
                   	<td>${item.itemNo}</td>
                     <td class="image">
-                      <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/resources/assets/img/property/house-1.jpg" class="img-fluid"></a>
+                      <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/upload/${item.fileVO.savedName}" class="img-fluid"></a>
                     </td>
                     <td>
                       <div class="inner">
@@ -74,7 +74,7 @@
                       </div>
                     </td>
                     <td><fmt:formatDate pattern="yyyy-MM-dd" value="${item.registDate}"/></td>
-                    <td>421</td>
+                    <td>${item.viewCount}</td>
                     <td class="actions">
                     	<div class="row">
                            <div class="col-4 mr-20">

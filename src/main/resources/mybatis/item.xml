@@ -42,6 +42,7 @@
     <result property="wishCount" column="wish_count"/>
     <result property="wishItemNo" column="wish_item_no"/>
     <result property="wishUserNo" column="wish_user_no"/>
+    <result property="viewCount" column="view_count"/>
 	
 	<collection property="fileVOList" column="item_file_no" select="selectFile" javaType="ArrayList" ofType="FileVO" autoMapping="true">
 		<id property="fileNo" column="file_no"/>
@@ -132,7 +133,8 @@
 		    tm.deposit_fee, 
 		    ti.item_floor,
 		    ti.manage_fee,
-		    ti.memo_short
+		    ti.memo_short,
+		    ti.view_count
 		FROM tbl_item ti
 		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
 		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'

@@ -28,56 +28,85 @@
 	        width: 100%; /* 너비를 100%로 설정하여 화면 가로폭에 맞게 헤더가 나타나도록 합니다 */
 	        z-index: 1000; /* 다른 요소 위에 나타나도록 설정하세요 (필요에 따라 숫자 조정) */
 	    }
-    
-	    /* 매물타입,계약조건 선택 */
+    	
+    	/* 맵, 리스트, 검색 div */
+		#mapNlist{
+			position: relative;
+			display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
+			border: 1px solid #226929;
+		}
+	    /* 매물타입,계약조건 선택, 검색창 */
 	    #search-container {
-	    	transform: translateX(-50%);
-	    	left: 50%;
+	    	top: 2%;
+	    	right: 26%;
 	    	position: absolute;
 	    	display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-	    	height: 6%;
-	    	width: 80%;
+	    	width: 18%;
 	        background-color: white;
-            margin-top: 5px;
+            flex-direction: column;
+            justify-content: center; /* 수직 가운데 정렬 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
-            align-items: center; /* 수직 가운데 정렬 */
 	    }
-	    #itemType{
-	    	width: auto;
-	    	height: 80%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
-	    }
-	    #leaseOrMonth{
-	    	width: auto%;
-	    	height: 80%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
-	    }
-		#search-container2 {
-			width: 25%;
-			height: 6%;
-	    	position: absolute;
+	    #search-container2 {	/* 검색칸 */
+			width: auto;
+			height: 40%;
 	        background-color: white;
-	        padding: 10px;
-	        border-radius: 5px;
+	        padding: 8px;
+	        border-radius: 4px;
+	        border: 1px;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
             right: 0;
 		}
+		#searchDIV {
+			margin: 2px;
+			border-radius: 4px;
+	        border: 1px solid #226929;
+	        display: flex; align-items: center;
+		}
+		#typeLoM {
+			position: relative;
+			align-items: center; /* 수직 가운데 정렬 */
+			width: 100%;
+			padding: 8px;
+			display: flex;
+		}
+	    #itemType{			/* 매물타입선택칸 */
+	    	width: auto;
+	    	height: 100%;
+	    	margin-left: 1%;
+	    	margin-right: 1%; 
+	    }
+	    #leaseOrMonth{		/* 계약조건선택칸 */
+	    	width: auto;
+	    	height: 100%;
+	    	margin-left: 1%;
+	    	margin-right: 1%; 
+	    }
 		#itemType {
-			border: solid;
+			padding: 3px;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: 1px solid #226929;
+			border-radius: 2px;
 		}
 		#leaseOrMonth {
-			border: solid;
+			padding: 3px;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: 1px solid #226929;
+			border-radius: 2px;
 		}
 		/* 매물타입선택창 */
 		.itemDiv {
-			width: 100%;
-			height: 100%;
+			width: 250px;
+			height: 100px;
 	      	display: none;
 	      	position: absolute;
 	      	background-color: #fff;
-	      	border: 1px solid #ccc;
+	      	border: 1px solid #226929;
+	      	border-radius: 2px;
 	      	padding: 10px;
 	      	z-index: 1;
 	    }
@@ -97,11 +126,6 @@
 			margin-top: 5px; 
 		}
 		
-		/* 맵, 리스트 div */
-		#mapNlist{
-			max-height: 100%;
-			display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-		}
 	    /* 리스트 창 스타일 설정 */
 	    #list-container {
 	    	height: 100%;
@@ -115,11 +139,12 @@
 	        align-items: center; /* 세로 가운데 정렬 */
 	    }
 	    #property-list {
-	    	height: 750px;
+	    	height: 805px;
+	    	
 	    }
 	    .property-item .media-img-wrap {
 	    	margin: 5px;
-		    width: 25%;
+		    width: 28%;
 		    display: flex; 
 		    justify-content: center; 
 		    align-items: center;
@@ -131,7 +156,7 @@
 			width: 100%;
 			height: 100%;
 		}
-		/* 매물 이미지 크기 */
+		/* 매물 리스트 목록 크기 */
 		#items {
 			height: 135px;
 		}
@@ -155,12 +180,13 @@
 	    #map {
 	    	float: left;
 	    	width: 75%;
-	    	height: 775px;
+	    	height: auto;
+	    	border: 1px solid #226929;
 	    }
 	    /* 현재위치버튼 */
 	    #map #currentLocationButton {
             position: absolute;
-            top: 2%;
+            top: 50%;
             right: 20px;
             z-index: 50;
          	border: none;
@@ -190,8 +216,21 @@
 		<div id="mapNlist">
 			<!-- 지도 -->
 		    <div id="map">
-		    	<div class="email-search" id="search-container">
-			       	<!-- 방종류 -->
+		    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
+		    </div>
+		    <div class="email-search" id="search-container">
+			    <div id="search-container2">
+				    <!-- 검색창 -->
+				    <div class="input-group" id="searchDIV">
+		           		<img  src="../resources/comm/search2.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
+			          	<!-- 매물 검색 -->
+			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
+			       		<!-- 초기화 버튼 추가 -->
+	     				<button type="button" id="resetSearch" style="border: none; background: #fff; margin: 8px;" ><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
+			       </div>
+				</div>
+		       	<!-- 방종류 -->
+		       	<div id="typeLoM">
 			       	<div id="itemType" name="itemType">
 			       		<button id="showDivButton" class="itemButton"></button>
 			       		<div id="itemTypeDiv" class="itemDiv">
@@ -213,21 +252,12 @@
 							<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
 			        	</div>
 				    </div>
-				</div>
-		    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
-		    </div>
+			    </div>
+			</div>
 		    <!-- 매물 리스트 -->
 			<div class="emailapp-emails-list" id="list-container">
-				<div id="search-container2">
-				    <!-- 검색창 -->
-				    <div class="input-group" id="searchDIV">
-			           	<img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
-			          	<!-- 매물 검색 -->
-			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
-			       		<!-- 초기화 버튼 추가 -->
-	     				<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
-			       </div>
-				</div>
+				<h6 style="text-align: center;">지역 목록 </h6>
+				<hr>
 			    <div class="nicescroll-bar" id="property-list">
 			    </div>
 			</div>

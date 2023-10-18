@@ -22,17 +22,19 @@ public class NoticeController {
 	@Autowired 
 	NoticeService noticeService;
 	
-//	@GetMapping("/notice")
-//	String notice() {
-//		return "/admin/notice";
-//	}
-	
-	@GetMapping("/admin/notice")
-	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
+	@GetMapping("/notice")
+	String notice(NoticeVO noticeVO, Model model, Pager pager) {
 		List<NoticeVO> noticeList = noticeService.noticeListAll(pager);
 		model.addAttribute("noticeList", noticeList);
 		return "/notice/noticeList";
 	}
+	
+//	@GetMapping("/admin/notice")
+//	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
+//		List<NoticeVO> noticeList = noticeService.noticeListAll(pager);
+//		model.addAttribute("noticeList", noticeList);
+//		return "/notice/noticeList";
+//	}
 	
 	@GetMapping("/admin/noticeAdd")
 	public String noticeAdd(NoticeVO noticeVO, HttpSession session) {

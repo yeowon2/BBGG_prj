@@ -317,6 +317,22 @@ public class ItemVO {
 	public Long getDepositFee() {
 		return depositFee;
 	}
+	
+	/* 보증금 단위 바꾸기 */
+	public int getDepositFeeBillion() {
+		if (depositFee != null) {
+	        return depositFee.intValue() / 10000;
+	    } else {
+	        return 0; // 또는 다른 기본값
+	    }
+	}
+	public int getDepositFeeTenMillion() {
+		if (depositFee != null) {
+	        return depositFee.intValue() % 10000;
+	    } else {
+	        return 0; // 또는 다른 기본값
+	    }
+	}
 
 	public void setDepositFee(Long depositFee) {
 		this.depositFee = depositFee;

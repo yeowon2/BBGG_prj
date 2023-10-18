@@ -93,6 +93,13 @@ public class ItemController {
 			model.addAttribute("LB",leaseBillion);
 			model.addAttribute("LTM",leaseTenMillion);
 		}
+		
+		if(itemVO.getDepositFee() >= 10000) {
+			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+			model.addAttribute("DFB",depositFeeBillion);
+			model.addAttribute("DFTM",depositFeeTenMillion);
+		}
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
 		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);
@@ -109,7 +116,7 @@ public class ItemController {
 	//매물 등록폼 이동
 	@GetMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo) {
-		return path + "itemAdd2";
+ㄴ		return path + "itemAdd3";
 	}
 	
 	//매물 등록 

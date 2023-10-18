@@ -150,8 +150,7 @@
 				                                                        <div class="carousel-inner">
 				                                                        		<div class="carousel-item active">
 					                                                                <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
-					                                                                	<pre>
-					                                                                		<c:out value="${fakeList}" default="값을 찾을 수 없습니다." />
+					                                                                	<pre name="model-content" id="modal-content" value="">
 					                                                                	</pre>                                
 					                                                                </div>
 					                                                            </div>
@@ -254,6 +253,14 @@
     <!-- Init JavaScript -->
     <script src="/resources/dist/js/init.js"></script>
     
-<%-- <jsp:include page="../footer.jsp"></jsp:include>  --%>
+    <script>
+    	$(document).on("click", ".btn", function() {
+    		var modalContent = $(this).data('#modal-content');
+    		$(".modal-body #modal-content").val(modalContent);
+    	})
+    </script>
+    
+<jsp:include page="../footer.jsp"></jsp:include>
+<jsp:include page="../js.jsp"></jsp:include>
 </body>
 </html>

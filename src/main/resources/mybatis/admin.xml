@@ -158,4 +158,6 @@
 			FROM tbl_notice) AS subquery
 		LIMIT ${perPage} OFFSET ${startPage}
 	</select> -->
+	
+
 </mapper>

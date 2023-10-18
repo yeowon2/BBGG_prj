@@ -69,20 +69,20 @@ public class Pager {
 	}
 	// 페이지 리스트
 	public List<Integer> getList() {
-		List<Integer> psgeList = new ArrayList<Integer>();
+		List<Integer> pageList = new ArrayList<Integer>();
 		
 		startPage = (((page - 1) / perGroup) + 0) * perGroup + 1;	//첫페이지 설정
 		
 		for(int i = startPage; i < (startPage + perGroup) && i <= getLast(); i++) {
-			psgeList.add(i);
+			pageList.add(i);
 		}
 		
 		// 페이지(게시물)가 없다면 포문이 작동하지 않기에 1값을 넣어준다
-		if(psgeList.isEmpty()) {
-			psgeList.add(1);
+		if(pageList.isEmpty()) {
+			pageList.add(1);
 		}
 		
-		return psgeList;
+		return pageList;
 	}
 	
 	public int getSearch() {

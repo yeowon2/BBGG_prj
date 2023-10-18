@@ -54,7 +54,6 @@
                                                     </c:forEach>
                                                     <tr>
                                                         <th colspan="4" style="text-align: center;"><strong>🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠</strong></th>
-
                                                     </tr>
                                                 </tbody>          
                                                 <tfoot>

@@ -32,4 +32,5 @@ public interface AdminDao {
 	
 	List<NoticeVO> noticeListAll(Pager pager);
 	void addNotice(NoticeVO noticeVO);
+	NoticeVO noticeListOne(Long noticeNo);
 }

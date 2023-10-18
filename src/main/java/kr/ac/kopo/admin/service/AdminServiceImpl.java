@@ -109,5 +109,10 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.addNotice(noticeVO);
 	}
 
+	@Override
+	public NoticeVO noticeListOne(Long noticeNo) {
+		return adminDao.noticeListOne(noticeNo);
+	}
+
 	
 }

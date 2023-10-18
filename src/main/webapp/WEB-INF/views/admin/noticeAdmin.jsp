@@ -33,24 +33,20 @@
                             <div class="col-sm">
                                 <div class="table-wrap">
                                     <div class="table-responsive">
-                                        <table id="edit_datable_1" class="table  table-bordered table-striped mb-0">
+                                        <table id="edit_datable_1" class="table table-bordered table-striped mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>번호</th>
                                                     <th>제목</th>
+                                                    <th>${noticeVO.noticeTitle}</th>
                                                     <th>등록일</th>
-                                                    <th>조회수</th>
+                                                    <th><fmt:formatDate value="${noticeVO.registDate}" pattern="yyyy-MM-dd"/></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            	<c:forEach var="item" items="${noticeList}">
                                                 <tr>
-                                                    <td>${item.noticeNo}</td>
-                                                    <td><a href="/admin/notice${item.noticeNo}">${item.noticeTitle}</a></td>
-                                                    <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
-                                                    <td></td>
+                                                    <td colspan="1">내용</td>
+                                                    <td colspan="3">${noticeVO.noticeContent}</td>
                                                 </tr>
-                                                </c:forEach>
                                             </tbody>                                                      
                                         </table>
                                     </div>

@@ -107,4 +107,9 @@ public class AdminDaoImpl implements AdminDao {
 		sql.insert("notice.insertNotice", noticeVO);
 	}
 
+	@Override
+	public NoticeVO noticeListOne(Long noticeNo) {
+		return sql.selectOne("notice.noticeSelectOne", noticeNo);
+	}
+
 }

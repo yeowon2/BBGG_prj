@@ -28,4 +28,6 @@ public interface AdminService {
 
 	List<NoticeVO> noticeListAll(Pager pager);
 	void addNotice(NoticeVO noticeVO);
+	
+	NoticeVO noticeListOne(Long noticeNo);
 }

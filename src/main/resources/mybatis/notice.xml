@@ -24,14 +24,15 @@
 		LIMIT ${perPage} OFFSET ${startPage}
 	</select>
 	
-	<select id="selectNoticeOne" resultType="NoticeVO">
+	<select id="noticeSelectOne" resultType="NoticeVO">
 		SELECT *
 		FROM tbl_notice
+		WHERE notice_no = #{noticeNo}
 	</select>
 	
 	<select id="viewCount" resultType="Integer">
-		update tbl_notice
-        set notice_view_count = notice_view_count + 1
-        where notice_no = #{noticeNo}
+		UPDATE tbl_notice
+        SET notice_view_count = notice_view_count + 1
+        WHERE notice_no = #{noticeNo}
 	</select>
 </mapper>

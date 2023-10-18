@@ -100,7 +100,6 @@ public class FakeController {
 			
 			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
 			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1"));
-			//System.out.println(request.getParameter("fakeCheck1"));
 			fakeVO.setFakeCheck2(request.getParameter("fakeCheck2"));
 			fakeVO.setFakeCheck3(request.getParameter("fakeCheck3"));
 			fakeVO.setFakeContent(request.getParameter("fakeContent"));
@@ -112,13 +111,13 @@ public class FakeController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}  
-			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId, model);
+			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemList"); 
 			return "/alert";			
 			
-		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file.isEmpty()) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
+		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file.isEmpty()) {
 			
 			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
 			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1")); 

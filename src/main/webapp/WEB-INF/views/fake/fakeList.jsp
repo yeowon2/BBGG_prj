@@ -106,7 +106,7 @@
 		                                                    <td colspan="2">${item.itemNo}</td>
 		                                                    <td colspan="7">
 		                                                    	<!-- Button trigger modal -->
-							        							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+							        							<button type="button" name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        								${item.fakeContent}
 		                                                    	</button>
 		                                                    </td>
@@ -148,15 +148,15 @@
 				                                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				                                                        </ol>
 				                                                        <div class="carousel-inner">
-				                                                        		<div class="carousel-item active">
-					                                                                <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
-					                                                                	<pre name="model-content" id="modal-content" value="">
-					                                                                	</pre>                                
-					                                                                </div>
+				                                                        	<div class="carousel-item active">
+					                                                            <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
+					                                                                <pre name="model-content" id="modal-content">
+					                                                                </pre>                                
 					                                                            </div>
-					                                                            <div class="carousel-item">
-					                                                                <img class="d-block w-100" src="C:\Temp\folder\fake_3e1c06be.png" alt="첨부파일">
-					                                                            </div>
+					                                                        </div>
+					                                                        <div class="carousel-item">
+					                                                            <img class="d-block w-100" src="C:\Temp\folder\fake_3e1c06be.png" alt="첨부파일">
+					                                                        </div>
 				                                                        </div>
 				                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -254,10 +254,13 @@
     <script src="/resources/dist/js/init.js"></script>
     
     <script>
-    	$(document).on("click", ".btn", function() {
-    		var modalContent = $(this).data('#modal-content');
-    		$(".modal-body #modal-content").val(modalContent);
-    	})
+    	const modalBtn = document.querySelector('modalBtn');
+    	
+    	const onClick = function(){
+    		pre.textContent = "안녕";
+    	}
+    	
+    	modalBtn.addEventListener('click', onClick);
     </script>
     
 <jsp:include page="../footer.jsp"></jsp:include>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,15 @@
 <title>BBGG 공지</title>
 </head>
 <body>
-<jsp:include page="../navAdmin.jsp"></jsp:include>
+
+<c:choose>
+	<c:when test="${not empty loginVO and fn:contains(loginVO.userId, 'admin')}">
+		<jsp:include page="../navAdmin.jsp"></jsp:include>
+	</c:when>
+	<c:otherwise>
+		<jsp:include page="../nav.jsp"></jsp:include>
+	</c:otherwise>
+</c:choose>
 
 	<!-- Main Content -->
 	<div class="hk-pg-wrapper">
@@ -32,10 +41,18 @@
 	                            <h5 class="hk-sec-title">공지사항</h5>
 	                            <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
 	                        </div>
-	                        <div>	                        
-                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">수정</button>                     
-                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
-							</div>
+	                        
+	                        <c:choose>
+								<c:when test="${not empty loginVO and fn:contains(loginVO.userId, 'admin')}">
+									<div>	                        
+		                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">수정</button>                     
+		                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
+									</div>
+								</c:when>
+								<c:otherwise>
+								</c:otherwise>
+							</c:choose>	                        
+	                        
 						</div>   
                         <div class="row">
                             <div class="col-sm">

@@ -89,7 +89,7 @@
                   고객센터
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="about.html">About Us</a>
+                  <a class="dropdown-item" href="/notice">공지사항</a>
                  
                 </div>
               </li>

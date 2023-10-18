@@ -22,13 +22,8 @@ public class NoticeController {
 	@Autowired 
 	NoticeService noticeService;
 	
-//	@GetMapping("/notice")
-//	String notice() {
-//		return "/admin/notice";
-//	}
-	
-	@GetMapping("/admin/notice")
-	public String noticeList(NoticeVO noticeVO, Model model, Pager pager) {
+	@GetMapping("/notice")
+	String notice(NoticeVO noticeVO, Model model, Pager pager) {
 		List<NoticeVO> noticeList = noticeService.noticeListAll(pager);
 		model.addAttribute("noticeList", noticeList);
 		return "/notice/noticeList";
@@ -65,7 +60,7 @@ public class NoticeController {
 
 		noticeService.addNotice(noticeVO);
 		// 글 작성 완료 알럿 @@@@@@@@@@
-		return "redirect:/admin/notice";
+		return "redirect:/notice";
 	}
 	
 	@GetMapping("/admin/notice{noticeNo}")
@@ -74,7 +69,7 @@ public class NoticeController {
 		
 		model.addAttribute("noticeVO", noticeVO);
 //		model.addAttribute("noticeTitle", noticeVO.getNoticeTitle());
-		return "/notice/noticeAdmin";
+		return "/notice/notice";
 	}
 
 	

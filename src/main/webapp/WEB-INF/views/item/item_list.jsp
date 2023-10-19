@@ -40,8 +40,8 @@
 	    	top: 2%;
 	    	right: 26%;
 	    	position: absolute;
-	    	display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-	    	width: 18%;
+	    	flex-direction: column;
+	    	width: 20%;
 	        background-color: white;
             flex-direction: column;
             justify-content: center; /* 수직 가운데 정렬 */
@@ -51,7 +51,7 @@
 	    }
 	    #search-container2 {	/* 검색칸 */
 			width: auto;
-			height: 40%;
+			height: 30%;
 	        background-color: white;
 	        padding: 8px;
 	        border-radius: 4px;
@@ -61,6 +61,7 @@
 		}
 		#searchDIV {
 			margin: 2px;
+			height: auto;
 			border-radius: 4px;
 	        border: 1px solid #226929;
 	        display: flex; align-items: center;
@@ -72,13 +73,7 @@
 			padding: 8px;
 			display: flex;
 		}
-	    #itemType{			/* 매물타입선택칸 */
-	    	width: auto;
-	    	height: 100%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
-	    }
-	    #leaseOrMonth{		/* 계약조건선택칸 */
+	    .itemLoMdetail{			/* 매물타입선택, 계약조건, 상제옵션 */
 	    	width: auto;
 	    	height: 100%;
 	    	margin-left: 1%;
@@ -100,6 +95,8 @@
 		}
 		/* 매물타입선택창 */
 		.itemDiv {
+			position: static;
+			flex-direction: column;
 			width: 250px;
 			height: 100px;
 	      	display: none;
@@ -135,10 +132,11 @@
 	        background-color: white;
 	        padding: 10px;
 	        border-radius: 5px;
-	        overflow-y: auto;
+	        
 	        align-items: center; /* 세로 가운데 정렬 */
 	    }
 	    #property-list {
+	    	overflow-y: auto;
 	    	height: 805px;
 	    	
 	    }
@@ -231,32 +229,43 @@
 				</div>
 		       	<!-- 방종류 -->
 		       	<div id="typeLoM">
-			       	<div id="itemType" name="itemType">
+			       	<div id="itemType" class="itemLoMdetail">
 			       		<button id="showDivButton" class="itemButton"></button>
-			       		<div id="itemTypeDiv" class="itemDiv">
-			       			<p>방 종류를 선택 해주세요.</p>
-			       			<hr>
-						    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
-						    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
-						    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
-						    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
-			       		</div>
 			        </div>
 			        <!-- 월-전세 -->
-				    <div id="leaseOrMonth" name="leaseOrMonth">
+				    <div id="leaseOrMonth" class="itemLoMdetail">
 			        	<button id="showDivButton2" class="itemButton"></button>
-			        	<div id=leaseOrMonthDiv class="itemDiv">
-			        		<p>계약 조건을 선택 해주세요.</p>
-			        		<hr>
-							<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
-							<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
-			        	</div>
+				    </div>
+				    <div id="detailOption" class="itemLoMdetail">
+				    	<button id="showDivButton3" class="itemButton"></button>
 				    </div>
 			    </div>
+			    <!-- 버튼 누르면 나타나는 div -->
+				<div id="itemTypeDiv" class="itemDiv">
+	       			<p>방 종류</p>
+	       			<hr>
+				    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
+				    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
+				    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
+				    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
+	       		</div>
+	       		<div id=leaseOrMonthDiv class="itemDiv">
+	        		<p>계약 조건</p>
+	        		<hr>
+					<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
+					<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
+	        	</div>
+	       		<div id=detailOptionDiv class="itemDiv">
+	        		<p>상세 옵션</p>
+	        		<hr>
+					<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
+					<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
+	        	</div>
 			</div>
+			
 		    <!-- 매물 리스트 -->
 			<div class="emailapp-emails-list" id="list-container">
-				<h6 style="text-align: center;">지역 목록 </h6>
+				<h6 style="text-align: center;" id="h6c"></h6>
 				<hr>
 			    <div class="nicescroll-bar" id="property-list">
 			    </div>
@@ -551,6 +560,7 @@
 		            } else if (item.itemType == 'F') {
 		                emailSubject3.find('p').text("오피스텔   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
 		            }
+		            $("list-container").append("<p>" + item.langs + "</p>");
 		
 		            mediaBody.append(emailSubject1);
 		            mediaBody.append(emailSubject2);
@@ -585,6 +595,28 @@
 		            propertyList.append(propertyItem);
 		            propertyList.append(hr);
 		        });
+		        
+		     	// 필터된 데이터 수를 세는 함수
+		        function countFilteredData() {
+		            var bounds = map.getBounds();
+		            var count = filteredData.reduce(function (total, item) {
+		                var latLng = new kakao.maps.LatLng(item.lat, item.lng);
+		                if (bounds.contain(latLng)) {
+		                    return total + 1;
+		                }
+		                return total;
+		            }, 0);
+
+		            return count;
+		        }
+		        // h6 태그 업데이트 함수
+		        function updateH6Counter() {
+		            var count = countFilteredData();
+		            var h6 = $("#list-container #h6c");
+		            h6.text("지역 목록 ( " + count + "개 )"); // "지역 목록" 텍스트와 개수 추가
+		        }
+		        // 초기 호출
+		        updateH6Counter();
 		    }
 		</script>
 

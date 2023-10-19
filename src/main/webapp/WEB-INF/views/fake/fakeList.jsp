@@ -149,8 +149,31 @@
 				                                                        </ol>
 				                                                        <div class="carousel-inner">
 				                                                        	<div class="carousel-item active">
-					                                                            <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
-					                                                                <pre name="model-content" id="modal-content"></pre>                                
+					                                                            <div class="d-block w-100" alt="신고내용">
+					                                                                <p name="model-content" id="modal-content">
+																						<div class="hk-pg-wrapper">	
+																					        <div class="container">
+																					            <div class="row">
+																					                <div class="col-xl-12">
+																					                    <section class="hk-sec-wrapper">
+																					                        <div>
+																						                        <div>
+																						                            <h5 class="hk-sec-title">허위 매물 신고 내역</h5>
+																						                            <p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
+																						                            <p> 신고내용 : <c:out value="" /> </p>
+																						                        </div>
+																												<div>	                        
+																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">보류</button>                     
+																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
+																												</div>
+																												<div>
+																											</div>   
+																					                    </section>
+																					                </div>
+																					            </div>
+																					        </div>	
+																					    </div>    
+					                                                                </p>                                
 					                                                            </div>
 					                                                        </div>
 					                                                        <div class="carousel-item">
@@ -186,8 +209,7 @@
 															</ul>
 														</td>
 													</tr>
-												</tfoot>
-	                                            
+												</tfoot>	                                            
 	                                        </table>
 	                                    </div>
 	                                </div>

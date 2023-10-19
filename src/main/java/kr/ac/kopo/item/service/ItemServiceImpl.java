@@ -116,6 +116,28 @@ public class ItemServiceImpl implements ItemService {
 		
 		return itemVO;
 	}
+	
+	@Override
+	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
+		
+		//해당 매물의 모든 사진 리스트를 반환
+		List<FileVO> fileVOList = dao.selectFile(itemNo);
+		
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+		paramMap.put("itemNo", itemNo);
+		paramMap.put("userNo", loginUserNo);
+		ItemVO itemVO = dao.itemDetail(paramMap);
+		 
+		//조회수 update
+		int viewCount = dao.viewCount(itemNo);
+		
+		//itemVO에 조회수와 file리스트를 setting
+		itemVO.setViewCount(viewCount);
+		itemVO.setFileVOList(fileVOList);
+		 
+		 
+		 return itemVO;
+	}
 
 	@Override
 	public String lomSelect(Long itemNo) {
@@ -146,13 +168,7 @@ public class ItemServiceImpl implements ItemService {
 		return selectPopularList;
 	}
 
-	@Override
-	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
-		Map<String, Long> paramMap = new HashMap<String, Long>();
-		paramMap.put("itemNo", itemNo);
-		paramMap.put("userNo", loginUserNo);
-		return dao.itemDetail(paramMap);
-	}
+
 
 	
 }

@@ -150,7 +150,7 @@ public class ItemDaoImpl implements ItemDao {
 	
 	@Override
 	public ItemVO itemDetail(Map<String, Long> paramMap) {
-		return sql.selectOne("item.itemDetail", paramMap);
+		return sql.selectOne("item.itemDetailWish", paramMap);
 	}
 
 	

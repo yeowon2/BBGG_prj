@@ -224,16 +224,48 @@
 	       COALESCE(l.lease_price, m.month_price) AS price,
 	       m.deposit_fee,
 	       i.item_size_area
-	      <!--  <if test="userNo != null and userNo != 0">
-	       w.user_no,
-	       w.item_no
-			</if> -->
+	  
 	FROM tbl_item i
 	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
 	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
-	<!-- <if test="userNo != null and userNo != 0">
-		LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no = #{userNo}
-	</if> -->
+	WHERE i.use_at In ('Y', 'C')
+		AND i.item_no = #{itemNo}
+	</select>
+	
+		<select id="itemDetailWish" resultMap="ItemMap">
+		SELECT 
+		   i.item_no,
+	       i.partner_no,
+	       i.item_type,
+	       i.address,
+	       i.dong,
+	       i.ho,
+	       CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
+	       i.item_size,
+	       i.building_floor,
+	       i.item_floor,
+	       i.item_count,
+	       i.bath_at,
+	       i.elevator_at,
+	       i.parking_at,
+	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
+	       i.memo_short,
+	       i.memo_detail,
+	       i.regist_date,
+	       i.update_date,
+	       i.use_at,
+	       i.lat,
+	       i.lng,
+	       i.address2,
+	       COALESCE(l.lease_price, m.month_price) AS price,
+	       m.deposit_fee,
+	       i.item_size_area,
+	       w.user_no AS wish_user_no,
+	       w.item_no AS wish_item_no
+	FROM tbl_item i
+	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
+	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
+	LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no = #{userNo}
 	WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
 	</select>

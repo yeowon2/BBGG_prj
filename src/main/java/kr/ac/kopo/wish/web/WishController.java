@@ -23,6 +23,8 @@ public class WishController {
 	
 	@Autowired
 	WishService service;
+	
+	private String path = "wish/";
 
 	@GetMapping("/add/{itemNo}")
 	@ResponseBody
@@ -44,5 +46,11 @@ public class WishController {
 	    }
 	    
 	    return responseData;
+	}
+	
+	@GetMapping("/list")
+	public String list() {
+		
+		return path + "list";
 	}
 }

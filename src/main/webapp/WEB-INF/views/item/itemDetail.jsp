@@ -127,9 +127,8 @@
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
-              <div class="others">
-                <ul class="row">
-				  <li class="col-lg-8">
+              <div class="others row">
+              	<div class="col-lg-6">
 				  	<c:choose>
                        	<c:when test="${itemVO.depositFee == null}">
                        		<c:if test="${itemVO.leasePrice >= 10000 && LTM != 0 && LB != 0}">
@@ -154,9 +153,17 @@
                        		</c:if>
                        	</c:otherwise>
                        </c:choose>
-		  		 	</li>
-				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png"></button></li>
-				</ul>
+                  </div>
+                  <div class="col-lg-6">
+				  	<button style="display:inline-block;" type="button" class="btn" id="wishBtn">
+				  		<c:if test="${itemVO.wishItemNo == null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png">
+				  		</c:if>
+				  		<c:if test="${itemVO.wishItemNo != null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png">
+				  		</c:if>
+			  		</button>
+              		</div>
               </div>
             </div>
           </div>
@@ -384,14 +391,15 @@
 						<div class="partner_button">
 							<div class="button_guide">
 								<c:if test="${loginVO == null}">
-						            <a href="javascript:void(0)" class="email-compose text-center button_title" >
+									 <a href="javascript:void(0)" class="login-checked email-compose text-center button_title" >
 						                쉽고 빠른 거래를 위한 
 						                <br>
 						                <span class="button_point">문의하기</span>
 						            </a>
+						            
 								</c:if>
 								<c:if test="${loginVO != null}">
-						            <a href="javascript:void(0)" class="login-checked email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
+									<a href="javascript:void(0)" class="email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
 						                쉽고 빠른 거래를 위한 
 						                <br>
 						                <span class="button_point">문의하기</span>
@@ -401,7 +409,7 @@
 							        var emailComposeLinks = document.querySelectorAll('.email-compose');
 							        emailComposeLinks.forEach(function(link) {
 							            link.onclick = function(e) {
-							                if (!link.classList.contains('login-checked')) {
+							                if (link.classList.contains('login-checked')) {
 							                    e.preventDefault();
 							                    alert("로그인이 필요합니다");
 							                    window.location.href = '/login'; // 경로 수정 필요
@@ -660,7 +668,7 @@
 </script>
 
 <script>
-/* var wishBtn = $('#wishBtn');
+ var wishBtn = $('#wishBtn');
 var itemNo = $('#item-no').text();
 
 wishBtn.on('click', function() {
@@ -672,10 +680,17 @@ wishBtn.on('click', function() {
    }).then(response => response.json())
    .then(data => { 
    		alert(data.message);
+   		if(data.message == '로그인이 필요합니다') {
+   			window.location.href('/login');
+   		}
    		
    		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    }).catch(error => console.log(error)) 
-}); */
+}); 
+
+$('#noteBtn').on('click', function() {
+	alert("쪽지가 성공적으로 발송되었습니다.")
+})
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

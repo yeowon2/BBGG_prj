@@ -79,25 +79,31 @@ public class ItemController {
 	@GetMapping("/itemDetail/{itemNo}")
 	public String itemDetail(@PathVariable Long itemNo, Model model, @SessionAttribute(name="loginVO", required = false) UserVO loginVO) {
 		ItemVO itemVO = new ItemVO();
-		/*if(loginVO != null) {
+		//만약에 로그인 정보가 있다면 로그인 user의 관심 목록에 해당 item이 있는지 확인 
+		if(loginVO != null) {
 			Long loginUserNo = loginVO.getUserNo();
 			itemVO = service.itemDetail(itemNo, loginUserNo);
-		} else  {*/
+		} else  {
 			itemVO = service.itemDetail(itemNo);
-//		}
-//		if(itemVO.getLeasePrice() >= 10000) {
-//			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
-//			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
-//			model.addAttribute("LB",leaseBillion);
-//			model.addAttribute("LTM",leaseTenMillion);
-//		}
-//		
-//		if(itemVO.getDepositFee() >= 10000) {
-//			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
-//			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
-//			model.addAttribute("DFB",depositFeeBillion);
-//			model.addAttribute("DFTM",depositFeeTenMillion);
-//		}
+		}
+		
+		if(itemVO.getLeasePrice() != null) {
+			if(itemVO.getLeasePrice() >= 10000) {
+				int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
+				int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
+				model.addAttribute("LB",leaseBillion);
+				model.addAttribute("LTM",leaseTenMillion);
+			}
+		}
+		if(itemVO.getDepositFee() != null) {
+			if(itemVO.getDepositFee() >= 10000) {
+				int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+				int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+				model.addAttribute("DFB",depositFeeBillion);
+				model.addAttribute("DFTM",depositFeeTenMillion);
+			}
+		}
+		
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
 		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);
@@ -107,6 +113,8 @@ public class ItemController {
 			"partnerVO", partnerVO,
 			"partItemList", partItemList
 		));
+		
+		model.addAttribute("loginVO", loginVO);
 
 		return path + "itemDetail";
 	}

@@ -153,6 +153,11 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.selectOne("item.itemDetailWish", paramMap);
 	}
 
+	@Override
+	public List<ItemVO> selectWishList(long userNo) {
+		return sql.selectList("item.selectWishList", userNo);
+	}
+
 	
 
 	

@@ -1,8 +1,12 @@
 package kr.ac.kopo.wish.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.kopo.item.dao.ItemDao;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.wish.dao.WishDao;
 import kr.ac.kopo.wish.web.WishVO;
 
@@ -11,6 +15,7 @@ public class WishServiceImpl implements WishService {
 
 	@Autowired
 	WishDao dao;
+	
 	
 	@Override
 	public boolean add(WishVO wishVO) {
@@ -54,5 +59,5 @@ public class WishServiceImpl implements WishService {
 		}
 		return false;
 	}
-	
+
 }

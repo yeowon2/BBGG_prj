@@ -97,7 +97,7 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="/partner/myPage">내 정보 수정</a>
-                  <a class="dropdown-item" href="/note/receiveList/${loginPartnerVO.partnerNo}">받은 쪽지함</a>
+                  <a class="dropdown-item" href="/note/receive/list/${loginPartnerVO.partnerNo}">받은 쪽지함</a>
                 </div>
               </li>
               </c:if>   

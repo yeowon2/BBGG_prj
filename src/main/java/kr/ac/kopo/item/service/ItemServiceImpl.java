@@ -168,6 +168,21 @@ public class ItemServiceImpl implements ItemService {
 		return selectPopularList;
 	}
 
+	@Override
+	public List<ItemVO> selectWishList(long userNo) {
+		
+		 List<ItemVO> selectWishList = dao.selectWishList(userNo);
+		 
+		 for (ItemVO itemVO : selectWishList) {
+				Long itemNo = itemVO.getItemNo();
+				FileVO fileVO = fileDao.selectItemFile(itemNo);
+
+				itemVO.setFileVO(fileVO);
+			}
+		 
+		 return selectWishList;
+	}
+
 
 
 	

@@ -1166,8 +1166,8 @@ select.classic {
 
 .label-inner {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  top: 15px;
+  right: 15px;
   z-index: 3;
 }
 
@@ -1347,6 +1347,15 @@ select.classic {
   float: left;
   margin-right: 15px;
   position: relative;
+}
+.product-filter .sort-by .sort-by-button {
+  display: inline-block;
+  float: right;
+  margin-right: 15px;
+  position: relative;
+}
+.product-filter .sort-by .sort-by-button button{
+	margin:0 10px;
 }
 
 .product-filter .sort-by .sort-by-select select {

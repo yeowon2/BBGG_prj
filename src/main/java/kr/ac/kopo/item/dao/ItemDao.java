@@ -45,6 +45,8 @@ public interface ItemDao {
 
 	ItemVO itemDetail(Map<String, Long> paramMap);
 
+	List<ItemVO> selectWishList(long userNo);
+
 
 
 	

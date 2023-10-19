@@ -165,7 +165,7 @@
 											<div class="card-body">
 												<div class="partner_button">
 													<div class="button_guide">
-											            <a href="/note/receiveList/${partnerVO.partnerNo}" class="button_title">
+											            <a href="/note/receive/list/${partnerVO.partnerNo}" class="button_title">
 											                효율적인 소통을 위한
 											                <br>
 											                <span class="button_point">받은 문의함 가기</span>

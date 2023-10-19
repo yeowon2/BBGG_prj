@@ -35,13 +35,14 @@
    <interceptors>
    		<interceptor>
    			<mapping path="/admin/**"/>
-   			<mapping path="/note/**"/>
+   			<mapping path="/note/send/**"/>
    			<mapping path="/wishList/**"/>
    			
    			<beans:bean class="kr.ac.kopo.interceptor.LoginInterceptor"></beans:bean>   			   			
    		</interceptor>
    		<interceptor>
    			<mapping path="/partner/**"/>
+   			<mapping path="/note/receive/**"/>
    			<exclude-mapping path="/partner/info"/>
    			<beans:bean class="kr.ac.kopo.interceptor.PartnerLoginInterceptor"></beans:bean>   			   			
    		</interceptor>

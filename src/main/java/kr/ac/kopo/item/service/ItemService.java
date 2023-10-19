@@ -35,7 +35,7 @@ public interface ItemService {
 
 	ItemVO itemDetail(Long itemNo, Long loginUserNo);
 
-	
-	
+	List<ItemVO> selectWishList(long userNo);
+
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.ac.kopo.note.service.NoteService;
 
 @Controller
-@RequestMapping("/note")
+@RequestMapping("/note/receive")
 public class ReceiveController {
 
 	@Autowired
@@ -24,7 +24,7 @@ public class ReceiveController {
 
 	private String path = "note/receive/";
 
-	@GetMapping("/receiveList/{partnerNo}")
+	@GetMapping("/list/{partnerNo}")
 	public String receiveList(@PathVariable Long partnerNo, Model model, NoteVO noteVO) {
 		noteVO.setPartnerNo(partnerNo);
 		List<NoteVO> receiveList = service.receiveList(noteVO);
@@ -42,7 +42,7 @@ public class ReceiveController {
 //		return path + "detail";
 //	}
 
-	@GetMapping("/receiveDetail/{noteNo}")
+	@GetMapping("/detail/{noteNo}")
 	@ResponseBody // JSON 응답을 생성합니다.
 	public NoteVO detail(@PathVariable Long noteNo) {
 		NoteVO noteVO = service.receiveDetail(noteNo);

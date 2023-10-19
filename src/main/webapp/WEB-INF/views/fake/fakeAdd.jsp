@@ -135,7 +135,7 @@
                <footer class="footer">
                    <div class="row">
                        <div class="col-md-6 col-sm-12">
-                           <p>Pampered by<a href="https://BBGG-a.site/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
+                           <p>Pampered by<a href="BBGG-a.site" class="text-dark" target="_blank">BBGG</a> © 2023</p>
                        </div>
                        <div class="col-md-6 col-sm-12">
                            <p class="d-inline-block">Follow us</p>

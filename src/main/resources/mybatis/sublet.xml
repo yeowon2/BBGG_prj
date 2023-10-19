@@ -22,8 +22,9 @@
 		)
 	</insert>
 	
-	<select id="list" resultType="SubletVO">
-	
+	<select id="selectList" resultType="SubletVO">
+		SELECT * 
+		FROM tbl_sublet 
 	</select>
 	
 </mapper>

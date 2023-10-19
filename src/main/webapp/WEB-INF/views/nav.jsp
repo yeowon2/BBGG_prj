@@ -77,7 +77,7 @@
                 </div>
               </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/sublet/list" aria-haspopup="true" aria-expanded="false">
                   단기 임대
                 </a>
                 <div class="dropdown-menu">

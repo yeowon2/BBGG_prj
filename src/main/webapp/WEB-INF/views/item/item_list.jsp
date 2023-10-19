@@ -45,19 +45,16 @@
 	        background-color: white;
             flex-direction: column;
             justify-content: center; /* 수직 가운데 정렬 */
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 1px solid #f5f5f5;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
 	    }
 	    #search-container2 {	/* 검색칸 */
-			width: auto;
+			width: 100%;
 			height: 30%;
 	        background-color: white;
 	        padding: 8px;
-	        border-radius: 4px;
 	        border: 1px;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
-            right: 0;
 		}
 		#searchDIV {
 			margin: 2px;
@@ -74,45 +71,54 @@
 			display: flex;
 		}
 	    .itemLoMdetail{			/* 매물타입선택, 계약조건, 상제옵션 */
-	    	width: auto;
-	    	height: 100%;
-	    	margin-left: 1%;
-	    	margin-right: 1%; 
+			padding-left: 5px;
+			padding-right: 5px;
+			border-radius: 2px;
 	    }
-		#itemType {
-			padding: 3px;
-			padding-left: 5px;
-			padding-right: 5px;
-			border: 1px solid #226929;
-			border-radius: 2px;
-		}
-		#leaseOrMonth {
-			padding: 3px;
-			padding-left: 5px;
-			padding-right: 5px;
-			border: 1px solid #226929;
-			border-radius: 2px;
-		}
+		
 		/* 매물타입선택창 */
 		.itemDiv {
 			position: static;
 			flex-direction: column;
-			width: 250px;
+			width: 100%;
 			height: 100px;
 	      	display: none;
 	      	position: absolute;
 	      	background-color: #fff;
-	      	border: 1px solid #226929;
-	      	border-radius: 2px;
-	      	padding: 10px;
-	      	z-index: 1;
+	      	border: 1px solid #f5f5f5;
+	        padding: 8px;
+            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
 	    }
-	    .itemButton {
-	    	border: none;
+	    #detailOptionDiv {
+	    	position: static;
+			flex-direction: column;
+			width: 100%;
+			height: 220px;
+	      	display: none;
+	      	position: absolute;
+	      	background-color: #fff;
+	      	border: 1px solid #f5f5f5;
+	        padding: 8px;
+            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
+	    }
+	    .itemButton{
+	    	padding: 3px;
+	    	padding-left: 3px;
+	    	padding-right: 3px;
+	    	border: 1px solid #f5f5f5;
+	    	border-radius: 5px;
 	    	background-color: white;
 	    	width: 100%;
+	    	height: 100%;
 	    	text-align: left;
 	    }
+	    /* 활성화된 버튼 스타일 */
+		.itemButton.active {
+		    background-color: #c3e3c3; /* 배경색 변경 */
+		    color: #226929; /* 글자색 변경 */
+		    border: 1px solid #226929; /* 테두리 스타일 변경 */
+		    /* 다른 스타일 속성 추가 가능 */
+		}
 	    /* 리셋버튼 */
 		#reset-btn {
 			width: 15px; 
@@ -220,15 +226,16 @@
 			    <div id="search-container2">
 				    <!-- 검색창 -->
 				    <div class="input-group" id="searchDIV">
-		           		<img  src="../resources/comm/search2.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
+		           		<img  src="/resources/comm/search.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
 			          	<!-- 매물 검색 -->
 			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
 			       		<!-- 초기화 버튼 추가 -->
 	     				<button type="button" id="resetSearch" style="border: none; background: #fff; margin: 8px;" ><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
 			       </div>
 				</div>
-		       	<!-- 방종류 -->
+		       		
 		       	<div id="typeLoM">
+		       		<!-- 방종류 -->
 			       	<div id="itemType" class="itemLoMdetail">
 			       		<button id="showDivButton" class="itemButton"></button>
 			        </div>
@@ -236,8 +243,9 @@
 				    <div id="leaseOrMonth" class="itemLoMdetail">
 			        	<button id="showDivButton2" class="itemButton"></button>
 				    </div>
+				    <!-- 상세옵션 -->
 				    <div id="detailOption" class="itemLoMdetail">
-				    	<button id="showDivButton3" class="itemButton"></button>
+				    	<button id="showDivButton3" class="itemButton">옵션</button>
 				    </div>
 			    </div>
 			    <!-- 버튼 누르면 나타나는 div -->
@@ -258,8 +266,23 @@
 	       		<div id=detailOptionDiv class="itemDiv">
 	        		<p>상세 옵션</p>
 	        		<hr>
-					<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
-					<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
+	        		<div>
+	        			<label><input type="radio" value="" name="manageFeeAt" id="manageFeeOX" >모두</label>
+	        			<label><input type="radio" value="Y" name="manageFeeAt" id="manageFeeO" >관리비 있음</label>
+						<label><input type="radio" value="N" name="manageFeeAt" id="manageFeeX" >관리비 없음</label>
+	        		</div>
+					<br>
+					<div>
+						<label><input type="radio" value="" name="elevatorAt" id="elevatorO" >모두</label>
+						<label><input type="radio" value="Y" name="elevatorAt" id="elevatorO" >엘리베이터 있음</label>
+						<label><input type="radio" value="N" name="elevatorAt" id="elevatorX" >엘리베이터 없음</label>
+					</div>
+					<br>
+					<div>
+						<label><input type="radio" value="" name="parkingAt" id="parkingO" >모두</label>
+						<label><input type="radio" value="Y" name="parkingAt" id="parkingO" >주차공간 있음</label>
+						<label><input type="radio" value="N" name="parkingAt" id="parkingX" >주차공간 없음</label>
+					</div>
 	        	</div>
 			</div>
 			
@@ -282,17 +305,15 @@
 				updateButtonText();
 		
 				showDivButton.addEventListener("click", function(event) {
-		        event.stopPropagation();
+			        event.stopPropagation();
 			        if (itemTypeDiv.style.display === "none" || itemTypeDiv.style.display === "") {
-			          itemTypeDiv.style.display = "block";
+			            itemTypeDiv.style.display = "block";
+			            showDivButton.classList.add("active"); // 버튼에 엑티브 클래스 추가
 			        } else {
-			          itemTypeDiv.style.display = "none";
+			            itemTypeDiv.style.display = "none";
+			            showDivButton.classList.remove("active"); // 버튼에서 엑티브 클래스 제거
 			        }
-				});
-				// 클릭 외의 영역을 클릭하면 드롭다운 닫기
-				window.addEventListener("click", function() {
-		        	itemTypeDiv.style.display = "none";
-		      	});
+			    });
 		
 		      	// 체크박스 상태 변경 시 텍스트 업데이트
 		      	var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
@@ -306,16 +327,30 @@
 			        var selectedItems = [];
 			        var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
 			        checkedCheckboxes.forEach(function(checkbox) {
-			          selectedItems.push(checkbox.parentElement.innerText);
+			          		selectedItems.push(checkbox.parentElement.innerText);
 			        });
 			
 			        showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "선택한 항목이 없습니다.";
 		      	}
 		    }
 		    // 방 종류 초기화
-		    initializeDropdown("showDivButton", "itemTypeDiv");
+		    initializeDropdown("showDivButton", "itemTypeDiv", "방 종류");
 		    // 월-전세 초기화
-		    initializeDropdown("showDivButton2", "leaseOrMonthDiv");
+		    initializeDropdown("showDivButton2", "leaseOrMonthDiv", "계약 조건");
+		</script>
+		<script>
+			var showDivButton3 = document.getElementById("showDivButton3");
+		    var detailOptionDiv = document.getElementById("detailOptionDiv");
+	
+		    showDivButton3.addEventListener("click", function() {
+		        if (detailOptionDiv.style.display === "none" || detailOptionDiv.style.display === "") {
+		            detailOptionDiv.style.display = "block";
+		            showDivButton3.classList.add("active");
+		        } else {
+		            detailOptionDiv.style.display = "none";
+		            showDivButton3.classList.remove("active");
+		        }
+		    });
 		</script>
 		
 		<!-- 지도 API 스크립트 -->

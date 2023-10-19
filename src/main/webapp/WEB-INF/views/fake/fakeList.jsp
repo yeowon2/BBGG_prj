@@ -23,7 +23,7 @@
 	<link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
 	<!-- Custom CSS -->
 	<link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
-
+	
 	<style>
 		table {
 			table-layout: fixed;
@@ -101,10 +101,10 @@
 	                                            <tbody>
 	                                            	<c:forEach var="item" items="${fakeList}">
 		                                                <tr>
-		                                                    <th scope="row" colspan="2">${item.fakeNo}</th>
-		                                                    <td colspan="4">${item.compName}</td>
-		                                                    <td colspan="2">${item.itemNo}</td>
-		                                                    <td colspan="7">
+		                                                    <th scope="row" colspan="2" id="fakeNo">${item.fakeNo}</th>
+		                                                    <td colspan="4" id="fakeCompName">${item.compName}</td>
+		                                                    <td colspan="2" id="fakeItemNo">${item.itemNo}</td>
+		                                                    <td colspan="7" id="fakeContent">
 		                                                    	<!-- Button trigger modal -->
 							        							<button type="button" name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        								${item.fakeContent}
@@ -150,8 +150,7 @@
 				                                                        <div class="carousel-inner">
 				                                                        	<div class="carousel-item active">
 					                                                            <div class="d-block w-100" src="/fake/list{fakeNo}" alt="신고내용">
-					                                                                <pre name="model-content" id="modal-content">
-					                                                                </pre>                                
+					                                                                <pre name="model-content" id="modal-content"></pre>                                
 					                                                            </div>
 					                                                        </div>
 					                                                        <div class="carousel-item">
@@ -205,7 +204,7 @@
 	            <footer class="footer">
 	                <div class="row">
 	                    <div class="col-md-6 col-sm-12">
-	                        <p>Pampered by<a href="https://bangbanggoggog.com/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
+	                        <p>Pampered by<a href="BBGG-a.site" class="text-dark" target="_blank">BBGG</a> © 2023</p>
 	                    </div>
 	                    <div class="col-md-6 col-sm-12">
 	                        <p class="d-inline-block">Follow us</p>
@@ -256,9 +255,9 @@
     <script>
     	const modalBtn = document.querySelector('modalBtn');
     	
-    	const onClick = function(){
-    		pre.textContent = "안녕";
-    	}
+    	$('#modalBtn').on('click', function(event){
+    		$('<li>').text("${fakelist.fakeContent}".val()).appendTo('#model-content');
+    	});
     	
     	modalBtn.addEventListener('click', onClick);
     </script>

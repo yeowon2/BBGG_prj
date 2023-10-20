@@ -36,8 +36,8 @@
    		<interceptor>
    			<mapping path="/admin/**"/>
    			<mapping path="/note/send/**"/>
-   			<mapping path="/wishList/**"/>
-   			
+   			<mapping path="/list/**"/>
+   			<exclude-mapping path="/list/add"/>
    			<beans:bean class="kr.ac.kopo.interceptor.LoginInterceptor"></beans:bean>   			   			
    		</interceptor>
    		<interceptor>

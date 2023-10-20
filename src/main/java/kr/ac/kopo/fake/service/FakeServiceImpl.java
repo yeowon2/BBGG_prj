@@ -35,12 +35,17 @@ public class FakeServiceImpl implements FakeService {
 	}
 
 	@Override
-	public void update(int itemNo) {
-		dao.fakeUpdate(itemNo);
-	}
-
-	@Override
 	public List<FakeVO> modal(String fakeNo) {
 		return dao.modal(fakeNo);
+	}
+	
+	@Override
+	public void fakeUpdate(Long itemNo) {
+		dao.fakeUpdate(itemNo);
+	}
+	
+	@Override
+	public void fakeDelete(Long itemNo) {
+		dao.fakeDelete(itemNo);
 	}
 }

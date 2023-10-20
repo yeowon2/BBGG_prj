@@ -64,17 +64,7 @@
 												<div class="row">
 													<div class="col-xl-12">
 														<section class="hk-sec-wrapper">
-															<div>
-																<div>
-																	<h5 class="hk-sec-title">허위 매물 신고 내역</h5>
-																	<p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
-																	<p id="fake-content-text"> 신고내용 :<p id="fake-content-text2"></p></p>
-																</div>
-																<div>	                        
-																	<button type="button" class="btn btn-outline-dark" onclick="location.href='/fake/update/'">보류</button>                     
-																	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
-																</div>
-															</div>   
+  
 														</section>
 													</div>
 												</div>
@@ -172,19 +162,21 @@
 		                                                    <td colspan="2" id="fakeItemNo">${item.itemNo}</td>
 		                                                    <td colspan="7" id="fakeContent">
 		                                                    	<!-- Button trigger modal -->
-							        							<a href="/fake/listOne?fakeNo=${item.fakeNo}" name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
-							        								${item.fakeContent}
+							        							<a href="/fake/listOne?fakeNo=${item.fakeNo}">
+							        								<button name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+							        									${item.fakeContent}
+		                                                    		</button>
 		                                                    	</a>
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
 		                                                    	<c:if test="${item.useAt eq null}">
-		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm">
+		                                                    		<a href="/fake/update${item.itemNo}" class="btn btn-warning btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>
 		                                                    	</c:if>
-		                                                    	<c:if test="${item.useAt ne null}">
-		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-light btn-sm">
+		                                                    	<c:if test="${item.useAt ne null}"> <!-- Y/I -->
+		                                                    		<a href="/fake/update${item.itemNo}" class="btn btn-light btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>
 		                                                    	</c:if>		                                                    	
@@ -285,8 +277,8 @@
     
     <script type="text/javascript">
 	 $('#modalBtn').on('click', function(e){
-		  e.preventDefault();
-		  $('#modal').modal('show').find('#fake-content-text').load($(this).attr('href'));
+		  //e.preventDefault();
+		  $('.modal').modal('show').find('.hk-sec-wrapper').load($(this).attr('href'));
 		});
 	</script>
     

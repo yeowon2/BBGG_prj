@@ -22,11 +22,13 @@
 		<div class="row">
             <div class="col-xl-12">
                 <section class="hk-sec-wrapper">
-                    <h5 class="hk-sec-title">허위 매물 신고 내역</h5>
-                    <p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
-                    <div>	                        
-                        <button type="button" class="btn btn-outline-dark" onclick="location.href='#'">보류</button>                     
-                        <button type="button" class="btn btn-outline-dark" onclick="location.href='#'">삭제</button>                     
+                	<div style="display: inline-block;">
+                    	<h5 class="hk-sec-title">허위 매물 신고 내역</h5>
+                    	<p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
+                    </div>
+                    <div style="display: inline-block; float: right; padding: 10px;">	                        
+                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/update{itemNo}'">보류</button>                     
+                        <button type="button" class="btn btn-outline-dark" onclick="location.href='/delete{itemNo}'">삭제</button>                     
 					</div>   
                     <div class="row">
                         <div class="col-sm">
@@ -36,27 +38,27 @@
                                         <thead>
                                             <tr>
                                                 <th>번호</th>
-                                                <th>${fakeVO.fakeNo}</th>
+                                                <th>${list.fakeNo}</th>
                                                 <th>신고일</th>
-                                                <th><fmt:formatDate value="${fakeVO.registDate}" pattern="yyyy-MM-dd"/></th>
+                                                <th><fmt:formatDate value="${list.registDate}" pattern="yyyy-MM-dd"/></th>
                                             </tr>
                                             <tr>
 	                                        	<th>신고회원</th>
-	                                        	<th>${fakeVO.userNo}</th>
+	                                        	<th>${list.userNo}</th>
 	                                            <th>부동산이름</th>
-	                                            <th>${fakeVO.compName}</th>
+	                                            <th>${list.compName}</th>
 	                                        </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th colspan="1">내용</th>
-	                                            <th colspan="3">${noticeVO.noticeContent}</th>
+	                                            <th colspan="3">${list.noticeContent}</th>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th><strong>상태</strong></th>
-                                                <th>${fakeVO.useAt}</th>
+                                                <th>${list.useAt}</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>

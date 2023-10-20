@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,24 +137,36 @@ public class FakeController {
 		}
 	}
 	
-	@GetMapping("/update/{itemNo}")
-	String fakeUpdate(@PathVariable Long itemNo) {
-		int int_itemNo = itemNo.intValue();
-		service.update(int_itemNo);
-		return path + "/list";
+	@GetMapping("/listOne")
+	String modal() {
+		return "redirect:/fake/listOne";
 	}
 	
 	@PostMapping("/listOne")
-	String modal(HttpServletRequest request, HttpServletResponse response) {
+	String modal(HttpServletRequest request, Model model) {
 		String fakeNo = request.getParameter("fakeNo");
         List<FakeVO> list = service.modal(fakeNo);
-        request.setAttribute("fakeVO", list);
+        model.addAttribute("fakeVO", list);
+        System.out.println("@@@@@@@@@@@@@@" + list);
 		return "/fake/fakeTable";
+	}
+	
+	@GetMapping("/update{itemNo}")
+	String fakeUpdate(@PathVariable Long itemNo) {
+		service.fakeUpdate(itemNo);
+		return "/fake/fakeList";
+	}
+	
+	@GetMapping("/delete{itemNo}")
+	String fakeDelete(@PathVariable Long itemNo) {
+		service.fakeUpdate(itemNo);
+		return "/fake/fakeList";
 	}
 	
 	@GetMapping("test")
 	String test() {
 		return "/fake/fakeTable";
 	}
+	
 	
 }

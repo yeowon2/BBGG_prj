@@ -113,19 +113,19 @@
 				)
 	</insert>
 	
-	<select id="selectOne">
+	<select id="selectModal">
 		SELECT * 
 		FROM tbl_fake
 		WHERE fake_no = #{fakeNo}
 	</select>
 	
-	<update id="update">
+	<update id="updateUseAt">
 		UPDATE tbl_fake
 		SET use_at = 'I'
 		WHERE item_no = #{itemNo}
 	</update>
 	
-	<update id="delete">
+	<update id="deleteUseAt">
 		UPDATE tbl_fake
 	    SET use_at = 'Y'
 	    WHERE item_no = #{itemNo}

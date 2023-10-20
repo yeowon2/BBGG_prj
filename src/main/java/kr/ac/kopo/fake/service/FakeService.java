@@ -16,9 +16,11 @@ public interface FakeService {
 	void fakeAdd(Long itemNo, FakeVO fakeVO, FakeFileVO uploadVO, File saveFile, String userId);
 
 	void fakeAdd(Long itemNo, FakeVO fakeVO, String userId);
-	
-	void update(int itemNo);
 
 	List<FakeVO> modal(String fakeNo);
+	
+	void fakeUpdate(Long itemNo);
+	
+	void fakeDelete(Long itemNo);
 
 }

@@ -67,5 +67,25 @@
 		WHERE wish_no = #{wishNo}
 	</update>
 	
+	<insert id="add">
+		INSERT INTO tbl_wish
+		(	
+			item_no 
+			, user_no 
+			, use_at 
+		)
+		VALUES
+		(
+			#{itemNo}
+			, #{userNo}
+			, 'Y'
+		)
+	</insert>
+	
+	<select id="checkList" resultType="UserWishListVO">
+		SELECT *
+		FROM tbl_wishlist
+		WHERE item_no = #{itemNo} AND user_no = #{userNo}
+	</select>	
 		
 </mapper>

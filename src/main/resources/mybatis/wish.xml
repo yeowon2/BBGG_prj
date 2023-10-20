@@ -29,5 +29,12 @@
 		AND item_no = #{itemNo}
 		AND user_no = #{userNo}
 	</select>
+
+	<delete id="delete" parameterType="map">
+		DELETE 
+		FROM tbl_wish
+		WHERE item_no = #{itemNo}
+		AND user_no = #{userNo}
+	</delete>
 	
 </mapper>

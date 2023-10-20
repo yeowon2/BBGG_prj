@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.ac.kopo.item.service.ItemService;
+import kr.ac.kopo.item.service.ItemServiceImpl;
 import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.user.web.UserVO;
 import kr.ac.kopo.wish.service.WishService;
@@ -25,6 +28,8 @@ import kr.ac.kopo.wish.service.WishService;
 @Controller
 @RequestMapping("/wish")
 public class WishController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(WishController.class);
 	
 	@Autowired
 	WishService service;
@@ -58,13 +63,24 @@ public class WishController {
 	
 	@GetMapping("/list")
 	public String list(@SessionAttribute(name = "loginVO", required = false) UserVO loginVO,
-						Model model
-			) {
+						Model model) {
+		
 		if(loginVO == null) {
 			return "redirect:/login";
 		}
 		List<ItemVO> wishList = itemService.selectWishList(loginVO.getUserNo());
+		
 		model.addAttribute("wishList", wishList);
 		return path + "list";
+	}
+	
+	@GetMapping("/delete/{itemNo}")
+	@ResponseBody
+	public String delete(@SessionAttribute(name = "loginVO", required = false) UserVO loginVO,
+			@PathVariable Long itemNo) {
+		
+		service.delete(loginVO.getUserNo(), itemNo);
+		
+		return "ok";
 	}
 }

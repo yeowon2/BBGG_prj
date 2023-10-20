@@ -86,8 +86,8 @@
                   </select>
                 </div>
                 <div class="sort-by-button">
-                  <button id="rent-can" class="btn" style="background-color:#216928; color:#fff">임대가능</button>
-                  <button id="rent-cannot" class="btn" style="background-color:#6C757D; color:#fff">거래완료</button>
+                	<button class="all-btn btn">전체보기</button> | 
+                	<button class="rent-btn btn">임대가능목록</button>  
                 </div>
               </div>
             </div>
@@ -95,153 +95,63 @@
       		
             <!-- Listings Star -->
             <div class="listing-container grid-layout">
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb" style="position:relative">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-1.jpg" alt="">
-                      </a>
-                      <div class="label-inner">
-                        <img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png" style="width:40px;height:40px;">
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Amazing oceanfront apartment</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Drive Street, Los Angeles, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,500</span>
-                        </div>
-                       <p><span>4 bds</span> . <span>4 ba</span> . <span>2500 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
-
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-2.jpg" alt="">
-                      </a>
-                      <div class="label-inner">
-                        <img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png" style="width:40px;height:40px;">
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Amazing oceanfront apartment</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Drive Street, Los Angeles, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,500</span>
-                        </div>
-                       <p><span>4 bds</span> . <span>4 ba</span> . <span>2500 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
-
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-3.jpg" alt="">
-                      </a>
-                     <div class="label-inner">
-                        <span class="label-status label" style="background-color:#6c757d;">거래완료</span>
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Guaranteed modern home</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Avenue C, New York, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,750</span>
-                        </div>
-                       <p><span>8 bds</span> . <span>8 ba</span> . <span>3000 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
-
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-4.jpg" alt="">
-                      </a>
-                      <div class="label-inner">
-                        <span class="label-status label" style="background-color:#6c757d;">거래완료</span>
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Family home for sale</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Sacramento, Chicago, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,400</span>
-                        </div>
-                       <p><span>2 bds</span> . <span>2 ba</span> . <span>2200 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-4.jpg" alt="">
-                      </a>
-                      <div class="label-inner">
-                        <img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png" style="width:40px;height:40px;">
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Family home for sale</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Sacramento, Chicago, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,400</span>
-                        </div>
-                       <p><span>2 bds</span> . <span>2 ba</span> . <span>2200 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
-              <div class="property-main">
-                <div class="property-wrap">
-                  <div class="property-item">
-                    <div class="item-thumb">
-                      <a class="hover-effect" href="property.html">
-                        <img class="img-fluid" src="/resources/assets/img/property/house-4.jpg" alt="">
-                      </a>
-                     <div class="label-inner">
-                        <img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png" style="width:40px;height:40px;">
-                      </div>
-                    </div>
-                    <div class="item-body">
-                      <h3 class="property-title"><a href="property.html">Family home for sale</a></h3>
-                      <div class="adderess"><i class="lni-map-marker"></i> Sacramento, Chicago, US</div>
-                      <div class="pricin-list">
-                        <div class="property-price">
-                          <span>$1,400</span>
-                        </div>
-                       <p><span>2 bds</span> . <span>2 ba</span> . <span>2200 Sqft</span></p>
-                      </div>
-                    </div>               
-                  </div>              
-                </div>
-              </div>
+             
+              <c:forEach var="item" items="${wishList}">              
+	              <div class="property-main">
+	                <div class="property-wrap">
+	                  <div class="property-item">
+	                    <div class="item-thumb">
+	                      <a class="hover-effect" href="/itemDetail/${item.itemNo}">
+	                      	<c:if test="${item.fileVO == null}">
+		                        <img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
+	                      	</c:if>
+	                        <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+	                      </a>
+	                      <c:if test="${item.useAt eq 'Y'}">
+	                      	<div class="label-inner">
+		                        <img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png" style="width:40px;height:40px;">
+		                      </div>
+	                      </c:if>
+	                      <c:if test="${item.useAt eq 'C'}">
+		                      <div class="label-inner">
+	                       		 <span class="label-status label" style="background-color:#6c757d;">거래완료</span>
+	                		   </div>
+	                      </c:if>
+	                    </div>
+	                    <div class="item-body">
+	                      <h3 class="property-title"><a href="property.html">${item.address2}</a></h3>
+	                      <div class="adderess"><i class="lni-map-marker"></i>${item.address}</div>
+	                     	<div class="item-no" style="display:none;">${item.itemNo}</div>
+	                     	<div class="use-at" style="display:none;">${item.useAt}</div>
+	                      <div class="pricin-list">
+	                        <div class="property-price">
+	                          	<c:choose>
+	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          			<span>전세</span>
+		                          			<c:if test="${item.leasePrice >= 10000}">
+		                          				<fmt:formatNumber value="${item.leasePrice / 10000}" pattern="#,##0"/>억
+		                          				<c:if test="${item.leasePrice % 10000 > 0}">
+										          <fmt:formatNumber value="${item.leasePrice % 10000}" pattern="#,##0"/>
+										        </c:if>
+		                          			</c:if>
+		                          			<c:if test="${item.leasePrice < 10000}">
+		                          				<span>${item.leasePrice}</span>
+		                          			</c:if>
+                        			</c:when>
+                     				<c:otherwise>
+		                     		   <span>월세 ${item.depositFee} / ${item.monthPrice}</span>
+                        			</c:otherwise>
+	                          	</c:choose>
+	                          </div>
+	                         <p><span>방 ${item.itemCount}</span> . <span>욕실 ${item.bathAt}</span> . <span>${item.itemSize}㎡</span></p>
+	                      </div>
+	                    </div>               
+	                  </div>              
+	                </div>
+	              </div>
+				</c:forEach>
+              
+              
             </div>
             <!-- Listings End -->
           </div>
@@ -251,7 +161,42 @@
 
 <!-- Main container End -->
 <script>
+$('.label-inner').on('click', function() {
+	  var itemNo = $(this).closest('.property-item').find('.item-no').text();
+	  var currentLabelInner = $(this);
 
+	  // AJAX 요청 보내기
+	  $.ajax({
+	    url: '/wish/delete/' + itemNo, // 서버 엔드포인트 URL을 여기에 입력하세요.
+	    type: 'GET', // 또는 'GET', HTTP 요청 방식을 선택합니다.
+	    success: function(response) {
+    	 if (response === "ok") {
+    		 currentLabelInner.closest('.property-main').hide();
+    	      }
+	    },
+	    error: function(xhr, status, error) {
+	      // AJAX 요청이 실패한 경우 처리하는 로직을 여기에 추가하세요.
+	      console.error(error);
+	    }
+	  });
+	});
+//임대 완료 버튼 -> use_at이 'C'
+$('.rent-btn').on('click', function() {
+  // 모든 .use-at 요소에 대해 반복
+  $('.use-at').each(function() {
+    var $useAt = $(this).text();
+    
+    // useAt 값이 'C'인 경우 해당 아이템이 속한 .property-main을 숨깁니다.
+    if ($useAt === 'C') {
+      $(this).closest('.property-main').hide();
+    }
+  });
+});
+
+//전체보기 버튼 -> 
+$('.all-btn').on('click', function() {
+	location.reload(true);
+});
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
  </body>

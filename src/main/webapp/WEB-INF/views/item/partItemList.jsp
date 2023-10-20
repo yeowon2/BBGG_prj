@@ -44,7 +44,7 @@
                   <tr>
                   	<td>${item.itemNo}</td>
                     <td class="image">
-                      <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/upload/${item.fileVO.savedName}" class="img-fluid"></a>
+                      <a href="/itemDetail/${item.itemNo}"><img alt="my-properties-3" src="/upload/${item.fileVO.savedName}" class="img-fluid" style="height:113px"></a>
                     </td>
                     <td>
                       <div class="inner">

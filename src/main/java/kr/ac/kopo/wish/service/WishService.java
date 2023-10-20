@@ -13,4 +13,6 @@ public interface WishService {
 
 	boolean isInWish(Long userNo, Long itemNo);
 
+	void delete(long userNo, Long itemNo);
+
 }

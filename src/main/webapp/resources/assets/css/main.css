@@ -1433,6 +1433,9 @@ select.classic {
   margin-right: 1.5%;
   position: relative;
 }
+.grid-layout .property-main .img-fluid {
+	width:100%;
+}
 
 .list-layout .property-main {
   display: flex;

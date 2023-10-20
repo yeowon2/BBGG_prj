@@ -679,12 +679,13 @@ wishBtn.on('click', function() {
 	   method:'GET'
    }).then(response => response.json())
    .then(data => { 
-   		alert(data.message);
    		if(data.message == '로그인이 필요합니다') {
-   			window.location.href('/login');
+	   		alert(data.message);
+   			window.location.href = '/login';
+   		} else {
+	   		alert(data.message);
+	   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    		}
-   		
-   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    }).catch(error => console.log(error)) 
 }); 
 

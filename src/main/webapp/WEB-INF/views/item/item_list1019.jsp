@@ -40,25 +40,27 @@
 	    	top: 2%;
 	    	right: 26%;
 	    	position: absolute;
-	    	flex-direction: column;
-	    	width: 20%;
+	    	display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
+	    	width: 18%;
 	        background-color: white;
             flex-direction: column;
             justify-content: center; /* 수직 가운데 정렬 */
-            border: 1px solid #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
 	    }
 	    #search-container2 {	/* 검색칸 */
-			width: 100%;
-			height: 30%;
+			width: auto;
+			height: 40%;
 	        background-color: white;
 	        padding: 8px;
+	        border-radius: 4px;
 	        border: 1px;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
+            right: 0;
 		}
 		#searchDIV {
 			margin: 2px;
-			height: auto;
 			border-radius: 4px;
 	        border: 1px solid #226929;
 	        display: flex; align-items: center;
@@ -70,55 +72,50 @@
 			padding: 8px;
 			display: flex;
 		}
-	    .itemLoMdetail{			/* 매물타입선택, 계약조건, 상제옵션 */
+	    #itemType{			/* 매물타입선택칸 */
+	    	width: auto;
+	    	height: 100%;
+	    	margin-left: 1%;
+	    	margin-right: 1%; 
+	    }
+	    #leaseOrMonth{		/* 계약조건선택칸 */
+	    	width: auto;
+	    	height: 100%;
+	    	margin-left: 1%;
+	    	margin-right: 1%; 
+	    }
+		#itemType {
+			padding: 3px;
 			padding-left: 5px;
 			padding-right: 5px;
+			border: 1px solid #226929;
 			border-radius: 2px;
-	    }
-		
+		}
+		#leaseOrMonth {
+			padding: 3px;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: 1px solid #226929;
+			border-radius: 2px;
+		}
 		/* 매물타입선택창 */
 		.itemDiv {
-			position: static;
-			flex-direction: column;
-			width: 100%;
+			width: 250px;
 			height: 100px;
 	      	display: none;
 	      	position: absolute;
 	      	background-color: #fff;
-	      	border: 1px solid #f5f5f5;
-	        padding: 8px;
-            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
+	      	border: 1px solid #226929;
+	      	border-radius: 2px;
+	      	padding: 10px;
+	      	z-index: 1;
 	    }
-	    #detailOptionDiv {
-	    	position: static;
-			flex-direction: column;
-			width: 100%;
-			height: 220px;
-	      	display: none;
-	      	position: absolute;
-	      	background-color: #fff;
-	      	border: 1px solid #f5f5f5;
-	        padding: 8px;
-            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
-	    }
-	    .itemButton{
-	    	padding: 3px;
-	    	padding-left: 3px;
-	    	padding-right: 3px;
-	    	border: 1px solid gray;
-	    	border-radius: 5px;
-	    	background-color: #f5f5f5;
+	    .itemButton {
+	    	border: none;
+	    	background-color: white;
 	    	width: 100%;
-	    	height: 100%;
 	    	text-align: left;
 	    }
-	    /* 활성화된 버튼 스타일 */
-		.itemButton.active {
-		    background-color: #c3e3c3; /* 배경색 변경 */
-		    color: #226929; /* 글자색 변경 */
-		    border: 1px solid #226929; /* 테두리 스타일 변경 */
-		    /* 다른 스타일 속성 추가 가능 */
-		}
 	    /* 리셋버튼 */
 		#reset-btn {
 			width: 15px; 
@@ -138,11 +135,10 @@
 	        background-color: white;
 	        padding: 10px;
 	        border-radius: 5px;
-	        
+	        overflow-y: auto;
 	        align-items: center; /* 세로 가운데 정렬 */
 	    }
 	    #property-list {
-	    	overflow-y: auto;
 	    	height: 805px;
 	    	
 	    }
@@ -226,69 +222,42 @@
 			    <div id="search-container2">
 				    <!-- 검색창 -->
 				    <div class="input-group" id="searchDIV">
-		           		<img  src="/resources/comm/search2.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
+		           		<img  src="../resources/comm/search2.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
 			          	<!-- 매물 검색 -->
 			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
 			       		<!-- 초기화 버튼 추가 -->
 	     				<button type="button" id="resetSearch" style="border: none; background: #fff; margin: 8px;" ><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
 			       </div>
 				</div>
-		       		
+		       	<!-- 방종류 -->
 		       	<div id="typeLoM">
-		       		<!-- 방종류 -->
-			       	<div id="itemType" class="itemLoMdetail">
+			       	<div id="itemType">
 			       		<button id="showDivButton" class="itemButton"></button>
+			       		<div id="itemTypeDiv" class="itemDiv">
+			       			<p>방 종류를 선택 해주세요.</p>
+			       			<hr>
+						    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
+						    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
+						    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
+						    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
+			       		</div>
 			        </div>
+			        
 			        <!-- 월-전세 -->
-				    <div id="leaseOrMonth" class="itemLoMdetail">
+				    <div id="leaseOrMonth">
 			        	<button id="showDivButton2" class="itemButton"></button>
-				    </div>
-				    <!-- 상세옵션 -->
-				    <div id="detailOption" class="itemLoMdetail">
-				    	<button id="showDivButton3" class="itemButton">옵션</button>
+			        	<div id=leaseOrMonthDiv class="itemDiv">
+			        		<p>계약 조건을 선택 해주세요.</p>
+			        		<hr>
+							<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
+							<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
+			        	</div>
 				    </div>
 			    </div>
-			    <!-- 버튼 누르면 나타나는 div -->
-				<div id="itemTypeDiv" class="itemDiv">
-	       			<p>방 종류</p>
-	       			<hr>
-				    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
-				    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
-				    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
-				    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
-	       		</div>
-	       		<div id=leaseOrMonthDiv class="itemDiv">
-	        		<p>계약 조건</p>
-	        		<hr>
-					<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
-					<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
-	        	</div>
-	       		<div id=detailOptionDiv class="itemDiv">
-	        		<p>상세 옵션</p>
-	        		<hr>
-	        		<div>
-	        			<label><input type="radio" value="" name="manageFeeAt" id="manageFeeOX" checked>모두</label>
-	        			<label><input type="radio" value="Y" name="manageFeeAt" id="manageFeeO" >관리비 있음</label>
-						<label><input type="radio" value="N" name="manageFeeAt" id="manageFeeX" >관리비 없음</label>
-	        		</div>
-					<br>
-					<div>
-						<label><input type="radio" value="" name="elevatorAt" id="elevatorOX" checked>모두</label>
-						<label><input type="radio" value="Y" name="elevatorAt" id="elevatorO" >엘리베이터 있음</label>
-						<label><input type="radio" value="N" name="elevatorAt" id="elevatorX" >엘리베이터 없음</label>
-					</div>
-					<br>
-					<div>
-						<label><input type="radio" value="" name="parkingAt" id="parkingOX" checked>모두</label>
-						<label><input type="radio" value="Y" name="parkingAt" id="parkingO" >주차공간 있음</label>
-						<label><input type="radio" value="N" name="parkingAt" id="parkingX" >주차공간 없음</label>
-					</div>
-	        	</div>
 			</div>
-			
 		    <!-- 매물 리스트 -->
 			<div class="emailapp-emails-list" id="list-container">
-				<h6 style="text-align: center;" id="h6c"></h6>
+				<h6 style="text-align: center;">지역 목록 </h6>
 				<hr>
 			    <div class="nicescroll-bar" id="property-list">
 			    </div>
@@ -383,7 +352,7 @@
 		        fetchDataAndFilter();
 		
 		     	// 검색어, 방 종류, 계약 조건이 변경될 때
-		        $("#search, #itemTypeDiv, #leaseOrMonthDiv, #detailOptionDiv").on("input", function () {
+		        $("#itemType, #leaseOrMonth, #search").on("input", function () {
 		            fetchDataAndFilter();
 		        });
 
@@ -406,19 +375,9 @@
 
 		        // 서버에서 데이터를 가져오고 필터링하는 함수
 		        function fetchDataAndFilter() {
-		            var searchKeyword = $("#search").val();
 		            var selectedItemTypes = getSelectedItemTypes();
 		            var selectedLeaseOrMonth = getSelectedLeaseOrMonth();
-		            var selectedDetailOption = getSelectedDetailOption();
-		            
-		         	// 키워드 필터링 함수
-		            function Keyword(item) {
-		                if (searchKeyword.length >= 2) {
-		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
-		                } else {
-		                    return true;
-		                }
-		            }
+		            var searchKeyword = $("#search").val();
 		            
 		         	// 매물 타입 체크한 값을 가져오는 함수
 		            function getSelectedItemTypes() {
@@ -452,60 +411,20 @@
 		                return selectedLOM;
 		            }
 		            
-		            // 상세 옵션 체크한 값을 가져오는 함수
-		            function getSelectedDetailOption() {
-		                var selectedOption = [];
-		                if ($("#manageFeeOX").prop("checked")) {
-		                    selectedOption.push("Y");
-		                    selectedOption.push("N");
+		            // 키워드 필터링 함수
+		            function Keyword(item) {
+		                if (searchKeyword.length >= 2) {
+		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
 		                } else {
-		                    if ($("#manageFeeO").prop("checked")) {
-		                        selectedOption.push("Y");
-		                    }
-		                    if ($("#manageFeeX").prop("checked")) {
-		                        selectedOption.push("N");
-		                    }
+		                    return true;
 		                }
-
-		                if ($("#elevatorOX").prop("checked")) {
-		                    selectedOption.push("Y");
-		                    selectedOption.push("N");
-		                } else {
-		                    if ($("#elevatorO").prop("checked")) {
-		                        selectedOption.push("Y");
-		                    }
-		                    if ($("#elevatorX").prop("checked")) {
-		                        selectedOption.push("N");
-		                    }
-		                }
-
-		                if ($("#parkingOX").prop("checked")) {
-		                    selectedOption.push("Y");
-		                    selectedOption.push("N");
-		                } else {
-		                    if ($("#parkingO").prop("checked")) {
-		                        selectedOption.push("Y");
-		                    }
-		                    if ($("#parkingX").prop("checked")) {
-		                        selectedOption.push("N");
-		                    }
-		                }
-		                return selectedOption;
 		            }
-		            
-		            
 		            
 		            $.get("/itemListAll", function (data) {
 		                filteredData = data.filter(function (item) {
 		                    return item.useAt === 'Y' &&
 		                    	(selectedItemTypes.length === 0 || selectedItemTypes.includes(item.itemType)) &&
 		                    	(selectedLeaseOrMonth.length === 0 || selectedLeaseOrMonth.includes(item.leaseOrMonth)) &&
-		                    	(selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.manageFeeAt))) &&
-		                            (selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.elevatorAt))) &&
-		                            (selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.parkingAt))) &&
 			                    Keyword(item);
 		                });
 
@@ -679,28 +598,6 @@
 		            propertyList.append(propertyItem);
 		            propertyList.append(hr);
 		        });
-		        
-		     	// 필터된 데이터 수를 세는 함수
-		        function countFilteredData() {
-		            var bounds = map.getBounds();
-		            var count = filteredData.reduce(function (total, item) {
-		                var latLng = new kakao.maps.LatLng(item.lat, item.lng);
-		                if (bounds.contain(latLng)) {
-		                    return total + 1;
-		                }
-		                return total;
-		            }, 0);
-
-		            return count;
-		        }
-		        // h6 태그 업데이트 함수
-		        function updateH6Counter() {
-		            var count = countFilteredData();
-		            var h6 = $("#list-container #h6c");
-		            h6.text("지역 목록 ( " + count + "개 )"); // "지역 목록" 텍스트와 개수 추가
-		        }
-		        // 초기 호출
-		        updateH6Counter();
 		    }
 		</script>
 

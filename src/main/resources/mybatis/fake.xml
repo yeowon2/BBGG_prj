@@ -113,6 +113,12 @@
 				)
 	</insert>
 	
+	<select id="selectOne">
+		SELECT * 
+		FROM tbl_fake
+		WHERE fake_no = #{fakeNo}
+	</select>
+	
 	<update id="update">
 		UPDATE tbl_fake
 		SET use_at = 'I'

@@ -3,10 +3,8 @@ package kr.ac.kopo.fake.service;
 import java.io.File;
 import java.util.List;
 
-import org.springframework.ui.Model;
-
-import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.fake.web.FakeFileVO;
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.pager.Pager;
 
 public interface FakeService {
@@ -20,5 +18,7 @@ public interface FakeService {
 	void fakeAdd(Long itemNo, FakeVO fakeVO, String userId);
 	
 	void update(int itemNo);
+
+	List<FakeVO> modal(String fakeNo);
 
 }

@@ -5,11 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.dao.FakeDao;
-import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.fake.web.FakeFileVO;
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.pager.Pager;
 
 @Service
@@ -37,6 +36,11 @@ public class FakeServiceImpl implements FakeService {
 
 	@Override
 	public void update(int itemNo) {
-		dao.update(itemNo);
+		dao.fakeUpdate(itemNo);
+	}
+
+	@Override
+	public List<FakeVO> modal(String fakeNo) {
+		return dao.modal(fakeNo);
 	}
 }

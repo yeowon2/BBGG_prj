@@ -8,10 +8,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
-import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.fake.web.FakeFileVO;
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.pager.Pager;
 
 @Repository
@@ -54,8 +53,13 @@ public class FakeDaoImpl implements FakeDao {
 	}
 
 	@Override
-	public void update(int itemNo) {
+	public void fakeUpdate(int itemNo) {
 		sql.update("fake.update");
+	}
+
+	@Override
+	public List<FakeVO> modal(String fakeNo) {
+		return sql.selectList("fake.selectOne", fakeNo);
 	}
 
 }

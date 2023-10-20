@@ -34,22 +34,22 @@
                                 <div class="table-wrap">
                                     <div class="table-responsive">
                                         <table id="edit_datable_1" class="table table-bordered table-striped mb-0">
-                                            <thead>
-                                                <tr>
-                                                	<th>번호</th>
-                                                	<th>${noticeVO.noticeNo}</th>
-                                                    <th>제목</th>
-                                                    <th>${noticeVO.noticeTitle}</th>
-                                                    <th>등록일</th>
-                                                    <th><fmt:formatDate value="${noticeVO.registDate}" pattern="yyyy-MM-dd"/></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="1">내용</td>
-                                                    <td colspan="6">${noticeVO.noticeContent}</td>
-                                                </tr>
-                                            </tbody>                                                      
+	                                        <tr>
+	                                        	<th>번호</th>
+	                                        	<th>${noticeVO.noticeNo}</th>
+	                                            <th>등록일</th>
+	                                            <th><fmt:formatDate value="${noticeVO.registDate}" pattern="yyyy-MM-dd"/></th>
+	                                        </tr>
+	                                    	<tr>
+	                                        	<th>신고회원</th>
+	                                        	<th>${fakeVO.userNo}</th>
+	                                            <th>부동산이름</th>
+	                                            <th>${fakeVO.compName}</th>
+	                                        </tr>
+	                                        <tr>
+	                                            <th>내용</th>
+	                                            <th>${noticeVO.noticeContent}</th>
+	                                        </tr>
                                         </table>
                                     </div>
                                 </div>

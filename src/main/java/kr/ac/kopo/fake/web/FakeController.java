@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,17 @@ public class FakeController {
 		return path + "/list";
 	}
 	
-
+	@PostMapping("/listOne")
+	String modal(HttpServletRequest request, HttpServletResponse response) {
+		String fakeNo = request.getParameter("fakeNo");
+        List<FakeVO> list = service.modal(fakeNo);
+        request.setAttribute("fakeVO", list);
+		return "/fake/fakeTable";
+	}
+	
+	@GetMapping("test")
+	String test() {
+		return "/fake/fakeTable";
+	}
 	
 }

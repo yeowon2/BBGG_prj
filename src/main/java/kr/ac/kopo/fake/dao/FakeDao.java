@@ -3,10 +3,8 @@ package kr.ac.kopo.fake.dao;
 import java.io.File;
 import java.util.List;
 
-import org.springframework.ui.Model;
-
-import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.fake.web.FakeFileVO;
+import kr.ac.kopo.fake.web.FakeVO;
 import kr.ac.kopo.pager.Pager;
 
 public interface FakeDao {
@@ -19,5 +17,7 @@ public interface FakeDao {
 	
 	int total(Pager pager);
 
-	void update(int itemNo);
+	void fakeUpdate(int itemNo);
+
+	List<FakeVO> modal(String fakeNo);
 }

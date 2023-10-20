@@ -2,7 +2,7 @@ package kr.ac.kopo.fake.web;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class UploadVO {
+public class FakeFileVO extends FakeVO {
 	private String originalFileName;
 	private String fileExtension;
 	private String uniqueFileName;

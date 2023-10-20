@@ -58,7 +58,7 @@ public class FakeController {
 	
 	@PostMapping("/{itemNo}")
 	public String fakeAdd(@PathVariable Long itemNo, HttpSession session, Model model, 
-						FakeVO fakeVO, UploadVO uploadVO, @RequestParam(required = false) MultipartFile file,
+						FakeVO fakeVO, FakeFileVO uploadVO, @RequestParam(required = false) MultipartFile file,
 						HttpServletRequest request) throws Exception {
 		model.addAttribute("itemNo", itemNo);
 		
@@ -138,8 +138,12 @@ public class FakeController {
 	}
 	
 	@GetMapping("/update/{itemNo}")
-	String fakeUpdate() {
-		return "";
+	String fakeUpdate(@PathVariable Long itemNo) {
+		int int_itemNo = itemNo.intValue();
+		service.update(int_itemNo);
+		return path + "/list";
 	}
+	
+
 	
 }

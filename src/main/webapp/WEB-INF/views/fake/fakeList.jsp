@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,11 +132,11 @@
 													</c:if>
 													
 													<!-- Modal Carousel-->
-				                                    <div class="modal fade" id="exampleModalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCarousel" aria-hidden="true">
+				                                    <div class="modal fade" id="exampleModalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCarousel" aria-hidden="true"  style="min-height: 100% ;">
 				                                        <div class="modal-dialog modal-lg" role="document">
 				                                            <div class="modal-content">
 				                                                <div class="modal-header">
-				                                                    <h5 class="modal-title"><c:out value="회원"/>님의 신고내용</h5>
+				                                                    <h5 class="modal-title"><c:out value=""/>님의 신고내용</h5>
 				                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                                        <span aria-hidden="true">×</span>
 				                                                    </button>
@@ -160,13 +160,12 @@
 																						                        <div>
 																						                            <h5 class="hk-sec-title">허위 매물 신고 내역</h5>
 																						                            <p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
-																						                            <p> 신고내용 : <c:out value="" /> </p>
+																						                            <p id="fake-content-text"> 신고내용 :<p id="fake-content-text2"></p></p>
 																						                        </div>
 																												<div>	                        
-																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">보류</button>                     
+																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/fake/update/'">보류</button>                     
 																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
 																												</div>
-																												<div>
 																											</div>   
 																					                    </section>
 																					                </div>
@@ -176,9 +175,22 @@
 					                                                                </p>                                
 					                                                            </div>
 					                                                        </div>
-					                                                        <div class="carousel-item">
-					                                                            <img class="d-block w-100" src="C:\Temp\folder\fake_3e1c06be.png" alt="첨부파일">
-					                                                        </div>
+																				
+<%-- 																				<c:choose>
+																					<c:when test="fakeFileVO.fakeNo == fakeVO.fakeNo">
+																						<div class="carousel-item">
+						                                                            		<img class="d-block w-100" src="C:\Temp\folder\9acc4bac.png" alt="첨부파일">
+						                                                        		</div>
+																					</c:when>
+																					<c:otherwise></c:otherwise>
+																				</c:choose> --%>
+																				
+																				
+																				<div class="carousel-item">
+						                                                            <img class="d-block w-100" src="/resources/assets/img/logo.png" alt="첨부파일">
+						                                                        </div>
+						                                                        
+
 				                                                        </div>
 				                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -275,10 +287,11 @@
     <script src="/resources/dist/js/init.js"></script>
     
     <script>
-    	const modalBtn = document.querySelector('modalBtn');
+    	const modalBtn = document.querySelector('#modalBtn');
+    	const modalContent = document.querySelector('.modal-content');
     	
-    	$('#modalBtn').on('click', function(event){
-    		$('<li>').text("${fakelist.fakeContent}".val()).appendTo('#model-content');
+    	modalBtn.on('click', function(event){
+    		$(modalContent).val = modalBtn
     	});
     	
     	modalBtn.addEventListener('click', onClick);

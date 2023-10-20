@@ -113,7 +113,13 @@
 				)
 	</insert>
 	
-	<update id="likeDeleteUpdate">
+	<update id="update">
+		UPDATE tbl_fake
+		SET use_at = 'I'
+		WHERE item_no = #{itemNo}
+	</update>
+	
+	<update id="delete">
 		UPDATE tbl_fake
 	    SET use_at = 'Y'
 	    WHERE item_no = #{itemNo}

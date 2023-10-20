@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import kr.ac.kopo.fake.web.FakeVO;
-import kr.ac.kopo.fake.web.UploadVO;
+import kr.ac.kopo.fake.web.FakeFileVO;
 import kr.ac.kopo.pager.Pager;
 
 @Repository
@@ -26,7 +26,7 @@ public class FakeDaoImpl implements FakeDao {
 	}
 
 	@Override
-	public void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId) {
+	public void fakeAdd(Long itemNo, FakeVO fakeVO, FakeFileVO uploadVO, File saveFile, String userId) {
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("fakeVO", fakeVO);
@@ -51,6 +51,11 @@ public class FakeDaoImpl implements FakeDao {
 	@Override
 	public int total(Pager pager) {
 		return sql.selectOne("fake.total", pager);
+	}
+
+	@Override
+	public void update(int itemNo) {
+		sql.update("fake.update");
 	}
 
 }

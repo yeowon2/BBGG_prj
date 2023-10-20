@@ -62,17 +62,17 @@
                                             <thead>
                                                 <tr>
                                                 	<th>번호</th>
-                                                	<th>${fakeVO.noticeNo}</th>
+                                                	<th>${noticeVO.noticeNo}</th>
                                                     <th>제목</th>
-                                                    <th>${fakeVO.noticeTitle}</th>
+                                                    <th>${noticeVO.noticeTitle}</th>
                                                     <th>등록일</th>
-                                                    <th><fmt:formatDate value="${fakeVO.registDate}" pattern="yyyy-MM-dd"/></th>
+                                                    <th><fmt:formatDate value="${noticeVO.registDate}" pattern="yyyy-MM-dd"/></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td colspan="1">내용</td>
-                                                    <td colspan="6">${fakeVO.noticeContent}</td>
+                                                    <th colspan="1">내용</th>
+                                                    <th colspan="6">${noticeVO.noticeContent}</th>
                                                 </tr>
                                             </tbody>                                                      
                                         </table>

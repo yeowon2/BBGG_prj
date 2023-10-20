@@ -94,7 +94,7 @@
                   커뮤니티 
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/admin/notice">공지사항</a>
+                  <a class="dropdown-item" href="/notice">공지사항</a>
                   <a class="dropdown-item" href="#">매물가이드</a>
                 </div>
               </li>

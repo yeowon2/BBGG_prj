@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sublet">
+
+	<insert id="add">
+		INSERT INTO tbl_sublet
+			(
+			sublet_subject 
+			, sublet_content
+			, use_at 
+			, regist_user_no 
+			, category
+			)
+		VALUES
+		(
+		#{subletSubject}
+		, #{subletContent}
+		, 'Y'
+		, #{registUserNo} 
+		, #{category}
+		)
+	</insert>
+	
+	<select id="selectList" resultType="SubletVO">
+		SELECT * 
+		FROM tbl_sublet 
+	</select>
+	
+</mapper>

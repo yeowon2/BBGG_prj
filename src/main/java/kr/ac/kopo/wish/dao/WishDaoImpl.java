@@ -1,5 +1,7 @@
 package kr.ac.kopo.wish.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,11 @@ public class WishDaoImpl implements WishDao {
 	@Override
 	public WishVO select(WishVO wishVO) {
 		return sql.selectOne("wish.select", wishVO);
+	}
+
+	@Override
+	public void delete(Map<String, Long> paramMap) {
+		sql.delete("wish.delete", paramMap);
 	}
 
 }

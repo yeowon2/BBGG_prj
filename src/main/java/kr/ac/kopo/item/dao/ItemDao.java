@@ -15,9 +15,9 @@ public interface ItemDao {
 
 	void itemAdd(ItemVO itemVO);
 
-	void leaseAdd(HashMap<String, Long> map);
+	void leaseAdd(Map<String, Long> paramMap);
 
-	void monthAdd(HashMap<String, Long> map);
+	void monthAdd(Map<String, Long> paramMap);
 
 	List<ItemVO> partItemList(Long partnerNo);
 	
@@ -44,6 +44,8 @@ public interface ItemDao {
 	List<ItemVO> selectPopularList();
 
 	ItemVO itemDetail(Map<String, Long> paramMap);
+
+	List<ItemVO> selectWishList(long userNo);
 
 
 

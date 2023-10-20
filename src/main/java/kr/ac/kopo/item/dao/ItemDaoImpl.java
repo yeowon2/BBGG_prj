@@ -37,37 +37,35 @@ public class ItemDaoImpl implements ItemDao {
 	}
 	
 	@Override
-	@Transactional
 	public void itemAdd(ItemVO itemVO) {
 		// 첫 번째 INSERT 문 실행
         sql.insert("item.addItem", itemVO);
         
         Long itemNo = itemVO.getItemNo();
         
-        HashMap<String, Long> paramMap = new HashMap<String, Long>();
+        HashMap<String, Long> map = new HashMap<String, Long>();
         
         if(itemVO.getLeaseOrMonth() == "lease") {
-        	paramMap.put("leasePrice", itemVO.getLeasePrice());
-        	paramMap.put("itemNo", itemNo);
-        	sql.insert("item.leaseAdd", paramMap);
+        	map.put("leasePrice", itemVO.getLeasePrice());
+        	map.put("itemNo", itemNo);
+        	sql.insert("item.leaseAdd", map);
         	
 		} else if(itemVO.getLeaseOrMonth() == "month") {
-			paramMap.put("depositFee", itemVO.getDepositFee());
-			paramMap.put("monthPrice", itemVO.getMonthPrice());
-			paramMap.put("itemNo", itemNo);
-			sql.insert("item.monthAdd", paramMap);
+			map.put("depositFee", itemVO.getDepositFee());
+			map.put("monthPrice", itemVO.getMonthPrice());
+			map.put("itemNo", itemNo);
+			sql.insert("item.monthAdd", map);
 		}
-        
     }
 
 	@Override
-	public void leaseAdd(HashMap<String, Long> map) {
-		sql.insert("item.leaseAdd", map);
+	public void leaseAdd(Map<String, Long> paramMap) {
+		sql.insert("item.leaseAdd", paramMap);
 	}
 
 	@Override
-	public void monthAdd(HashMap<String, Long> map) {
-		sql.insert("item.monthAdd", map);
+	public void monthAdd(Map<String, Long> paramMap) {
+		sql.insert("item.monthAdd", paramMap);
 	}
 
 	@Override
@@ -152,7 +150,12 @@ public class ItemDaoImpl implements ItemDao {
 	
 	@Override
 	public ItemVO itemDetail(Map<String, Long> paramMap) {
-		return sql.selectOne("item.itemDetail", paramMap);
+		return sql.selectOne("item.itemDetailWish", paramMap);
+	}
+
+	@Override
+	public List<ItemVO> selectWishList(long userNo) {
+		return sql.selectList("item.selectWishList", userNo);
 	}
 
 	

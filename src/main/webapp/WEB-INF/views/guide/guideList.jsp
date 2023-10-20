@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../head.jsp"></jsp:include>
-<title>공지사항</title>
+<title>매물가이드</title>
 </head>
 <body>
 	<jsp:include page="../navAdmin.jsp"></jsp:include>
@@ -20,16 +20,20 @@
 
                 <!-- Title -->
                 <div class="hk-pg-header">
-                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="edit"></i></span></span>고객센터</h4>
+                    <h4 class="hk-pg-title"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="edit"></i></span></span>커뮤니티</h4>
                 </div>
                 <!-- /Title -->
 
                 <div class="row">
                     <div class="col-xl-12">
                         <section class="hk-sec-wrapper">
-                            <h5 class="hk-sec-title">공지사항</h5>
-                            <p class="mb-40">방방곡곡 내의 모든 소식을 확인하세요</p>
-                            <button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>
+	                        <div style="display: flex; justify-content: space-between; align-items: center;">
+	                        	<div>
+	                            	<h5 class="hk-sec-title">매물 가이드</h5>
+	                            	<p class="mb-40">매물 거래 전, 꼭 확인하세요!</p>
+	                            </div>	                        
+                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeAdd'">글쓰기</button>                            
+							</div>                            
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="table-wrap">
@@ -44,17 +48,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                	<c:forEach var="item" items="${noticeList}">
+                                                	<c:forEach var="item" items="${guideList}">
                                                     <tr>
-                                                        <td>${item.noticeNo}</td>
-                                                        <td><a href="/admin/notice/${item.noticeNo}">${item.noticeTitle}</a></td>
+                                                        <td>${item.guideNo}</td>
+                                                        <td><a href="/admin/guide${item.guideNo}">${item.guideTitle}</a></td>
                                                         <td><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
-                                                        <td></td>
+                                                        <td>${item.noticeViewCount}</td>
                                                     </tr>
                                                     </c:forEach>
                                                     <tr>
-                                                        <th colspan="4" style="text-align: center;"><strong>🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠BBGG의 공지사항을 확인해주세요🫠</strong></th>
-
+                                                        <th colspan="4" style="text-align: center;"><strong>🫠안전한 거래를 위해 거래 가이드를 참고해주세요🫠</strong></th>
                                                     </tr>
                                                 </tbody>          
                                                 <tfoot>
@@ -80,12 +83,11 @@
 
                         </section>
                     </div>
-                </div>
-                <!-- /Container -->	
-	
-	
-        </div>
-        <!-- /Main Content -->	
+                </div>               
+        	</div>
+        	<!-- /Container -->	
+		</div>
+		<!-- /Main Content -->	
 	
 	<!-- jQuery -->
     <script src="vendors/jquery/dist/jquery.min.js"></script>

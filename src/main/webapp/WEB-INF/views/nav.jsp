@@ -67,29 +67,26 @@
                   매물 보기 
                 </a>
               </li>
-              <li class="nav-item dropdown mx-3">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  관심 목록 
-                </a>
-                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="property.html">내 관심목록</a>
-                  <a class="dropdown-item" href="single-property.html">최근에 본 방</a>
-                </div>
-              </li>
               <li class="nav-item mx-3">
-                <a class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" href="/sublet/list" aria-haspopup="true" aria-expanded="false">
                   단기 임대
                 </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="portfolio-2.html">부동산 가이드</a>
-                </div>
               </li>
+               <li class="nav-item dropdown mx-3">
+	                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                  커뮤니티 
+	                </a>
+	                 <div class="dropdown-menu">
+	                	 <a class="dropdown-item" href="/notice">부동산 가이드</a>
+	                	 <a class="dropdown-item" href="/notice">Q & A</a>
+	                </div>
+	              </li>
               <li class="nav-item dropdown m1-2">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   고객센터
                 </a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="about.html">About Us</a>
+                  <a class="dropdown-item" href="/notice">공지사항</a>
                  
                 </div>
               </li>
@@ -100,6 +97,7 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
+                  <a class="dropdown-item" href="/wish/list">내 관심목록</a>
                   <a class="dropdown-item" href="/note/sendList/${loginVO.userNo}">보낸 쪽지함</a>
                 </div>
               </li>

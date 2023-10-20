@@ -16,85 +16,110 @@
     <jsp:include page="../nav.jsp"></jsp:include>
    
     <style>
+    	* {
+    		margin: 0;
+    		padding: 0;
+    	}
     	body {
 		    background-color: #DCDCDC;
 		}
     
     	#header-wrap {
-	        position: fixed; /* 헤더를 화면 상단에 고정합니다 */
 	        width: 100%; /* 너비를 100%로 설정하여 화면 가로폭에 맞게 헤더가 나타나도록 합니다 */
 	        z-index: 1000; /* 다른 요소 위에 나타나도록 설정하세요 (필요에 따라 숫자 조정) */
 	    }
-    
-    	/* 스타일을 추가하여 검색창과 리스트를 원하는 위치에 배치합니다. */
-	    #search-list-container {
-	        position: absolute;
-	        top: 16%; /* 헤더 높이만큼 아래에 위치하도록 조정 */
-	        right: 0px; /* 오른쪽에 위치하도록 조정 */
-	        /* z-index: 1; */
-	        display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
-	        flex-direction: column; /* 컨테이너 내부의 요소를 세로로 배치하기 위해 flex-direction 사용 */
-	        /* max-height: 84%; */
-	        max-height: calc(100vh - 16%); /* 화면 높이에서 헤더의 높이를 빼서 최대 높이로 설정 */
-	        width: 30%;
-	    }
-    
-	    /* 스타일을 추가하여 검색창을 원하는 위치에 배치합니다. */
+    	
+    	/* 맵, 리스트, 검색 div */
+		#mapNlist{
+			position: relative;
+			display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
+			border: 1px solid #226929;
+		}
+	    /* 매물타입,계약조건 선택, 검색창 */
 	    #search-container {
-	    position: absolute;
+	    	top: 2%;
+	    	right: 26%;
+	    	position: absolute;
+	    	flex-direction: column;
+	    	width: 20%;
 	        background-color: white;
-	        padding: 10px;
-	        border-radius: 5px;
-	        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-	        margin-bottom: 10px; /* 검색 폼과 리스트 사이의 간격을 설정 */
-	        position: relative; /* 부모 컨테이너 기준으로 배치 */
+            flex-direction: column;
+            justify-content: center; /* 수직 가운데 정렬 */
+            border: 1px solid #f5f5f5;
             z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
 	    }
-	
-	    /* 리스트 창 스타일 설정 */
-	    #list-container {
-	        background-color: white;
-	        padding: 10px;
-	        border-radius: 5px;
-	        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-	        overflow-y: auto;
-	    }
-	    
-	    .property-item .media-img-wrap {
-	    	margin: 5px;
-		    width: 25%;
-		    display: flex; 
-		    justify-content: center; 
-		    align-items: center;
-		    /* 아래의 margin-right 속성은 요소 사이의 간격을 설정합니다. */
-		}
-		.img-fluid{
-			margin: 2px;
+	    #search-container2 {	/* 검색칸 */
 			width: 100%;
-			height: 100%;
-			
+			height: 30%;
+	        background-color: white;
+	        padding: 8px;
+	        border: 1px;
+            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
 		}
-		
-		.property-item .media-body {
-			margin: 5px;
-		    width: 75%;
-		    display: inline-block;
-		    vertical-align: middle;
+		#searchDIV {
+			margin: 2px;
+			height: auto;
+			border-radius: 4px;
+	        border: 1px solid #226929;
+	        display: flex; align-items: center;
 		}
-		
-		#items {
-			height: 135px;
+		#typeLoM {
+			position: relative;
+			align-items: center; /* 수직 가운데 정렬 */
+			width: 100%;
+			padding: 8px;
+			display: flex;
 		}
+	    .itemLoMdetail{			/* 매물타입선택, 계약조건, 상제옵션 */
+			padding-left: 5px;
+			padding-right: 5px;
+			border-radius: 2px;
+	    }
 		
-		
-		.email-text {
-		    overflow: hidden;
-		    text-overflow: ellipsis;
-		    display: -webkit-box;
-		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
-		    -webkit-box-orient: vertical;
+		/* 매물타입선택창 */
+		.itemDiv {
+			position: static;
+			flex-direction: column;
+			width: 100%;
+			height: 100px;
+	      	display: none;
+	      	position: absolute;
+	      	background-color: #fff;
+	      	border: 1px solid #f5f5f5;
+	        padding: 8px;
+            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
+	    }
+	    #detailOptionDiv {
+	    	position: static;
+			flex-direction: column;
+			width: 100%;
+			height: 220px;
+	      	display: none;
+	      	position: absolute;
+	      	background-color: #fff;
+	      	border: 1px solid #f5f5f5;
+	        padding: 8px;
+            z-index: 2; /* 검색창을 부가 메뉴보다 위로 올립니다. */
+	    }
+	    .itemButton{
+	    	padding: 3px;
+	    	padding-left: 3px;
+	    	padding-right: 3px;
+	    	border: 1px solid gray;
+	    	border-radius: 5px;
+	    	background-color: #f5f5f5;
+	    	width: 100%;
+	    	height: 100%;
+	    	text-align: left;
+	    }
+	    /* 활성화된 버튼 스타일 */
+		.itemButton.active {
+		    background-color: #c3e3c3; /* 배경색 변경 */
+		    color: #226929; /* 글자색 변경 */
+		    border: 1px solid #226929; /* 테두리 스타일 변경 */
+		    /* 다른 스타일 속성 추가 가능 */
 		}
-		
+	    /* 리셋버튼 */
 		#reset-btn {
 			width: 15px; 
 			height: 15px; 
@@ -104,20 +129,68 @@
 			margin-top: 5px; 
 		}
 		
+	    /* 리스트 창 스타일 설정 */
+	    #list-container {
+	    	height: 100%;
+	    	float: right;
+	    	margin-right: 5px;
+	    	width: 25%;
+	        background-color: white;
+	        padding: 10px;
+	        border-radius: 5px;
+	        
+	        align-items: center; /* 세로 가운데 정렬 */
+	    }
+	    #property-list {
+	    	overflow-y: auto;
+	    	height: 805px;
+	    	
+	    }
+	    .property-item .media-img-wrap {
+	    	margin: 5px;
+		    width: 28%;
+		    display: flex; 
+		    justify-content: center; 
+		    align-items: center;
+		    /* 아래의 margin-right 속성은 요소 사이의 간격을 설정합니다. */
+		}
+		/* 매물 이미지 */
+		.img-fluid{
+			margin: 2px;
+			width: 100%;
+			height: 100%;
+		}
+		/* 매물 리스트 목록 크기 */
+		#items {
+			height: 135px;
+		}
+		/* 매물 설명 */
+		.property-item .media-body {
+			margin: 5px;
+		    width: 75%;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+		/* 매물 디테일 설명 */
+		.email-text {
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    display: -webkit-box;
+		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
+		    -webkit-box-orient: vertical;
+		}
+		
 	    /* 지도 스타일 설정 */
 	    #map {
-	        position: absolute;
-	        top: 16%; /* 헤더 높이만큼 아래에 위치하도록 조정 */
-	        left: 5px;
-	        width: calc(100% - 30%); /* 검색창과 리스트 창의 너비를 제외한 나머지 공간을 지도가 차지하도록 조정 */
-	        /* height: 84%; */
-	        height: calc(100vh - 16%); /* 화면 높이에서 헤더의 높이를 빼서 최대 높이로 설정 */
-	        z-index: 0; /* 지도를 가장 뒤로 배치 */
+	    	float: left;
+	    	width: 75%;
+	    	height: auto;
+	    	border: 1px solid #226929;
 	    }
-	    
-	    #map button {
+	    /* 현재위치버튼 */
+	    #map #currentLocationButton {
             position: absolute;
-            top: 50px;
+            top: 50%;
             right: 20px;
             z-index: 50;
          	border: none;
@@ -128,8 +201,7 @@
 		    align-items: center;
 		    justify-content: center;
         }
-        
-        #map button img{
+        #map #currentLocationButton img{
         	margin: 1px;
 		    width: 100%; /* 이미지의 너비를 100%로 설정하여 버튼에 가득 차게 합니다 */
 		    height: 100%; /* 이미지의 높이를 100%로 설정하여 버튼에 가득 차게 합니다 */
@@ -145,51 +217,143 @@
 	</style>
 </head>
 	<body>
-		<!-- 지도 -->
-	    <div id="map">
-	    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
-	    </div>
-	   	
-	   	<!-- 검색, 리스트 div -->
-	   	<div class="container mt-5" id="search-list-container" >
-		    <div class="email-search" id="search-container">
-		        <div>
-		            <!-- 방종류 -->
-		            <select id="itemType" name="itemType">
-		                <option value="">방 타입 선택하기</option>
-		                <option value="O">원룸</option>
-		                <option value="T">투룸</option>
-		                <option value="H">쓰리룸</option>
-		                <option value="F">오피스텔</option>
-		            </select>
-		        </div>
-		        <div>
-		            <!-- 월-전세 -->
-		            <select id="leaseOrMonth" name="leaseOrMonth">
-		                <option value="">계약 조건 선택하기</option>
-		                <option value="month">월세</option>
-		                <option value="lease">전세</option>
-		            </select>
-		        </div>
-		        <br>
-		        <div class="input-group">
-		            
-		            <img  src="../resources/comm/search.png" style="width: 24px; height: 24px; align-items: center; justify-content: center; margin-top: 8px; margin-bottom: 8px; ">
-		            
-		           	<!-- 매물 검색 -->
-		            <input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
-		        	
-		        	<!-- 초기화 버튼 추가 -->
-        			<button type="button" id="resetSearch" style="border: none; background: #fff"><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
-		        </div>
+		<div id="mapNlist">
+			<!-- 지도 -->
+		    <div id="map">
+		    	<button id="currentLocationButton"><img alt="현재 위치 가져오기" src="/resources/comm/myXY.png"></button>
 		    </div>
-		    
+		    <div class="email-search" id="search-container">
+			    <div id="search-container2">
+				    <!-- 검색창 -->
+				    <div class="input-group" id="searchDIV">
+		           		<img  src="/resources/comm/search2.png" style="width: 11%; height: 41px; margin-right: 8px; border-radius: 2px;">
+			          	<!-- 매물 검색 -->
+			           	<input type="text" class="form-control" name="search" id="search" placeholder="도로명 또는 건물명을 입력하세요." required="" value="" style="border: none; align-items: center; justify-content: center;">
+			       		<!-- 초기화 버튼 추가 -->
+	     				<button type="button" id="resetSearch" style="border: none; background: #fff; margin: 8px;" ><img id="reset-btn" src="../resources/comm/reset.png" alt="Reset" /></button>
+			       </div>
+				</div>
+		       		
+		       	<div id="typeLoM">
+		       		<!-- 방종류 -->
+			       	<div id="itemType" class="itemLoMdetail">
+			       		<button id="showDivButton" class="itemButton"></button>
+			        </div>
+			        <!-- 월-전세 -->
+				    <div id="leaseOrMonth" class="itemLoMdetail">
+			        	<button id="showDivButton2" class="itemButton"></button>
+				    </div>
+				    <!-- 상세옵션 -->
+				    <div id="detailOption" class="itemLoMdetail">
+				    	<button id="showDivButton3" class="itemButton">옵션</button>
+				    </div>
+			    </div>
+			    <!-- 버튼 누르면 나타나는 div -->
+				<div id="itemTypeDiv" class="itemDiv">
+	       			<p>방 종류</p>
+	       			<hr>
+				    <label><input type="checkbox" value="O" name="itemType" id="O" checked>원룸</label>
+				    <label><input type="checkbox" value="T" name="itemType" id="T" checked>투룸</label>
+				    <label><input type="checkbox" value="H" name="itemType" id="H" checked>쓰리룸</label>
+				    <label><input type="checkbox" value="F" name="itemType" id="F" checked>오피스텔</label>
+	       		</div>
+	       		<div id=leaseOrMonthDiv class="itemDiv">
+	        		<p>계약 조건</p>
+	        		<hr>
+					<label><input type="checkbox" value="month" name="leaseOrMonth" id="month" checked>월세</label>
+					<label><input type="checkbox" value="lease" name="leaseOrMonth" id="lease" checked>전세</label>
+	        	</div>
+	       		<div id=detailOptionDiv class="itemDiv">
+	        		<p>상세 옵션</p>
+	        		<hr>
+	        		<div>
+	        			<label><input type="radio" value="" name="manageFeeAt" id="manageFeeOX" checked>모두</label>
+	        			<label><input type="radio" value="Y" name="manageFeeAt" id="manageFeeO" >관리비 있음</label>
+						<label><input type="radio" value="N" name="manageFeeAt" id="manageFeeX" >관리비 없음</label>
+	        		</div>
+					<br>
+					<div>
+						<label><input type="radio" value="" name="elevatorAt" id="elevatorOX" checked>모두</label>
+						<label><input type="radio" value="Y" name="elevatorAt" id="elevatorO" >엘리베이터 있음</label>
+						<label><input type="radio" value="N" name="elevatorAt" id="elevatorX" >엘리베이터 없음</label>
+					</div>
+					<br>
+					<div>
+						<label><input type="radio" value="" name="parkingAt" id="parkingOX" checked>모두</label>
+						<label><input type="radio" value="Y" name="parkingAt" id="parkingO" >주차공간 있음</label>
+						<label><input type="radio" value="N" name="parkingAt" id="parkingX" >주차공간 없음</label>
+					</div>
+	        	</div>
+			</div>
+			
 		    <!-- 매물 리스트 -->
 			<div class="emailapp-emails-list" id="list-container">
+				<h6 style="text-align: center;" id="h6c"></h6>
+				<hr>
 			    <div class="nicescroll-bar" id="property-list">
 			    </div>
 			</div>
 		</div>
+		
+		<!-- 매물타입, 계약조건 diV 체크박스 -->
+		<script>
+		    function initializeDropdown(buttonId, divId) {
+				var showDivButton = document.getElementById(buttonId);
+		    	var itemTypeDiv = document.getElementById(divId);
+		
+				// 초기 버튼 텍스트 업데이트
+				updateButtonText();
+		
+				showDivButton.addEventListener("click", function(event) {
+			        event.stopPropagation();
+			        if (itemTypeDiv.style.display === "none" || itemTypeDiv.style.display === "") {
+			            itemTypeDiv.style.display = "block";
+			            showDivButton.classList.add("active"); // 버튼에 엑티브 클래스 추가
+			        } else {
+			            itemTypeDiv.style.display = "none";
+			            showDivButton.classList.remove("active"); // 버튼에서 엑티브 클래스 제거
+			        }
+			    });
+		
+		      	// 체크박스 상태 변경 시 텍스트 업데이트
+		      	var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
+		      	checkboxes.forEach(function(checkbox) {
+		        	checkbox.addEventListener("change", function() {
+		          	updateButtonText();
+		        	});
+		      	});
+		
+		      	function updateButtonText() {
+			        var selectedItems = [];
+			        var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
+			        checkedCheckboxes.forEach(function(checkbox) {
+			          		selectedItems.push(checkbox.parentElement.innerText);
+			        });
+			
+			        showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "항목이 없습니다.";
+		      	}
+		    }
+		    // 방 종류 초기화
+		    initializeDropdown("showDivButton", "itemTypeDiv");
+		    // 월-전세 초기화
+		    initializeDropdown("showDivButton2", "leaseOrMonthDiv");
+		</script>
+		<script>
+			var showDivButton3 = document.getElementById("showDivButton3");
+		    var detailOptionDiv = document.getElementById("detailOptionDiv");
+	
+		    showDivButton3.addEventListener("click", function() {
+		        if (detailOptionDiv.style.display === "none" || detailOptionDiv.style.display === "") {
+		            detailOptionDiv.style.display = "block";
+		            showDivButton3.classList.add("active");
+		        } else {
+		            detailOptionDiv.style.display = "none";
+		            showDivButton3.classList.remove("active");
+		        }
+		    });
+		</script>
+		
+		<!-- 지도 API 스크립트 -->
 		<script>
 		    var map; // 지도 객체를 저장할 변수
 		    var clusterer; // 마커 클러스터러 객체
@@ -219,31 +383,130 @@
 		        fetchDataAndFilter();
 		
 		     	// 검색어, 방 종류, 계약 조건이 변경될 때
-		        $("#itemType, #leaseOrMonth, #search").on("input", function () {
+		        $("#search, #itemTypeDiv, #leaseOrMonthDiv, #detailOptionDiv").on("input", function () {
 		            fetchDataAndFilter();
 		        });
 
-		        // 초기화 버튼 클릭 이벤트
+		     	// 초기화 버튼 클릭 이벤트
 		        $("#resetSearch").click(function () {
-		            $("#itemType").val(""); // 선택된 방 종류 초기화
-		            $("#leaseOrMonth").val(""); // 선택된 계약 조건 초기화
-		            $("#search").val(""); // 검색어 필드 초기화
-		            fetchDataAndFilter(); // 전체 매물 다시 불러와서 필터링
-		            updateMapZoom(); // 초기 확대 레벨로 설정
+		        	resetFilters();
+		            fetchDataAndFilter();
+		            //updateMapZoom();
 		        });
+
+		        // 필터 초기화 함수
+		        function resetFilters() {
+		            // 선택된 방 종류 초기화
+		            //$("#O, #T, #H, #F").prop("checked", true);
+		            // 선택된 계약 조건 초기화
+		            //$("#month, #lease").prop("checked", true);
+		            // 검색어 필드 초기화
+		            $("#search").val("");
+		        }
 
 		        // 서버에서 데이터를 가져오고 필터링하는 함수
 		        function fetchDataAndFilter() {
-		            var selectedItemType = $("#itemType").val();
-		            var selectedLeaseOrMonth = $("#leaseOrMonth").val();
 		            var searchKeyword = $("#search").val();
+		            var selectedItemTypes = getSelectedItemTypes();
+		            var selectedLeaseOrMonth = getSelectedLeaseOrMonth();
+		            var selectedDetailOption = getSelectedDetailOption();
+		            
+		         	// 키워드 필터링 함수
+		            function Keyword(item) {
+		                if (searchKeyword.length >= 2) {
+		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
+		                } else {
+		                    return true;
+		                }
+		            }
+		            
+		         	// 매물 타입 체크한 값을 가져오는 함수
+		            function getSelectedItemTypes() {
+		                var selectedTypes = [];
+		                
+		                if ($("#O").prop("checked")) {
+		                    selectedTypes.push("O");
+		                }
+		                if ($("#T").prop("checked")) {
+		                    selectedTypes.push("T");
+		                }
+		                if ($("#H").prop("checked")) {
+		                    selectedTypes.push("H");
+		                }
+		                if ($("#F").prop("checked")) {
+		                    selectedTypes.push("F");
+		                }
+		                
+		                return selectedTypes;
+		            }
+		            	
+		            // 계약 조건 체크한 값을 가져오는 함수
+		            function getSelectedLeaseOrMonth() {
+		                var selectedLOM = [];
+		                if ($("#month").prop("checked")) {
+		                	selectedLOM.push("month");
+		                }
+		                if ($("#lease").prop("checked")) {
+		                	selectedLOM.push("lease");
+		                }
+		                return selectedLOM;
+		            }
+		            
+		            // 상세 옵션 체크한 값을 가져오는 함수
+		            function getSelectedDetailOption() {
+		                var selectedOption = [];
+		                if ($("#manageFeeOX").prop("checked")) {
+		                    selectedOption.push("Y");
+		                    selectedOption.push("N");
+		                } else {
+		                    if ($("#manageFeeO").prop("checked")) {
+		                        selectedOption.push("Y");
+		                    }
+		                    if ($("#manageFeeX").prop("checked")) {
+		                        selectedOption.push("N");
+		                    }
+		                }
 
+		                if ($("#elevatorOX").prop("checked")) {
+		                    selectedOption.push("Y");
+		                    selectedOption.push("N");
+		                } else {
+		                    if ($("#elevatorO").prop("checked")) {
+		                        selectedOption.push("Y");
+		                    }
+		                    if ($("#elevatorX").prop("checked")) {
+		                        selectedOption.push("N");
+		                    }
+		                }
+
+		                if ($("#parkingOX").prop("checked")) {
+		                    selectedOption.push("Y");
+		                    selectedOption.push("N");
+		                } else {
+		                    if ($("#parkingO").prop("checked")) {
+		                        selectedOption.push("Y");
+		                    }
+		                    if ($("#parkingX").prop("checked")) {
+		                        selectedOption.push("N");
+		                    }
+		                }
+		                return selectedOption;
+		            }
+		            
+		            
+		            
 		            $.get("/itemListAll", function (data) {
 		                filteredData = data.filter(function (item) {
 		                    return item.useAt === 'Y' &&
-		                        (selectedItemType === "" || item.itemType === selectedItemType) &&
-		                        (selectedLeaseOrMonth === "" || item.leaseOrMonth === selectedLeaseOrMonth) &&
-		                        (searchKeyword === "" || item.address.includes(searchKeyword) || item.address2.includes(searchKeyword) || item.memoShort.includes(searchKeyword) || item.memoDetail.includes(searchKeyword));
+		                    	(selectedItemTypes.length === 0 || selectedItemTypes.includes(item.itemType)) &&
+		                    	(selectedLeaseOrMonth.length === 0 || selectedLeaseOrMonth.includes(item.leaseOrMonth)) &&
+		                    	(selectedDetailOption.length === 0 ||
+		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.manageFeeAt))) &&
+		                            (selectedDetailOption.length === 0 ||
+		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.elevatorAt))) &&
+		                            (selectedDetailOption.length === 0 ||
+		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.parkingAt))) &&
+			                    Keyword(item);
 		                });
 
 		                // 클러스터러에 마커 배열을 추가
@@ -264,6 +527,15 @@
 		                propertyList = $("#property-list");
 		                // 초기 매물 리스트 업데이트
 		                updatePropertyList();
+		                
+		             	// 검색 결과가 있는 경우 지도를 해당 영역으로 이동
+		                if (filteredData.length > 0 && searchKeyword.length >= 2) {
+		                    var bounds = new kakao.maps.LatLngBounds();
+		                    filteredData.forEach(function (item) {
+		                        bounds.extend(new kakao.maps.LatLng(item.lat, item.lng));
+		                    });
+		                    map.setBounds(bounds);
+		                }
 		            });
 		        }
 		
@@ -339,7 +611,7 @@
 		            var emailSubject1 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject2 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject3 = $("<div class='email-subject'><p></p></div>");
-		            var emailSubject = $("<div class='email-subject'>" + item.memoShort + "</div>");
+		            var emailSubject = $("<div class='email-subject'>#" + item.tag1 + " #" + item.tag2 + " #" + item.tag3 + "</div>");
 		            var emailText = $("<div class='email-text' style='-webkit-line-clamp: 1;'><p>" + item.memoDetail + "</p></div>");
 		            var hr = $("<hr>");
 		
@@ -355,7 +627,13 @@
 		                    emailSubject1.find('h5').text("전세 " + item.leaseBillion + "억 " + item.leaseTenMillion);
 		                }
 		            } else if (item.leaseOrMonth == 'month') {
-		                emailSubject2.find('h5').text("월세 " + item.depositFee + " / " + item.monthPrice);
+		            	if (item.depositFee < 10000) {
+		                	emailSubject2.find('h5').text("월세 " + item.depositFee + " / " + item.monthPrice);
+		            	} else if (item.depositFee >= 10000 && item.depositFee % 10000 ==0) {
+		            		emailSubject2.find('h5').text("월세 " + item.depositFeeBillion + "억" + " / " + item.monthPrice);
+		            	} else {
+		            		emailSubject2.find('h5').text("월세 " + item.depositFeeBillion + "억" + item.depositFeeTenMillion + " / " + item.monthPrice);
+		            	}
 		            }
 		
 		            if (item.itemType == 'O') {
@@ -401,6 +679,28 @@
 		            propertyList.append(propertyItem);
 		            propertyList.append(hr);
 		        });
+		        
+		     	// 필터된 데이터 수를 세는 함수
+		        function countFilteredData() {
+		            var bounds = map.getBounds();
+		            var count = filteredData.reduce(function (total, item) {
+		                var latLng = new kakao.maps.LatLng(item.lat, item.lng);
+		                if (bounds.contain(latLng)) {
+		                    return total + 1;
+		                }
+		                return total;
+		            }, 0);
+
+		            return count;
+		        }
+		        // h6 태그 업데이트 함수
+		        function updateH6Counter() {
+		            var count = countFilteredData();
+		            var h6 = $("#list-container #h6c");
+		            h6.text("지역 목록 ( " + count + "개 )"); // "지역 목록" 텍스트와 개수 추가
+		        }
+		        // 초기 호출
+		        updateH6Counter();
 		    }
 		</script>
 

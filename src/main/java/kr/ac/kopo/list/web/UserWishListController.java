@@ -2,6 +2,7 @@ package kr.ac.kopo.list.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.kopo.list.service.UserWishListService;
+import kr.ac.kopo.user.web.UserVO;
 
 @Controller
 @RequestMapping("/list") // 이건 주소 칠 때 앞에 list를 붙여주도록 지정해줌 
@@ -26,10 +30,12 @@ public class UserWishListController {
 	 * 
 	 * UserWishListVO loginUserNo = (UserWishListVO) session.getAttribute("loginVO");
 	 */
+	
+	
 
 	// 관심 매물 리스트로 이동
-	@GetMapping("/wishList")
-	public String wishList(Model model) {
+	@GetMapping("/wishList/{userNo}")
+	public String wishList(@PathVariable Long userNo, Model model) {
 		
 		List<UserWishListVO> wishList = service.wishList();
 		
@@ -41,7 +47,23 @@ public class UserWishListController {
 	// 관심 매물 상세페이지로 이동 -> jsp에다가 바로 링크를 붙여주면 되지 않을까?
 	
 	// 관심 매물 추가 
-	
+	/*
+	 * @PostMapping("add/{itemNo}")
+	 * 
+	 * @ResponseBody // 화면을 반환하는 것이 아니라 데이터를 바로 반환하기 때문에 이 어노테이션을 추가해줌 public String
+	 * add(@PathVariable Long itemNo, UserWishListVO listVO, HttpServletRequest
+	 * request) { // 로그인 체크 HttpSession session = request.getSession();
+	 * 
+	 * UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+	 * 
+	 * if(loginVO == null) { return "5"; }
+	 * 
+	 * int result = UserWishListService.add(listVO);
+	 * 
+	 * return result+""; // result의 타입이 int이므로 String으로 변환하기 위하여 빈 문자열을 더하기 연산해줌
+	 * 
+	 * }
+	 */
 	
 	// 관심 매물 리스트에서 제외	
 	// 관심 매물로 지정할 때 파라미터 이름을 wishNo로 지정해서 이걸 그대로 list.xml로 넘기면 됨

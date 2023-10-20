@@ -23,7 +23,7 @@
 	<link href="/resources/vendors/jquery-toggles/css/themes/toggles-light.css" rel="stylesheet" type="text/css">
 	<!-- Custom CSS -->
 	<link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
-
+	
 	<style>
 		table {
 			table-layout: fixed;
@@ -69,10 +69,10 @@
 											<div class="col">
 												<select name="search" class="form-select form-select-sm">
 													<option value="0">검색 항목 선택</option>
-													<option value="1" ${pager.search == 1 ? "selected" : ""}>매물번호</option>
-													<option value="2" ${pager.search == 2 ? "selected" : ""}>부동산명</option>
-													<option value="3" ${pager.search == 3 ? "selected" : ""}>회원명</option>
-													<option value="4" ${pager.search == 4 ? "selected" : ""}>상태</option>
+													<option value="1" ${pager.search == 1 ? "selected" : ""}>부동산명</option>
+													<option value="2" ${pager.search == 2 ? "selected" : ""}>매물NO</option>
+													<option value="3" ${pager.search == 3 ? "selected" : ""}>내용</option>
+													<option value="4" ${pager.search == 4 ? "selected" : ""}>상태(Y/N)</option>
 												</select>
 											</div>
 											<div class="col">
@@ -90,8 +90,8 @@
 	                                        <table class="table mb-0">
 	                                            <thead>
 	                                                <tr>
-	                                                    <th colspan="4">부동산명</th>
 	                                                    <th colspan="2">신고NO</th>
+	                                                    <th colspan="4">부동산명</th>
 	                                                    <th colspan="2">매물NO</th>
 	                                                    <th colspan="7">내용</th>
 	                                                    <th colspan="3">신고날짜</th>
@@ -101,18 +101,27 @@
 	                                            <tbody>
 	                                            	<c:forEach var="item" items="${fakeList}">
 		                                                <tr>
-		                                                    <th scope="row" colspan="4">${item.compName}</th>
-		                                                    <td colspan="2">${item.fakeNo}</td>
-		                                                    <td colspan="2">${item.itemNo}</td>
-		                                                    <td colspan="7">
+		                                                    <th scope="row" colspan="2" id="fakeNo">${item.fakeNo}</th>
+		                                                    <td colspan="4" id="fakeCompName">${item.compName}</td>
+		                                                    <td colspan="2" id="fakeItemNo">${item.itemNo}</td>
+		                                                    <td colspan="7" id="fakeContent">
 		                                                    	<!-- Button trigger modal -->
-							        							<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+							        							<button type="button" name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        								${item.fakeContent}
 		                                                    	</button>
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
-		                                                    	<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm"><i class="bi bi-brush">${item.useAt}</i></a>		                                                    	
+		                                                    	<c:if test="${item.useAt eq null}">
+		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-warning btn-sm">
+		                                                    			<i class="bi bi-brush"></i>
+		                                                    		</a>
+		                                                    	</c:if>
+		                                                    	<c:if test="${item.useAt ne null}">
+		                                                    		<a href="/fake/update/${item.itemNo}" class="btn btn-light btn-sm">
+		                                                    			<i class="bi bi-brush"></i>
+		                                                    		</a>
+		                                                    	</c:if>		                                                    	
 		                                                    </td>
 		                                                </tr>
 		                                            </c:forEach>
@@ -127,7 +136,7 @@
 				                                        <div class="modal-dialog modal-lg" role="document">
 				                                            <div class="modal-content">
 				                                                <div class="modal-header">
-				                                                    <h5 class="modal-title">신고내용</h5>
+				                                                    <h5 class="modal-title"><c:out value="회원"/>님의 신고내용</h5>
 				                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                                                        <span aria-hidden="true">×</span>
 				                                                    </button>
@@ -139,16 +148,37 @@
 				                                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				                                                        </ol>
 				                                                        <div class="carousel-inner">
-				                                                        		<div class="carousel-item active">
-					                                                                <div class="d-block w-100" src="/fake/list/{itemNo}" alt="신고내용">
-					                                                                	<pre>
-					                                                                		<c:out value="${fakeList}" default="값을 찾을 수 없습니다." />
-					                                                                	</pre>                                
-					                                                                </div>
+				                                                        	<div class="carousel-item active">
+					                                                            <div class="d-block w-100" alt="신고내용">
+					                                                                <p name="model-content" id="modal-content">
+																						<div class="hk-pg-wrapper">	
+																					        <div class="container">
+																					            <div class="row">
+																					                <div class="col-xl-12">
+																					                    <section class="hk-sec-wrapper">
+																					                        <div>
+																						                        <div>
+																						                            <h5 class="hk-sec-title">허위 매물 신고 내역</h5>
+																						                            <p class="mb-40">이용자들의 편의를 위해 빠른 처리 부탁드립니다.</p>
+																						                            <p> 신고내용 : <c:out value="" /> </p>
+																						                        </div>
+																												<div>	                        
+																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeEdit'">보류</button>                     
+																					                            	<button type="button" class="btn btn-outline-dark" onclick="location.href='/admin/noticeDelete'">삭제</button>                     
+																												</div>
+																												<div>
+																											</div>   
+																					                    </section>
+																					                </div>
+																					            </div>
+																					        </div>	
+																					    </div>    
+					                                                                </p>                                
 					                                                            </div>
-					                                                            <div class="carousel-item">
-					                                                                <img class="d-block w-100" src="C:\Temp\folder\{UploadVO.savedFileName}" alt="첨부파일">
-					                                                            </div>
+					                                                        </div>
+					                                                        <div class="carousel-item">
+					                                                            <img class="d-block w-100" src="C:\Temp\folder\fake_3e1c06be.png" alt="첨부파일">
+					                                                        </div>
 				                                                        </div>
 				                                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 				                                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -179,8 +209,7 @@
 															</ul>
 														</td>
 													</tr>
-												</tfoot>
-	                                            
+												</tfoot>	                                            
 	                                        </table>
 	                                    </div>
 	                                </div>
@@ -197,7 +226,7 @@
 	            <footer class="footer">
 	                <div class="row">
 	                    <div class="col-md-6 col-sm-12">
-	                        <p>Pampered by<a href="https://bangbanggoggog.com/" class="text-dark" target="_blank">BANGBANGGOGGOG</a> © 2023</p>
+	                        <p>Pampered by<a href="BBGG-a.site" class="text-dark" target="_blank">BBGG</a> © 2023</p>
 	                    </div>
 	                    <div class="col-md-6 col-sm-12">
 	                        <p class="d-inline-block">Follow us</p>
@@ -245,6 +274,17 @@
     <!-- Init JavaScript -->
     <script src="/resources/dist/js/init.js"></script>
     
-<%-- <jsp:include page="../footer.jsp"></jsp:include>  --%>
+    <script>
+    	const modalBtn = document.querySelector('modalBtn');
+    	
+    	$('#modalBtn').on('click', function(event){
+    		$('<li>').text("${fakelist.fakeContent}".val()).appendTo('#model-content');
+    	});
+    	
+    	modalBtn.addEventListener('click', onClick);
+    </script>
+    
+<jsp:include page="../footer.jsp"></jsp:include>
+<jsp:include page="../js.jsp"></jsp:include>
 </body>
 </html>

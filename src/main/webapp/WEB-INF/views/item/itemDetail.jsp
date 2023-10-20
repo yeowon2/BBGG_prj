@@ -122,14 +122,13 @@
                 </div>
                 <div class="details-listing">
                   <p>면적</p>
-                  <h5><fmt:formatNumber value="${itemVO.itemSize * 3.3}" pattern="#,##0" />㎡ / ${itemVO.itemSize}평 </h5>
+                  <h5>${itemVO.itemSize}평 / ${itemVO.itemSizeArea}㎡</h5>
                 </div>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 col-xs-12">
-              <div class="others">
-                <ul class="row">
-				  <li class="col-lg-8">
+              <div class="others row">
+              	<div class="col-lg-6">
 				  	<c:choose>
                        	<c:when test="${itemVO.depositFee == null}">
                        		<c:if test="${itemVO.leasePrice >= 10000 && LTM != 0 && LB != 0}">
@@ -143,12 +142,28 @@
                        		</c:if>
                        	</c:when>
                        	<c:otherwise>
-	                        <h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>
+                       		<c:if test="${itemVO.depositFee >= 10000 && DFTM != 0 && DFB != 0}">
+                       			<h4>월세 ${DFB}억 ${DFTM} / ${itemVO.monthPrice}</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.depositFee >= 10000 && DFB != 0 && DFTM == 0}">
+                       			<h4>월세 ${DFB}억 / ${itemVO.monthPrice}</h4>
+                       		</c:if>
+                       		<c:if test="${itemVO.depositFee < 10000 }">
+                       			<h4>월세 ${itemVO.depositFee} / ${itemVO.monthPrice}</h4>
+                       		</c:if>
                        	</c:otherwise>
                        </c:choose>
-		  		 	</li>
-				  <li class="col-lg-2"><button type="button" class="btn" id="wishBtn"><img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png"></button></li>
-				</ul>
+                  </div>
+                  <div class="col-lg-6">
+				  	<button style="display:inline-block;" type="button" class="btn" id="wishBtn">
+				  		<c:if test="${itemVO.wishItemNo == null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png">
+				  		</c:if>
+				  		<c:if test="${itemVO.wishItemNo != null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png">
+				  		</c:if>
+			  		</button>
+              		</div>
               </div>
             </div>
           </div>
@@ -212,7 +227,7 @@
 	                    	<strong>전용면적</strong>
 	                    </div>
 	                    <div class="col-lg-8">
-	                    	<span>${itemVO.itemSize * 3.3}㎡ / ${itemVO.itemSize}평</span>
+	                    	<span>${itemVO.itemSize}평 / ${itemVO.itemSizeArea}㎡</span>
 	                  	</div>
 	                  </li>
 	                  <li class="row">
@@ -375,11 +390,33 @@
 						<hr>
 						<div class="partner_button">
 							<div class="button_guide">
-					            <a href="javascript:void(0)" class="email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
-					                쉽고 빠른 거래를 위한 
-					                <br>
-					                <span class="button_point">문의하기</span>
-					            </a>
+								<c:if test="${loginVO == null}">
+									 <a href="javascript:void(0)" class="login-checked email-compose text-center button_title" >
+						                쉽고 빠른 거래를 위한 
+						                <br>
+						                <span class="button_point">문의하기</span>
+						            </a>
+						            
+								</c:if>
+								<c:if test="${loginVO != null}">
+									<a href="javascript:void(0)" class="email-compose text-center button_title" data-toggle="modal" data-target="#exampleModalEmail">
+						                쉽고 빠른 거래를 위한 
+						                <br>
+						                <span class="button_point">문의하기</span>
+						            </a>
+								</c:if>
+					             <script>
+							        var emailComposeLinks = document.querySelectorAll('.email-compose');
+							        emailComposeLinks.forEach(function(link) {
+							            link.onclick = function(e) {
+							                if (link.classList.contains('login-checked')) {
+							                    e.preventDefault();
+							                    alert("로그인이 필요합니다");
+							                    window.location.href = '/login'; // 경로 수정 필요
+							                }
+							            };
+							        });
+							    </script>
 					        </div>
 				        </div>
                 	</div>
@@ -449,7 +486,7 @@
       
       <!-- Compose email -->
         <div class="modal fade" id="exampleModalEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalEmail" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg" role="document" style="max-width:600px">
                 <div class="modal-content">
                     <div class="modal-header bg-green-light-1">
                         <h6 class="modal-title text-white" id="exampleModalPopoversLabel">New Email</h6>
@@ -534,7 +571,7 @@
 		                    </section>
 		                    <div class="form-group">
 		                        <h5 class="mb-10" >내용</h5>
-		                        <textarea class="form-control" rows="15" name="noteContent" ></textarea>
+		                        <textarea class="form-control" rows="15" name="noteContent" style="max-height:300px;"></textarea>
 		                    </div>
 		                    
 		                    <hr>
@@ -625,10 +662,13 @@
     // 지도에 교통정보를 표시하도록 지도타입을 추가합니다
     map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 	
+    
+    
+    
 </script>
 
 <script>
-/* var wishBtn = $('#wishBtn');
+ var wishBtn = $('#wishBtn');
 var itemNo = $('#item-no').text();
 
 wishBtn.on('click', function() {
@@ -639,11 +679,19 @@ wishBtn.on('click', function() {
 	   method:'GET'
    }).then(response => response.json())
    .then(data => { 
-   		alert(data.message);
-   		
-   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
+   		if(data.message == '로그인이 필요합니다') {
+	   		alert(data.message);
+   			window.location.href = '/login';
+   		} else {
+	   		alert(data.message);
+	   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
+   		}
    }).catch(error => console.log(error)) 
-}); */
+}); 
+
+$('#noteBtn').on('click', function() {
+	alert("쪽지가 성공적으로 발송되었습니다.")
+})
 </script>
 <jsp:include page="../js.jsp"></jsp:include>
   </body>

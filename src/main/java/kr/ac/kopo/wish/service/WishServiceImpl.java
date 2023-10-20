@@ -1,8 +1,16 @@
 package kr.ac.kopo.wish.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.print.attribute.HashPrintJobAttributeSet;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.ac.kopo.item.dao.ItemDao;
+import kr.ac.kopo.item.web.ItemVO;
 import kr.ac.kopo.wish.dao.WishDao;
 import kr.ac.kopo.wish.web.WishVO;
 
@@ -11,6 +19,7 @@ public class WishServiceImpl implements WishService {
 
 	@Autowired
 	WishDao dao;
+	
 	
 	@Override
 	public boolean add(WishVO wishVO) {
@@ -54,5 +63,14 @@ public class WishServiceImpl implements WishService {
 		}
 		return false;
 	}
-	
+
+	@Override
+	public void delete(long userNo, Long itemNo) {
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+		paramMap.put("userNo", userNo);
+		paramMap.put("itemNo", itemNo);
+		
+		dao.delete(paramMap);
+	}
+
 }

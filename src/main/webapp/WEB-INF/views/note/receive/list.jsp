@@ -178,7 +178,7 @@
 
     document.addEventListener("DOMContentLoaded", function () {
     // AJAX 요청을 보낼 URL을 지정합니다.
-    var ajaxUrlPrefix = '/note/receiveDetail/'; // AJAX 요청 URL의 공통 부분
+    var ajaxUrlPrefix = '/note/receive/detail/'; // AJAX 요청 URL의 공통 부분
 
     // 클래스 이름이 media인 요소들을 선택합니다.
     var mediaElements = document.querySelectorAll('.media');

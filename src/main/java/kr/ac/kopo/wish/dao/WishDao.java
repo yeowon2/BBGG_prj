@@ -10,4 +10,6 @@ public interface WishDao {
 
 	WishVO select(WishVO wishVO);
 
+	void delete(Map<String, Long> paramMap);
+
 }

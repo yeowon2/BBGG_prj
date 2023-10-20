@@ -2,10 +2,7 @@ package kr.ac.kopo.fake.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ac.kopo.fake.service.FakeService;
 import kr.ac.kopo.pager.Pager;
@@ -42,7 +38,7 @@ public class FakeController {
 		return path + "/fakeList";
 	}
 	
-	@GetMapping("/list/{itemNo}")
+	@GetMapping("/list{fakeNo}")
 	public String fakeSelect() {
 		return "/fake/fakeContent";
 	}
@@ -104,25 +100,24 @@ public class FakeController {
 			
 			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
 			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1"));
-			//System.out.println(request.getParameter("fakeCheck1"));
 			fakeVO.setFakeCheck2(request.getParameter("fakeCheck2"));
 			fakeVO.setFakeCheck3(request.getParameter("fakeCheck3"));
 			fakeVO.setFakeContent(request.getParameter("fakeContent"));
 			
 			try {
-				file.transferTo(saveFile); // 여기까지는 OK
+				file.transferTo(saveFile); 
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}  
-			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId, model);
+			service.fakeAdd(itemNo, fakeVO, uploadVO, saveFile, userId);
 			
 			model.addAttribute("fakeFinishMsg", "신고가 완료되었습니다.");
 			model.addAttribute("fakeFinishUrl", "/itemList"); 
 			return "/alert";			
 			
-		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file.isEmpty()) {//@@@@@@@@@@ 첨부파일 없는 경우 확인필요
+		} else if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && file.isEmpty()) {
 			
 			fakeVO.setAgreeAt(request.getParameter("agreeAt"));
 			fakeVO.setFakeCheck1(request.getParameter("fakeCheck1")); 
@@ -142,5 +137,9 @@ public class FakeController {
 		}
 	}
 	
+	@GetMapping("/update/{itemNo}")
+	String fakeUpdate() {
+		return "";
+	}
 	
 }

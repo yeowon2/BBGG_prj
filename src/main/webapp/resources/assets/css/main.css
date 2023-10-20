@@ -1166,8 +1166,8 @@ select.classic {
 
 .label-inner {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  top: 15px;
+  right: 15px;
   z-index: 3;
 }
 
@@ -1348,6 +1348,15 @@ select.classic {
   margin-right: 15px;
   position: relative;
 }
+.product-filter .sort-by .sort-by-button {
+  display: inline-block;
+  float: right;
+  margin-right: 15px;
+  position: relative;
+}
+.product-filter .sort-by .sort-by-button button{
+	margin:0 10px;
+}
 
 .product-filter .sort-by .sort-by-select select {
   position: relative;
@@ -1423,6 +1432,9 @@ select.classic {
   margin-left: 1.5%;
   margin-right: 1.5%;
   position: relative;
+}
+.grid-layout .property-main .img-fluid {
+	width:100%;
 }
 
 .list-layout .property-main {

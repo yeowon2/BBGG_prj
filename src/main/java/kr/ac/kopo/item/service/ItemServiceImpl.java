@@ -19,7 +19,7 @@ import kr.ac.kopo.item.web.ItemVO;
 @Service
 public class ItemServiceImpl implements ItemService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(FileDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 	
 	@Autowired
 	ItemDao dao;
@@ -58,7 +58,6 @@ public class ItemServiceImpl implements ItemService {
 			fileVO.setItemNo(itemVO.getItemNo());
 			fileDao.insertFile(fileVO);
 		}
-		
 	}
 
 	@Override
@@ -117,6 +116,28 @@ public class ItemServiceImpl implements ItemService {
 		
 		return itemVO;
 	}
+	
+	@Override
+	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
+		
+		//해당 매물의 모든 사진 리스트를 반환
+		List<FileVO> fileVOList = dao.selectFile(itemNo);
+		
+		Map<String, Long> paramMap = new HashMap<String, Long>();
+		paramMap.put("itemNo", itemNo);
+		paramMap.put("userNo", loginUserNo);
+		ItemVO itemVO = dao.itemDetail(paramMap);
+		 
+		//조회수 update
+		int viewCount = dao.viewCount(itemNo);
+		
+		//itemVO에 조회수와 file리스트를 setting
+		itemVO.setViewCount(viewCount);
+		itemVO.setFileVOList(fileVOList);
+		 
+		 
+		 return itemVO;
+	}
 
 	@Override
 	public String lomSelect(Long itemNo) {
@@ -148,12 +169,21 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ItemVO itemDetail(Long itemNo, Long loginUserNo) {
-		Map<String, Long> paramMap = new HashMap<String, Long>();
-		paramMap.put("itemNo", itemNo);
-		paramMap.put("userNo", loginUserNo);
-		return dao.itemDetail(paramMap);
+	public List<ItemVO> selectWishList(long userNo) {
+		
+		 List<ItemVO> selectWishList = dao.selectWishList(userNo);
+		 
+		 for (ItemVO itemVO : selectWishList) {
+				Long itemNo = itemVO.getItemNo();
+				FileVO fileVO = fileDao.selectItemFile(itemNo);
+
+				itemVO.setFileVO(fileVO);
+			}
+		 
+		 return selectWishList;
 	}
+
+
 
 	
 }

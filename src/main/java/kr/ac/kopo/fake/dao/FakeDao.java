@@ -13,7 +13,7 @@ public interface FakeDao {
 
 	List<FakeVO> list(Pager pager);
 
-	void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId, Model model);
+	void fakeAdd(Long itemNo, FakeVO fakeVO, UploadVO uploadVO, File saveFile, String userId);
 
 	void fakeAdd(Long itemNo, FakeVO fakeVO, String userId);
 	

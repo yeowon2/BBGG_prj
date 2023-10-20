@@ -3,8 +3,6 @@ package kr.ac.kopo.item.web;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +29,7 @@ import kr.ac.kopo.user.web.UserVO;
 public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	private final String fileStorePath = "/home/poly1/upload/";
+	private final String fileStorePath = "D:/upload/";
 	
 	@Autowired
 	ItemService	service;
@@ -81,18 +79,31 @@ public class ItemController {
 	@GetMapping("/itemDetail/{itemNo}")
 	public String itemDetail(@PathVariable Long itemNo, Model model, @SessionAttribute(name="loginVO", required = false) UserVO loginVO) {
 		ItemVO itemVO = new ItemVO();
-		/*if(loginVO != null) {
+		//만약에 로그인 정보가 있다면 로그인 user의 관심 목록에 해당 item이 있는지 확인 
+		if(loginVO != null) {
 			Long loginUserNo = loginVO.getUserNo();
 			itemVO = service.itemDetail(itemNo, loginUserNo);
-		} else  {*/
+		} else  {
 			itemVO = service.itemDetail(itemNo);
-//		}
-		if(itemVO.getLeasePrice() >= 10000) {
-			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
-			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
-			model.addAttribute("LB",leaseBillion);
-			model.addAttribute("LTM",leaseTenMillion);
 		}
+		
+		if(itemVO.getLeasePrice() != null) {
+			if(itemVO.getLeasePrice() >= 10000) {
+				int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
+				int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
+				model.addAttribute("LB",leaseBillion);
+				model.addAttribute("LTM",leaseTenMillion);
+			}
+		}
+		if(itemVO.getDepositFee() != null) {
+			if(itemVO.getDepositFee() >= 10000) {
+				int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+				int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+				model.addAttribute("DFB",depositFeeBillion);
+				model.addAttribute("DFTM",depositFeeTenMillion);
+			}
+		}
+		
 		PartnerVO partnerVO = partnerService.detail(itemNo);
 		long partnerNo = partnerVO.getPartnerNo();
 		List<ItemVO> partItemList = service.partOtherItemList(partnerNo, itemNo);
@@ -102,6 +113,8 @@ public class ItemController {
 			"partnerVO", partnerVO,
 			"partItemList", partItemList
 		));
+		
+		model.addAttribute("loginVO", loginVO);
 
 		return path + "itemDetail";
 	}
@@ -109,7 +122,7 @@ public class ItemController {
 	//매물 등록폼 이동
 	@GetMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo) {
-		return path + "itemAdd2";
+		return path + "itemAdd3";
 	}
 	
 	//매물 등록 
@@ -124,7 +137,7 @@ public class ItemController {
         if(!files.isEmpty()) {
         	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
         }
-        
+    
 		service.itemAdd(itemVO, fileVOList);
 		
 		return "redirect:/partner/{partnerNo}/itemList";

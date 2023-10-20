@@ -56,51 +56,47 @@
       <div class="search-container">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <h4 class="intro-sub-heading">전국 방방곡곡에서 찾아왔어요!</h4>
+            <div class="col-md-12" style="align-items: center; display: flex; flex-direction: column; text-align: center;" >
+              <h4 class="intro-sub-heading">전국 방방곡곡 안전한 부동산 임대 파트너</h4>
+              <!-- <h4 class="intro-sub-heading">전국 방방곡곡에서 찾아왔어요!</h4> -->
               <h2 class="intro-title">어떤 방을 찾고 있나요?</h2>
-              <div class="content">
-                <div class="row justify-content-center align-items-center">
-                  	<div class="search-add col-lg-8 col-md-8 col-xs-8" style="align-items: center; justify-content: center;">
-		              <form id="index-search" method="get" action="/itemList" style="align-items: center; justify-content: center;" >
-		                <div class="form-group" style="margin-top: 2px; margin-bottom: 2px" >
-		                	<!-- <div class="row"> -->
-				                <img  src="../resources/comm/search.png" style="width: 20px; height: 20px;  margin-left: 12%; margin-bottom: -4px; ">
-		                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="도로명 또는 단지명을 입력하세요." required="" style="border: none; align-items: center; justify-content: center;">
-		                	<!-- </div> -->
-		                </div>
-		              </form>`
-		              <script>
-		           		// 검색 폼 엘리먼트 가져오기
-					    var searchForm = document.getElementById('index-search');
-			
-					    // 검색 폼이 제출되면 세션 스토리지에 검색어 저장
-					    searchForm.addEventListener('submit', function() {
-					        var searchInput = document.getElementById('search');
-					        var searchValue = searchInput.value;
-					        sessionStorage.setItem('search', searchValue);
-					    });
-			
-					    // 검색어가 세션 스토리지에 저장된 경우 자동으로 설정
-					    var searchInput = document.getElementById('search');
-					    var storedSearch = sessionStorage.getItem('search');
-					    if (storedSearch) {
-					        searchInput.value = storedSearch;
-					    }
-					 	// 6초(600 밀리초) 후에 세션 스토리지 초기화
-					    setTimeout(function() {
-					        sessionStorage.clear(); // 세션 스토리지 초기화
-					    }, 600);
-				    </script>
-		         	</div>
-                </div>
-              </div>
+              <div style="align-items: center; justify-content: center; width: 80%; display: flex; text-align: center;">
+	              <form id="index-search" method="get" action="/itemList" style="align-items: center; justify-content: center; vertical-align: ; width: 100%;" >
+	                <div class="form-group" style="border: none; align-items: center; justify-content: center; display: flex;" >
+		                <img src="../resources/comm/search2.png" style="width: 49px; height: 49px; border: none; align-items: center; justify-content: center;">
+                    	<input class="col-lg-10" type="text" name="search" id="search" value="" placeholder="원하시는 지역명, 도로명 또는 단지명(아파트명)을 입력해주세요." required style="border: none; align-items: center; justify-content: center;">
+	                </div>
+	              </form>
+         	  </div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- Intro Section End -->
+    
+    <script>
+		// 검색 폼 엘리먼트 가져오기
+	    var searchForm = document.getElementById('index-search');
+
+	    // 검색 폼이 제출되면 세션 스토리지에 검색어 저장
+	    searchForm.addEventListener('submit', function() {
+	        var searchInput = document.getElementById('search');
+	        var searchValue = searchInput.value;
+	        sessionStorage.setItem('search', searchValue);
+	    });
+
+	    // 검색어가 세션 스토리지에 저장된 경우 자동으로 설정
+	    var searchInput = document.getElementById('search');
+	    var storedSearch = sessionStorage.getItem('search');
+	    if (storedSearch) {
+	        searchInput.value = storedSearch;
+	    }
+	 	// 6초(600 밀리초) 후에 세션 스토리지 초기화
+	    setTimeout(function() {
+	        sessionStorage.clear(); // 세션 스토리지 초기화
+	    }, 600);
+    </script>
 
     <!-- Property Section Start -->
     <section class="property section-padding">

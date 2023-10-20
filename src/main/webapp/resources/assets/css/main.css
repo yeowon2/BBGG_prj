@@ -977,13 +977,13 @@ intro section style
 
 .search-container .form-group {
   /* margin-bottom: 30px !important; */
- width: 90%;
+ width: 100%;
   
 }
 
 .search-container .form-group input {
   /* height: 48px; */
-  height: 48px;
+  height: 49px;
 }
 
 .search-container .search-category-container select {

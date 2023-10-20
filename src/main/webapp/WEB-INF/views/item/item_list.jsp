@@ -353,6 +353,50 @@
 		    });
 		</script>
 		
+		<!-- 홈에서 검색한 결과를 세션에 저장하고 가져오기 -->
+		<script>
+			// 검색 폼 엘리먼트 가져오기
+		    var searchForm = document.getElementById('search-container');
+	
+		    // 검색 폼이 제출되면 세션 스토리지에 검색어 및 셀렉트 태그 값 저장
+		    searchForm.addEventListener('submit', function() {
+		        var searchInput = document.getElementById('search');
+		        var searchValue = searchInput.value;
+		        var itemTypeSelect = document.getElementById('itemType');
+		        var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+		        var itemTypeValue = itemTypeSelect.value;
+		        var leaseOrMonthValue = leaseOrMonthSelect.value;
+		        
+		        sessionStorage.setItem('search', searchValue);
+		        sessionStorage.setItem('itemType', itemTypeValue);
+		        sessionStorage.setItem('leaseOrMonth', leaseOrMonthValue);
+		    });
+	
+		    // 검색어 및 셀렉트 태그 값이 세션 스토리지에 저장된 경우 자동으로 설정
+		    var searchInput = document.getElementById('search');
+		    var itemTypeSelect = document.getElementById('itemType');
+		    var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
+		    
+		    var storedSearch = sessionStorage.getItem('search');
+		    var storedItemType = sessionStorage.getItem('itemType');
+		    var storedLeaseOrMonth = sessionStorage.getItem('leaseOrMonth');
+		    
+		    if (storedSearch) {
+		        searchInput.value = storedSearch;
+		    }
+		    if (storedItemType) {
+		        itemTypeSelect.value = storedItemType;
+		    }
+		    if (storedLeaseOrMonth) {
+		        leaseOrMonthSelect.value = storedLeaseOrMonth;
+		    }
+		    
+		 	// 5분(300000 밀리초) 후에 세션 스토리지 초기화
+		    setTimeout(function() {
+		        sessionStorage.clear(); // 세션 스토리지 초기화
+		    }, 3000);
+		</script>
+		
 		<!-- 지도 API 스크립트 -->
 		<script>
 		    var map; // 지도 객체를 저장할 변수
@@ -406,15 +450,15 @@
 
 		        // 서버에서 데이터를 가져오고 필터링하는 함수
 		        function fetchDataAndFilter() {
-		            var searchKeyword = $("#search").val();
+		            var searchKeyword = $("#search").val().trim();
 		            var selectedItemTypes = getSelectedItemTypes();
 		            var selectedLeaseOrMonth = getSelectedLeaseOrMonth();
 		            var selectedDetailOption = getSelectedDetailOption();
 		            
 		         	// 키워드 필터링 함수
 		            function Keyword(item) {
-		                if (searchKeyword.length >= 2) {
-		                    return item.address.includes(searchKeyword) || item.address2.includes(searchKeyword);
+		                if (searchKeyword.trim().length >= 2) {
+		                    return item.address.includes(searchKeyword.trim()) || item.address2.includes(searchKeyword.trim());
 		                } else {
 		                    return true;
 		                }
@@ -501,11 +545,11 @@
 		                    	(selectedItemTypes.length === 0 || selectedItemTypes.includes(item.itemType)) &&
 		                    	(selectedLeaseOrMonth.length === 0 || selectedLeaseOrMonth.includes(item.leaseOrMonth)) &&
 		                    	(selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.manageFeeAt))) &&
-		                            (selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.elevatorAt))) &&
-		                            (selectedDetailOption.length === 0 ||
-		                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.parkingAt))) &&
+	                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.manageFeeAt))) &&
+	                            (selectedDetailOption.length === 0 ||
+	                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.elevatorAt))) &&
+	                            (selectedDetailOption.length === 0 ||
+	                                (selectedDetailOption.includes("") || selectedDetailOption.includes(item.parkingAt))) &&
 			                    Keyword(item);
 		                });
 
@@ -529,7 +573,7 @@
 		                updatePropertyList();
 		                
 		             	// 검색 결과가 있는 경우 지도를 해당 영역으로 이동
-		                if (filteredData.length > 0 && searchKeyword.length >= 2) {
+		                if (filteredData.length > 0 && searchKeyword.trim().length >= 2) {
 		                    var bounds = new kakao.maps.LatLngBounds();
 		                    filteredData.forEach(function (item) {
 		                        bounds.extend(new kakao.maps.LatLng(item.lat, item.lng));
@@ -704,48 +748,6 @@
 		    }
 		</script>
 
-		<script>
-			// 검색 폼 엘리먼트 가져오기
-		    var searchForm = document.getElementById('search-container');
-	
-		    // 검색 폼이 제출되면 세션 스토리지에 검색어 및 셀렉트 태그 값 저장
-		    searchForm.addEventListener('submit', function() {
-		        var searchInput = document.getElementById('search');
-		        var searchValue = searchInput.value;
-		        var itemTypeSelect = document.getElementById('itemType');
-		        var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
-		        var itemTypeValue = itemTypeSelect.value;
-		        var leaseOrMonthValue = leaseOrMonthSelect.value;
-		        
-		        sessionStorage.setItem('search', searchValue);
-		        sessionStorage.setItem('itemType', itemTypeValue);
-		        sessionStorage.setItem('leaseOrMonth', leaseOrMonthValue);
-		    });
-	
-		    // 검색어 및 셀렉트 태그 값이 세션 스토리지에 저장된 경우 자동으로 설정
-		    var searchInput = document.getElementById('search');
-		    var itemTypeSelect = document.getElementById('itemType');
-		    var leaseOrMonthSelect = document.getElementById('leaseOrMonth');
-		    
-		    var storedSearch = sessionStorage.getItem('search');
-		    var storedItemType = sessionStorage.getItem('itemType');
-		    var storedLeaseOrMonth = sessionStorage.getItem('leaseOrMonth');
-		    
-		    if (storedSearch) {
-		        searchInput.value = storedSearch;
-		    }
-		    if (storedItemType) {
-		        itemTypeSelect.value = storedItemType;
-		    }
-		    if (storedLeaseOrMonth) {
-		        leaseOrMonthSelect.value = storedLeaseOrMonth;
-		    }
-		 	// 5분(300000 밀리초) 후에 세션 스토리지 초기화
-		    setTimeout(function() {
-		        sessionStorage.clear(); // 세션 스토리지 초기화
-		    }, 6000);
-		</script>
-		
 	    <!-- 매물 봤다면 봤다는 표시 -->
 	    <script>
 		 	// JavaScript 코드

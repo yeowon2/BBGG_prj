@@ -1,5 +1,6 @@
 package kr.ac.kopo.main;
 
+import java.nio.file.FileSystemLoopException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class MainController {
 		//최근 업로드된 방 목록 
 		List<ItemVO> recentItemList = new ArrayList<ItemVO>();
 		recentItemList = itemService.selectRecentList();
+		for (ItemVO itemVO : recentItemList) {
+			System.out.println("==============" + itemVO.getAddress2());
+		}
 		model.addAttribute("recentItemList", recentItemList);
 		
 		//[파트너]응답률 순위

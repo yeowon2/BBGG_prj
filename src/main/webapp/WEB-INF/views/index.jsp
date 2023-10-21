@@ -237,7 +237,7 @@
 	                        <div class="pricin-list">
 	                         <div class="property-price">
 	                          	<c:choose>
-	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          		<c:when test="${item.leaseOrMonth == 'lease'}">
 	                          			<c:if test="${item.leasePrice < 10000}">
 		                     		   		<span>전세 ${item.leasePrice}</span>
 	                          			</c:if>

@@ -350,30 +350,9 @@
 		    #{tag1},
 		    #{tag2},
 		    #{tag3},
-		    <choose>
-		        <when test="leasePrice == null">
-		            0,
-		        </when>
-		        <otherwise>
-		            #{leasePrice},
-		        </otherwise>
-		    </choose>
-		    <choose>
-		        <when test="monthPrice == null">
-		            0,
-		        </when>
-		        <otherwise>
-		            #{monthPrice},
-		        </otherwise>
-		    </choose>
-		    <choose>
-		        <when test="depositFee == null">
-		            0,
-		        </when>
-		        <otherwise>
-		            #{depositFee},
-		        </otherwise>
-		    </choose>
+			#{leasePrice},
+			#{monthPrice},
+			#{depositFee}
 		    )
 	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
 	        SELECT LAST_INSERT_ID()
@@ -397,23 +376,25 @@
 
 	<select id="selectRecentList" resultMap="ItemMap">
 		SELECT
-		ti.item_no,
-		ti.lease_or_month,
-		ti.address2,
-		ti.address,
-		ti.item_size,
-		ti.item_count,
-		ti.bath_at,
-		ti.lease_price,
-		ti.month_price,
-		ti.deposit_fee,
-		f.*
+			ti.item_no,
+			ti.lease_or_month,
+			ti.address2,
+			ti.address,
+			ti.item_size,
+			ti.item_count,
+			ti.bath_at,
+			ti.lease_price,
+			ti.month_price,
+			ti.deposit_fee,
+			MAX(f.saved_name) AS saved_name
 		FROM tbl_item ti
 		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at = 'Y'
+		GROUP BY ti.item_no
 		ORDER BY ti.regist_date DESC
 		LIMIT 6
 	</select>
+
 
 	<update id="viewCount">
 		UPDATE tbl_item

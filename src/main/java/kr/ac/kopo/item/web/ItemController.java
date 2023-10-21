@@ -92,6 +92,8 @@ public class ItemController {
 				int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
 				model.addAttribute("LB",leaseBillion);
 				model.addAttribute("LTM",leaseTenMillion);
+			}else {
+				
 			}
 		}
 		if(itemVO.getDepositFee() != null) {

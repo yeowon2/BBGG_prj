@@ -52,8 +52,10 @@ public class ItemServiceImpl implements ItemService {
 		
 		 if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
 			 itemVO.setLeaseOrMonth("lease"); 
+			 itemVO.setMonthPrice(0L);
 		 } else if(itemVO.getLeasePrice() == null){ 
 			 itemVO.setLeaseOrMonth("month"); 
+			 itemVO.setLeasePrice(0L);
 		 }
 		
 		dao.itemAdd(itemVO);
@@ -143,14 +145,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public List<ItemVO> selectRecentList() {
-		List<ItemVO> selectRecentList = dao.selectRecentList();
-		for (ItemVO itemVO : selectRecentList) {
-			Long itemNo = itemVO.getItemNo();
-			FileVO fileVO = fileDao.selectItemFile(itemNo);
-
-			itemVO.setFileVO(fileVO);
-		}
-		return selectRecentList;
+		return dao.selectRecentList();
 	}
 
 	@Override

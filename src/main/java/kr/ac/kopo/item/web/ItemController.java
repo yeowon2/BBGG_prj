@@ -86,18 +86,21 @@ public class ItemController {
 		} else  {
 			itemVO = service.itemDetail(itemNo);
 		}
-		
-		if(itemVO.getLeasePrice() >= 10000) {
-			int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
-			int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
-			model.addAttribute("LB",leaseBillion);
-			model.addAttribute("LTM",leaseTenMillion);
+		if(itemVO.getLeasePrice() != null) {
+			if(itemVO.getLeasePrice() >= 10000) {
+				int leaseBillion = (int)(itemVO.getLeasePrice() / 10000);
+				int leaseTenMillion = (int)(itemVO.getLeasePrice() % 10000);
+				model.addAttribute("LB",leaseBillion);
+				model.addAttribute("LTM",leaseTenMillion);
+			}
 		}
-		if(itemVO.getDepositFee() >= 10000) {
-			int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
-			int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
-			model.addAttribute("DFB",depositFeeBillion);
-			model.addAttribute("DFTM",depositFeeTenMillion);
+		if(itemVO.getDepositFee() != null) {
+			if(itemVO.getDepositFee() >= 10000) {
+				int depositFeeBillion = (int)(itemVO.getDepositFee() / 10000);
+				int depositFeeTenMillion = (int)(itemVO.getDepositFee() % 10000);
+				model.addAttribute("DFB",depositFeeBillion);
+				model.addAttribute("DFTM",depositFeeTenMillion);
+			}
 		}
 	
 		PartnerVO partnerVO = partnerService.detail(itemNo);

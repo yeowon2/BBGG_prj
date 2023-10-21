@@ -4,209 +4,196 @@
 <mapper namespace="item">
 
 	<resultMap type="kr.ac.kopo.item.web.ItemVO" id="ItemMap">
-    <id property="itemNo" column="item_no" />
-    <result property="partnerNo" column="partner_no" />
-    <result property="leaseOrMonth" column="lease_or_month" />
-    <result property="itemType" column="item_type" />
-    <result property="address" column="address" />
-    <result property="address2" column="address2" />
-    <result property="dong" column="dong" />
-    <result property="ho" column="ho" />
-    <result property="moveInAt" column="move_in_at" />
-    <result property="moveInDate" column="move_in_date" />
-    <result property="itemSize" column="item_size" />
-    <result property="itemSizeArea" column="item_size_area" />
-    <result property="buildingFloor" column="building_floor" />
-    <result property="itemFloor" column="item_floor" />
-    <result property="itemCount" column="item_count" />
-    <result property="bathAt" column="bath_at" />
-    <result property="elevatorAt" column="elevator_at" />
-    <result property="parkingAt" column="parking_at" />
-    <result property="manageFeeAt" column="manage_fee_at" />
-    <result property="manageFee" column="manage_fee" />
-    <result property="memoDetail" column="memo_detail" />
-    <result property="tag1" column="tag1" />
-    <result property="tag2" column="tag2" />
-    <result property="tag3" column="tag3" />
-    <result property="registDate" column="regist_date" />
-    <result property="updateDate" column="update_date" />
-    <result property="useAt" column="use_at" />
-    <result property="lat" column="lat" />
-    <result property="lng" column="lng" />
-    
-    <!-- 추가된 부분 -->
-    <result property="leasePrice" column="lease_price" />
-    <result property="depositFee" column="deposit_fee" />
-    <result property="monthPrice" column="month_price" />
-    <result property="wishCount" column="wish_count"/>
-    <result property="wishItemNo" column="wish_item_no"/>
-    <result property="wishUserNo" column="wish_user_no"/>
-    <result property="viewCount" column="view_count"/>
-	
-	<collection property="fileVO" resultMap="FileMap" />
-</resultMap>
-<resultMap type="kr.ac.kopo.file.FileVO" id="FileMap">
-	<result property="fileNo" column="file_no"/>
-	<result property="fileSize" column="file_size"/>
-	<result property="savedName" column="saved_name"/>
-	<result property="originalName" column="original_name"/>
-	<result property="filePath" column="file_path"/>
-	<result property="fileExt" column="file_ext"/>
-	<result property="registDate" column="regist_date"/>
-	<result property="updateDate" column="update_date"/>
-	<result property="itemNo" column="item_no"/>
-	<result property="partnerNo" column="partner_no"/>
-</resultMap>
-	
+		<id property="itemNo" column="item_no" />
+		<result property="partnerNo" column="partner_no" />
+		<result property="leaseOrMonth" column="lease_or_month" />
+		<result property="itemType" column="item_type" />
+		<result property="address" column="address" />
+		<result property="address2" column="address2" />
+		<result property="dong" column="dong" />
+		<result property="ho" column="ho" />
+		<result property="moveInAt" column="move_in_at" />
+		<result property="moveInDate" column="move_in_date" />
+		<result property="itemSize" column="item_size" />
+		<result property="itemSizeArea" column="item_size_area" />
+		<result property="buildingFloor" column="building_floor" />
+		<result property="itemFloor" column="item_floor" />
+		<result property="itemCount" column="item_count" />
+		<result property="bathAt" column="bath_at" />
+		<result property="elevatorAt" column="elevator_at" />
+		<result property="parkingAt" column="parking_at" />
+		<result property="manageFeeAt" column="manage_fee_at" />
+		<result property="manageFee" column="manage_fee" />
+		<result property="memoDetail" column="memo_detail" />
+		<result property="tag1" column="tag1" />
+		<result property="tag2" column="tag2" />
+		<result property="tag3" column="tag3" />
+		<result property="registDate" column="regist_date" />
+		<result property="updateDate" column="update_date" />
+		<result property="useAt" column="use_at" />
+		<result property="lat" column="lat" />
+		<result property="lng" column="lng" />
+
+		<!-- 추가된 부분 -->
+		<result property="leasePrice" column="lease_price" />
+		<result property="depositFee" column="deposit_fee" />
+		<result property="monthPrice" column="month_price" />
+		<result property="wishCount" column="wish_count" />
+		<result property="wishItemNo" column="wish_item_no" />
+		<result property="wishUserNo" column="wish_user_no" />
+		<result property="viewCount" column="view_count" />
+
+		<collection property="fileVO" resultMap="FileMap" />
+	</resultMap>
+	<resultMap type="kr.ac.kopo.file.FileVO" id="FileMap">
+		<result property="fileNo" column="file_no" />
+		<result property="fileSize" column="file_size" />
+		<result property="savedName" column="saved_name" />
+		<result property="originalName" column="original_name" />
+		<result property="filePath" column="file_path" />
+		<result property="fileExt" column="file_ext" />
+		<result property="registDate" column="regist_date" />
+		<result property="updateDate" column="update_date" />
+		<result property="itemNo" column="item_no" />
+		<result property="partnerNo" column="partner_no" />
+	</resultMap>
+
 	<select id="itemList" resultType="itemVO">
-		<!-- SELECT i.*, f.*
-		FROM tbl_item i 
-		LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
-		WHERE f.file_no = (
-				    SELECT MIN(file_no)
-				    FROM tbl_item_file
-				    WHERE item_no = i.item_no
-					)
-		
-		ORDER BY i.regist_date DESC -->
-		
+		<!-- SELECT i.*, f.* FROM tbl_item i LEFT JOIN tbl_item_file f ON i.item_no 
+			= f.item_no WHERE f.file_no = ( SELECT MIN(file_no) FROM tbl_item_file WHERE 
+			item_no = i.item_no ) ORDER BY i.regist_date DESC -->
+
 		SELECT i.*, f.*
 		FROM tbl_item i
 		LEFT JOIN (
-		    SELECT item_no, MIN(file_no) AS min_file_no
-		    FROM tbl_item_file
-		    GROUP BY item_no
-			) AS min_files ON i.item_no = min_files.item_no
-		LEFT JOIN tbl_item_file f ON i.item_no = f.item_no AND f.file_no = min_files.min_file_no
-		ORDER BY i.regist_date DESC
+		SELECT item_no, MIN(file_no) AS min_file_no
+		FROM tbl_item_file
+		GROUP BY item_no
+		) AS min_files ON i.item_no = min_files.item_no
+		LEFT JOIN tbl_item_file
+		f ON i.item_no = f.item_no AND f.file_no = min_files.min_file_no
+		ORDER
+		BY i.regist_date DESC
 	</select>
-	
-	<!-- <select id="itemSelect" resultType="itemVO">
-		SELECT 
-		
-		<choose>
-	        <when test="leaseOrMonth == 'lease'">
-	            (SELECT lease_price FROM tbl_lease  WHERE tbl_lease.item_no = tbl_item.item_no) AS "전세가격",
-	        </when>
-	        <otherwise>
-	            (SELECT deposit_fee FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "보증금",
-	            (SELECT month_price FROM tbl_month  WHERE tbl_month.item_no = tbl_item.item_no) AS "월세가격",
-	        </otherwise>
-	    </choose>
-		tbl_item.*
-		FROM tbl_item
-		WHERE item_No = #{itemNo}
-	</select> -->
-	
+
+	<!-- <select id="itemSelect" resultType="itemVO"> SELECT <choose> <when 
+		test="leaseOrMonth == 'lease'"> (SELECT lease_price FROM tbl_lease WHERE 
+		tbl_lease.item_no = tbl_item.item_no) AS "전세가격", </when> <otherwise> (SELECT 
+		deposit_fee FROM tbl_month WHERE tbl_month.item_no = tbl_item.item_no) AS 
+		"보증금", (SELECT month_price FROM tbl_month WHERE tbl_month.item_no = tbl_item.item_no) 
+		AS "월세가격", </otherwise> </choose> tbl_item.* FROM tbl_item WHERE item_No 
+		= #{itemNo} </select> -->
+
 	<select id="lomSelect" resultType="String">
 		SELECT tbl_item.lease_or_month
 		FROM tbl_item
 		WHERE tbl_item.item_no = #{itemNo}
 	</select>
-	
+
 	<select id="itemSelect" resultMap="ItemMap">
-		SELECT 
-		   i.item_no,
-		   i.partner_no,
-		   i.item_type,
-		   i.address,
-		   i.dong,
-		   i.ho,
-		   i.move_in_at,
-		   i.move_in_date,
-		   i.item_size,
-		   i.building_floor,
-		   i.item_floor,
-		   i.item_count,
-		   i.bath_at,
-		   i.elevator_at,
-		   i.parking_at,
-		   i.manage_fee_at,
-		   i.manage_fee, 
-		   i.tag1,
-		   i.tag2,
-		   i.tag3,
-		   i.memo_detail,
-		   i.regist_date,
-		   i.update_date,
-		   i.use_at,
-		   i.lat,
-		   i.lng,
-		   i.address2,
-		   i.lease_or_month,
-		   i.lease_price,
-		   i.month_price,
-		   i.deposit_fee,
-		   i.item_size_area
+		SELECT
+		i.item_no,
+		i.partner_no,
+		i.item_type,
+		i.address,
+		i.dong,
+		i.ho,
+		i.move_in_at,
+		i.move_in_date,
+		i.item_size,
+		i.building_floor,
+		i.item_floor,
+		i.item_count,
+		i.bath_at,
+		i.elevator_at,
+		i.parking_at,
+		i.manage_fee_at,
+		i.manage_fee,
+		i.tag1,
+		i.tag2,
+		i.tag3,
+		i.memo_detail,
+		i.regist_date,
+		i.update_date,
+		i.use_at,
+		i.lat,
+		i.lng,
+		i.address2,
+		i.lease_or_month,
+		i.lease_price,
+		i.month_price,
+		i.deposit_fee,
+		i.item_size_area
 		FROM tbl_item i
 		WHERE i.use_at IN ('Y', 'C')
 		AND i.item_no = #{itemNo};
-	
+
 	</select>
-	
+
 	<select id="partItemList" resultMap="ItemMap">
-		SELECT 
-		    ti.item_no,
-		    ti.item_type,
-		    ti.lease_or_month,
-		    ti.address2,
-		    ti.address,
-		    ti.regist_date,
-		    ti.use_at,
-		    ti.item_size,
-		    ti.item_count,
-		    ti.bath_at,
-		    ti.lease_price, 
-		    ti.month_price,
-		    ti.deposit_fee, 
-		    ti.item_floor,
-		    ti.manage_fee,
-		    ti.view_count,
-		    f.*
+		SELECT
+		ti.item_no,
+		ti.item_type,
+		ti.lease_or_month,
+		ti.address2,
+		ti.address,
+		ti.regist_date,
+		ti.use_at,
+		ti.item_size,
+		ti.item_count,
+		ti.bath_at,
+		ti.lease_price,
+		ti.month_price,
+		ti.deposit_fee,
+		ti.item_floor,
+		ti.manage_fee,
+		ti.view_count,
+		f.*
 		FROM tbl_item ti
 		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at IN ('Y', 'C')
-			AND ti.partner_no = #{partnerNo}
+		AND ti.partner_no = #{partnerNo}
 		ORDER BY ti.regist_date DESC
 	</select>
-	
-	<select id="partOtherItemList" resultMap="ItemMap" parameterType="map">
-		SELECT 
-		    ti.item_no,
-		    ti.item_type,
-		    ti.lease_or_month,
-		    ti.address2,
-		    ti.address,
-		    ti.regist_date,
-		    ti.use_at,
-		    ti.item_size,
-		    ti.item_count,
-		    ti.bath_at,
-		   	ti.lease_price,
-		   	ti.month_price,
-		    ti.deposit_fee, 
-		    ti.item_floor,
-		    ti.manage_fee,
-		    f.*
+
+	<select id="partOtherItemList" resultMap="ItemMap"
+		parameterType="map">
+		SELECT
+		ti.item_no,
+		ti.item_type,
+		ti.lease_or_month,
+		ti.address2,
+		ti.address,
+		ti.regist_date,
+		ti.use_at,
+		ti.item_size,
+		ti.item_count,
+		ti.bath_at,
+		ti.lease_price,
+		ti.month_price,
+		ti.deposit_fee,
+		ti.item_floor,
+		ti.manage_fee,
+		f.*
 		FROM tbl_item ti
 		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at IN ('Y', 'C')
-			AND ti.partner_no = #{partnerNo}
-			AND ti.item_no != #{itemNo}
+		AND ti.partner_no = #{partnerNo}
+		AND ti.item_no != #{itemNo}
 		ORDER BY ti.regist_date DESC
 		LIMIT 10
 	</select>
-	
+
 	<update id="updateStatus">
-	    UPDATE tbl_item
-	    SET use_at = CASE
-	        WHEN use_at = 'C' THEN 'Y'
-	        WHEN use_at = 'Y' THEN 'C'
-	        ELSE use_at
-	    END
-	    WHERE item_no = #{itemNo}
+		UPDATE tbl_item
+		SET use_at = CASE
+		WHEN use_at = 'C' THEN 'Y'
+		WHEN use_at = 'Y' THEN 'C'
+		ELSE use_at
+		END
+		WHERE item_no = #{itemNo}
 	</update>
-	
+
 	<select id="selectStatus" resultType="java.lang.String">
 		SELECT use_at
 		FROM tbl_item
@@ -214,123 +201,128 @@
 	</select>
 
 	<update id="deleteItem">
-	    UPDATE tbl_item
-	    SET use_at = 'N'
-	    WHERE item_no = #{itemNo}
+		UPDATE tbl_item
+		SET use_at = 'N'
+		WHERE item_no = #{itemNo}
 	</update>
-	
-	
+
+
 	<select id="itemDetail" resultMap="ItemMap">
-		SELECT 
-		   i.item_no,
-	       i.partner_no,
-	       i.item_type,
-	       i.address,
-	       i.dong,
-	       i.ho,
-	       CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
-	       i.item_size,
-	       i.building_floor,
-	       i.item_floor,
-	       i.item_count,
-	       i.bath_at,
-	       i.elevator_at,
-	       i.parking_at,
-	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_detail,
-	       i.regist_date,
-	       i.update_date,
-	       i.use_at,
-	       i.lat,
-	       i.lng,
-	       i.address2,
-	       i.lease_price,
-	       i.month_price,
-	       i.deposit_fee,
-	       i.item_size_area
-	FROM tbl_item i
-	WHERE i.use_at In ('Y', 'C')
+		SELECT
+		i.item_no,
+		i.partner_no,
+		i.item_type,
+		i.address,
+		i.dong,
+		i.ho,
+		CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS
+		move_in_date,
+		i.item_size,
+		i.building_floor,
+		i.item_floor,
+		i.item_count,
+		i.bath_at,
+		i.elevator_at,
+		i.parking_at,
+		CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS
+		manage_fee,
+		i.memo_detail,
+		i.regist_date,
+		i.update_date,
+		i.use_at,
+		i.lat,
+		i.lng,
+		i.address2,
+		i.lease_price,
+		i.month_price,
+		i.deposit_fee,
+		i.item_size_area
+		FROM tbl_item i
+		WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
 	</select>
-	
-		<select id="itemDetailWish" resultMap="ItemMap">
-		SELECT 
-		   i.item_no,
-	       i.partner_no,
-	       i.item_type,
-	       i.address,
-	       i.dong,
-	       i.ho,
-	       CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
-	       i.item_size,
-	       i.building_floor,
-	       i.item_floor,
-	       i.item_count,
-	       i.bath_at,
-	       i.elevator_at,
-	       i.parking_at,
-	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_detail,
-	       i.regist_date,
-	       i.update_date,
-	       i.use_at,
-	       i.lat,
-	       i.lng,
-	       i.address2,
-	       i.lease_price, 
-	       i.month_price,
-	       i.deposit_fee,
-	       i.item_size_area,
-	       w.user_no AS wish_user_no,
-	       w.item_no AS wish_item_no
-	FROM tbl_item i
-	LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no = #{userNo}
-	WHERE i.use_at In ('Y', 'C')
+
+	<select id="itemDetailWish" resultMap="ItemMap">
+		SELECT
+		i.item_no,
+		i.partner_no,
+		i.item_type,
+		i.address,
+		i.dong,
+		i.ho,
+		CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS
+		move_in_date,
+		i.item_size,
+		i.building_floor,
+		i.item_floor,
+		i.item_count,
+		i.bath_at,
+		i.elevator_at,
+		i.parking_at,
+		CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS
+		manage_fee,
+		i.memo_detail,
+		i.regist_date,
+		i.update_date,
+		i.use_at,
+		i.lat,
+		i.lng,
+		i.address2,
+		i.lease_price,
+		i.month_price,
+		i.deposit_fee,
+		i.item_size_area,
+		w.user_no AS wish_user_no,
+		w.item_no AS wish_item_no
+		FROM tbl_item i
+		LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no =
+		#{userNo}
+		WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
 	</select>
-	
+
 	<insert id="addItem">
-		INSERT INTO tbl_item
-			(
-			partner_no, 
-			item_type, 
-			address, 
-			dong, 
-			ho, 
-			move_in_at, 
-			move_in_date, 
-			item_size, 
-			building_floor, 
-			item_floor, 
-			item_count, 
-			bath_at, 
-			elevator_at, 
-			parking_at, 
-			manage_fee_at, 
-			manage_fee, 
-			memo_detail, 
-			regist_date, 
-			use_at, 
-			lat, 
-			lng, 
-			address2, 
-			lease_or_month,
-			item_size_area,
-			tag1,
-			tag2,
-			tag3,
-			lease_price,
-			month_price,
-			deposit_fee
-			)
-			VALUES(
-			#{partnerNo}, 
-			#{itemType}, 
-			#{address}, 
-			#{dong}, 
-			#{ho}, 
-			#{moveInAt}, 
-			<choose>
+	    INSERT INTO tbl_item
+		    (
+		    partner_no,
+		    item_type,
+		    address,
+		    dong,
+		    ho,
+		    move_in_at,
+		    move_in_date,
+		    item_size,
+		    building_floor,
+		    item_floor,
+		    item_count,
+		    bath_at,
+		    elevator_at,
+		    parking_at,
+		    manage_fee_at,
+		    manage_fee,
+		    memo_detail,
+		    regist_date,
+		    use_at,
+		    lat,
+		    lng,
+		    address2,
+		    lease_or_month,
+		    item_size_area,
+		    tag1,
+		    tag2,
+		    tag3,
+		    lease_price,
+		    month_price,
+		    deposit_fee
+		    )
+	    VALUES(
+		    #{partnerNo},
+		    #{itemType},
+		    #{address},
+		    #{dong},
+		    #{ho},
+		    #{moveInAt},
+		    <choose>
 		        <when test="moveInDate == null">
 		            NOW(),
 		        </when>
@@ -338,197 +330,223 @@
 		            #{moveInDate},
 		        </otherwise>
 		    </choose>
-			#{itemSize}, 
-			#{buildingFloor}, 
-			#{itemFloor}, 
-			#{itemCount}, 
-			#{bathAt}, 
-			#{elevatorAt}, 
-			#{parkingAt}, 
-			#{manageFeeAt}, 
-			#{manageFee}, 
-			#{memoShort}, 
-			#{memoDetail}, 
-			NOW(), 
-			'Y', 
-			#{lat}, 
-			#{lng}, 
-			#{address2}, 
-			#{leaseOrMonth},
-			#{itemSizeArea},
-			#{tag1},
-			#{tag2},
-			#{tag3},
-			#{leasePrice},
-			#{monthPrice},
-			#{depositFee}
-			)
-		<selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
-       		SELECT LAST_INSERT_ID()
-       </selectKey>
+		    #{itemSize},
+		    #{buildingFloor},
+		    #{itemFloor},
+		    #{itemCount},
+		    #{bathAt},
+		    #{elevatorAt},
+		    #{parkingAt},
+		    #{manageFeeAt},
+		    #{manageFee},
+		    #{memoDetail},
+		    NOW(),
+		    'Y',
+		    #{lat},
+		    #{lng},
+		    #{address2},
+		    #{leaseOrMonth},
+		    #{itemSizeArea},
+		    #{tag1},
+		    #{tag2},
+		    #{tag3},
+		    <choose>
+		        <when test="leasePrice == null">
+		            0,
+		        </when>
+		        <otherwise>
+		            #{leasePrice},
+		        </otherwise>
+		    </choose>
+		    <choose>
+		        <when test="monthPrice == null">
+		            0,
+		        </when>
+		        <otherwise>
+		            #{monthPrice},
+		        </otherwise>
+		    </choose>
+		    <choose>
+		        <when test="depositFee == null">
+		            0,
+		        </when>
+		        <otherwise>
+		            #{depositFee},
+		        </otherwise>
+		    </choose>
+		    )
+	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
+	        SELECT LAST_INSERT_ID()
+	    </selectKey>
 	</insert>
-	
+
+
 	<select id="selectFile" resultType="FileVO">
-		SELECT 
-			file_no
-			, saved_name
-			, original_name
-			, file_path
-			, file_ext
-			, regist_date
-			, file_size
-			, item_no
+		SELECT
+		file_no
+		, saved_name
+		, original_name
+		, file_path
+		, file_ext
+		, regist_date
+		, file_size
+		, item_no
 		FROM tbl_item_file
 		WHERE item_no = #{itemNo}
 	</select>
-	
+
 	<select id="selectRecentList" resultMap="ItemMap">
-		SELECT 
-		    ti.item_no,
-		    ti.lease_or_month,
-		    ti.address2,
-		    ti.address,
-		    ti.item_size,
-		    ti.item_count,
-		    ti.bath_at,
-		    ti.lease_price,
-		    ti.month_price,
-		    ti.deposit_fee,
-		    f.*
+		SELECT
+		ti.item_no,
+		ti.lease_or_month,
+		ti.address2,
+		ti.address,
+		ti.item_size,
+		ti.item_count,
+		ti.bath_at,
+		ti.lease_price,
+		ti.month_price,
+		ti.deposit_fee,
+		f.*
 		FROM tbl_item ti
 		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at = 'Y'
 		ORDER BY ti.regist_date DESC
 		LIMIT 6
 	</select>
-	
+
 	<update id="viewCount">
-	    UPDATE tbl_item
-	    SET view_count = view_count + 1
-	    WHERE item_no = #{itemNo}
+		UPDATE tbl_item
+		SET view_count = view_count + 1
+		WHERE item_no = #{itemNo}
 	</update>
-	
+
 	<select id="selectItemFile" resultType="FileVO">
-    	SELECT *
-		FROM tbl_item_file tif 
+		SELECT *
+		FROM tbl_item_file tif
 		WHERE tif.item_no = #{itemNo}
 		LIMIT 1
-    </select>
-    
-    <select id="selectPopularList" resultMap="ItemMap">
-   		SELECT
-		    i.item_no,
-		    COUNT(w.item_no) AS wish_count,
-		    i.partner_no,
-		    i.item_type,
-		    i.address,
-		    i.item_size,
-		    i.bath_at,
-		    i.item_count,
-		    i.regist_date,
-		    i.use_at,
-		    i.address2,
-		    i.lease_or_month,
-		    i.view_count,
-		    i.deposit_fee,
-		    i.month_price,
-		    i.lease_price,
-		    f.*
+	</select>
+
+	<select id="selectPopularList" resultMap="ItemMap">
+		SELECT
+		i.item_no,
+		COUNT(w.item_no) AS wish_count,
+		i.partner_no,
+		i.item_type,
+		i.address,
+		i.item_size,
+		i.bath_at,
+		i.item_count,
+		i.regist_date,
+		i.use_at,
+		i.address2,
+		i.lease_or_month,
+		i.view_count,
+		i.deposit_fee,
+		i.month_price,
+		i.lease_price,
+		f.*
 		FROM tbl_item AS i
 		LEFT JOIN tbl_wish AS w ON i.item_no = w.item_no
 		LEFT JOIN tbl_item_file AS f ON i.item_no = f.item_no
-		WHERE i.use_at = 'Y'    
+		WHERE i.use_at =
+		'Y'
 		GROUP BY i.item_no
 		ORDER BY wish_count DESC
-		LIMIT 3;	
-    </select>
-	
-    <select id="selectWishList" resultMap="ItemMap">
-		SELECT 
-		    i.item_no,
-		    i.partner_no,
-		    i.item_type,
-		    i.address,
-		    i.dong,
-		    i.ho,
-		    CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
-		    i.item_size,
-		    i.building_floor,
-		    i.item_floor,
-		    i.item_count,
-		    i.bath_at,
-		    i.elevator_at,
-		    i.parking_at,
-		    CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-		    i.memo_detail,
-		    i.regist_date,
-		    i.update_date,
-		    i.use_at,
-		    i.lat,
-		    i.lng,
-		    i.address2,
-		    i.lease_or_month,
-		    i.lease_price,
-		    i.month_price,
-		    i.deposit_fee,
-		    w.item_no AS wish_item_no,
-		    w.user_no AS wish_user_no,
-		    f.*,
-		    w.regist_date 
+		LIMIT 3;
+	</select>
+
+	<select id="selectWishList" resultMap="ItemMap">
+		SELECT
+		i.item_no,
+		i.partner_no,
+		i.item_type,
+		i.address,
+		i.dong,
+		i.ho,
+		CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS
+		move_in_date,
+		i.item_size,
+		i.building_floor,
+		i.item_floor,
+		i.item_count,
+		i.bath_at,
+		i.elevator_at,
+		i.parking_at,
+		CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS
+		manage_fee,
+		i.memo_detail,
+		i.regist_date,
+		i.update_date,
+		i.use_at,
+		i.lat,
+		i.lng,
+		i.address2,
+		i.lease_or_month,
+		i.lease_price,
+		i.month_price,
+		i.deposit_fee,
+		w.item_no AS wish_item_no,
+		w.user_no AS wish_user_no,
+		f.*,
+		w.regist_date
 		FROM tbl_item i
 		JOIN tbl_wish w ON i.item_no = w.item_no
 		JOIN (
-		    SELECT item_no, MAX(file_no) AS max_file_no
-		    FROM tbl_item_file
-		    GROUP BY item_no
+		SELECT item_no, MAX(file_no) AS max_file_no
+		FROM tbl_item_file
+		GROUP BY item_no
 		) max_files ON i.item_no = max_files.item_no
-		JOIN tbl_item_file f ON max_files.item_no = f.item_no AND max_files.max_file_no = f.file_no
-		WHERE i.use_at IN ('Y','C') 
+		JOIN
+		tbl_item_file f ON max_files.item_no = f.item_no AND
+		max_files.max_file_no = f.file_no
+		WHERE i.use_at IN ('Y','C')
 		AND w.user_no = 48
 		AND w.use_at = 'Y'
 		ORDER BY w.regist_date DESC;
 
-    </select>
-    
-    <update id="updateItem">
-    	UPDATE tbl_item
-		SET 
-		    item_type = #{itemType},
-		    address = #{address},
-		    dong = #{dong},
-		    ho = #{ho},
-		    move_in_at = #{moveInAt},
-		    move_in_date = CASE 
-		        WHEN #{moveInAt} = 'Y' THEN NOW()
-		        ELSE #{moveInDate}
-		    END,
-		    item_size = #{itemSize},
-		    building_floor = #{buildingFloor},
-		    item_floor = #{itemFloor},
-		    item_count = #{itemCount},
-		    bath_at = #{bathAt},
-		    elevator_at = #{elevatorAt},
-		    parking_at = #{parkingAt},
-		    manage_fee_at = #{manageFeeAt},
-		    manage_fee = CASE 
-		    	WHEN #{manageFeeAt} = 'N' THEN 0
-		    	ELSE #{manageFee}
-		    END,
-		    memo_detail = #{memoDetail},
-		    regist_date = NOW(),
-		    use_at = 'Y',
-		    lat = #{lat},
-		    lng = #{lng},
-		    address2 = #{address2},
-		    lease_or_month = #{leaseOrMonth},
-		    item_size_area = #{itemSizeArea},
-		    tag1 = #{tag1},
-		    tag2 = #{tag2},
-		    tag3 = #{tag3},
-		    lease_price = #{leasePrice},
-		    month_price = #{monthPrice},
-		    deposit_fee = #{depositFee}
+	</select>
+
+	<update id="updateItem">
+		UPDATE tbl_item
+		SET
+		item_type = #{itemType},
+		address = #{address},
+		dong = #{dong},
+		ho = #{ho},
+		move_in_at = #{moveInAt},
+		move_in_date = CASE
+		WHEN #{moveInAt} = 'Y' THEN NOW()
+		ELSE #{moveInDate}
+		END,
+		item_size = #{itemSize},
+		building_floor = #{buildingFloor},
+		item_floor = #{itemFloor},
+		item_count = #{itemCount},
+		bath_at = #{bathAt},
+		elevator_at = #{elevatorAt},
+		parking_at = #{parkingAt},
+		manage_fee_at = #{manageFeeAt},
+		manage_fee = CASE
+		WHEN #{manageFeeAt} = 'N' THEN 0
+		ELSE #{manageFee}
+		END,
+		memo_detail = #{memoDetail},
+		regist_date = NOW(),
+		use_at = 'Y',
+		lat = #{lat},
+		lng = #{lng},
+		address2 = #{address2},
+		lease_or_month = #{leaseOrMonth},
+		item_size_area = #{itemSizeArea},
+		tag1 = #{tag1},
+		tag2 = #{tag2},
+		tag3 = #{tag3},
+		lease_price = #{leasePrice},
+		month_price = #{monthPrice},
+		deposit_fee = #{depositFee}
 		WHERE item_no = #{itemNo}
-    </update>
-    
+	</update>
+
 </mapper>

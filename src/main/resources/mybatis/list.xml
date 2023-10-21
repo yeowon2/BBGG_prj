@@ -24,7 +24,6 @@
 	    <result property="parkingAt" column="parking_at" />
 	    <result property="manageFeeAt" column="manage_fee_at" />
 	    <result property="manageFee" column="manage_fee" />
-	    <result property="memoShort" column="memo_short" />
 	    <result property="memoDetail" column="memo_detail" />
 	    <result property="registDate" column="regist_date" />
 	    <result property="updateDate" column="update_date" />

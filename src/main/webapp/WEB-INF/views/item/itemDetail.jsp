@@ -164,6 +164,16 @@
 				  		</c:if>
 			  		</button>
               		</div>
+<%--                   <div class="col-lg-6">
+				  	<button style="display:inline-block;" type="button" class="btn" id="wishBtn">
+				  		<c:if test="${itemVO.wishItemNo == null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimg.png">
+				  		</c:if>
+				  		<c:if test="${itemVO.wishItemNo != null}">
+					  		<img class="heart_img" alt="" src="/resources/comm/wish/wishimgpull.png">
+				  		</c:if>
+			  		</button>
+              		</div> --%>
               </div>
             </div>
           </div>
@@ -668,7 +678,7 @@
 </script>
 
 <script>
- var wishBtn = $('#wishBtn');
+/*  var wishBtn = $('#wishBtn');
 var itemNo = $('#item-no').text();
 
 wishBtn.on('click', function() {
@@ -687,7 +697,7 @@ wishBtn.on('click', function() {
 	   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    		}
    }).catch(error => console.log(error)) 
-}); 
+});  */
 
 $('#noteBtn').on('click', function() {
 	alert("쪽지가 성공적으로 발송되었습니다.")

@@ -40,32 +40,7 @@ public class ItemDaoImpl implements ItemDao {
 		// 첫 번째 INSERT 문 실행
         sql.insert("item.addItem", itemVO);
         
-        Long itemNo = itemVO.getItemNo();
-        
-        HashMap<String, Long> map = new HashMap<String, Long>();
-        
-        if(itemVO.getLeaseOrMonth() == "lease") {
-        	map.put("leasePrice", itemVO.getLeasePrice());
-        	map.put("itemNo", itemNo);
-        	sql.insert("item.leaseAdd", map);
-        	
-		} else if(itemVO.getLeaseOrMonth() == "month") {
-			map.put("depositFee", itemVO.getDepositFee());
-			map.put("monthPrice", itemVO.getMonthPrice());
-			map.put("itemNo", itemNo);
-			sql.insert("item.monthAdd", map);
-		}
     }
-
-	@Override
-	public void leaseAdd(Map<String, Long> paramMap) {
-		sql.insert("item.leaseAdd", paramMap);
-	}
-
-	@Override
-	public void monthAdd(Map<String, Long> paramMap) {
-		sql.insert("item.monthAdd", paramMap);
-	}
 
 	@Override
 	public List<ItemVO> partItemList(Long partnerNo) {

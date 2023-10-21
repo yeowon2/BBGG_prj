@@ -14,10 +14,6 @@ public interface ItemDao {
 
 	void itemAdd(ItemVO itemVO);
 
-	void leaseAdd(Map<String, Long> paramMap);
-
-	void monthAdd(Map<String, Long> paramMap);
-
 	List<ItemVO> partItemList(Long partnerNo);
 	
 	List<ItemVO> partOtherItemList(Map<String, Long> paramMap);

@@ -23,7 +23,6 @@
     <result property="parkingAt" column="parking_at" />
     <result property="manageFeeAt" column="manage_fee_at" />
     <result property="manageFee" column="manage_fee" />
-    <result property="memoShort" column="memo_short" />
     <result property="memoDetail" column="memo_detail" />
     <result property="registDate" column="regist_date" />
     <result property="updateDate" column="update_date" />
@@ -95,7 +94,6 @@
 	    parking_at,
 	    manage_fee_at,
 	    manage_fee, 
-	    memo_short,
 	    memo_detail,
 	    regist_date,
 	    update_date,
@@ -141,7 +139,6 @@
 	        </otherwise>
 	    </choose>
 	    
-	    #{memoShort},
 	    #{memoDetail},
 	    NOW(),
 	    NOW(),
@@ -153,16 +150,6 @@
 	    <selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
 	    	SELECT LAST_INSERT_ID()
 	    </selectKey>
-	</insert>
-	
-	<insert id="leaseAdd">
-	    INSERT INTO tbl_lease(lease_price, item_no)
-		VALUES (#{leasePrice}, #{itemNo})
-	</insert>
-	
-	<insert id="monthAdd">
-		INSERT INTO tbl_month(deposlt_fee, month_price, item_no)
-		VALUES (#{deposltFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
 	

@@ -12,6 +12,10 @@
            <input type="number" name="itemNo"/><br/>
            <input type="file" name="file_1"/><br/>
 		   <input type="file" name="file_2"/><br/>
+		   <input type="file" name="file_3"/><br/>
+		   <input type="file" name="file_4"/><br/>
+		   <input type="file" name="file_5"/><br/>
+
         </div>
         <!-- 제출 버튼 -->
         <div>

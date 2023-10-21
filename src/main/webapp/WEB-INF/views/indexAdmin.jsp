@@ -255,7 +255,7 @@
 															<td>${item.partnerNo}</td>
 															<td>${item.address}</td>
 															<td><fmt:formatDate value="${item.registDate}" type="both" dateStyle="short" timeStyle="short"/></td>
-															<td><a href="itemDetail/${item.itemNo}">${item.memoShort}</a></td>
+															<td><a href="itemDetail/${item.itemNo}">${item.tag1}</a></td>
 														</tr>
 													</c:forEach>													
 												</tbody>

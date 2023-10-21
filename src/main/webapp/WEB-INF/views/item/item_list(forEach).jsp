@@ -323,7 +323,6 @@
 			                            		<div class="email-subject">오피스텔 &nbsp;&nbsp; ${item.itemSize}평/${item.itemSize * 3.3}㎡ &nbsp;&nbsp; ${item.itemFloor}층/${item.buildingFloor}층</div>
 			                            	</c:when>
 			                            </c:choose>
-			                            <div class="email-subject">${item.memoShort} </div>
 			                            <div class="email-text">
 			                                <p>${item.memoDetail}</p>
 			                            </div>

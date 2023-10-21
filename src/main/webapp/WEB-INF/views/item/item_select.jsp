@@ -98,7 +98,6 @@
 	               	
 	               	<div class="form-group">
 		                <h6>매물 소개</h6>
-		                <input type="text" name="memoShort" class="form-control rounded-0" value="${result.memoShort }" readonly />
 		            </div>
                   
                     <div class="form-group">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,19 +48,23 @@
 	                                        	<th>신고회원</th>
 	                                        	<th>${fakeVO.userNo}</th>
 	                                            <th>부동산이름</th>
-	                                            <th>${fakeVO.compName}</th>
+	                                            <th>${fn:replace(fakeVO.compName, "공인중개사", "")}</th>
 	                                        </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th colspan="1">내용</th>
-	                                            <th colspan="3">${fakeVO.fakeContent}</th>
+	                                            <th colspan="3" style="word-break: unset;">${fakeVO.fakeContent}</th>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th><strong>상태</strong></th>
-                                                <th colspan="3">${fakeVO.useAt}</th>
+                                                <th colspan="3">
+                                                <c:if test="${fakeVO.useAt eq null}">정상</c:if>
+                                                <c:if test="${fakeVO.useAt eq 'Y'}">허위</c:if>
+                                                <c:if test="${fakeVO.useAt eq 'I'}">보류</c:if>
+                                                </th>
                                             </tr>
                                         </tfoot>
                                     </table>

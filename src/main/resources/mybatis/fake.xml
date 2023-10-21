@@ -114,8 +114,12 @@
 	</insert>
 	
 	<select id="selectModal" resultType="FakeVO">
-		SELECT * 
-		FROM tbl_fake
+		SELECT tf.*, tp.comp_name
+		FROM tbl_fake tf 
+			LEFT JOIN tbl_item ti
+				ON tf.item_no = ti.item_no
+			LEFT JOIN tbl_partner tp
+			ON ti.partner_no = tp.partner_no
 		WHERE fake_no = #{fakeNo}
 	</select>
 	

@@ -119,7 +119,7 @@
 		                                                    <td colspan="2" id="fakeItemNo">${item.itemNo}</td>
 		                                                    <td colspan="7" id="fakeContent">
 		                                                    	<!-- Button trigger modal -->
-							        							<a id="modalBtn"  href="/fake/listOne/${item.fakeNo}">
+							        							<a class="modalBtn"  href="/fake/listOne/${item.fakeNo}">
 							        								<button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        									${item.fakeContent}
 		                                                    		</button>
@@ -228,7 +228,7 @@
     <script src="/resources/dist/js/init.js"></script>
     
     <script>
-	 $('#modalBtn').on('click', function(e){
+	 $('.modalBtn').on('click', function(e){
 		  e.preventDefault();
 		  $('.modal').modal('show').find('.modal-content').load($(this).attr('href'));
 		});

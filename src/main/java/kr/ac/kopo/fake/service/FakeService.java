@@ -17,7 +17,9 @@ public interface FakeService {
 
 	void fakeAdd(Long itemNo, FakeVO fakeVO, String userId);
 
-	List<FakeVO> modal(String fakeNo);
+	FakeVO modal(String fakeNo);
+	
+	FakeVO fakeListOne(Long fakeNo);
 	
 	void fakeUpdate(Long itemNo);
 	

@@ -33,10 +33,15 @@ public class FakeServiceImpl implements FakeService {
 	public void fakeAdd(Long itemNo, FakeVO fakeVO, String userId) {
 		dao.fakeAdd(itemNo, fakeVO, userId);	
 	}
-
+	
 	@Override
-	public List<FakeVO> modal(String fakeNo) {
+	public FakeVO modal(String fakeNo) {
 		return dao.modal(fakeNo);
+	}
+	
+	@Override
+	public FakeVO fakeListOne(Long fakeNo) {
+		return dao.fakeListOne(fakeNo);
 	}
 	
 	@Override
@@ -48,4 +53,6 @@ public class FakeServiceImpl implements FakeService {
 	public void fakeDelete(Long itemNo) {
 		dao.fakeDelete(itemNo);
 	}
+
+	
 }

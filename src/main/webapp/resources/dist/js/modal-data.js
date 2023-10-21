@@ -1,5 +1,5 @@
 /*Modal Init*/
-$( document ).ready(function() {
+/* $( document ).ready(function() {
 	"use strict";
 	
 	if( $('#exampleModal').length > 0 ){
@@ -13,4 +13,4 @@ $( document ).ready(function() {
 		  modal.find('.modal-body input').val(recipient)
 		});
 	}
-});
+}); */

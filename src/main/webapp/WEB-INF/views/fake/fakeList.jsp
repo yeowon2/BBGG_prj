@@ -42,51 +42,13 @@
 	<!-- Modal Carousel-->
 	<div class="modal fade" id="exampleModalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCarousel" aria-hidden="true"  style="min-height: 100% ;">
 		<div class="modal-dialog modal-lg" role="document">
+<!-- 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">x</span>
+				</button>
+			</div> -->
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title"><c:out value=""/>님의 신고내용</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body pa-0">
-					<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						</ol>
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<div class="d-block w-100" alt="신고내용">
-									<p name="model-content" id="modal-content">
-										<div class="hk-pg-wrapper">	
-											<div class="container">
-												<div class="row">
-													<div class="col-xl-12">
-														<section class="hk-sec-wrapper">
-  
-														</section>
-													</div>
-												</div>
-											</div>	
-										</div>    
-									</p>         
-								</div>
-							</div>
-							<div class="carousel-item">
-								<img class="d-block w-100" src="/resources/assets/img/logo.png" alt="첨부파일">
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -162,8 +124,8 @@
 		                                                    <td colspan="2" id="fakeItemNo">${item.itemNo}</td>
 		                                                    <td colspan="7" id="fakeContent">
 		                                                    	<!-- Button trigger modal -->
-							        							<a href="/fake/listOne?fakeNo=${item.fakeNo}">
-							        								<button name="modalBtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
+							        							<a id="modalBtn"  href="/fake/listOne/${item.fakeNo}">
+							        								<button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCarousel">
 							        									${item.fakeContent}
 		                                                    		</button>
 		                                                    	</a>
@@ -275,10 +237,10 @@
     <!-- Init JavaScript -->
     <script src="/resources/dist/js/init.js"></script>
     
-    <script type="text/javascript">
+    <script>
 	 $('#modalBtn').on('click', function(e){
-		  //e.preventDefault();
-		  $('.modal').modal('show').find('.hk-sec-wrapper').load($(this).attr('href'));
+		  e.preventDefault();
+		  $('.modal').modal('show').find('.modal-content').load($(this).attr('href'));
 		});
 	</script>
     

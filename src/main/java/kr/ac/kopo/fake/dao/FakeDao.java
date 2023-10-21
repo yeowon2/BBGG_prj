@@ -17,7 +17,9 @@ public interface FakeDao {
 	
 	int total(Pager pager);
 
-	List<FakeVO> modal(String fakeNo);
+	FakeVO modal(String fakeNo);
+
+	FakeVO fakeListOne(Long fakeNo);
 	
 	void fakeUpdate(Long itemNo);
 

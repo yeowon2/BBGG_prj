@@ -39,7 +39,10 @@ public class FakeController {
 	}
 	
 	@GetMapping("/list{fakeNo}")
-	public String fakeSelect() {
+	public String fakeSelect(@PathVariable Long fakeNo, FakeVO fakeVO, Model model) {
+		fakeVO = service.fakeListOne(fakeNo);
+		
+		model.addAttribute("fakeVO", fakeVO);
 		return "/fake/fakeContent";
 	}
 	
@@ -137,19 +140,21 @@ public class FakeController {
 		}
 	}
 	
-	@GetMapping("/listOne")
-	String modal() {
-		return "redirect:/fake/listOne";
-	}
-	
-	@PostMapping("/listOne")
-	String modal(HttpServletRequest request, Model model) {
-		String fakeNo = request.getParameter("fakeNo");
-        List<FakeVO> list = service.modal(fakeNo);
-        model.addAttribute("fakeVO", list);
-        System.out.println("@@@@@@@@@@@@@@" + list);
+	@GetMapping("/listOne/{fakeNo}")
+	String modal(FakeVO fakeVO, @PathVariable String fakeNo, Model model) {
+		fakeVO = service.modal(fakeNo);
+        model.addAttribute("fakeVO", fakeVO);
 		return "/fake/fakeTable";
 	}
+	
+//	@PostMapping("/listOne/{fakeNo}")
+//	String modal(FakeVO fakeVO, @PathVariable String fakeNo, HttpServletRequest request, Model model) {
+//		//String fakeNo = request.getParameter("fakeNo");
+//        fakeVO = service.modal(fakeNo);
+//        model.addAttribute("fakeVO", fakeVO);
+//        
+//		return "/fake/fakeTable";
+//	}
 	
 	@GetMapping("/update{itemNo}")
 	String fakeUpdate(@PathVariable Long itemNo) {

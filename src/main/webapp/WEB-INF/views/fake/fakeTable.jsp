@@ -38,27 +38,27 @@
                                         <thead>
                                             <tr>
                                                 <th>번호</th>
-                                                <th>${list.fakeNo}</th>
+                                                <th>${fakeVO.fakeNo}</th>
                                                 <th>신고일</th>
-                                                <th><fmt:formatDate value="${list.registDate}" pattern="yyyy-MM-dd"/></th>
+                                                <th><fmt:formatDate value="${fakeVO.registDate}" pattern="yyyy-MM-dd"/></th>
                                             </tr>
                                             <tr>
 	                                        	<th>신고회원</th>
-	                                        	<th>${list.userNo}</th>
+	                                        	<th>${fakeVO.userNo}</th>
 	                                            <th>부동산이름</th>
-	                                            <th>${list.compName}</th>
+	                                            <th>${fakeVO.compName}</th>
 	                                        </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <th colspan="1">내용</th>
-	                                            <th colspan="3">${list.noticeContent}</th>
+	                                            <th colspan="3">${fakeVO.fakeContent}</th>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th><strong>상태</strong></th>
-                                                <th>${list.useAt}</th>
+                                                <th>${fakeVO.useAt}</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>

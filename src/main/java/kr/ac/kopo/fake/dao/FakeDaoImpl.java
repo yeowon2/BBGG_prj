@@ -53,10 +53,15 @@ public class FakeDaoImpl implements FakeDao {
 	}
 
 	@Override
-	public List<FakeVO> modal(String fakeNo) {
-		return sql.selectList("fake.selectModal", fakeNo);
+	public FakeVO modal(String fakeNo) {
+		return sql.selectOne("fake.selectModal", fakeNo);
 	}
 
+	@Override
+	public FakeVO fakeListOne(Long fakeNo) {
+		return sql.selectOne("fake.selectOne", fakeNo);
+	}
+	
 	@Override
 	public void fakeUpdate(Long itemNo) {
 		sql.update("fake.updateUseAt");
@@ -66,4 +71,6 @@ public class FakeDaoImpl implements FakeDao {
 	public void fakeDelete(Long itemNo) {
 		sql.update("fake.deleteUseAt");
 	}
+
+	
 }

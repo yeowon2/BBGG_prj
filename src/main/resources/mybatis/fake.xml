@@ -113,8 +113,14 @@
 				)
 	</insert>
 	
-	<select id="selectModal">
+	<select id="selectModal" resultType="FakeVO">
 		SELECT * 
+		FROM tbl_fake
+		WHERE fake_no = #{fakeNo}
+	</select>
+	
+	<select id="selectOne" resultType="FakeVO">
+		SELECT *
 		FROM tbl_fake
 		WHERE fake_no = #{fakeNo}
 	</select>

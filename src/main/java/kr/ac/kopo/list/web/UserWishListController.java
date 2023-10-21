@@ -47,23 +47,27 @@ public class UserWishListController {
 	// 관심 매물 상세페이지로 이동 -> jsp에다가 바로 링크를 붙여주면 되지 않을까?
 	
 	// 관심 매물 추가 
-	/*
-	 * @PostMapping("add/{itemNo}")
-	 * 
-	 * @ResponseBody // 화면을 반환하는 것이 아니라 데이터를 바로 반환하기 때문에 이 어노테이션을 추가해줌 public String
-	 * add(@PathVariable Long itemNo, UserWishListVO listVO, HttpServletRequest
-	 * request) { // 로그인 체크 HttpSession session = request.getSession();
-	 * 
-	 * UserVO loginVO = (UserVO) session.getAttribute("loginVO");
-	 * 
-	 * if(loginVO == null) { return "5"; }
-	 * 
-	 * int result = UserWishListService.add(listVO);
-	 * 
-	 * return result+""; // result의 타입이 int이므로 String으로 변환하기 위하여 빈 문자열을 더하기 연산해줌
-	 * 
-	 * }
-	 */
+	
+	
+	
+	@PostMapping("add/{itemNo}")
+	@ResponseBody 
+	// 화면을 반환하는 것이 아니라 데이터를 바로 반환하기 때문에 이 어노테이션을 추가해줌 
+	public String add(@PathVariable Long itemNo, UserWishListVO listVO, HttpServletRequest request) { 
+		// 로그인 체크 
+		HttpSession session = request.getSession();
+  
+		UserVO loginVO = (UserVO) session.getAttribute("loginVO");
+	  
+		if(loginVO == null) { return "5"; }
+		
+		// 로그인이 되어 있다면 매물 등록하기 
+		int result = service.add(listVO);
+		
+		return result+""; // result의 타입이 int이므로 String으로 변환하기 위하여 빈 문자열을 더하기 연산해줌
+	  
+	}
+ 
 	
 	// 관심 매물 리스트에서 제외	
 	// 관심 매물로 지정할 때 파라미터 이름을 wishNo로 지정해서 이걸 그대로 list.xml로 넘기면 됨

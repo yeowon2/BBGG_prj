@@ -31,25 +31,30 @@ public class UserWishListServiceImpl implements UserWishListService {
 		dao.delete(wishNo);
 	}
 
+
 	// 관심 매물 리스트에 추가 
-
-
-	/*
-	 * @Override public int add(UserWishListVO listVO) {
-	 * 
-	 * // 관심 매물 리스트에 데이터 체크 // checkList 메서드를 활용하여 등록하고자 하는 데이터가 이미 DB에 존재하는지 확인하여
-	 * 존재할 경우 2를 반환하도록 코드를 작성함 UserWishListVO checkList =
-	 * UserWishListDao.checkList(listVO);
-	 * 
-	 * if(checkList != null) { // checkList가 null값이 아니라는 것은 등록된 값이 존재한다는 것 => 2를
-	 * 반환하도록 함 return 2; }
-	 * 
-	 * // 만약 등록하고자 하는 데이터가 DB에 존재하지 않을 경우 DB에 저장하는 add 메서드를 호출하며 반환받은 값을 return 할 것
-	 * // 장바구니 등록 & 에러 시 0을 반환 try { return UserWishListDao.add(listVO); } catch
-	 * (Exception e) { return 0; }
-	 * 
-	 * }
-	 */
+	@Override 
+	public int add(UserWishListVO listVO) {
+  
+	  // 관심 매물 리스트에 데이터 체크 
+	  // checkList 메서드를 활용하여 등록하고자 하는 데이터가 이미 DB에 존재하는지 확인하여 존재할 경우 2를 반환하도록 코드를 작성함 
+	  UserWishListVO checkList = dao.checkList(listVO);
+  
+	  if(checkList != null) { 
+		  // checkList가 null값이 아니라는 것은 등록된 값이 존재한다는 것 => 2를 반환하도록 함 
+		  return 2; 
+	  }
+	  
+	  // 만약 등록하고자 하는 데이터가 DB에 존재하지 않을 경우 DB에 저장하는 add 메서드를 호출하며 반환받은 값을 return 할 것
+	  // 장바구니 등록 & 에러 시 0을 반환 
+	  try { 
+		 return dao.add(listVO); 
+	  } catch (Exception e) {
+		  return 0; 
+	  }
+  
+  }
+ 
 
 
 	

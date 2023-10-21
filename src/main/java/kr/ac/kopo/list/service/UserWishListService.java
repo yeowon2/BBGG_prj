@@ -15,6 +15,6 @@ public interface UserWishListService {
 	public void delete(Long wishNo);
 
 	// 관심 매물 리스트에 추가 
-	//public static int add(UserWishListVO listVO);
+	public int add(UserWishListVO listVO);
 	
 }

@@ -666,8 +666,8 @@
 		            var propertyItem = $("<a href='/itemDetail/" + item.itemNo + "' target='_blank' class='property-item' id='items' style='display: flex;'></a>");
 		            var mediaImgWrap = $("<div class='media-img-wrap' style='position: relative;'>");
 		            var propertyImage = $("<img alt='my-properties-3' class='img-fluid'>");
-		            if (item.fileVO && item.fileVO.savedName) {
-		                propertyImage.attr('src', '/upload/' + item.fileVO.savedName);
+		            if (item.savedName) {
+		                propertyImage.attr('src', '/upload/' + item.savedName);
 		            } else {
 		                // 이미지가 없는 경우 처리
 		                propertyImage.attr('src', '/resources/comm/itemimg/nonimg2.png'); // 대체 이미지 경로 또는 빈 이미지
@@ -791,32 +791,5 @@
 		        updateH6Counter();
 		    }
 		</script>
-
-	    <!-- 매물 봤다면 봤다는 표시 -->
-	    <script>
-		 	// JavaScript 코드
-		    document.addEventListener('DOMContentLoaded', function() {
-			    // 모든 매물 항목을 가져옵니다.
-			    var propertyItems = document.querySelectorAll('.property-item');
-			
-			    // 클릭한 매물의 상태를 localStorage에서 가져와 배경색을 설정합니다.
-			    propertyItems.forEach(function(item) {
-			        var isClicked = localStorage.getItem('clicked_' + item.id);
-			        if (isClicked === 'true') {
-			            item.classList.add('clicked');
-			        }
-			
-			        // 클릭 이벤트를 처리합니다.
-			        item.addEventListener('click', function() {
-			            // 클릭한 매물 항목에 'clicked' 클래스를 추가합니다.
-			            item.classList.add('clicked');
-			
-			            // 클릭한 매물의 상태를 localStorage에 저장합니다.
-			            localStorage.setItem('clicked_' + item.id, 'true');
-			        });
-			    });
-			});
-		</script>
-	    
     </body>
 </html>

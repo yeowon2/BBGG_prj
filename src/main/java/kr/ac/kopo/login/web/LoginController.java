@@ -37,8 +37,10 @@ public class LoginController {
 	public String login(@ModelAttribute UserVO userVO, Model model, HttpSession session, HttpServletRequest request) {
 		
 		// 이전 페이지의 URL을 세션에 저장
-	    String referrer = request.getHeader("Referer");
-	    request.getSession().setAttribute("prevPage", referrer);
+		if(session.getAttribute("prevPage") == null) {
+			String referrer = request.getHeader("Referer");
+			request.getSession().setAttribute("prevPage", referrer);
+		}
 		
 		return "login/login";
 	};
@@ -67,12 +69,10 @@ public class LoginController {
 	    } 
 		else { // 일반 사용자 로그인
 	        UserVO loginVO = loginService.actionLogin(userVO);
+	        // 로그인 성공 후, 이전 페이지의 URL을 가져옴
+            String prevPage = (String) session.getAttribute("prevPage");
 	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && !loginVO.getPhone().equals("kakao가입자")) {
 	            session.setAttribute("loginVO", loginVO);
-
-	            // 로그인 성공 후, 이전 페이지의 URL을 가져옴
-	            String prevPage = (String) session.getAttribute("prevPage");
-
 	            if (prevPage != null && !prevPage.isEmpty()) {
 	                // 이전 페이지가 있는 경우 해당 페이지로 리다이렉트
 	                session.removeAttribute("prevPage"); // 세션에서 이전 페이지 URL 제거
@@ -83,7 +83,8 @@ public class LoginController {
 	            }
 	        } else {
 	            model.addAttribute("loginMessage", "로그인 정보가 올바르지 않습니다.");
-	            return "redirect:/login";
+				return "redirect:/login";
+	            
 	        }
 	    }
 	}

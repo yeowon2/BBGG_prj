@@ -52,12 +52,12 @@ public class ItemVO {
 	private String search;			//검색
 	
 	private Long fileNo;			//첨부파일 고유번호
-	private String savedName;		//첨부파일 고유번호
-	private String originalName;	//첨부파일 고유번호
-	private String filePath;		//첨부파일 고유번호
-	private String fileExt;		//첨부파일 고유번호
-	private Date FregistDate;		//첨부파일 고유번호
-	private Long fileSize;			//첨부파일 고유번호
+	private String savedName;		//첨부파일 저장이름
+	private String originalName;	//첨부파일명
+	private String filePath;		//첨부파일 패스
+	private String fileExt;			//첨부파일 저장일자
+	private Date FregistDate;		//첨부파일 수정일자
+	private Long fileSize;			//첨부파일 사이즈
 	
 	private List<FileVO> fileVOList;
 	

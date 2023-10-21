@@ -1,6 +1,5 @@
 package kr.ac.kopo.item.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +10,7 @@ public interface ItemDao {
 
 	List<ItemVO> itemList(ItemVO itemVO);
 
-	ItemVO itemSelect(ItemVO itemVO);
+	ItemVO itemSelect(Long itemNo);
 
 	void itemAdd(ItemVO itemVO);
 
@@ -46,6 +45,8 @@ public interface ItemDao {
 	ItemVO itemDetail(Map<String, Long> paramMap);
 
 	List<ItemVO> selectWishList(long userNo);
+
+	void updateItem(ItemVO itemVO);
 
 
 

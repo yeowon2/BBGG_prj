@@ -30,9 +30,8 @@ public class ItemDaoImpl implements ItemDao {
 	}
 
 	@Override
-	public ItemVO itemSelect(ItemVO itemVO) {
-		ItemVO vo =  sql.selectOne("item.itemSelect", itemVO);
-		logger.info("LotM: {}", vo.getLeaseOrMonth());
+	public ItemVO itemSelect(Long itemNo) {
+		ItemVO vo =  sql.selectOne("item.itemSelect", itemNo);
 		return vo;
 	}
 	
@@ -111,8 +110,6 @@ public class ItemDaoImpl implements ItemDao {
 		sql.update("item.deleteItem", itemNo);
 	}
 
-	
-
 	@Override
 	public String lomSelect(Long itemNo) {
 		return sql.selectOne("item.lomSelect", itemNo);
@@ -158,7 +155,28 @@ public class ItemDaoImpl implements ItemDao {
 		return sql.selectList("item.selectWishList", userNo);
 	}
 
-	
-
+	@Override
+	public void updateItem(ItemVO itemVO) {
+		
+		//매물 정보 수정
+        sql.update("item.updateItem", itemVO);
+        
+        Long itemNo = itemVO.getItemNo();
+        
+        HashMap<String, Long> map = new HashMap<String, Long>();
+        //전세 정보 수정
+        if(itemVO.getLeaseOrMonth() == "lease") {
+        	map.put("leasePrice", itemVO.getLeasePrice());
+        	map.put("itemNo", itemNo);
+        	sql.update("item.updateLease", map);
+        
+        // 월세 정보 수정
+		} else if(itemVO.getLeaseOrMonth() == "month") {
+			map.put("depositFee", itemVO.getDepositFee());
+			map.put("monthPrice", itemVO.getMonthPrice());
+			map.put("itemNo", itemNo);
+			sql.update("item.updateMonth", map);
+		}
+	}
 	
 }

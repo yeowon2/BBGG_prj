@@ -32,7 +32,6 @@ public class ItemVO {
 	private String parkingAt;		//주차 가능 여부
 	private String manageFeeAt;		//공용 관리비 여부
 	private Long manageFee;			//공용 관리비
-	private String memoShort;		//매물 소개
 	private String memoDetail;		//매물 설명
 	private String tag1;			//태그1
 	private String tag2;			//태그2
@@ -238,13 +237,6 @@ public class ItemVO {
 		this.manageFee = manageFee;
 	}
 
-	public String getMemoShort() {
-		return memoShort;
-	}
-
-	public void setMemoShort(String memoShort) {
-		this.memoShort = memoShort;
-	}
 
 	public String getMemoDetail() {
 		return memoDetail;

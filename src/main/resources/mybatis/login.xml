@@ -30,6 +30,7 @@
 	        , user_id
 	        , user_pw
 	        , auth_at
+	        , comp_name
 	        , phone
         FROM tbl_partner
         WHERE user_id = #{userId} 

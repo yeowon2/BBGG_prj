@@ -44,8 +44,8 @@
               </c:if>
               <c:if test="${loginPartnerVO != null}">
 	              <div class="header-top-right float-right">
-	              	<a href="#" class="header-top-button"><i class="lni-user"></i><strong>${partnerVO.compName}</strong>님</a> |
-	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a> |
+	              	<a href="#" class="header-top-button"><i class="lni-user"></i><strong>${loginPartnerVO.compName}</strong>님</a> |
+	                <a href="/actionLogout" class="header-top-button"><i class="lni-lock"></i> 로그아웃</a>
 	              </div>
               </c:if>
             </div>

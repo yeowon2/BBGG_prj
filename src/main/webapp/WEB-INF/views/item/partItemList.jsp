@@ -86,7 +86,7 @@
                            		</c:if>
                            </div>
 							<div class="col-4">
-		                      <a href="#" class="edit"><i class="lni-pencil"></i>수정</a>
+		                      <a href="/partner/itemUpdate/${item.itemNo}" class="edit"><i class="lni-pencil"></i>수정</a>
 							</div>                    		
 							<div class="col-2">
 		                      <a class="delete" href="#"><i class="delete lni-trash"></i></a>

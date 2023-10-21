@@ -150,18 +150,24 @@ thead tr:nth-child(3) th {
   .datepicker-dropdown.datepicker-orient-right:after {
     right: calc(50% - 5px) !important;
   }
-  .fileBox {
-  	height:25px;
-  }
-  .fileLabel {
-  	width:250px; 
-  	height:250px; 
-  	border:2px solid #ccc
-  }
-  
-
 
 }	
+.fileBox {
+	height:300px;
+}
+      .drop-file {
+        position: relative; /* 부모로부터 상대 위치 설정 */
+        min-height: 220px;
+    }
+
+    .drop-image {
+        width: 100%; /* 이미지의 너비를 100%로 설정하여 부모 크기에 맞춤 */
+        height: auto; /* 이미지의 높이는 자동으로 조정됩니다. */
+        max-height: 100%; /* 이미지의 최대 높이를 100%로 설정하여 부모 크기를 초과하지 않도록 합니다. */
+        position: absolute; /* 이미지를 절대 위치로 설정하여 부모 요소 내에 위치하도록 합니다. */
+        top: 0; /* 부모의 맨 위에 위치하도록 합니다. */
+        left: 0; /* 부모의 맨 왼쪽에 위치하도록 합니다. */
+    }
 </style>
 <jsp:include page="../head.jsp"></jsp:include>
 </head>
@@ -180,522 +186,446 @@ thead tr:nth-child(3) th {
     </div>
     <!-- Page Banner End -->
 
-    <!-- User Section Start -->
+    <!-- Ueser Section Start -->
     <section class="user-page submit-property section-padding">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 mt-30">
+        <div class="row"">
+          <div class="col-lg-10" style="margin:0 auto;">
             <div class="submit-form">
               <form method="post" enctype="multipart/form-data">
-              	<section>
-	              	<h3 class="heading">위치 정보</h3>
-	                <div class="row mb-3">
-	                  <div class="col-lg-12 col-md-6">
-	                  <!-- <input type="text" id="sample5_address" placeholder="주소">
-						<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br> -->
-	                    <div class="form-group row">
-	                      <label class="col-lg-12 col-md-6" >주소</label>
-		                      <div class="col-lg-8 col-md-6 row">
-		                      	<input readonly type="text" name="address" id="sample5_address"  class="form-control col" placeholder="주소">
-		                      	<input type="button" class="btn btn-success col-lg-2 ml-10" onclick="sample5_execDaumPostcode()" value="주소 검색">
-		                      	<input type="hidden" id="latInput" name="lat" value="">
-		   						 <input type="hidden" id="lngInput" name="lng" value="">
-		                      </div>	
-	                    </div>
-	                    <div class="form-group row">
-                    		<div class="col-lg-12 col-md-6 row">
-		                      <div class="col-lg-8 col-md-6">
-		                      	<input type="text" name="address2" class="form-control" placeholder="건물명을 입력하세요">
-		                      </div>
-		                    </div>  
-	                  	  </div>	
-  	                     <div class="form-group row">
-		                     	<div class="col-lg-12 col-md-6 row"> 
-			                      <div class="col-lg-4 col-md-6 row">
-			                      	<input type="number" name="dong" class="form-control col-lg-6" placeholder="101"><span class="col-lg-6">동</span>
-			                      </div>
-			                      <div class="col-lg-4 col-md-6 row">
-			                      	<input type="number" name="ho" class="form-control col-lg-6" placeholder="1004"><span class="col-lg-6">호</span>
-			                      </div>
-			                   </div>   
-	                  	  </div>
-                  	  </div>
-                  	  </div>	
-					</section>
-	              	<section>
-		                <h3 class="heading">기본 정보</h3>
-		                <div class="row mb-3">
-		                <div class="col-lg-6 col-md-6">
-		                    <div class="form-group">
-		                      <label for="itemType">방 타입</label>
-						        <select class="classic" id="itemType" name="itemType">
-						            <option value="O">원룸</option>
-						            <option value="T">투룸</option>
-						            <option value="H">쓰리룸</option>
-						            <option value="F">오피스텔</option>
-						        </select>
-		                    </div>
-		                  </div>
-		                <div class="col-lg-12 col-md-6">
-		                    <div class="form-group">
-		                       <div class="btn-group">
-		                        <input type="button" id="monthButton" class="btn btn-outline-success col-lg-6 ml-10" onclick="showMonthlyFields()" value="월세">
-		                        <input type="button"  id="leaseButton" class="btn btn-outline-warning col-lg-6 ml-10" onclick="showLeaseFields()" value="전세">
-		                      </div>
-		                    </div>
-		                  </div>
-		                  	<div class="col-lg-12" id="monthlyFields" style="display: none;">
-				               <div class="row">  
-				                 <div class="col-lg-6 col-md-6">
-				                    <div class="form-group">
-				                      <label>보증금</label>
-				                      <input type="text" name="depositFee" class="form-control" placeholder="USD">
-				                    </div>
-				                  </div>
-				                  <div class="col-lg-6 col-md-6">
-				                    <div class="form-group">
-				                      <label>월세</label>
-				                      <input type="text" name="monthPrice" class="form-control" placeholder="SqFt">
-				                    </div>
-				                  </div>
-				                </div>  
-			                 </div>	 
-		                  	<div class="col-lg-12" id="leaseFields" style="display: none;">
-			                  <div class="row">
-			                  <div class="col-lg-6 col-md-6">
-			                    <div class="form-group">
-			                      <label>전세금</label>
-			                      <input type="text" name="leasePrice" class="form-control" placeholder="USD">
-			                    </div>
-			                  </div>
-		                  </div>
-		                </div>
-		                   <div class="col-lg-3 col-md-6">
-		                    <div class="form-group">
-		                      <label>건물 층수</label>
-		                      <input type="number" name="buildingFloor" class="form-control" placeholder="">
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-3 col-md-6">
-		                     <label>해당 층수</label>
-		                    <input type="number" name="itemFloor" class="form-control" placeholder="">
-		                  </div>
-		                  <div class="col-lg-6 col-md-6">
-		                    <div class="form-group">
-		                      <label>전용 면적</label>
-		                      <input type="text" name="itemSize" class="form-control" placeholder="">
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-3 col-md-6">
-		                    <div class="form-group">
-		                      <label>방 수</label>
-		                      <input type="number" name="itemCount" class="form-control" placeholder="">
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-3 col-md-6">
-		                    <div class="form-group">
-		                      <label>욕실 수</label>
-		                     <input type="number" name="bathAt" class="form-control" placeholder="">
-		                    </div>
-		                  </div>
-	                  </div>
-					</section>
-					<section>
-		                <h3 class="heading">추가 정보</h3>
-		                <div class="row mb-3">
-		                  <div class="col-lg-12 col-md-4">
-		                    <div class="form-group row">
-		                      <label class="col-lg-2">관리비</label>
-		                	  <div class="col-lg-4 col-md-4">
-		                      	<input type="number" name="manageFee" class="form-control" placeholder="" value="0">
-		                      </div>
-		                      	<div class="col-lg-2 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="manageFeeAt" type="checkbox" value="Y" id="manageFeeAtY">
-				                        <label class="form-check-label" for="manageFeeAtY">있음</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                      	<div class="col-lg-2 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="manageFeeAt" type="checkbox" value="N" id="manageFeeAtN">
-				                        <label class="form-check-label" for="manageFeeAtN">없음</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-12 col-md-4">
-		                    <div class="form-group row col-lg-6">
-		                      <label class="col-lg-4 col-md-4">엘리베이터</label>
-		                      	<div class="col-lg-3 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="elevatorAt" type="checkbox" value="Y" id="elevatorY">
-				                        <label class="form-check-label" for="elevatorY">있음</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                      	<div class="col-lg-3 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="elevatorAt" type="checkbox" value="N" id="elevatorN">
-				                        <label class="form-check-label" for="elevatorN">없음</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-12 col-md-4">
-		                    <div class="form-group row col-lg-6">
-		                      <label class="col-lg-4 col-md-4">주차 여부</label>
-		                      	<div class="col-lg-3 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="parkingAt" type="checkbox" value="Y" id="parkingAtY">
-				                        <label class="form-check-label" for="parkingAtY">가능</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                      	<div class="col-lg-3 col-md-4">
-				                    <div class="form-group">
-				                      <div class="form-check">
-				                        <input class="form-check-input" name="parkingAt" type="checkbox" value="N" id="parkingAtN">
-				                        <label class="form-check-label" for="parkingAtN">불가</label>
-				                      </div>
-				                    </div>
-			                 	</div>
-		                    </div>
-		                  </div>
-		                  <div class="col-lg-12 col-md-4">
-		                    <div class="form-group row">
-		                      <label class="col-lg-12">입주 가능일</label>
-		                      <div class = "row col-lg-6">
-			                      <div class="col-lg-4 col-md-4">
-					                    <div class="form-group">
-					                      <div class="form-check">
-					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="Y" id="moveInAtY">
-					                        <label class="form-check-label" for="moveInAtY">즉시 입주</label>
-					                      </div>
-					                    </div>
-				                 	</div>
-			                      	<div class="col-lg-4 col-md-4">
-					                    <div class="form-group">
-					                      <div class="form-check">
-					                        <input class="form-check-input" name="moveInAt" type="checkbox" value="N" id="moveInAtN">
-					                        <label class="form-check-label" for="moveInAtN">날짜 협의</label>
-					                      </div>
-					                    </div>
-				                 	</div>
-			                 	</div>
-			                 	<div class="col-lg-12 col-md-4">
-		                      		 <input type="date" name="moveInDate" id="moveInDate" style="display: none;"> 
-		                      	</div>
-		                    </div>
-		                  </div>
-		                </div>
-                </section>
-                <section>
-					 <h3 class="heading">상세 설명</h3>
-	                <div class="row mb-3">
-	                  <div class="col-lg-12">
-	                    <div class="form-group">
-	                      <label>방 제목</label>
-	                      <input type="text" name="memoShort" class="form-control" placeholder="">
-	                    </div>
-	                  </div>
-	                  <div class="col-lg-12">
-	                    <div class="form-group message">
-	                      <label>상세 설명</label>
-	                      <textarea class="form-control" name="memoDetail" placeholder="Detailed Information"></textarea>
-	                    </div>
-	                  </div>
-	                  <div class="col-lg-12">
-	                    <div class="form-group message">
-	                      <label>비공개 메모</label>
-	                      <textarea class="form-control" name="" placeholder="Private Information"></textarea>
-	                    </div>
-	                  </div>
-					</div>
-				</section>
-				<section>
-	                <h3 class="heading">옵션 항목</h3>
-	                <div class="row mb-3">
-	                  <div class="col-lg-4 col-md-4">
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="air-condition">
-	                        <label class="form-check-label" for="air-condition">Air Conditioning</label>
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="free-parking">
-	                        <label class="form-check-label" for="free-parking">Swimming Pool</label>
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="swimming-pool">
-	                        <label class="form-check-label" for="swimming-pool">Central Heating</label>
-	                      </div>
-	                    </div>
-	                  </div>
-	                  <div class="col-lg-4 col-md-4">
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="laundry-room">
-	                        <label class="form-check-label" for="laundry-room">Laundry Room</label>
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="window-covering">
-	                        <label class="form-check-label" for="window-covering">Gym</label>
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="places">
-	                        <label class="form-check-label" for="places">Window Covering</label>
-	                      </div>
-	                    </div>
-	                  </div>
-	                  <div class="col-lg-4 col-md-4">
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="alarm">
-	                        <label class="form-check-label" for="alarm">Alarm</label>
-	                      </div>
-	                    </div>
-	                    <div class="form-group">
-	                      <div class="form-check">
-	                        <input class="form-check-input" type="checkbox" value="" id="central-heating">
-	                        <label class="form-check-label" for="central-heating">Central Heating</label>
-	                      </div>
-	                    </div>
-	                  </div>
-	                </div>
-	                </section>
-	                <!-- 사진 업로드 -->
-                	<section>
-                			 <h3 class="heading">사진 업로드</h3>
-							<div  class="row">
-								<div class="col-sm">
-									<div class="form-group col-lg-12">
-										<div class="">
-											<button type="button" id="plusFile" class="btn btn-sm btn-success">파일 추가</button>
-										</div>
-									</div>
-									<div class="form-group row" id="fileContainer">
-												
-									</div>
-								</div>
-							</div>
-						</section>
-              		  <div>
-                	<button class="btn btn-success" type="submit">등록</button>
+                <h3 class="heading">위치 정보</h3>
+                <div class="row mb-3">
+                  <div class="col-lg-10 col-md-6">
+                    <div class="form-group">
+                      <label>주소</label>
+                      <input type="text" name="address" class="form-control" placeholder="" id="sample5_address" readonly>
+                      <input type="hidden" name="lat" id="latInput">
+                      <input type="hidden" name="lng" id="lngInput">
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-md-6">
+                    <div class="form-group">
+                      <input type="button" class="btn btn-lg btn-success" onclick="sample5_execDaumPostcode()" value="주소 검색" style="margin-top:30px;">
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <div class="form-group">
+                      <label>상세 주소</label>
+                      <input type="text" name="address2" class="form-control" placeholder="상세 주소를 입력하세요">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>동</label>
+                      <input type="text" name="dong" class="form-control" placeholder="ex 101동">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>호수</label>
+                      <input type="text" name="ho" class="form-control" placeholder="ex 1001호">
+                    </div>
+                  </div>
+                </div>
+                <h3 class="heading">기본 정보</h3>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>방 타입</label>
+                      <select name="itemType" class="classic">
+                        <option>선택</option>
+                        <option value="O">원룸</option>
+                        <option value="T">투룸</option>
+                        <option value="H">쓰리룸</option>
+                        <option value="F">오피스텔</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>거래 타입</label>
+                      <select name="leaseOrMonth" id="transactionType" class="classic">
+                        <option>선택</option>
+                        <option value="month">월세</option>
+                        <option value="lease">전세</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6" id="depositFeeField" style="display:none">
+                    <div class="form-group">
+                      <label>보증금</label>
+                      <input type="number" name="depositFee" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6" id="monthPriceField" style="display:none">
+                    <div class="form-group">
+                      <label>월세</label>
+                      <input type="number" name="monthPrice" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6" id="leasePriceField" style="display:none">
+                    <div class="form-group">
+                      <label>전세금</label>
+                      <input type="number" name="leasePrice" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6" id="noneField" style="display:none">
+                    <div class="form-group">
+                      <label></label>
+                      <input type="hidden" name="none" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>건물 층수</label>
+                      <input type="number" name="buildingFloor" class="form-control"  placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>매물 층수</label>
+                      <input type="number" name="itemFloor" class="form-control" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>방 수</label>
+                      <input type="number" name="itemCount" class="form-control" value="1" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>욕실 수</label>
+                      <input type="number" name="bathAt" class="form-control" value="1" placeholder="">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>평 수(평)</label>
+                      <input type="number" name="itemSize" class="form-control" id="itemSizeInput">
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="form-group">
+                      <label>전용 면적(m²)</label>
+                      <input type="number" name="itemSizeArea" class="form-control" id="itemSizeAreaInput" readonly>
+                    </div>
+                  </div>
+                </div>
+                
+                <h3 class="heading">추가 정보</h3>
+                <div class="row mb-3">
+                  <div class="col-lg-6">
+                    <div class="form-group message">
+                      <label>관리비 여부</label>
+                      <select class="classic" name="manageFeeAt">
+                        <option>선택</option>
+                        <option value="Y">있음</option>
+                        <option value="N">없음</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6" id="manageFeeField">
+                    <div class="form-group message">
+                      <label style="display:none;">관리비</label>
+                      <input type="hidden" name="manageFee" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-4">
+                    <div class="form-group">
+                      <label>주차</label>
+                      <select class="classic" name="parkingAt">
+                        <option>선택</option>
+                        <option value="Y">가능</option>
+                        <option value="N">불가</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-4">
+                    <div class="form-group">
+                      <label>엘리베이터</label>
+                      <select class="classic" name="elevatorAt">
+                      	<option>선택</option>
+                        <option value="Y">있음</option>
+                        <option value="N">없음</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-4">
+                    <div class="form-group">
+                      <label>즉시 입주</label>
+                      <select class="classic" name="moveInAt">
+                      	<option>선택</option>
+                        <option value="Y">가능</option>
+                        <option value="N">불가</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-4" id="moveInDateField" style="display:none;">
+                    <div class="form-group">
+                      <label>입주 가능일</label>
+                      <input type="date" name="moveInDate" class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="heading">상세 설명</h3>
+                <div class="row mb-3">
+                  <div class="col-lg-4">
+                    <div class="form-group message">
+                      <label>태그1</label>
+                      <input class="form-control" name="tag1" placeholder="ex #반려동물 가능" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group message">
+                      <label>태그2</label>
+                      <input class="form-control" name="tag2" placeholder="ex #번화가 앞" />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group message">
+                      <label>태그3</label>
+                      <input class="form-control" name="tag3" placeholder="ex #대학교 인근" />
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group message">
+                      <label>상세 설명</label>
+                      <textarea class="form-control tinymce" name="memoDetail" placeholder="ex 대형마트와 쇼핑몰 앞에 위치한 방입니다"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group message">
+                      <label>비공개 메모</label>
+                      <textarea class="form-control" name="memoPrivate" placeholder="ex LH 임대 아파트 전세 계약 가능 + 협의 필요"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="heading">기본 옵션</h3>
+                <div class="row mb-3">
+                  <div class="col-lg-3 col-md-4">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="air-condition" checked>
+                        <label class="form-check-label" for="air-condition">침대</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="closet" checked>
+                        <label class="form-check-label" for="closet">옷장</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="sofa">
+                        <label class="form-check-label" for="sofa">소파</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="laundry-room" checked>
+                        <label class="form-check-label" for="laundry-room">가스레인지</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="window-covering">
+                        <label class="form-check-label" for="window-covering">인덕션</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="places" checked>
+                        <label class="form-check-label" for="places">냉장고</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="places" checked>
+                        <label class="form-check-label" for="places">전자레인지</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="alarm" checked>
+                        <label class="form-check-label" for="alarm">세탁기</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="central-heating">
+                        <label class="form-check-label" for="central-heating">건조기</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4">
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="central-heating" checked>
+                        <label class="form-check-label" for="central-heating">에어컨</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="central-heating" checked>
+                        <label class="form-check-label" for="central-heating">화재경보기</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                <div class="col-lg-8 text-left">
+                  <h3 class="heading">사진 업로드</h3>
+                </div>
+                <div class="col-lg-4 text-right">
+                  <button type="button" id="add-pic" class="btn btn-light mb-4">사진 추가하기</button>
+                </div>
+              </div>
+                <div class="row mb-3 pic-list">
+                  <div class="col-lg-4 pic-item">
+                    <label id="label1" for="file1" class="drop-file mb-5">
+                      <input type="file" name="file1" id="file1" style="display:none;">
+                      <img id="img1" class="drop-image mb-5" src="" alt="">
+                      <div class="drop-message"><span>사진 올리기</span></div>
+                     </label> 
+                  </div>
+                  <div class="col-lg-4 pic-item">
+                    <label id="label2" for="file2" class="drop-file mb-5">
+                      <input type="file" name="file2" id="file2" style="display:none;">
+                      <img id="img2" class="drop-image mb-5" src="" alt="">
+                      <div class="drop-message"><span>사진 올리기</span></div>
+                     </label> 
+                  </div>
+                  <div class="col-lg-4 pic-item">
+                    <label id="label3" for="file3" class="drop-file mb-5">
+                      <input type="file" name="file3" id="file3" style="display:none;">
+                      <img id="img3" class="drop-image mb-5" src="" alt="">
+                      <div class="drop-message"><span>사진 올리기</span></div>
+                     </label> 
+                  </div>
+                </div>
+                <div class="col-lg-12 mt-3 text-right">
+                  <button type="submit" class="btn btn-success">등록하기</button>
                 </div>
               </form>
             </div>
-
           </div>
         </div>
       </div>
     </section>
     <!-- Ueser Section End -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $('#add-pic').on('click', function() {
+          var newIndex = $('.pic-item').length + 1;
+          var newDiv = $('<div>').addClass('col-lg-4 pic-item');
+          var input = $('<input>').attr('type', 'file').attr('name', 'file' + newIndex).attr('id', 'file' + newIndex).css('display', 'none').on('change', function() {
+              // 미리보기 이미지 표시 코드 추가
+              showPreview(this, newIndex);
+          });
+        var label = $('<label>').attr('id', 'label' + newIndex).addClass('drop-file mb-5').attr('for', 'file' + newIndex);
+        var dropImage = $('<img>').attr('id', 'img' + newIndex).addClass('drop-image mb-5').attr('src', '');
+        var dropMessage = $('<div>').addClass('drop-message').append($('<span>').text('사진 올리기'));
+
+        label.append(input, dropImage, dropMessage);
+        newDiv.append(label);
+        $('.pic-list').append(newDiv);
+    });
+
+    // 모든 파일 입력란에 대해 미리보기 기능 적용
+    $('input[type="file"]').on('change', function() {
+        var index = $(this).attr('id').replace('file', '');
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                // 비동기적으로 이미지 미리보기 표시
+                $('#label' + index).find('img').attr('src', e.target.result);
+                $('#label' + index).find('span').hide(); // label 내의 메시지 숨기기
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+});
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        const transactionTypeSelect = document.getElementById('transactionType');
+        const depositFeeField = document.getElementById('depositFeeField');
+        const monthPriceField = document.getElementById('monthPriceField');
+        const leasePriceField = document.getElementById('leasePriceField');
+        const noneField = document.getElementById('noneField');
+
+        transactionTypeSelect.addEventListener('change', function () {
+            if (transactionTypeSelect.value === 'month') {
+                depositFeeField.style.display = 'block';
+                monthPriceField.style.display = 'block';
+                leasePriceField.style.display = 'none';
+                noneField.style.display = 'none';
+            } else if (transactionTypeSelect.value === 'lease') {
+                depositFeeField.style.display = 'none';
+                monthPriceField.style.display = 'none';
+                leasePriceField.style.display = 'block';
+                noneField.style.display = 'block';
+            } 
+        });
+    });
+    
+    // 평 수(input)의 변경을 감지하고 계산된 값을 전용 면적(input)에 할당
+    document.getElementById('itemSizeInput').addEventListener('input', function() {
+      // 입력된 평 수 가져오기
+      var itemSize = parseFloat(this.value);
+      
+      // 평 수를 3.3으로 곱해서 전용 면적 계산
+      var itemSizeArea = itemSize * 3.3;
+      
+   // 계산된 값을 전용 면적(input)에 할당 (정수값으로 표시)
+      document.getElementById('itemSizeAreaInput').value = Math.round(itemSizeArea); // 정수값으로 반올림
+    });
+
+    
+ // 관리비 여부(select)의 변경을 감지하고 관리비 입력란을 숨기거나 표시함
+    document.querySelector('select[name="manageFeeAt"]').addEventListener('change', function() {
+      var manageFeeFieldLabel = document.querySelector('#manageFeeField label');
+      var manageFeeInput = document.querySelector('input[name="manageFee"]');
+      
+      if (this.value === 'Y') { // 'Y' 값과 비교
+        manageFeeFieldLabel.style.display = 'block'; // 관리비 라벨이 보이도록 설정
+        manageFeeInput.type = 'number'; // 입력란 타입을 number로 변경
+      } else {
+        manageFeeFieldLabel.style.display = 'none'; // 관리비 라벨 숨김
+        manageFeeInput.type = 'hidden'; // 입력란 숨김
+      }
+    });
+
+    // 즉시 입주(select)의 변경을 감지하고 입주 가능일 입력란을 숨기거나 표시함
+    document.querySelector('select[name="moveInAt"]').addEventListener('change', function() {
+      var moveInDateField = document.querySelector('#moveInDateField');
+      
+      if (this.value === 'Y') { // 'Y' 값과 비교
+        moveInDateField.style.display = 'none'; // 즉시 입주 가능할 때 입력란 표시
+      } else {
+        moveInDateField.style.display = 'block'; // 즉시 입주가 불가능할 때 입력란 숨김
+      }
+    });
+
+    
+    
+
+      </script>
 <%-- <jsp:include page="../footer.jsp"></jsp:include> --%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=63c0f4f3e00e8d6c49088160aa0fdd64&libraries=services,clusterer,drawing"></script>
 <script>
-//파일 입력 필드 개수 제한
-var maxFileCount = 6;
-var fileIndex = 1;
-
-// 파일 추가 버튼 클릭 시 파일 입력 필드 추가
-document.querySelector('#plusFile').addEventListener('click', function () {
-    if (fileIndex <= maxFileCount) {
-        // 새로운 파일 입력 필드 생성
-        var fileContainer = document.getElementById('fileContainer');
-        var newFileBox = document.createElement('div');
-        newFileBox.className = 'fileBox col-lg-4';
-        newFileBox.innerHTML = `
-            <label for="file${fileIndex}" id="label${fileIndex}" style="width:250px; height:100px; border:1px solid #ccc;">
-                <img src="#" id="thumbnail${fileIndex}" alt="미리보기" style="max-width: 100%; max-height: 100%; display: none;">
-            </label>
-            <input type="file" name="file${fileIndex}" id="file${fileIndex}" class="fileInput" style="display:none">
-        `;
-        
-        fileContainer.appendChild(newFileBox);
-        
-        // 파일 입력 필드에 change 이벤트 추가
-        var fileInput = document.getElementById(`file${fileIndex}`);
-        var thumbnail = document.getElementById(`thumbnail${fileIndex}`);
-        var label = document.getElementById(`label${fileIndex}`);
-        
-        fileInput.addEventListener('change', function () {
-            // 파일 선택 시 미리보기 생성
-            if (fileInput.files && fileInput.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    thumbnail.src = e.target.result;
-                    thumbnail.style.display = 'block';
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        });
-        
-        fileIndex++; // 파일 인덱스 증가
-    }
-});
-
-
-
-
-
-// Checkbox 토글 모음 시작
-// checkbox 요소들을 배열로 관리
-var checkboxes = [
-  { id: "manageFeeAtY", counterpartId: "manageFeeAtN" },
-  { id: "manageFeeAtN", counterpartId: "manageFeeAtY" },
-  { id: "elevatorY", counterpartId: "elevatorN" },
-  { id: "elevatorN", counterpartId: "elevatorY" },
-  { id: "parkingAtY", counterpartId: "parkingAtN" },
-  { id: "parkingAtN", counterpartId: "parkingAtY" }
-];
-
-// 반복문을 사용하여 이벤트 리스너 할당
-checkboxes.forEach(function (checkbox) {
-  var currentCheckbox = document.getElementById(checkbox.id);
-  var counterpartCheckbox = document.getElementById(checkbox.counterpartId);
-
-  currentCheckbox.addEventListener('change', function () {
-    if (currentCheckbox.checked) {
-      counterpartCheckbox.checked = false;
-    }
-  });
-});
-//Checkbox 토글 모음 끝
-
-
-var moveInAtYCheckbox = document.getElementById("moveInAtY");
-var moveInAtNCheckbox = document.getElementById("moveInAtN");
-// "입주 가능일" input 요소 가져오기
-var moveInDateInput = document.getElementById("moveInDate");
-
-// "즉시 입주" 체크박스 상태 변경 시 이벤트 처리
-moveInAtYCheckbox.addEventListener('change', function () {
-    if (moveInAtYCheckbox.checked) {
-    	moveInAtNCheckbox.checked = false;
-        // "즉시 입주" 체크박스가 선택되면 "입주 가능일" input 요소를 숨김
-        moveInDateInput.style.display = "none";
-    } else{
-    	moveInDateInput.style.display = "display";
-    }
-});
-
-// "날짜 협의" 체크박스 상태 변경 시 이벤트 처리
-moveInAtNCheckbox.addEventListener('change', function () {
-    if (moveInAtNCheckbox.checked) {
-    	moveInAtYCheckbox.checked = false;
-        // "날짜 협의" 체크박스가 선택되면 "입주 가능일" input 요소를 표시
-        moveInDateInput.style.display = "block";
-    } else {
-    	moveInDateInput.style.display = "none";
-    }
-});
-
-// "관리비" 입력란 요소 가져오기
-var manageAtFeeYCheckbox = document.getElementById("manageFeeAtY");
-var manageAtFeeNCheckbox = document.getElementById("manageFeeAtN");
-var manageFeeInput = document.querySelector('input[name="manageFee"]');
-
-// "있음" 체크박스 상태 변경 시 이벤트 처리
-manageAtFeeYCheckbox.addEventListener('change', function () {
-    // "있음" 체크박스가 선택되면 "관리비" 입력란 활성화
-    if (manageAtFeeYCheckbox.checked) {
-        manageFeeInput.removeAttribute('readonly');
-    } else {
-        // "있음" 체크박스가 선택 해제되면 "관리비" 입력란 비활성화
-        manageFeeInput.setAttribute('readonly', 'readonly');
-    }
-});
-
-// "없음" 체크박스 상태 변경 시 이벤트 처리
-manageAtFeeNCheckbox.addEventListener('change', function () {
-    // "없음" 체크박스가 선택되면 "관리비" 입력란 비활성화
-    if (manageAtFeeNCheckbox.checked) {
-        manageFeeInput.setAttribute('readonly', 'readonly');
-    } else {
-        // "없음" 체크박스가 선택 해제되면 "관리비" 입력란 활성화
-        manageFeeInput.removeAttribute('readonly');
-    }
-});
-
-
-var form = document.querySelector('form');
-
-function showMonthlyFields() {
-    var monthlyFields = document.getElementById("monthlyFields");
-    var monthButton = document.querySelector('#monthButton');
-    
-    if (monthlyFields.style.display === "block" || monthlyFields.style.display === "") {
-        monthlyFields.style.display = "none";
-        monthButton.classList.remove("btn-success");
-        monthButton.classList.add("btn-outline-success");
-        
-        // 월세 버튼이 해제되면 해당 hidden input을 제거합니다.
-        var monthHiddenInput = document.querySelector('input[name="leaseOrMonth"][value="month"]');
-        if (monthHiddenInput) {
-        	monthHiddenInput.remove();
-        }
-        
-    } else {
-        monthlyFields.style.display = "block";
-        monthButton.classList.remove("btn-outline-success");
-        monthButton.classList.add("btn-success");
-        
-        // 월세 버튼이 선택되었을 때 값을 설정하고 hidden input을 추가합니다.
-        var monthInput = document.createElement("input");
-        monthInput.type = "hidden";
-        monthInput.name = "leaseOrMonth";
-        monthInput.value = "month";
-        form.appendChild(monthInput); // 폼에 추가합니다.
-        
-    }
-}
-	
-	  function showLeaseFields() {
-		  var leaseFields = document.getElementById("leaseFields");
-		  var leaseButton = document.querySelector('#leaseButton');
-		  
-	    if (leaseFields.style.display === "block" || leaseFields.style.display === "") {
-	    	leaseFields.style.display = "none";
-	    	leaseButton.classList.remove("btn-warning");
-	    	leaseButton.classList.add("btn-outline-warning");
-	    	
-	    	 // 월세 버튼이 해제되면 해당 hidden input을 제거합니다.
-	        var LeasehiddenInput = document.querySelector('input[name="leaseOrMonth"][value="lease"]');
-	        if (LeasehiddenInput) {
-	        	LeasehiddenInput.remove();
-	        }
-	    	
-	    } else {
-	    	leaseFields.style.display = "block";
-	    	leaseButton.classList.remove("btn-outline-warning");
-	    	leaseButton.classList.add("btn-warning");
-	    	
-	    	var leaseInput = document.createElement("input");
-	    	leaseInput.type = "hidden";
-	    	leaseInput.name = "leaseOrMonth";
-	    	leaseInput.value = "lease"; // 월세 버튼이 선택되었을 때 값을 설정합니다.
-	        form.appendChild(leaseInput); // 폼에 추가합니다.
-	    	
-	    }
-	 
-	  }
+ 
 
     function sample5_execDaumPostcode() {
         new daum.Postcode({

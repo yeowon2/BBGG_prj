@@ -122,7 +122,7 @@ public class ItemController {
 	//매물 등록폼 이동
 	@GetMapping("/partner/{partnerNo}/itemAdd")
 	public String itemAdd(@PathVariable Long partnerNo) {
-		return path + "itemAdd3";
+		return path + "itemAdd";
 	}
 	
 	//매물 등록 
@@ -141,6 +141,33 @@ public class ItemController {
 		service.itemAdd(itemVO, fileVOList);
 		
 		return "redirect:/partner/{partnerNo}/itemList";
+	}
+	
+	//매물 수정 폼 이동
+	@GetMapping("/partner/itemUpdate/{itemNo}")
+	public String itemUpdate(@PathVariable Long itemNo, Model model) {
+		ItemVO itemVO = service.itemSelect(itemNo);
+		model.addAttribute("itemVO", itemVO);
+		
+		return path + "itemUpdate";
+	}
+	
+	//매물 수정
+	@PostMapping("/partner/itemUpdate/{itemNo}")
+	public String itemUpdate(@PathVariable Long itemNo, ItemVO itemVO,  final MultipartHttpServletRequest multiRequest) throws Exception {
+		
+		//매물사진 업로드 처리
+		List<FileVO> fileVOList = null;
+		
+        final Map<String, MultipartFile> files = multiRequest.getFileMap();
+        if(!files.isEmpty()) {
+        	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
+        }
+        itemVO.setFileVOList(fileVOList);
+        
+        Long partnerNo = itemVO.getPartnerNo();
+		service.updateItem(itemVO);
+		return "redirect:/partner/"+ partnerNo +"/itemList";
 	}
 	
 	//파트너 매물 목록 조회

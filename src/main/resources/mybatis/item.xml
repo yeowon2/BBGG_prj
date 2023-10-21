@@ -24,7 +24,6 @@
     <result property="parkingAt" column="parking_at" />
     <result property="manageFeeAt" column="manage_fee_at" />
     <result property="manageFee" column="manage_fee" />
-    <result property="memoShort" column="memo_short" />
     <result property="memoDetail" column="memo_detail" />
     <result property="tag1" column="tag1" />
     <result property="tag2" column="tag2" />
@@ -36,9 +35,9 @@
     <result property="lng" column="lng" />
     
     <!-- 추가된 부분 -->
-    <result property="leasePrice" column="price" />
+    <result property="leasePrice" column="lease_price" />
     <result property="depositFee" column="deposit_fee" />
-    <result property="monthPrice" column="price" />
+    <result property="monthPrice" column="month_price" />
     <result property="wishCount" column="wish_count"/>
     <result property="wishItemNo" column="wish_item_no"/>
     <result property="wishUserNo" column="wish_user_no"/>
@@ -99,18 +98,44 @@
 	</select>
 	
 	<select id="itemSelect" resultMap="ItemMap">
-		<choose>
-	        <when test="leaseOrMonth == 'lease'">
-	        	SELECT tbl_item.*, tbl_lease.*
-				FROM tbl_item JOIN tbl_lease ON tbl_item.item_no = tbl_lease.item_no
-				WHERE tbl_lease.item_no = #{itemNo}
-	        </when>
-	        <otherwise>
-	            SELECT tbl_item.*, tbl_month.*
-				FROM tbl_item JOIN tbl_month ON tbl_item.item_no = tbl_month.item_no
-				WHERE tbl_month.item_no = #{itemNo}
-	        </otherwise>
-	    </choose>
+		SELECT 
+		   i.item_no,
+		   i.partner_no,
+		   i.item_type,
+		   i.address,
+		   i.dong,
+		   i.ho,
+		   i.move_in_at,
+		   i.move_in_date,
+		   i.item_size,
+		   i.building_floor,
+		   i.item_floor,
+		   i.item_count,
+		   i.bath_at,
+		   i.elevator_at,
+		   i.parking_at,
+		   i.manage_fee_at,
+		   i.manage_fee, 
+		   i.tag1,
+		   i.tag2,
+		   i.tag3,
+		   i.memo_detail,
+		   i.regist_date,
+		   i.update_date,
+		   i.use_at,
+		   i.lat,
+		   i.lng,
+		   i.address2,
+		   i.lease_or_month,
+		   COALESCE(l.lease_price, m.month_price) AS price,
+		   m.deposit_fee,
+		   i.item_size_area
+		FROM tbl_item i
+		LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
+		LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
+		WHERE i.use_at IN ('Y', 'C')
+		AND i.item_no = #{itemNo};
+	
 	</select>
 	
 	<select id="partItemList" resultMap="ItemMap">
@@ -133,7 +158,6 @@
 		    tm.deposit_fee, 
 		    ti.item_floor,
 		    ti.manage_fee,
-		    ti.memo_short,
 		    ti.view_count
 		FROM tbl_item ti
 		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
@@ -162,8 +186,7 @@
 		    END AS price,
 		    tm.deposit_fee, 
 		    ti.item_floor,
-		    ti.manage_fee,
-		    ti.memo_short
+		    ti.manage_fee
 		FROM tbl_item ti
 		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
 		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
@@ -213,7 +236,6 @@
 	       i.elevator_at,
 	       i.parking_at,
 	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_short,
 	       i.memo_detail,
 	       i.regist_date,
 	       i.update_date,
@@ -249,7 +271,6 @@
 	       i.elevator_at,
 	       i.parking_at,
 	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_short,
 	       i.memo_detail,
 	       i.regist_date,
 	       i.update_date,
@@ -289,7 +310,6 @@
 			parking_at, 
 			manage_fee_at, 
 			manage_fee, 
-			memo_short, 
 			memo_detail, 
 			regist_date, 
 			use_at, 
@@ -448,7 +468,6 @@
 	       i.elevator_at,
 	       i.parking_at,
 	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_short,
 	       i.memo_detail,
 	       i.regist_date,
 	       i.update_date,
@@ -470,4 +489,56 @@
 		AND w.use_at = 'Y'
 
     </select>
+    
+    <update id="updateItem">
+    	UPDATE tbl_item
+		SET 
+		    item_type = #{itemType},
+		    address = #{address},
+		    dong = #{dong},
+		    ho = #{ho},
+		    move_in_at = #{moveInAt},
+		    move_in_date = CASE 
+		        WHEN #{moveInAt} = 'Y' THEN NOW()
+		        ELSE #{moveInDate}
+		    END,
+		    item_size = #{itemSize},
+		    building_floor = #{buildingFloor},
+		    item_floor = #{itemFloor},
+		    item_count = #{itemCount},
+		    bath_at = #{bathAt},
+		    elevator_at = #{elevatorAt},
+		    parking_at = #{parkingAt},
+		    manage_fee_at = #{manageFeeAt},
+		    manage_fee = CASE 
+		    	WHEN #{manageFeeAt} = 'N' THEN 0
+		    	ELSE #{manageFee}
+		    END,
+		    memo_detail = #{memoDetail},
+		    regist_date = NOW(),
+		    use_at = 'Y',
+		    lat = #{lat},
+		    lng = #{lng},
+		    address2 = #{address2},
+		    lease_or_month = #{leaseOrMonth},
+		    item_size_area = #{itemSizeArea},
+		    tag1 = #{tag1},
+		    tag2 = #{tag2},
+		    tag3 = #{tag3}
+		WHERE item_no = #{itemNo}
+    </update>
+    
+    <update id="updateLease" parameterType="map">
+    	UPDATE tbl_lease
+		SET lease_price = #{leasePrice},
+		WHERE item_no = #{itemNo}
+    </update>
+
+    <update id="updateMonth" parameterType="map">
+    	UPDATE tbl_month
+		SET 
+			month_price = #{monthPrice},
+			deposit_fee = #{depositFee}
+		WHERE item_no = #{itemNo}
+    </update>
 </mapper>

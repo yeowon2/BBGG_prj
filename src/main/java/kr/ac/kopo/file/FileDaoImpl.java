@@ -48,5 +48,7 @@ public class FileDaoImpl implements FileDao {
 		return sql.selectOne("file.selectPartnerFile", partnerNo);
 	}
 
+	
+
 
 }

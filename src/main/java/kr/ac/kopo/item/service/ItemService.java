@@ -1,7 +1,6 @@
 package kr.ac.kopo.item.service;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.ac.kopo.file.FileVO;
 import kr.ac.kopo.item.web.ItemVO;
@@ -10,7 +9,7 @@ public interface ItemService {
 
 	List<ItemVO> itemList(ItemVO itemVO);
 
-	ItemVO itemSelect(ItemVO itemVO);
+	ItemVO itemSelect(Long itemNo);
 
 	void itemAdd(ItemVO itemVO, List<FileVO> fileVOList);
 
@@ -24,7 +23,6 @@ public interface ItemService {
 
 	void deleteItem(Long itemNo);
 
-
 	String lomSelect(Long itemNo);
 
 	List<ItemVO> selectRecentList();
@@ -36,6 +34,8 @@ public interface ItemService {
 	ItemVO itemDetail(Long itemNo, Long loginUserNo);
 
 	List<ItemVO> selectWishList(long userNo);
+
+	void updateItem(ItemVO itemVO);
 
 
 }

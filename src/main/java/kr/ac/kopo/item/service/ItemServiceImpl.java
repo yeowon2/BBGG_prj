@@ -38,8 +38,16 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ItemVO itemSelect(ItemVO itemVO) {
-		return dao.itemSelect(itemVO);
+	public ItemVO itemSelect(Long itemNo) {
+		//해당 매물의 모든 사진 리스트를 반환
+		List<FileVO> fileVOList = dao.selectFile(itemNo);
+		
+		//아이템 정보 select
+		ItemVO itemVO = dao.itemSelect(itemNo);
+		
+		//itemVO에 조회수와 file리스트를 setting
+		itemVO.setFileVOList(fileVOList);
+		return itemVO;
 	}
 	
 	@Transactional
@@ -183,6 +191,26 @@ public class ItemServiceImpl implements ItemService {
 		 return selectWishList;
 	}
 
+	@Override
+	@Transactional
+	public void updateItem(ItemVO itemVO) {
+		
+		 if(itemVO.getMonthPrice() == null && itemVO.getDepositFee() == null) {
+			 itemVO.setLeaseOrMonth("lease"); 
+		 } else if(itemVO.getLeasePrice() == null){ 
+			 itemVO.setLeaseOrMonth("month"); 
+		 }
+		 
+		dao.updateItem(itemVO);
+		Long itemNo = itemVO.getItemNo();
+		List<FileVO> fileVOList = itemVO.getFileVOList();
+		
+		for (FileVO fileVO : fileVOList) {
+			fileVO.setItemNo(itemNo);
+			fileDao.insertFile(fileVO);
+		}
+		
+	}
 
 
 	

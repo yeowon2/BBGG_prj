@@ -198,9 +198,10 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-10 col-md-6">
                     <div class="form-group">
                       <label>주소</label>
-                      <input type="text" name="address" class="form-control" placeholder="" id="sample5_address" readonly>
-                      <input type="hidden" name="lat" id="latInput">
-                      <input type="hidden" name="lng" id="lngInput">
+                      <input type="text" name="address" class="form-control" value="${itemVO.address}" placeholder="" id="sample5_address" readonly>
+                      <input type="hidden" name="lat" id="latInput" value="${itemVO.lat}">
+                      <input type="hidden" name="lng" id="lngInput" value="${itemVO.lng}">
+                      <input type="hidden" name="partnerNo" value="${itemVO.partnerNo}">
                     </div>
                   </div>
                   <div class="col-lg-2 col-md-6">
@@ -211,19 +212,19 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-12 col-md-6">
                     <div class="form-group">
                       <label>상세 주소</label>
-                      <input type="text" name="address2" class="form-control" placeholder="상세 주소를 입력하세요">
+                      <input type="text" name="address2" value="${itemVO.address2}" class="form-control" placeholder="상세 주소를 입력하세요">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                       <label>동</label>
-                      <input type="text" name="dong" class="form-control" placeholder="ex 101동">
+                      <input type="text" name="dong" value="${itemVO.dong}" class="form-control" placeholder="ex 101동">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                       <label>호수</label>
-                      <input type="text" name="ho" class="form-control" placeholder="ex 1001호">
+                      <input type="text" name="ho" value="${itemVO.ho}" class="form-control" placeholder="ex 1001호">
                     </div>
                   </div>
                 </div>
@@ -232,41 +233,42 @@ thead tr:nth-child(3) th {
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>방 타입</label>
-                      <select name="itemType" class="classic">
-                        <option>선택</option>
-                        <option value="O">원룸</option>
-                        <option value="T">투룸</option>
-                        <option value="H">쓰리룸</option>
-                        <option value="F">오피스텔</option>
-                      </select>
+                     <select name="itemType" class="classic">
+					    <option value="" selected>선택</option>
+					    <c:forEach var="type" items="O,T,H,F">
+					        <option value="${type}" <c:if test="${type == itemVO.itemType}">selected</c:if>>
+					            <c:out value="${type eq 'O' ? '원룸' : type eq 'T' ? '투룸' : type eq 'H' ? '쓰리룸' : '오피스텔'}"/>
+					        </option>
+					    </c:forEach>
+					</select>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>거래 타입</label>
                       <select name="leaseOrMonth" id="transactionType" class="classic">
-                        <option>선택</option>
-                        <option value="month">월세</option>
-                        <option value="lease">전세</option>
-                      </select>
+                      	<option value="" selected>선택</option>
+					    <option value="month" <c:if test="${itemVO.leaseOrMonth == 'month'}">selected</c:if>>월세</option>
+					    <option value="lease" <c:if test="${itemVO.leaseOrMonth == 'lease'}">selected</c:if>>전세</option>
+					</select>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="depositFeeField" style="display:none">
                     <div class="form-group">
                       <label>보증금</label>
-                      <input type="number" name="depositFee" class="form-control" placeholder="">
+                      <input type="number" name="depositFee" value="${itemVO.depositFee}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="monthPriceField" style="display:none">
                     <div class="form-group">
                       <label>월세</label>
-                      <input type="number" name="monthPrice" class="form-control" placeholder="">
+                      <input type="number" name="monthPrice" value="${itemVO.price}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="leasePriceField" style="display:none">
                     <div class="form-group">
                       <label>전세금</label>
-                      <input type="number" name="leasePrice" class="form-control" placeholder="">
+                      <input type="number" name="leasePrice" value="${itemVO.price}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="noneField" style="display:none">
@@ -278,37 +280,37 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>건물 층수</label>
-                      <input type="number" name="buildingFloor" class="form-control"  placeholder="">
+                      <input type="number" name="buildingFloor" value="${itemVO.buildingFloor}" class="form-control"  placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>매물 층수</label>
-                      <input type="number" name="itemFloor" class="form-control" placeholder="">
+                      <input type="number" name="itemFloor" value="${itemVO.itemFloor}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>방 수</label>
-                      <input type="number" name="itemCount" class="form-control" value="1" placeholder="">
+                      <input type="number" name="itemCount" value="${itemVO.itemCount}" class="form-control" value="1" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>욕실 수</label>
-                      <input type="number" name="bathAt" class="form-control" value="1" placeholder="">
+                      <input type="number" name="bathAt" value="${itemVO.bathAt}" class="form-control" value="1" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>평 수(평)</label>
-                      <input type="number" name="itemSize" class="form-control" id="itemSizeInput">
+                      <input type="number" name="itemSize" value="${itemVO.itemSize}" class="form-control" id="itemSizeInput">
                     </div>
                   </div>
                   <div class="col-lg-3 col-md-6">
                     <div class="form-group">
                       <label>전용 면적(m²)</label>
-                      <input type="number" name="itemSizeArea" class="form-control" id="itemSizeAreaInput" readonly>
+                      <input type="number" name="itemSizeArea" value="${itemVO.itemSizeArea}" class="form-control" id="itemSizeAreaInput" readonly>
                     </div>
                   </div>
                 </div>
@@ -319,52 +321,51 @@ thead tr:nth-child(3) th {
                     <div class="form-group message">
                       <label>관리비 여부</label>
                       <select class="classic" name="manageFeeAt">
-                        <option>선택</option>
-                        <option value="Y">있음</option>
-                        <option value="N">없음</option>
-                      </select>
+                      	<option value="" selected>선택</option>
+		                <option value="Y" <c:if test="${itemVO.manageFeeAt == 'Y'}">selected</c:if>>있음</option>
+		                <option value="N" <c:if test="${itemVO.manageFeeAt == 'N'}">selected</c:if>>없음</option>
+		            </select>
                     </div>
                   </div>
                   <div class="col-lg-6" id="manageFeeField">
                     <div class="form-group message">
                       <label style="display:none;">관리비</label>
-                      <input type="hidden" name="manageFee" class="form-control">
+                      <input type="hidden" name="manageFee" value="${itemVO.manageFee}" class="form-control">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-4">
                     <div class="form-group">
                       <label>주차</label>
                       <select class="classic" name="parkingAt">
-                        <option>선택</option>
-                        <option value="Y">가능</option>
-                        <option value="N">불가</option>
-                      </select>
+                      	<option value="" selected>선택</option>
+		                <option value="Y" <c:if test="${itemVO.parkingAt == 'Y'}">selected</c:if>>가능</option>
+		                <option value="N" <c:if test="${itemVO.parkingAt == 'N'}">selected</c:if>>불가</option>
+		            </select>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-4">
                     <div class="form-group">
                       <label>엘리베이터</label>
                       <select class="classic" name="elevatorAt">
-                      	<option>선택</option>
-                        <option value="Y">있음</option>
-                        <option value="N">없음</option>
-                      </select>
+                      	<option value="" selected>선택</option>
+		                <option value="Y" <c:if test="${itemVO.elevatorAt == 'Y'}">selected</c:if>>있음</option>
+		                <option value="N" <c:if test="${itemVO.elevatorAt == 'N'}">selected</c:if>>없음</option>
+		            </select>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-4">
                     <div class="form-group">
                       <label>즉시 입주</label>
-                      <select class="classic" name="moveInAt">
-                      	<option>선택</option>
-                        <option value="Y">가능</option>
-                        <option value="N">불가</option>
-                      </select>
+                       <select class="classic" name="moveInAt">
+			                <option value="Y" <c:if test="${itemVO.moveInAt == 'Y'}">selected</c:if>>가능</option>
+			                <option value="N" <c:if test="${itemVO.moveInAt == 'N'}">selected</c:if>>불가</option>
+			            </select>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-4" id="moveInDateField" style="display:none;">
                     <div class="form-group">
                       <label>입주 가능일</label>
-                      <input type="date" name="moveInDate" class="form-control">
+                      <input type="date" name="moveInDate" value="${itemVO.moveInDate}" class="form-control">
                     </div>
                   </div>
                 </div>
@@ -374,25 +375,25 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-4">
                     <div class="form-group message">
                       <label>태그1</label>
-                      <input class="form-control" name="tag1" placeholder="ex #반려동물 가능" />
+                      <input class="form-control" name="tag1" value="${itemVO.tag1}" placeholder="ex #반려동물 가능" />
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group message">
                       <label>태그2</label>
-                      <input class="form-control" name="tag2" placeholder="ex #번화가 앞" />
+                      <input class="form-control" name="tag2" value="${itemVO.tag2}" placeholder="ex #번화가 앞" />
                     </div>
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group message">
                       <label>태그3</label>
-                      <input class="form-control" name="tag3" placeholder="ex #대학교 인근" />
+                      <input class="form-control" name="tag3" value="${itemVO.tag3}" placeholder="ex #대학교 인근" />
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group message">
                       <label>상세 설명</label>
-                      <textarea class="form-control tinymce" name="memoDetail" placeholder="ex 대형마트와 쇼핑몰 앞에 위치한 방입니다"></textarea>
+                      <textarea class="form-control tinymce" name="memoDetail" placeholder="ex 대형마트와 쇼핑몰 앞에 위치한 방입니다"> ${itemVO.memoDetail}</textarea>
                     </div>
                   </div>
                   <div class="col-lg-12">
@@ -489,27 +490,39 @@ thead tr:nth-child(3) th {
                 </div>
               </div>
                 <div class="row mb-3 pic-list">
-                  <div class="col-lg-4 pic-item">
-                    <label id="label1" for="file1" class="drop-file mb-5">
-                      <input type="file" name="file1" id="file1" style="display:none;">
-                      <img id="img1" class="drop-image mb-5" src="" alt="">
-                      <div class="drop-message"><span>사진 올리기</span></div>
-                     </label> 
-                  </div>
-                  <div class="col-lg-4 pic-item">
-                    <label id="label2" for="file2" class="drop-file mb-5">
-                      <input type="file" name="file2" id="file2" style="display:none;">
-                      <img id="img2" class="drop-image mb-5" src="" alt="">
-                      <div class="drop-message"><span>사진 올리기</span></div>
-                     </label> 
-                  </div>
-                  <div class="col-lg-4 pic-item">
-                    <label id="label3" for="file3" class="drop-file mb-5">
-                      <input type="file" name="file3" id="file3" style="display:none;">
-                      <img id="img3" class="drop-image mb-5" src="" alt="">
-                      <div class="drop-message"><span>사진 올리기</span></div>
-                     </label> 
-                  </div>
+                	<c:if test="${itemVO.fileVOList == null}">
+	                  <div class="col-lg-4 pic-item">
+	                    <label id="label1" for="file1" class="drop-file mb-5">
+	                      <input type="file" name="file1" id="file1" style="display:none;">
+	                      <img id="img1" class="drop-image mb-5" src="" alt="">
+	                      <div class="drop-message"><span>사진 올리기</span></div>
+	                     </label> 
+	                  </div>
+	                  <div class="col-lg-4 pic-item">
+	                    <label id="label2" for="file2" class="drop-file mb-5">
+	                      <input type="file" name="file2" id="file2" style="display:none;">
+	                      <img id="img2" class="drop-image mb-5" src="" alt="">
+	                      <div class="drop-message"><span>사진 올리기</span></div>
+	                     </label> 
+	                  </div>
+	                  <div class="col-lg-4 pic-item">
+	                    <label id="label3" for="file3" class="drop-file mb-5">
+	                      <input type="file" name="file3" id="file3" style="display:none;">
+	                      <img id="img3" class="drop-image mb-5" src="" alt="">
+	                      <div class="drop-message"><span>사진 올리기</span></div>
+	                     </label> 
+	                  </div>
+             		</c:if>	
+             		<c:if test="${itemVO.fileVOList != null}">
+					    <c:forEach var="fileVO" items="${itemVO.fileVOList}" varStatus="loop">
+					        <div class="col-lg-4 pic-item">
+					            <label id="label${loop.index + 1}" for="file${loop.index + 1}" class="drop-file mb-5">
+					                <input type="file" name="file${loop.index + 1}" id="file${loop.index + 1}" style="display:none;">
+					                <img src="/upload/${fileVO.savedName}" alt="" style="width:250px; height:215px;">
+					            </label> 
+					        </div>
+					    </c:forEach>
+					</c:if>
                 </div>
                 <div class="col-lg-12 mt-3 text-right">
                   <button type="submit" class="btn btn-success">등록하기</button>

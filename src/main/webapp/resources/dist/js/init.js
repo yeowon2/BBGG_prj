@@ -162,7 +162,7 @@ var setHeightWidth = function () {
 	height = window.innerHeight;
 	width = window.innerWidth;
 	$('.full-height').css('height', (height));
-	$('.hk-pg-wrapper').css('min-height', (height));
+	$('.hk-pg-wrapper').css('min-height', (height - 523));
 	
 	/*****App Height for differnt brekpoints with Vertical & Alt menu*****/
 	

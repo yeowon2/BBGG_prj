@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <link href="/resources/dist/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="hk-pg-wrapper">
+<div class="hk-pg-wrapper" style="min-height: 400px;">
 	<div class="container">
 		<div class="row">
             <div class="col-xl-12">
@@ -58,9 +59,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th><strong>상태</strong></th>
-                                                <th>${fakeVO.useAt}</th>
-                                                <th></th>
-                                                <th></th>
+                                                <th colspan="3">${fakeVO.useAt}</th>
                                             </tr>
                                         </tfoot>
                                     </table>

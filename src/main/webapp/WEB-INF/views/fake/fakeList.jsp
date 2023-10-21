@@ -42,17 +42,12 @@
 	<!-- Modal Carousel-->
 	<div class="modal fade" id="exampleModalCarousel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCarousel" aria-hidden="true"  style="min-height: 100% ;">
 		<div class="modal-dialog modal-lg" role="document">
-<!-- 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">x</span>
-				</button>
-			</div> -->
 			<div class="modal-content">
-				
+			<!-- 모달 내용 -->	
 			</div>
 		</div>
 	</div>
-
+	<!-- /Modal Carousel-->
 	
 	
 	
@@ -170,12 +165,7 @@
 	                                        </table>
 	                                    </div>
 	                                </div>
-	                                
-
-	                                
-	                                
-	                                
-	                                
+       
 	                            </div>
 	                        </div>
 	                    </section>

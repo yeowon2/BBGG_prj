@@ -59,25 +59,15 @@
 </resultMap>
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT i.*<!-- , f.* -->
+		SELECT i.*, f.*
 		FROM tbl_item i 
-		<!-- LEFT JOIN tbl_item_file f ON i.item_no = f.item_no -->
-		<where>
-			<if test="search != null and !search.equals('')">
-				(i.address LIKE CONCAT('%', #{search}, '%') OR i.address2 LIKE CONCAT('%', #{search}, '%'))
-				<!-- AND f.file_no = (
+		LEFT JOIN tbl_item_file f ON i.item_no = f.item_no
+		<!-- WHERE f.file_no = (
 				    SELECT MIN(file_no)
 				    FROM tbl_item_file
 				    WHERE item_no = i.item_no
 				) -->
-				<if test="itemType != null and !itemType.equals('')">
-					AND i.item_type LIKE #{itemType}
-				</if>
-				<if test="leaseOrMonth != null and !leaseOrMonth.equals('')">
-					AND i.lease_or_month LIKE #{leaseOrMonth}
-				</if>
-			</if>
-		</where>
+		
 		ORDER BY i.regist_date DESC
 	</select>
 	

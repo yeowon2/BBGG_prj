@@ -47,14 +47,14 @@ public class ItemController {
 	
 	//매물 리스트
 	@GetMapping("/itemList")
-	public String itemLists(Model model, ItemVO itemVO) {
+	public String itemLists(Model model, ItemVO itemVO, FileVO fileVO) {
 		List<ItemVO> list = service.itemList(itemVO);
 		model.addAttribute("list", list);
 		return path + "item_list";
 	}
 	@GetMapping("/itemListAll")
 	@ResponseBody
-	public List<ItemVO> itemListAll(ItemVO itemVO) {
+	public List<ItemVO> itemListAll(ItemVO itemVO, FileVO fileVO) {
 		List<ItemVO> list = service.itemList(itemVO);
 		return list;
 	}

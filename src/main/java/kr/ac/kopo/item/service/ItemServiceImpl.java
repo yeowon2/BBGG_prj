@@ -30,10 +30,6 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<ItemVO> itemList(ItemVO itemVO) {
 		List<ItemVO> itemList = dao.itemList(itemVO);
-		for (ItemVO vo : itemList) {
-			FileVO fileVO = dao.selectItemFile(vo.getItemNo());
-			vo.setFileVO(fileVO);
-		}
 		return itemList;
 	}
 

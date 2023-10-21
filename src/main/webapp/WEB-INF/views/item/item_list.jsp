@@ -31,6 +31,7 @@
     	
     	/* 맵, 리스트, 검색 div */
 		#mapNlist{
+			max-height: 100%;
 			position: relative;
 			display: flex; /* 컨테이너 내부의 요소를 가로로 배치하기 위해 flex 사용 */
 			border: 1px solid #226929;
@@ -143,7 +144,7 @@
 	    }
 	    #property-list {
 	    	overflow-y: auto;
-	    	height: 805px;
+	    	height: 700px;
 	    	
 	    }
 	    .property-item .media-img-wrap {
@@ -209,9 +210,9 @@
         }
 	    
 	    /* 클릭한 링크에 대한 스타일 */
-		.clicked {
-		    background-color: #ffcccb; /* 클릭 시 변경할 배경색 */
-		    color: #000; /* 클릭 시 변경할 텍스트 색상 */
+		.active{
+		    background-color: #dfdfdf; /* 클릭 시 변경할 배경색 */
+		    color: #226929; /* 클릭 시 변경할 텍스트 색상 */
 		}
 	    
 	</style>
@@ -297,61 +298,86 @@
 		
 		<!-- 매물타입, 계약조건 diV 체크박스 -->
 		<script>
+		    var activeDivId = null; // 현재 열려 있는 DIV의 ID를 추적
+		
 		    function initializeDropdown(buttonId, divId) {
-				var showDivButton = document.getElementById(buttonId);
-		    	var itemTypeDiv = document.getElementById(divId);
+		        var showDivButton = document.getElementById(buttonId);
+		        var itemTypeDiv = document.getElementById(divId);
 		
-				// 초기 버튼 텍스트 업데이트
-				updateButtonText();
+		        // 초기 버튼 텍스트 업데이트
+		        updateButtonText();
 		
-				showDivButton.addEventListener("click", function(event) {
-			        event.stopPropagation();
-			        if (itemTypeDiv.style.display === "none" || itemTypeDiv.style.display === "") {
-			            itemTypeDiv.style.display = "block";
-			            showDivButton.classList.add("active"); // 버튼에 엑티브 클래스 추가
-			        } else {
-			            itemTypeDiv.style.display = "none";
-			            showDivButton.classList.remove("active"); // 버튼에서 엑티브 클래스 제거
-			        }
-			    });
+		        showDivButton.addEventListener("click", function(event) {
+		            event.stopPropagation();
 		
-		      	// 체크박스 상태 변경 시 텍스트 업데이트
-		      	var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
-		      	checkboxes.forEach(function(checkbox) {
-		        	checkbox.addEventListener("change", function() {
-		          	updateButtonText();
-		        	});
-		      	});
+		            if (activeDivId !== divId) {
+		                // 다른 DIV가 열려있는 경우, 닫기
+		                if (activeDivId) {
+		                    document.getElementById(activeDivId).style.display = "none";
+		                    document.getElementById('showDivButton' + activeDivId).classList.remove("active");
+		                }
 		
-		      	function updateButtonText() {
-			        var selectedItems = [];
-			        var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
-			        checkedCheckboxes.forEach(function(checkbox) {
-			          		selectedItems.push(checkbox.parentElement.innerText);
-			        });
-			
-			        showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "항목이 없습니다.";
-		      	}
+		                // 현재 DIV 열기
+		                itemTypeDiv.style.display = "block";
+		                showDivButton.classList.add("active");
+		                activeDivId = divId;
+		            } else {
+		                // 현재 열려 있는 DIV가 클릭되면 닫기
+		                itemTypeDiv.style.display = "none";
+		                showDivButton.classList.remove("active");
+		                activeDivId = null;
+		            }
+		        });
+		
+		        // 체크박스 상태 변경 시 텍스트 업데이트
+		        var checkboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]');
+		        checkboxes.forEach(function(checkbox) {
+		            checkbox.addEventListener("change", function() {
+		                updateButtonText();
+		            });
+		        });
+		
+		        function updateButtonText() {
+		            var selectedItems = [];
+		            var checkedCheckboxes = document.querySelectorAll('#' + divId + ' input[type="checkbox"]:checked');
+		            checkedCheckboxes.forEach(function(checkbox) {
+		                selectedItems.push(checkbox.parentElement.innerText);
+		            });
+		
+		            showDivButton.textContent = selectedItems.length > 0 ? selectedItems.join(", ") : "항목이 없습니다.";
+		        }
 		    }
-		    // 방 종류 초기화
+		
+		    // 1번 버튼과 2번 버튼에 대한 초기화 함수 호출
 		    initializeDropdown("showDivButton", "itemTypeDiv");
-		    // 월-전세 초기화
 		    initializeDropdown("showDivButton2", "leaseOrMonthDiv");
-		</script>
-		<script>
-			var showDivButton3 = document.getElementById("showDivButton3");
+		
+		    // 3번 버튼에 대한 초기화 함수 호출
+		    var showDivButton3 = document.getElementById("showDivButton3");
 		    var detailOptionDiv = document.getElementById("detailOptionDiv");
-	
-		    showDivButton3.addEventListener("click", function() {
-		        if (detailOptionDiv.style.display === "none" || detailOptionDiv.style.display === "") {
+		
+		    showDivButton3.addEventListener("click", function(event) {
+		        event.stopPropagation(); // 다른 DIV 클릭 시 이벤트 전파 방지
+		        if (activeDivId !== "detailOptionDiv") {
+		            // 다른 DIV가 열려있는 경우, 닫기
+		            if (activeDivId) {
+		                document.getElementById(activeDivId).style.display = "none";
+		                document.getElementById('showDivButton' + activeDivId).classList.remove("active");
+		            }
+		
+		            // 현재 DIV 열기
 		            detailOptionDiv.style.display = "block";
 		            showDivButton3.classList.add("active");
+		            activeDivId = "detailOptionDiv";
 		        } else {
+		            // 현재 열려 있는 DIV가 클릭되면 닫기
 		            detailOptionDiv.style.display = "none";
 		            showDivButton3.classList.remove("active");
+		            activeDivId = null;
 		        }
 		    });
 		</script>
+
 		
 		<!-- 홈에서 검색한 결과를 세션에 저장하고 가져오기 -->
 		<script>
@@ -702,6 +728,8 @@
 		            // 매물 리스트 항목에 마우스 오버 이벤트 리스너 등록
 		            propertyItem.mouseover(function () {
 		                // 새로운 마커 생성
+		                $(this).css('border','0.5px solid #226929')
+		                $(this).css('backgroundColor','#c3e3c3')
 		                var latLng = new kakao.maps.LatLng(item.lat, item.lng);
 		                marker = new kakao.maps.Marker({
 		                    position: latLng,
@@ -710,10 +738,11 @@
 		
 		                // 생성된 마커를 지도에 추가
 		                marker.setMap(map);
-		            });
-		
+		            })
 		            // 매물 리스트 항목에 마우스 아웃 이벤트 리스너 등록
 		            propertyItem.mouseout(function () {
+		            	$(this).css('border','')
+						$(this).css('backgroundColor','')
 		                // 마우스 아웃 시 마커 숨기기
 		                if (marker) {
 		                    marker.setMap(null); // 마커 제거
@@ -721,7 +750,22 @@
 		            });
 		
 		            propertyList.append(propertyItem);
-		            propertyList.append(hr);
+		        });
+		        
+		        $(".property-item").on("click", function() {
+		            var propertyId = $(this).data("id");
+
+		            // 선택한 매물 항목의 "active" 클래스를 토글합니다.
+		            $(this).toggleClass("active");
+
+		            // 선택한 매물 항목의 상태를 확인할 수 있습니다.
+		            if ($(this).hasClass("active")) {
+		                // 매물이 활성화된 상태입니다.
+		                // 여기서 선택한 매물 항목을 사용하여 원하는 동작을 수행합니다.
+		                // 예를 들어, propertyId를 사용하여 선택한 매물 항목의 정보를 가져오거나 처리합니다.
+		            } else {
+		                // 매물이 비활성화된 상태입니다.
+		            }
 		        });
 		        
 		     	// 필터된 데이터 수를 세는 함수
@@ -741,7 +785,7 @@
 		        function updateH6Counter() {
 		            var count = countFilteredData();
 		            var h6 = $("#list-container #h6c");
-		            h6.text("지역 목록 ( " + count + "개 )"); // "지역 목록" 텍스트와 개수 추가
+		            h6.text("목록 ( " + count + "개 )"); // "지역 목록" 텍스트와 개수 추가
 		        }
 		        // 초기 호출
 		        updateH6Counter();

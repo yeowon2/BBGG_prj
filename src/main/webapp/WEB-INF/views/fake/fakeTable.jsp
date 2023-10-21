@@ -61,9 +61,11 @@
                                             <tr>
                                                 <th><strong>상태</strong></th>
                                                 <th colspan="3">
-                                                <c:if test="${fakeVO.useAt eq null}">정상</c:if>
-                                                <c:if test="${fakeVO.useAt eq 'Y'}">허위</c:if>
-                                                <c:if test="${fakeVO.useAt eq 'I'}">보류</c:if>
+                                                	<c:choose>
+										                <c:when test="${fakeVO.useAt eq 'P'}">클린</c:when>
+										                <c:when test="${fakeVO.useAt eq 'F'}">허위</c:when>
+										                <c:otherwise>확인중</c:otherwise> 
+									            	</c:choose>
                                                 </th>
                                             </tr>
                                         </tfoot>

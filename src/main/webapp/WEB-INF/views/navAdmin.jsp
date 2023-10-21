@@ -73,29 +73,31 @@
               </li>
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  매물관리 
+                  매물 관리 
                 </a>
                  <div class="dropdown-menu">
                   <a class="dropdown-item" href="/fake/list">신고 매물</a>
                   <a class="dropdown-item" href="/admin/itemList">매물 조회</a>
+                  <a class="dropdown-item" href="#">단기 임대</a>
                 </div>
               </li>
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  회원관리 
+                  회원 관리 
                 </a>
                  <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/admin/userList">일반 회원</a>
+                  <a class="dropdown-item" href="/admin/userList">개인 회원</a>
                   <a class="dropdown-item" href="/admin/partnerList">단체 회원</a>
                 </div>
               </li>
               <li class="nav-item dropdown mx-3">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  커뮤니티 
+                  게시판 관리 
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="/notice">공지사항</a>
-                  <a class="dropdown-item" href="#">매물가이드</a>
+                  <a class="dropdown-item" href="#">부동산 가이드</a>
+                  <a class="dropdown-item" href="#">Q & A</a>
                 </div>
               </li>
               <c:if test="${loginVO != null}">
@@ -128,40 +130,43 @@
         <ul class="mobile-menu">
           <li>
             <a class="active" href="/admin">
-            Home
+            홈
             </a>
             <ul class="dropdown">
               <li>
                 <a href="/admin">
-                  admin Home
+                  관리자 홈
                 </a>
               </li>  
               <li>
                 <a class="active" href="/">
-                  User Home
+                  회원 홈
                 </a>
               </li>   
             </ul>
           </li>
           <li>
-            <a href="#">Pages</a>
+            <a href="#">매물 관리</a>
             <ul class="dropdown">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="agents.html">Agents</a></li>
-              <li><a href="rent.html">For Rent</a></li>
-              <li><a href="sale.html">For Sale</a></li>
-              <li><a href="pricing.html">Pricing Tables</a></li>
-              <li><a href="dashboard.html">Dashboard</a></li>
-              <li><a href="submit-property.html">Submission Form</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="testimonials.html">Testimonials</a></li>
-              <li><a href="typography.html">Typography</a></li>
+              <li><a href="/fake/list">신고 매물</a></li>
+              <li><a href="/admin/itemList">매물 조회</a></li>
+              <li><a href="#">단기 임대</a></li>
             </ul>
           </li>
           <li>
-            <a href="contact.html">
-            Contact Us
-            </a>
+            <a href="#">회원 관리</a>
+            <ul class="dropdown">
+              <li><a href="/admin/userList">개인 회원</a></li>
+              <li><a href="/admin/partnerList">단체 회원</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">게시판 관리</a>
+            <ul class="dropdown">
+              <li><a href="/notice">공지사항</a></li>
+              <li><a href="#">부동산 가이드</a></li>
+              <li><a href="#">Q & A</a></li>
+            </ul>
           </li>
         </ul>
         <!-- Mobile Menu End -->

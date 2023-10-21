@@ -49,7 +49,6 @@ public interface ItemDao {
 	void updateItem(ItemVO itemVO);
 
 
-
 	
 
 }

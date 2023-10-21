@@ -43,17 +43,24 @@
     <result property="wishUserNo" column="wish_user_no"/>
     <result property="viewCount" column="view_count"/>
 	
-	<collection property="fileVOList" column="item_file_no" select="selectFile" javaType="ArrayList" ofType="FileVO" autoMapping="true">
-		<id property="fileNo" column="file_no"/>
-	</collection>    
+	<collection property="fileVO" resultMap="FileMap" />
 </resultMap>
-
+<resultMap type="kr.ac.kopo.file.FileVO" id="FileMap">
+	<result property="fileNo" column="file_no"/>
+	<result property="fileSize" column="file_size"/>
+	<result property="savedName" column="saved_name"/>
+	<result property="originalName" column="original_name"/>
+	<result property="filePath" column="file_path"/>
+	<result property="fileExt" column="file_ext"/>
+	<result property="registDate" column="regist_date"/>
+	<result property="updateDate" column="update_date"/>
+	<result property="itemNo" column="item_no"/>
+	<result property="partnerNo" column="partner_no"/>
+</resultMap>
 	
 	<select id="itemList" resultType="itemVO">
-		SELECT i.*, l.lease_price, m.deposit_fee, m.month_price<!-- , f.* -->
+		SELECT i.*<!-- , f.* -->
 		FROM tbl_item i 
-		LEFT JOIN tbl_lease l ON i.item_no = l.item_no 
-		LEFT JOIN tbl_month m ON i.item_no = m.item_no
 		<!-- LEFT JOIN tbl_item_file f ON i.item_no = f.item_no -->
 		<where>
 			<if test="search != null and !search.equals('')">
@@ -127,12 +134,11 @@
 		   i.lng,
 		   i.address2,
 		   i.lease_or_month,
-		   COALESCE(l.lease_price, m.month_price) AS price,
-		   m.deposit_fee,
+		   i.lease_price,
+		   i.month_price,
+		   i.deposit_fee,
 		   i.item_size_area
 		FROM tbl_item i
-		LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
-		LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
 		WHERE i.use_at IN ('Y', 'C')
 		AND i.item_no = #{itemNo};
 	
@@ -150,18 +156,15 @@
 		    ti.item_size,
 		    ti.item_count,
 		    ti.bath_at,
-		    CASE 
-		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
-		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
-		        ELSE NULL
-		    END AS price,
-		    tm.deposit_fee, 
+		    ti.lease_price, 
+		    ti.month_price,
+		    ti.deposit_fee, 
 		    ti.item_floor,
 		    ti.manage_fee,
-		    ti.view_count
+		    ti.view_count,
+		    f.*
 		FROM tbl_item ti
-		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
-		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at IN ('Y', 'C')
 			AND ti.partner_no = #{partnerNo}
 		ORDER BY ti.regist_date DESC
@@ -179,21 +182,19 @@
 		    ti.item_size,
 		    ti.item_count,
 		    ti.bath_at,
-		    CASE 
-		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
-		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
-		        ELSE NULL
-		    END AS price,
-		    tm.deposit_fee, 
+		   	ti.lease_price,
+		   	ti.month_price,
+		    ti.deposit_fee, 
 		    ti.item_floor,
-		    ti.manage_fee
+		    ti.manage_fee,
+		    f.*
 		FROM tbl_item ti
-		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
-		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at IN ('Y', 'C')
 			AND ti.partner_no = #{partnerNo}
 			AND ti.item_no != #{itemNo}
 		ORDER BY ti.regist_date DESC
+		LIMIT 10
 	</select>
 	
 	<update id="updateStatus">
@@ -243,13 +244,11 @@
 	       i.lat,
 	       i.lng,
 	       i.address2,
-	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee,
+	       i.lease_price,
+	       i.month_price,
+	       i.deposit_fee,
 	       i.item_size_area
-	  
 	FROM tbl_item i
-	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
-	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
 	WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
 	</select>
@@ -278,14 +277,13 @@
 	       i.lat,
 	       i.lng,
 	       i.address2,
-	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee,
+	       i.lease_price, 
+	       i.month_price,
+	       i.deposit_fee,
 	       i.item_size_area,
 	       w.user_no AS wish_user_no,
 	       w.item_no AS wish_item_no
 	FROM tbl_item i
-	LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
-	LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
 	LEFT OUTER JOIN tbl_wish w ON i.item_no = w.item_no AND w.user_no = #{userNo}
 	WHERE i.use_at In ('Y', 'C')
 		AND i.item_no = #{itemNo}
@@ -320,7 +318,10 @@
 			item_size_area,
 			tag1,
 			tag2,
-			tag3
+			tag3,
+			lease_price,
+			month_price,
+			deposit_fee
 			)
 			VALUES(
 			#{partnerNo}, 
@@ -357,21 +358,14 @@
 			#{itemSizeArea},
 			#{tag1},
 			#{tag2},
-			#{tag3}
+			#{tag3},
+			#{leasePrice},
+			#{monthPrice},
+			#{depositFee}
 			)
 		<selectKey keyProperty="itemNo" resultType="Long" order="AFTER">
        		SELECT LAST_INSERT_ID()
        </selectKey>
-	</insert>
-	
-	<insert id="leaseAdd">
-	    INSERT INTO tbl_lease(lease_price, item_no)
-		VALUES (#{leasePrice}, #{itemNo})
-	</insert>
-	
-	<insert id="monthAdd">
-		INSERT INTO tbl_month(deposit_fee, month_price, item_no)
-		VALUES (#{depositFee}, #{monthPrice}, #{itemNo})
 	</insert>
 	
 	<select id="selectFile" resultType="FileVO">
@@ -397,15 +391,12 @@
 		    ti.item_size,
 		    ti.item_count,
 		    ti.bath_at,
-		    CASE 
-		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
-		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
-		        ELSE NULL
-		    END AS price,
-		    tm.deposit_fee
+		    ti.lease_price,
+		    ti.month_price,
+		    ti.deposit_fee,
+		    f.*
 		FROM tbl_item ti
-		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
-		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at = 'Y'
 		ORDER BY ti.regist_date DESC
 		LIMIT 6
@@ -425,7 +416,7 @@
     </select>
     
     <select id="selectPopularList" resultMap="ItemMap">
-    	SELECT
+   		SELECT
 		    i.item_no,
 		    COUNT(w.item_no) AS wish_count,
 		    i.partner_no,
@@ -439,54 +430,63 @@
 		    i.address2,
 		    i.lease_or_month,
 		    i.view_count,
-		    m.deposit_fee, 
-		    COALESCE(l.lease_price, m.month_price) AS price
+		    i.deposit_fee,
+		    i.month_price,
+		    i.lease_price,
+		    f.*
 		FROM tbl_item AS i
 		LEFT JOIN tbl_wish AS w ON i.item_no = w.item_no
-		LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
-		LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
+		LEFT JOIN tbl_item_file AS f ON i.item_no = f.item_no
 		WHERE i.use_at = 'Y'    
 		GROUP BY i.item_no
 		ORDER BY wish_count DESC
-		LIMIT 3;
+		LIMIT 3;	
     </select>
 	
     <select id="selectWishList" resultMap="ItemMap">
-    	SELECT 
-    		i.item_no,
-	       i.partner_no,
-	       i.item_type,
-	       i.address,
-	       i.dong,
-	       i.ho,
-	       CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
-	       i.item_size,
-	       i.building_floor,
-	       i.item_floor,
-	       i.item_count,
-	       i.bath_at,
-	       i.elevator_at,
-	       i.parking_at,
-	       CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
-	       i.memo_detail,
-	       i.regist_date,
-	       i.update_date,
-	       i.use_at,
-	       i.lat,
-	       i.lng,
-	       i.address2,
-	       i.lease_or_month,
-	       COALESCE(l.lease_price, m.month_price) AS price,
-	       m.deposit_fee,
-	       w.item_no AS wish_item_no,
-	       w.user_no AS wish_user_no  
+		SELECT 
+		    i.item_no,
+		    i.partner_no,
+		    i.item_type,
+		    i.address,
+		    i.dong,
+		    i.ho,
+		    CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS move_in_date,
+		    i.item_size,
+		    i.building_floor,
+		    i.item_floor,
+		    i.item_count,
+		    i.bath_at,
+		    i.elevator_at,
+		    i.parking_at,
+		    CASE WHEN i.manage_fee_at = 'Y' THEN i.manage_fee ELSE NULL END AS manage_fee,
+		    i.memo_detail,
+		    i.regist_date,
+		    i.update_date,
+		    i.use_at,
+		    i.lat,
+		    i.lng,
+		    i.address2,
+		    i.lease_or_month,
+		    i.lease_price,
+		    i.month_price,
+		    i.deposit_fee,
+		    w.item_no AS wish_item_no,
+		    w.user_no AS wish_user_no,
+		    f.*,
+		    w.regist_date 
 		FROM tbl_item i
 		JOIN tbl_wish w ON i.item_no = w.item_no
-		LEFT JOIN tbl_lease l ON i.item_no = l.item_no AND i.lease_or_month = 'lease'
-		LEFT JOIN tbl_month m ON i.item_no = m.item_no AND i.lease_or_month = 'month'
+		JOIN (
+		    SELECT item_no, MAX(file_no) AS max_file_no
+		    FROM tbl_item_file
+		    GROUP BY item_no
+		) max_files ON i.item_no = max_files.item_no
+		JOIN tbl_item_file f ON max_files.item_no = f.item_no AND max_files.max_file_no = f.file_no
 		WHERE i.use_at IN ('Y','C') 
-		AND w.user_no = #{userNo}
+		AND w.user_no = 48
 		AND w.use_at = 'Y'
+		ORDER BY w.regist_date DESC;
 
     </select>
     
@@ -524,21 +524,11 @@
 		    item_size_area = #{itemSizeArea},
 		    tag1 = #{tag1},
 		    tag2 = #{tag2},
-		    tag3 = #{tag3}
+		    tag3 = #{tag3},
+		    lease_price = #{leasePrice},
+		    month_price = #{monthPrice},
+		    deposit_fee = #{depositFee}
 		WHERE item_no = #{itemNo}
     </update>
     
-    <update id="updateLease" parameterType="map">
-    	UPDATE tbl_lease
-		SET lease_price = #{leasePrice},
-		WHERE item_no = #{itemNo}
-    </update>
-
-    <update id="updateMonth" parameterType="map">
-    	UPDATE tbl_month
-		SET 
-			month_price = #{monthPrice},
-			deposit_fee = #{depositFee}
-		WHERE item_no = #{itemNo}
-    </update>
 </mapper>

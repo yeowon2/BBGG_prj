@@ -25,12 +25,6 @@
        )
     </insert>
     
-    <select id="selectFileList" resultType="FileVO">
-    	SELECT *
-    	FROM tbl_item_file
-    	ORDER BY regist_date DESC
-    </select>
-    
      <insert id="insertPartnerFile">
         INSERT INTO tbl_partner_file
         (
@@ -78,5 +72,11 @@
     	SELECT *
 		FROM tbl_partner_file tip 
 		WHERE tip.partner_no = #{partnerNo}
+    </select>
+    
+    <select id="selectFileList" resultType="list">
+    	SELECT *
+    	FROM tbl_item_file
+    	WHERE item_no = #{itemNo}
     </select>
 </mapper>

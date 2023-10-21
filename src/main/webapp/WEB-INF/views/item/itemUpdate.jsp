@@ -262,13 +262,13 @@ thead tr:nth-child(3) th {
                   <div class="col-lg-6 col-md-6" id="monthPriceField" style="display:none">
                     <div class="form-group">
                       <label>월세</label>
-                      <input type="number" name="monthPrice" value="${itemVO.price}" class="form-control" placeholder="">
+                      <input type="number" name="monthPrice" value="${itemVO.monthPrice}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="leasePriceField" style="display:none">
                     <div class="form-group">
                       <label>전세금</label>
-                      <input type="number" name="leasePrice" value="${itemVO.price}" class="form-control" placeholder="">
+                      <input type="number" name="leasePrice" value="${itemVO.leasePrice}" class="form-control" placeholder="">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6" id="noneField" style="display:none">

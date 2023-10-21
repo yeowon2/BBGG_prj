@@ -74,19 +74,12 @@ public class ItemServiceImpl implements ItemService {
 		paramMap.put("itemNo", itemNo);
 		paramMap.put("partnerNo", partnerNo);
 		 List<ItemVO> partItemList = dao.partOtherItemList(paramMap);
-		 for (ItemVO itemVO : partItemList) {
-			FileVO fileVO = fileDao.selectItemFile(itemVO.getItemNo());
-			itemVO.setFileVO(fileVO);
-		}
+		 
 		 return partItemList;
 	}
 	@Override
 	public List<ItemVO> partItemList(Long partnerNo) {
 		List<ItemVO> partItemList = dao.partItemList(partnerNo);
-		for (ItemVO itemVO : partItemList) {
-			FileVO fileVO = fileDao.selectItemFile(itemVO.getItemNo());
-			itemVO.setFileVO(fileVO);
-		}
 		return partItemList;
 	}
 
@@ -166,14 +159,9 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public List<ItemVO> selectPopularList() {
-		List<ItemVO> selectPopularList = dao.selectPopularList();
-		for (ItemVO itemVO : selectPopularList) {
-			Long itemNo = itemVO.getItemNo();
-			FileVO fileVO = fileDao.selectItemFile(itemNo);
-
-			itemVO.setFileVO(fileVO);
-		}
-		return selectPopularList;
+		
+		return dao.selectPopularList();
+		
 	}
 
 	@Override
@@ -181,12 +169,6 @@ public class ItemServiceImpl implements ItemService {
 		
 		 List<ItemVO> selectWishList = dao.selectWishList(userNo);
 		 
-		 for (ItemVO itemVO : selectWishList) {
-				Long itemNo = itemVO.getItemNo();
-				FileVO fileVO = fileDao.selectItemFile(itemNo);
-
-				itemVO.setFileVO(fileVO);
-			}
 		 
 		 return selectWishList;
 	}

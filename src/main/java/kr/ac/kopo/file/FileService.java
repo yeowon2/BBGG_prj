@@ -11,7 +11,7 @@ public interface FileService {
 //    FileVO selectFile(FileVO fileVO);
 
     //단일 파일 등록
-	void insertFile(List<FileVO> fileVOList);
+	void insertFile(List<FileVO> fileVOList, Long itemNo);
 
     //단일 파일 수정
 //    void updateFile(FileVO fileVO);
@@ -20,7 +20,7 @@ public interface FileService {
 //    void updateFileList(List<FileVO> fileVOList);
 
     //다중 파일 삭제
-//    void deleteFileList(List<FileVO> fileVOList);
+//    void deleteFileList(List<FileVO>S fileVOList);
 
     //단일 파일 삭제
 //    void deleteFile(FileVO fileVO);

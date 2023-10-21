@@ -33,6 +33,7 @@ public class MainController {
 		//[파트너]응답률 순위
 		List<PartnerVO> respList = new ArrayList<PartnerVO>();
 		respList = partnerService.selectRespList();
+		       
 		model.addAttribute("respList", respList);
 		
 		//인기 매물 순위 방 목록

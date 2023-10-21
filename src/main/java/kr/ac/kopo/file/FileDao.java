@@ -16,4 +16,6 @@ public interface FileDao {
 	
 	FileVO selectPartnerFile(Long partnerNo);
 
+	List<FileVO> selectFileList(Long itemNo);
+
 }

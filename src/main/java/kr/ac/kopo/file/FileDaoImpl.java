@@ -30,7 +30,7 @@ public class FileDaoImpl implements FileDao {
 	@Override
 	public void insertPartnerFile(FileVO fileVO) {
 		sql.insert("file.insertPartnerFile", fileVO);
-		
+
 	}
 
 	@Override
@@ -48,7 +48,9 @@ public class FileDaoImpl implements FileDao {
 		return sql.selectOne("file.selectPartnerFile", partnerNo);
 	}
 
-	
-
+	@Override
+	public List<FileVO> selectFileList(Long itemNo) {
+		return sql.selectList("file.selectFileList", itemNo);
+	}
 
 }

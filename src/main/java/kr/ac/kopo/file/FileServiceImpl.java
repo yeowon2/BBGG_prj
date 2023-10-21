@@ -17,8 +17,9 @@ public class FileServiceImpl implements FileService {
 	}
 
 	@Override
-	public void insertFile(List<FileVO> fileVOList) {
+	public void insertFile(List<FileVO> fileVOList, Long itemNo) {
 		for (FileVO fileVO : fileVOList) {
+			fileVO.setItemNo(itemNo);
 			dao.insertFile(fileVO);
 		}
 		

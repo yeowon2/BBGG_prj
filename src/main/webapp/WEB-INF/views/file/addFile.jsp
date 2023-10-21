@@ -9,6 +9,7 @@
     <h1>파일 업로드</h1>
     <form method="post" action="/file/add" enctype="multipart/form-data">
         <div>
+           <input type="number" name="itemNo"/><br/>
            <input type="file" name="file_1"/><br/>
 		   <input type="file" name="file_2"/><br/>
         </div>

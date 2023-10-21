@@ -71,13 +71,6 @@ public class ItemDaoImpl implements ItemDao {
 	public List<ItemVO> partItemList(Long partnerNo) {
 		
 		List<ItemVO> list = sql.selectList("item.partItemList", partnerNo);
-		for (ItemVO item : list) {
-		    if ("lease".equals(item.getLeaseOrMonth())) {
-		        item.setPrice(item.getLeasePrice());
-		    } else if ("month".equals(item.getLeaseOrMonth())) {
-		        item.setPrice(item.getMonthPrice());
-		    }
-		}
 		return list;
 	}
 	

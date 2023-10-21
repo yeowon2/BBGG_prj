@@ -2,6 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="partner">
+	<resultMap type="kr.ac.kopo.partner.web.PartnerVO" id="PartnerMap">
+    	<id property="partnerNo" column="partner_no" />
+    	<result property="userId" column="user_id" />
+    	<result property="userPw" column="user_pw" />
+    	<result property="compName" column="comp_name" />
+    	<result property="partnerName" column="partner_name" />
+    	<result property="partnerType" column="partner_type" />
+    	<result property="compAddress" column="comp_address" />
+    	<result property="phone" column="phone" />
+    	<result property="registNum" column="regist_num" />
+    	<result property="compNum" column="comp_num" />
+    	<result property="registDate" column="regist_date" />
+    	<result property="updateDate" column="update_date" />
+    	<result property="useAt" column="use_at" />
+    	<result property="memo" column="memo" />
+    	<result property="fileNo" column="file_no" />
+    	<collection property="fileVO" resultMap="FileMap" />
+	</resultMap>
+	
+	<resultMap type="kr.ac.kopo.file.FileVO" id="FileMap">
+		<id property="fileNo" column="file_no"/>
+		<result property="fileSize" column="file_size"/>
+		<result property="savedName" column="saved_name"/>
+		<result property="originalName" column="original_name"/>
+		<result property="filePath" column="file_path"/>
+		<result property="fileExt" column="file_ext"/>
+		<result property="registDate" column="regist_date"/>
+		<result property="updateDate" column="update_date"/>
+		<result property="itemNo" column="item_no"/>
+		<result property="partnerNo" column="partner_no"/>
+	</resultMap>
 
 	<insert id="add">
 		INSERT INTO tbl_partner
@@ -179,15 +210,12 @@
 		    ti.item_size,
 		    ti.item_count,
 		    ti.bath_at,
-		    CASE 
-		        WHEN ti.lease_or_month = 'lease' THEN tl.lease_price
-		        WHEN ti.lease_or_month = 'month' THEN tm.month_price
-		        ELSE NULL
-		    END AS price,
-		    tm.deposit_fee
+		   	ti.lease_price,
+		   	ti.month_price,
+		    ti.deposit_fee,
+		    f.*
 		FROM tbl_item ti
-		LEFT JOIN tbl_lease tl ON ti.item_no = tl.item_no AND ti.lease_or_month = 'lease'
-		LEFT JOIN tbl_month tm ON ti.item_no = tm.item_no AND ti.lease_or_month = 'month'
+		LEFT JOIN tbl_item_file AS f ON ti.item_no = f.item_no
 		WHERE ti.use_at = 'Y' 
 		AND ti.partner_no = #{partnerNo}
 		 <choose>
@@ -201,18 +229,19 @@
 		LIMIT 6
 	</select>
 
-	<select id="selectRespList" resultType="PartnerVO">
+	<select id="selectRespList" resultMap="PartnerMap">
 		SELECT
 		  p.partner_no,
 		  p.comp_name,
 		  p.partner_name,
 		  p.comp_address,
 		  COUNT(CASE WHEN n.use_at = 'C' THEN 1 END) AS completed_note_count,
-		  COUNT(*) AS total_note_count
+		  COUNT(*) AS total_note_count,
+		  f.*
 		FROM
 		  tbl_partner p
-		LEFT JOIN
-		  tbl_note n ON p.partner_no = n.partner_no
+		LEFT JOIN tbl_note n ON p.partner_no = n.partner_no
+		LEFT JOIN tbl_partner_file AS f ON p.partner_no = f.partner_no
 		GROUP BY
 		  p.partner_no, p.comp_name, p.partner_name
 		ORDER BY completed_note_count DESC

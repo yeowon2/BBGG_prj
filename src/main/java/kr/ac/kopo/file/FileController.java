@@ -31,13 +31,13 @@ public class FileController {
     }
 
     @PostMapping("/add")
-    public String add(final MultipartHttpServletRequest multiRequest) throws Exception {
+    public String add(final MultipartHttpServletRequest multiRequest, Long itemNo) throws Exception {
         List<FileVO> fileVOList = null;
         
         final Map<String, MultipartFile> files = multiRequest.getFileMap();
         if(!files.isEmpty()) {
-        	fileVOList = fileUtil.parseFileInfo(files, "TEST_", fileStorePath);
-        	service.insertFile(fileVOList);
+        	fileVOList = fileUtil.parseFileInfo(files, "ITEM_", fileStorePath);
+        	service.insertFile(fileVOList, itemNo);
         	
         }
         

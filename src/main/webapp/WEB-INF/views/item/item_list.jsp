@@ -183,11 +183,6 @@
 		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
 		    -webkit-box-orient: vertical;
 		}
-		#hashtag {
-		display: -webkit-box;
-		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
-		    -webkit-box-orient: vertical;
-		}
 		
 	    /* 지도 스타일 설정 */
 	    #map {

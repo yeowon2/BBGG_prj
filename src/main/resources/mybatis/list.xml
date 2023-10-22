@@ -54,7 +54,7 @@
 	<!-- list 불러오기 (xml에서 select문을 선언할 때는 output을 받아줄 객체를 꼭 선언해야 함 => resultType/resultMap 등이 필요)
 	여기서 resultType을 써줄건데 map/ userwishlist 중 하나 적어주면 됨 -->
 	<select id="wishList" resultType="UserWishListVO">
-		SELECT ti.item_no ,ti.memo_short ,ti.item_type ,tw.wish_no ,tw.user_no 
+		SELECT ti.item_no, ti.tag1, ti.tag2, ti.tag3, ti.item_type, tw.wish_no, tw.user_no 
 		FROM tbl_item AS ti JOIN tbl_wishlist AS tw 
 		WHERE ti.item_no= #{itemNo}
 	</select>

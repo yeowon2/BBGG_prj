@@ -22,12 +22,13 @@ public class UserWishListServiceImpl implements UserWishListService {
 	// 관심 매물 리스트 불러오기 
 	@Override
 	public List<UserWishListVO> wishList(Long userNo) {
+		// dao의 wishList 메서드를 이용하여 특정 userNo에 대한 원하는 wishList를 가지고 옴 
 		List<UserWishListVO> wishList = dao.wishList(userNo);
+		// for문을 통하여 userNo에 해당하는 UserWishList 객체가 wishList에 추가됨 
+		// => wishList에는 특정 userNo의 UserWishListVO 값으로 채워진 목록이 됨 
+		for(UserWishListVO listVO : wishList) {}
 		
-//		for(UserWishListVO listVO : wishList) {
-//			listVO.
-//		}
-		return null;
+		return wishList;
 	}
 	
 	// 관심 매물 리스트에서 제외

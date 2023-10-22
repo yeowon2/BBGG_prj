@@ -4,7 +4,7 @@ import java.util.Date;
 
 import kr.ac.kopo.item.web.ItemVO;
 
-public class FakeVO extends ItemVO{
+public class FakeVO {
 	private Long fakeNo;
 	private Long itemNo;
 	private Long userNo;

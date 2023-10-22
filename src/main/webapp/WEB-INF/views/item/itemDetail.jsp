@@ -146,7 +146,7 @@ body, #content {
 						<div class="others row">
 							<div class="col-lg-8">
 								<c:choose>
-									<c:when test="${itemVO.depositFee == null}">
+									<c:when test="${itemVO.leaseOrMonth == 'lease'}">
 										<c:if
 											test="${itemVO.leasePrice >= 10000 && LTM != 0 && LB != 0}">
 											<h4>전세 ${LB}억 ${LTM}</h4>

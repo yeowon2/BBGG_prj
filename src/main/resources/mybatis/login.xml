@@ -16,6 +16,7 @@
 			, user_pw
 			, user_name
 			, phone
+			, use_at
 		FROM tbl_user
 		WHERE user_id = #{userId}
 			AND user_pw = #{userPw}

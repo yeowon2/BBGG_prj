@@ -73,6 +73,9 @@ public class LoginController {
             String prevPage = (String) session.getAttribute("prevPage");
 	        if (loginVO != null && loginVO.getUserId() != null && !loginVO.getUserId().equals("") && !loginVO.getPhone().equals("kakao가입자")) {
 	            session.setAttribute("loginVO", loginVO);
+	            if(loginVO.getUseAt().equals("A")) {
+	            	return "redirect:/admin";
+	            }
 	            if (prevPage != null && !prevPage.isEmpty()) {
 	                // 이전 페이지가 있는 경우 해당 페이지로 리다이렉트
 	                session.removeAttribute("prevPage"); // 세션에서 이전 페이지 URL 제거

@@ -34,15 +34,15 @@ public class UserWishListController {
 	
 
 	// 관심 매물 리스트로 이동
-	@GetMapping("/wishList/{userNo}")
-	public String wishList(@PathVariable Long userNo, Model model) {
-		
-		List<UserWishListVO> wishList = service.wishList();
-		
-		model.addAttribute("wishList", wishList);
-		
-		return path + "wishList";
-	}
+//	@GetMapping("/wishList/{userNo}")
+//	public String wishList(@PathVariable Long userNo, Model model) {
+//		
+//		List<UserWishListVO> wishList = service.wishList();
+//		
+//		model.addAttribute("wishList", wishList);
+//		
+//		return path + "wishList";
+//	}
 	
 	// 관심 매물 상세페이지로 이동 -> jsp에다가 바로 링크를 붙여주면 되지 않을까?
 	

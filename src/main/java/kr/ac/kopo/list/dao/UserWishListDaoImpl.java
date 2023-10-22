@@ -22,7 +22,7 @@ public class UserWishListDaoImpl implements UserWishListDao {
 
 	// 관심 매물 리스트 불러오기 
 	@Override
-	public List<UserWishListVO> wishList() {
+	public List<UserWishListVO> wishList(Long userNo) {
 		return sql.selectList("list.wishList");
 	}
 	
@@ -41,6 +41,7 @@ public class UserWishListDaoImpl implements UserWishListDao {
 	public UserWishListVO checkList(UserWishListVO listVO) {
 		return sql.selectOne("list.checkList", listVO);
 	}
+
 
 
 

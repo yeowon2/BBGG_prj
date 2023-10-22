@@ -21,8 +21,13 @@ public class UserWishListServiceImpl implements UserWishListService {
 	
 	// 관심 매물 리스트 불러오기 
 	@Override
-	public List<UserWishListVO> wishList() {
-		return dao.wishList();
+	public List<UserWishListVO> wishList(Long userNo) {
+		List<UserWishListVO> wishList = dao.wishList(userNo);
+		
+//		for(UserWishListVO listVO : wishList) {
+//			listVO.
+//		}
+		return null;
 	}
 	
 	// 관심 매물 리스트에서 제외
@@ -54,6 +59,9 @@ public class UserWishListServiceImpl implements UserWishListService {
 	  }
   
   }
+
+
+
  
 
 

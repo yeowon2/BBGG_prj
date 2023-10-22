@@ -9,12 +9,13 @@ public interface UserWishListService {
 	List<UserWishListVO> recentView(List<String> roomNumbers);
 
 	// 관심 매물 리스트 불러오기 
-	List<UserWishListVO> wishList();
+	List<UserWishListVO> wishList(Long userNo);
 	
 	// 관심 매물 리스트에서 제외
 	public void delete(Long wishNo);
 
 	// 관심 매물 리스트에 추가 
 	public int add(UserWishListVO listVO);
+
 	
 }

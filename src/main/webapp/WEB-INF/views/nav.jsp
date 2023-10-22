@@ -97,7 +97,7 @@
                 </a>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="portfolio-2.html">내 정보 수정</a>
-                  <a class="dropdown-item" href="/wish/list">내 관심목록</a>
+                  <a class="dropdown-item" href="/list/wishList/{userNo}">내 관심목록</a>
                   <a class="dropdown-item" href="/note/sendList/${loginVO.userNo}">보낸 쪽지함</a>
                 </div>
               </li>

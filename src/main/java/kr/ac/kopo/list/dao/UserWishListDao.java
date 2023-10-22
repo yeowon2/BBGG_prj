@@ -12,7 +12,7 @@ public interface UserWishListDao {
 	public void delete(Long wishNo);
 
 	// 관심 매물 리스트 불러오기 
-	List<UserWishListVO> wishList();
+	List<UserWishListVO> wishList(Long userNo);
 	
 	// 관심 매물 리스트에 추가 
 	// DB에 등록 성공 시 1을 반환함 하지만 제약조건에 맞지 않은 데이터들로 인해 DB등록에 실패했을 꼉우 0을 반환하지 않고 예외가 터지는 경우가 존재

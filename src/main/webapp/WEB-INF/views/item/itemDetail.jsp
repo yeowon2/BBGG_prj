@@ -707,7 +707,7 @@ body, #content {
 </script>
 
 	<script>
-/*  var wishBtn = $('#wishBtn');
+  var wishBtn = $('#wishBtn');
 var itemNo = $('#item-no').text();
 
 wishBtn.on('click', function() {
@@ -726,7 +726,7 @@ wishBtn.on('click', function() {
 	   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    		}
    }).catch(error => console.log(error)) 
-});  */
+});  
 
 $('#noteBtn').on('click', function() {
 	alert("쪽지가 성공적으로 발송되었습니다.")

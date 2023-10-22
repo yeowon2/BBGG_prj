@@ -163,7 +163,10 @@
 		}
 		/* 매물 리스트 목록 크기 */
 		#items {
-			height: 135px;
+			height: 155px;
+			margin-bottom: 10px;
+			padding-bottom: 5px;
+			padding-top: 5px;
 		}
 		/* 매물 설명 */
 		.property-item .media-body {
@@ -177,6 +180,11 @@
 		    overflow: hidden;
 		    text-overflow: ellipsis;
 		    display: -webkit-box;
+		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
+		    -webkit-box-orient: vertical;
+		}
+		#hashtag {
+		display: -webkit-box;
 		    -webkit-line-clamp: 1; /* 최대 표시 줄 수 */
 		    -webkit-box-orient: vertical;
 		}
@@ -681,7 +689,7 @@
 		            var emailSubject1 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject2 = $("<div class='email-subject'><h5></h5></div>");
 		            var emailSubject3 = $("<div class='email-subject'><p></p></div>");
-		            var emailSubject = $("<div class='email-subject'>#" + item.tag1 + " #" + item.tag2 + " #" + item.tag3 + "</div>");
+		            var emailSubject = $("<div class='email-subject' id='hashtag'>#" + item.tag1 + " #" + item.tag2 + " #" + item.tag3 + "</div>");
 		            var emailText = $("<div class='email-text' style='-webkit-line-clamp: 1;'><p>" + item.memoDetail + "</p></div>");
 		            var hr = $("<hr>");
 		
@@ -707,13 +715,13 @@
 		            }
 		
 		            if (item.itemType == 'O') {
-		                emailSubject3.find('p').text("원룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		                emailSubject3.find('p').text("원룸   " + item.itemSize + "평 / " + item.itemSizeArea + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
 		            } else if (item.itemType == 'T') {
-		                emailSubject3.find('p').text("투룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		                emailSubject3.find('p').text("투룸   " + item.itemSize + "평 / " + item.itemSizeArea + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
 		            } else if (item.itemType == 'H') {
-		                emailSubject3.find('p').text("쓰리룸   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		                emailSubject3.find('p').text("쓰리룸   " + item.itemSize + "평 / " + item.itemSizeArea + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
 		            } else if (item.itemType == 'F') {
-		                emailSubject3.find('p').text("오피스텔   " + item.itemSize + "평 / " + item.itemSize * 3.3 + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
+		                emailSubject3.find('p').text("오피스텔   " + item.itemSize + "평 / " + item.itemSizeArea + "㎡   " + item.itemFloor + "층 / " + item.buildingFloor + "층");
 		            }
 		
 		            mediaBody.append(emailSubject1);

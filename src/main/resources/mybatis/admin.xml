@@ -138,7 +138,7 @@
 	</select>
 	
 	<select id="selectFakeList" resultType="FakeVO">
-		SELECT subquery.*
+		SELECT DISTINCT subquery.*
 		FROM (SELECT tf.*, tp.comp_name, ROW_NUMBER() OVER (ORDER BY regist_date DESC) AS rownum
 			FROM tbl_fake AS tf, tbl_item AS ti, tbl_partner AS tp
 			WHERE tf.item_no = ti.item_no 

@@ -306,60 +306,6 @@
 									</div>
 								</div>
 							</div>
-				
-					<div class="hk-row">
-						<div class="col-lg-8">
-							<div class="card card-refresh">
-								<div class="refresh-container">
-									<div class="loader-pendulums"></div>
-								</div>
-								<div class="card-header card-header-action">
-									<h6>sales analytics</h6>
-									<div class="d-flex align-items-center card-action-wrap">
-										<a href="#" class="inline-block refresh mr-15">
-											<i class="ion ion-md-radio-button-off"></i>
-										</a>
-										<div class="inline-block dropdown">
-											<a class="dropdown-toggle no-caret" data-toggle="dropdown" href="#" aria-expanded="false" role="button"><i class="ion ion-md-more"></i></a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a class="dropdown-item" href="#">Action</a>
-												<a class="dropdown-item" href="#">Another action</a>
-												<a class="dropdown-item" href="#">Something else here</a>
-												<div class="dropdown-divider"></div>
-												<a class="dropdown-item" href="#">Separated link</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="mb-20">
-										<div class="d-inline-block mb-15 mr-60">
-											<span class="d-block text-capitalize">Traffic</span>
-											<span class="d-block font-weight-600 font-18">124,222</span>
-											<span class="d-block text-success mt-5">
-												<i class="zmdi zmdi-caret-up pr-5 font-20"></i><span class="weight-500">+15%</span>
-											</span>
-										</div>
-										<div class="d-inline-block mb-15 mr-60">
-											<span class="d-block text-capitalize">Order</span>
-											<span class="d-block font-weight-600 font-18">24,222</span>
-											<span class="d-block text-danger mt-5">
-												<i class="zmdi zmdi-caret-down pr-5 font-20"></i><span class="weight-500">-11%</span>
-											</span>
-										</div>
-										<div class="d-inline-block">
-											<span class="d-block text-capitalize">Revenue</span>
-											<span class="d-block font-weight-600 font-18">$124,222</span>
-											<span class="d-block text-danger mt-5">
-												<i class="zmdi zmdi-caret-up pr-5 font-20"></i><span class="weight-500">-13%</span>
-											</span>
-										</div>
-									</div>
-									<div id="chart_1" class="morris-chart" style="height:345px;"></div>
-								</div>
-							</div>
-						</div>
-					</div>
 					
 				</div> <!-- /col-xl-12 -->
 			</div>

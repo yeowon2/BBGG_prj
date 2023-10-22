@@ -434,7 +434,7 @@
 		WHERE i.use_at =
 		'Y'
 		GROUP BY i.item_no
-		ORDER BY wish_count DESC
+		ORDER BY i.view_count DESC, wish_count DESC
 		LIMIT 3;
 	</select>
 

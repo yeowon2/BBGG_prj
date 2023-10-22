@@ -542,13 +542,12 @@ body, #content {
 								<div class="row">
 									<div class="col-sm">
 										<div class="row">
-											<div class="col-md-8 mt-15">
+											<div class="col-md-10 mt-15">
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck1"> <label
-														class="custom-control-label" for="customCheck1"> <span>현재
-															선택된 매물에 대해 상담받고 싶습니다.<span id="roomNo">매물번호:
-																${itemVO.itemNo}</span>
+														class="custom-control-label" for="customCheck1"> 
+														<span id="roomNo"><strong>매물번호:${itemVO.itemNo}</strong> | 현재 선택된 매물에 대해 상담받고 싶습니다.</span>
 													</span>
 													</label>
 												</div>
@@ -559,8 +558,8 @@ body, #content {
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck2"> <label
-														class="custom-control-label" for="customCheck2"> <span>해당
-															매물 바로 볼 수 있는지 문의드립니다.</span>
+														class="custom-control-label" for="customCheck2"> 
+														<span>해당 매물 바로 볼 수 있는지 문의드립니다.</span>
 													</label>
 												</div>
 											</div>
@@ -570,8 +569,7 @@ body, #content {
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck3"> <label
-														class="custom-control-label" for="customCheck3"> <span>해당
-															매물 거래 시, 중개수수료가 어떻게 될까요?</span>
+														class="custom-control-label" for="customCheck3"> <span>해당 매물 거래 시, 중개수수료가 어떻게 될까요?</span>
 													</label>
 												</div>
 											</div>
@@ -581,8 +579,7 @@ body, #content {
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck4"> <label
-														class="custom-control-label" for="customCheck4"> <span>보증금
-															또는 월세 조정이 가능한가요?</span>
+														class="custom-control-label" for="customCheck4"> <span>보증금 또는 월세 조정이 가능한가요?</span>
 													</label>
 												</div>
 											</div>
@@ -592,8 +589,7 @@ body, #content {
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck5"> <label
-														class="custom-control-label" for="customCheck5"> <span>방
-															내부 컨디션이 궁금합니다.</span>
+														class="custom-control-label" for="customCheck5"> <span>방 내부 컨디션이 궁금합니다.</span>
 													</label>
 												</div>
 											</div>
@@ -603,8 +599,7 @@ body, #content {
 												<div class="custom-control custom-checkbox checkbox-teal ">
 													<input type="checkbox" class="custom-control-input"
 														id="customCheck6"> <label
-														class="custom-control-label" for="customCheck6"> <span>계약하고
-															싶은데 입주일 조정이 가능한가요?</span>
+														class="custom-control-label" for="customCheck6"> <span>계약하고 싶은데 입주일 조정이 가능한가요?</span>
 													</label>
 												</div>
 											</div>

@@ -126,7 +126,7 @@
 	                      <div class="pricin-list">
 	                        <div class="property-price">
 	                          	<c:choose>
-	                          		<c:when test="${item.depositFee == null && item.leaseOrMonth == 'lease'}">
+	                          		<c:when test="${item.leaseOrMonth == 'lease'}">
 	                          			<span>전세</span>
 		                          			<c:if test="${item.leasePrice >= 10000}">
 		                          				<fmt:formatNumber value="${item.leasePrice / 10000}" pattern="#,##0"/>억
@@ -158,7 +158,6 @@
         </div>
     <!-- Main container End -->
 <!-- 이전 코드 ... -->
-
 <!-- Main container End -->
 <script>
 $('.label-inner').on('click', function() {

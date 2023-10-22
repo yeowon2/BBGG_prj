@@ -251,6 +251,7 @@
 		i.address,
 		i.dong,
 		i.ho,
+		i.lease_or_month,
 		CASE WHEN i.move_in_at = 'Y' THEN i.move_in_date ELSE NULL END AS
 		move_in_date,
 		i.item_size,

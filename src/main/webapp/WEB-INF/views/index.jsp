@@ -117,7 +117,12 @@
 		              	<div class="property-item">
 			                  <div class="item-thumb">
 			                    <a class="hover-effect" href="/itemDetail/${item.itemNo}">
-			                       <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+			                       <c:if test="${item.fileVO.savedName != null}">
+				                       <img class="img-fluid" src="/upload/${item.fileVO.savedName}" alt="">
+			                       </c:if>
+			                       <c:if test="${item.fileVO.savedName == null}">
+			                     	  <img class="img-fluid" src="/resources/comm/itemimg/nonimg2.png" alt="">
+			                       </c:if>
 			                    </a>
 			                  </div>
 			                  <div class="item-body">
@@ -187,10 +192,12 @@
 		              <img class="medal-icon" alt="" src="/resources/assets/img/property/gold.png">
 		              <div class="team-img">
 		              		<a href="/partner/info/${partnerVO.partnerNo}">
-				              	<c:if test="${partnerVO.fileVO == null}">
+				              	<c:if test="${partnerVO.fileVO.savedName == null}">
 		        	      			<img class="img-fluid" src="/resources/assets/img/productinfo/default-profile.png" alt="">
 				              	</c:if>
-			                	<img class="img-fluid" src="/upload/${partnerVO.fileVO.savedName}" alt="" >
+				              	<c:if test="${partnerVO.fileVO.savedName != null}">
+				                	<img class="img-fluid" src="/upload/${partnerVO.fileVO.savedName}" alt="" >
+				              	</c:if>
 	              			</a>
 		              </div>
 		              <div class="info-text">

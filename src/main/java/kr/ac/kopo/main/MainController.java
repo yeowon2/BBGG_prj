@@ -37,6 +37,9 @@ public class MainController {
 		//[파트너]응답률 순위
 		List<PartnerVO> respList = new ArrayList<PartnerVO>();
 		respList = partnerService.selectRespList();
+		for (PartnerVO partnerVO : respList) {
+			System.out.println("==============" + partnerVO.getFileVO().getSavedName());
+		}
 		       
 		model.addAttribute("respList", respList);
 		

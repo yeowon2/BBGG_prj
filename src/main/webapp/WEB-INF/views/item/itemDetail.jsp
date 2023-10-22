@@ -721,11 +721,18 @@ wishBtn.on('click', function() {
    		if(data.message == '로그인이 필요합니다') {
 	   		alert(data.message);
    			window.location.href = '/login';
-   		} else {
-	   		alert(data.message);
+   		} else if(data.message == '추가되었습니다') {
+   			var confirmResult = confirm(data.message + "\n관심목록으로 가시겠습니까?");
+   	        if (confirmResult) {
+   	          window.location.href = '/wish/list'; // 관심목록 리스트 페이지 URL로 변경
+   	        } else {
+   	          // 사용자가 "매물 계속 보기"를 선택한 경우 아무 작업 필요 없음
+   	        }
 	   		$(this).find("img").attr('src', '/resources/comm/wish/wishimgpull.png');
    		}
-   }).catch(error => console.log(error)) 
+   }).catch(error => console.log(error))
+   
+   
 });  
 
 $('#noteBtn').on('click', function() {

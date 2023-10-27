@@ -81,7 +81,7 @@
 				#{fakeVO.fakeCheck2}, 
 				#{fakeVO.fakeCheck3}, 
 				#{fakeVO.fakeContent}, 
-				#{fakeVO.useAt}, 
+				'N', 
 				#{fakeVO.agreeAt},
 				NOW()
 				)

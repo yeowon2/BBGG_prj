@@ -49,8 +49,10 @@ public class ItemController {
 	//매물 리스트
 	@GetMapping("/itemList")
 	public String itemLists(Model model, ItemVO itemVO, FileVO fileVO) {
-		List<ItemVO> list = service.itemList(itemVO);
-		model.addAttribute("list", list);
+		/*
+		 List<ItemVO> list = service.itemList(itemVO); 
+		 model.addAttribute("list", list);
+		 */
 		return path + "item_list";
 	}
 	@GetMapping("/itemListAll")

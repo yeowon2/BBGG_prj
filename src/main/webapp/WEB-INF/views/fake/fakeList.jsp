@@ -127,12 +127,12 @@
 		                                                    </td>
 		                                                    <td colspan="3"><fmt:formatDate value="${item.registDate}" pattern="yyyy-MM-dd"/></td>
 		                                                    <td colspan="2">
-		                                                    	<c:if test="${item.useAt eq null || item.useAt eq 'I'}"> <!-- null/I -->
+		                                                    	<c:if test="${item.useAt eq 'N' || item.useAt eq 'I'}"> <!-- null/I -->
 		                                                    		<a href="/fake/update${item.itemNo}" class="btn btn-warning btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>
 		                                                    	</c:if>
-		                                                    	<c:if test="${item.useAt ne null && item.useAt ne 'I'}"> <!-- P/F -->
+		                                                    	<c:if test="${item.useAt ne 'N' && item.useAt ne 'I'}"> <!-- P/F -->
 		                                                    		<a href="/fake/update${item.itemNo}" class="btn btn-light btn-sm">
 		                                                    			<i class="bi bi-brush"></i>
 		                                                    		</a>

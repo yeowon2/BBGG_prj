@@ -56,8 +56,6 @@
                                                 <th colspan="1">내용</th>
 	                                            <th colspan="3" style="word-break: unset;">${fakeVO.fakeContent}</th>
                                             </tr>
-                                        </tbody>
-                                        <tfoot>
                                             <tr>
                                                 <th><strong>상태</strong></th>
                                                 <th colspan="3">
@@ -68,7 +66,7 @@
 									            	</c:choose>
                                                 </th>
                                             </tr>
-                                        </tfoot>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>

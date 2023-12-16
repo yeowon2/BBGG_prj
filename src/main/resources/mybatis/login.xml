@@ -21,8 +21,6 @@
 		WHERE user_id = #{userId}
 			AND user_pw = #{userPw}
 	</select>
-	
-	
 
     <!-- PartnerVO를 사용한 로그인 쿼리 -->
     <select id="partnerActionLogin" resultType="PartnerVO">

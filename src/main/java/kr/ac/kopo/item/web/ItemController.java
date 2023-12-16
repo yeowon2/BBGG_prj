@@ -29,7 +29,8 @@ import kr.ac.kopo.user.web.UserVO;
 public class ItemController {
 	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	private final String fileStorePath = "D:/upload/";
+//	private final String fileStorePath = "D:/upload/";
+	private final String fileStorePath = "/home/poly1/upload/";
 	
 	@Autowired
 	ItemService	service;
@@ -48,8 +49,10 @@ public class ItemController {
 	//매물 리스트
 	@GetMapping("/itemList")
 	public String itemLists(Model model, ItemVO itemVO, FileVO fileVO) {
-		List<ItemVO> list = service.itemList(itemVO);
-		model.addAttribute("list", list);
+		/*
+		 List<ItemVO> list = service.itemList(itemVO); 
+		 model.addAttribute("list", list);
+		 */
 		return path + "item_list";
 	}
 	@GetMapping("/itemListAll")

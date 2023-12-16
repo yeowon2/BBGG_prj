@@ -163,21 +163,26 @@
 $('.label-inner').on('click', function() {
 	  var itemNo = $(this).closest('.property-item').find('.item-no').text();
 	  var currentLabelInner = $(this);
-
+	  
+	// 확인 창 표시
+	  var confirmResult = confirm("정말 삭제하시겠습니까?");
+	
 	  // AJAX 요청 보내기
-	  $.ajax({
-	    url: '/wish/delete/' + itemNo, // 서버 엔드포인트 URL을 여기에 입력하세요.
-	    type: 'GET', // 또는 'GET', HTTP 요청 방식을 선택합니다.
-	    success: function(response) {
-    	 if (response === "ok") {
-    		 currentLabelInner.closest('.property-main').hide();
-    	      }
-	    },
-	    error: function(xhr, status, error) {
-	      // AJAX 요청이 실패한 경우 처리하는 로직을 여기에 추가하세요.
-	      console.error(error);
-	    }
-	  });
+	  if(confirmResult) {
+		  $.ajax({
+		    url: '/wish/delete/' + itemNo, // 서버 엔드포인트 URL을 여기에 입력하세요.
+		    type: 'GET', // 또는 'GET', HTTP 요청 방식을 선택합니다.
+		    success: function(response) {
+	    	 if (response === "ok") {
+	    		 currentLabelInner.closest('.property-main').hide();
+	    	      }
+		    },
+		    error: function(xhr, status, error) {
+		      // AJAX 요청이 실패한 경우 처리하는 로직을 여기에 추가하세요.
+		      console.error(error);
+		    }
+		  });
+	  }
 	});
 //임대 완료 버튼 -> use_at이 'C'
 $('.rent-btn').on('click', function() {
@@ -194,7 +199,7 @@ $('.rent-btn').on('click', function() {
 
 //전체보기 버튼 -> 
 $('.all-btn').on('click', function() {
-	location.reload(true);
+	$('.property-main').show(); // 모든 .property-main을 보이도록 변경
 });
 </script>
 <jsp:include page="../js.jsp"></jsp:include>

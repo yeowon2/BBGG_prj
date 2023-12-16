@@ -10,7 +10,7 @@ var echartsConfig = function() {
         success: function(data) {
             var respWaitCount = data.respWaitCount;
             var respCompCount = data.respCompCount;
-
+`
           // 2. X 축 (날짜) 데이터 추출 및 포맷팅
 			var xAxisData = respWaitCount.map(function(item) {
 			    var timestamp = item.date;

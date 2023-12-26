@@ -87,7 +87,7 @@
                 </a>
                  <div class="dropdown-menu">
                   <a class="dropdown-item" href="/admin/userList">개인 회원</a>
-                  <a class="dropdown-item" href="/admin/partnerList">단체 회원</a>
+                  <a class="dropdown-item" href="/admin/partnerList">중개사 회원</a>
                 </div>
               </li>
               <li class="nav-item dropdown mx-3">

@@ -22,8 +22,7 @@
             <div class="col-lg-7 col-md-8 col-xs-12">
               <!-- Start Contact Info -->
               <ul class="links clearfix">
-                <li><i class="lni-phone-handset"></i>010-0000-0000</li>
-                <li><i class="lni-envelope"></i> BBGG.help@gmail.com</li>
+                <li> BBGG-A.site </li>
                 <!-- <li><a href="#"><i class="lni-map-marker"></i> York Blvd, Los Angeles, US</a></li> -->
               </ul>
               <!-- End Contact Info -->
